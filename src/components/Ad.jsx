@@ -1,11 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Apple from "../assests/appleLogo.png";
-import Google from "../assests/googleLogo.webp";
-import Microsoft from "../assests/microsoftLogo.png";
+import Apple from "../assets/appleLogo.png";
+import Google from "../assets/googleLogo.webp";
+import Microsoft from "../assets/microsoftLogo.png";
 const Ad = () => {
   return (
-    <div className="h-40 w-full bg-[#2c2b2b] py-10 rounded-lg ">
+    //bg-[#2c2b2b]
+    <div className="h-40 w-full bg-gradient-to-r from-red-900 py-10 rounded-lg ">
       <div className="flex lg:pl-20 h-full w-full justify-between items-center">
         <div className="text-2xl px-3 ">
           <div className="py-2"> SKXYWTF</div>

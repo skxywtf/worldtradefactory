@@ -12,7 +12,7 @@ const MainSearch = () => {
         <form action="submit" className=" h-full items-center w-[60%]">
           <input
             type="text"
-            placeholder="search stocks"
+            placeholder="search stocks "
             className=" px-5 h-full items-center w-full border-2 border-teal-600 text-black rounded-md"
           />
         </form>

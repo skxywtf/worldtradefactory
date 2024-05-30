@@ -8,9 +8,11 @@ import About from "./components/About";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup";
 
+// rgb(2, 2, 2)
 function App() {
   return (
-    <div className=" bg-[#131313] h-full w-full  text-white">
+    // bg-[rgb(19,19,19)]
+    <div className={` bg-[rgb(19,19,19)]  h-full w-full  text-white`}>
       <Navbar />
       <Routes>
         <Route path="/" element={<Main />}></Route>

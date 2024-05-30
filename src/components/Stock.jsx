@@ -2,7 +2,7 @@ import React from "react";
 import { BiSolidUpArrow } from "react-icons/bi";
 import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa6";
-import Google from "../assests/googleLogo.webp";
+import Google from "../assets/googleLogo.webp";
 import Ad from "./Ad";
 import BestPerform from "./BestPerform";
 import IndexETF from "./IndexETF";

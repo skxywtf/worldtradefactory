@@ -31,12 +31,14 @@ const IndexETF = () => {
             {data.map((item) => (
               <Link
                 to="/stock"
-                className="w-[220px] mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3 hover:scale-105 ease-in-out duration-300 bg-[#2c2b2b]"
+                className="w-[270px] mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3  ease-in-out duration-300 group bg-[#212121] hover:bg-gradient-to-t from-black to-[#10177b] border border-gray-500"
               >
-                <div className="flex justify-center w-full py-3">
-                  <button className="p-1 rounded-lg bg-gray-600">Google</button>
+                <div className="flex  w-full py-2 px-5">
+                  <button className="p-2 rounded-3xl  border border-white font-medium text-white bg-[#3c3c3c]  shadow-md group-hover:text-black group-hover:bg-white">
+                    Google
+                  </button>
                 </div>
-                <div className="text-center py-7">Lorem, ipsum dolor.</div>
+                <div className="px-5 py-5">Lorem, ipsum dolor.</div>
               </Link>
             ))}
           </div>

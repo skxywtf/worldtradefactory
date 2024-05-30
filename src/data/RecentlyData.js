@@ -1,5 +1,5 @@
-const markData = {
-  stocks: [
+const RecentData = {
+  recentStocks: [
     {
       id: 1,
       img: "./assets/nvidia.webp",
@@ -16,7 +16,7 @@ const markData = {
     },
     {
       id: 3,
-      img: "./assets/nvidia.webp",
+      img: "./assassetsests/nvidia.webp",
       name: "Nvidia",
       description: "lorem nvidia stock",
       price: 100,
@@ -45,4 +45,4 @@ const markData = {
   ],
 };
 
-export default markData;
+export default RecentData;

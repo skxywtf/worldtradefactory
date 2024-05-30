@@ -1,14 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Apple from "../assests/appleLogo.png";
-import Google from "../assests/googleLogo.webp";
-import Microsoft from "../assests/microsoftLogo.png";
+import Apple from "../assets/appleLogo.png";
+import Google from "../assets/googleLogo.webp";
+import Microsoft from "../assets/microsoftLogo.png";
 
 const TopPicks = () => {
   return (
     <div className="py-10">
       <h1 className="text-4xl pl-3 pb-10">Top Picks</h1>
-      <div className="h-40 w-full bg-[#2c2b2b] rounded-md">
+      <div className="h-40 w-full  bg-gradient-to-r from-red-900  rounded-md">
         <div className="flex lg:pl-20 h-full w-full justify-between items-center">
           <div className="text-2xl px-3 py-2  ">
             <div> SKXYWTF</div>

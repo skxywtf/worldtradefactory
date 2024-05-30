@@ -16,8 +16,8 @@ const MostTweets = () => {
 
   return (
     <div>
-      <h1 className="mt-10 text-3xl pl-4">Most Tweeted Stocks</h1>
-      <div className="relative flex items-center py-20">
+      <h1 className="mt-10 text-3xl pl-14 lg:pl-20">Most Tweeted Stocks</h1>
+      <div className="relative flex items-center py-20 pl-4 lg:pl-10">
         <MdChevronLeft
           className="opacity-50 cursor-pointer hover:opacity-100"
           onClick={() => slide("left")}
@@ -32,17 +32,22 @@ const MostTweets = () => {
             <Link
               to={`/stock`}
               key={item.id}
-              className="w-[220px] mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3 hover:scale-105 ease-in-out duration-300 bg-[#2c2b2b]"
+              className="w-[260px] group hover:bg-gradient-to-t from-black to-[#0510a5] border border-gray-500  mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3 ease-in-out duration-300 bg-[#2c2b2b]"
             >
-              <div className="flex gap-6">
-                <img className="w-10 h-10" src={item.img} alt={item.name} />
-                <h1>98</h1>
-                <h1>score</h1>
+              <div className="flex justify-between pt-3 px-5 mb-10 gap-6">
+                <img className="w-14 h-14" src={item.img} alt={item.name} />
+                <div className=" text-xl ">
+                  {" "}
+                  <h1 className=" font-bold text-3xl tracking-wider">348478</h1>
+                  <h1 className="  ">Buzz Score</h1>
+                </div>
               </div>
-              <div className="flex justify-center w-full py-5">
-                <button className="p-1 rounded-lg bg-gray-600">Google</button>
+              <div className="flex h-full items-end justify-center w-full pt-3 pb-3">
+                <button className=" flex h-full items-end rounded-3xl tracking-widest border border-white font-semibold  text-white bg-[#3c3c3c] p-3 shadow-md group-hover:text-black group-hover:bg-white">
+                  GOOG
+                </button>
               </div>
-              <div className="text-center py-7">Lorem, ipsum dolor.</div>
+              <div className="text-center text-xl py-3">Google Corp</div>
             </Link>
           ))}
         </div>

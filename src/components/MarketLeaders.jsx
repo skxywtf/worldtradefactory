@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import { markData } from "../data/MarketLeadersData.js";
-import nvidia from "../assests/nvidia.webp"; // Make sure this path is correct
 
 const MarketLeaders = ({ stocks }) => {
   const sliderRef = useRef(null);
@@ -23,25 +22,25 @@ const MarketLeaders = ({ stocks }) => {
 
       <br />
       <br />
-      <div className="relative group">
+      <div className="relative ">
         <div className="flex overflow-hidden">
           <div ref={sliderRef} className="flex animate-loop-scroll space-x-10">
             {stocks.concat(stocks).map((item, index) => (
               <Link
                 key={`${item.name}-${index}`}
                 to="/stock"
-                className="bg-[#2c2b2b] hover:bg-[#0c0a32] h-60 w-48 rounded-lg shadow-lg transition-transform transform flex-shrink-0"
+                className="group bg-[#212121] hover:bg-gradient-to-t from-black to-[#0510a5] border border-gray-500 h-72 w-64 rounded-lg shadow-2xl transition-transform transform flex-shrink-0"
               >
-                <div className="h-full w-full flex flex-col justify-center items-center text-center p-4">
-                  <div className="mb-5">
+                <div className="h-full w-full flex flex-col justify-evenly items-center text-center p-4">
+                  <div className="mb-3">
                     <img
                       src={item.img}
                       alt={item.name}
-                      className="bg-gray-200 h-10 w-10 rounded-md"
+                      className=" h-12 w-14 rounded-md"
                     />
                   </div>
-                  <div className="mb-5">
-                    <button className="flex items-center justify-center rounded-md border border-gray-600 text-black bg-gray-400 p-3 shadow-md">
+                  <div className="mb-5 ">
+                    <button className="flex tracking-widest  rounded-3xl border border-white font-bold text-white bg-[#3c3c3c] p-3 shadow-md group-hover:text-black group-hover:bg-white">
                       {item.name}
                     </button>
                   </div>
