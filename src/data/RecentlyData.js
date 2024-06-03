@@ -16,7 +16,7 @@ const RecentData = {
     },
     {
       id: 3,
-      img: "./assassetsests/nvidia.webp",
+      img: "./assets/nvidia.webp",
       name: "Nvidia",
       description: "lorem nvidia stock",
       price: 100,

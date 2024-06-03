@@ -10,6 +10,9 @@ const Footer = () => {
         </Link>
         <div className="flex gap-7">
           <Link to="/subscription" className="underline">
+            Contact us
+          </Link>
+          <Link to="/subscription" className="underline">
             Subscription
           </Link>
           <Link to="/about" className="underline">

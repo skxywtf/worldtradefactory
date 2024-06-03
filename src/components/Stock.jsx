@@ -6,9 +6,11 @@ import Google from "../assets/googleLogo.webp";
 import Ad from "./Ad";
 import BestPerform from "./BestPerform";
 import IndexETF from "./IndexETF";
+import Navbar from "./Navbar";
 const Stock = () => {
   return (
     <div>
+      <Navbar />
       <div className="pt-40 h-full w-full ">
         <div className="flex w-full justify-between px-10">
           {/* left */}

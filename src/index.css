@@ -17,6 +17,9 @@
   }
 }
 
+.navbar.active {
+  background-color: #000000;
+}
 .animate-loop-scroll {
   display: flex;
   white-space: nowrap;
@@ -77,4 +80,15 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: #242424;
+}
+
+.search-input {
+  width: 0;
+  opacity: 0;
+  transition: width 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.search-input-active {
+  width: 300px; /* Adjust to your preferred width */
+  opacity: 1;
 }

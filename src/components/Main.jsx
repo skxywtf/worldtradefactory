@@ -12,6 +12,7 @@ import RecFol from "./RecFol";
 import markData from "../data/MarketLeadersData";
 import recentData from "../data/RecentlyData";
 import FollowedData from "../data/FollowedData";
+import Navbar from "./Navbar";
 
 const Main = () => {
   const { stocks } = markData;
@@ -19,14 +20,15 @@ const Main = () => {
   const { followedStocks } = FollowedData;
 
   return (
-    <div className="px-3">
+    <div className="">
+      <Navbar />
       <MainSearch />
       <MarketLeaders stocks={stocks} />
-      <Ad />
+      {/* <Ad /> */}
       <RecFol recentStocks={recentStocks} followedStocks={followedStocks} />
       <IndexETF />
       <TopMovers />
-      <TopPicks />
+      {/* <TopPicks /> */}
       <MostTweets />
       <BestPerform />
     </div>

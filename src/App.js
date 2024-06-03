@@ -11,9 +11,8 @@ import Signup from "./components/Signup";
 // rgb(2, 2, 2)
 function App() {
   return (
-    // bg-[rgb(19,19,19)]
-    <div className={` bg-[rgb(19,19,19)]  h-full w-full  text-white`}>
-      <Navbar />
+    // bg-[rgb(19,19,19)]  bg-[#06081e]  bg-[rgb(15,23,42)]  bg-[#03121f]  bg-[#020e18]
+    <div className={`  bg-[rgb(15,15,15)]  h-full w-full  text-white`}>
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/stock" element={<Stock />}></Route>
