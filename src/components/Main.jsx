@@ -13,6 +13,7 @@ import markData from "../data/MarketLeadersData";
 import recentData from "../data/RecentlyData";
 import FollowedData from "../data/FollowedData";
 import Navbar from "./Navbar";
+import Footer from "./Footer";
 
 const Main = () => {
   const { stocks } = markData;
@@ -31,6 +32,7 @@ const Main = () => {
       {/* <TopPicks /> */}
       <MostTweets />
       <BestPerform />
+      <Footer />
     </div>
   );
 };

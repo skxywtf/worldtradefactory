@@ -7,6 +7,8 @@ import Terms from "./components/Terms";
 import About from "./components/About";
 import Footer from "./components/Footer";
 import Signup from "./components/Signup";
+import Login from "./components/Login";
+import Contact from "./components/Contact";
 
 // rgb(2, 2, 2)
 function App() {
@@ -19,9 +21,10 @@ function App() {
         <Route path="/subscription" element={<Subscription />}></Route>
         <Route path="/terms" element={<Terms />}></Route>
         <Route path="/about" element={<About />}></Route>
+        <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
       </Routes>
-      <Footer />
     </div>
   );
 }

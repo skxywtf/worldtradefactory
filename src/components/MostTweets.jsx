@@ -17,9 +17,9 @@ const MostTweets = () => {
   return (
     <div>
       <h1 className="mt-10 text-3xl pl-14 lg:pl-20">Most Tweeted Stocks</h1>
-      <div className="relative flex items-center py-20 pl-4 lg:pl-10">
+      <div className="relative flex items-center py-20 px-3">
         <MdChevronLeft
-          className="opacity-50 cursor-pointer hover:opacity-100"
+          className="opacity-50 rounded-full bg-gray-800 cursor-pointer hover:opacity-100"
           onClick={() => slide("left")}
           size={40}
         />
@@ -35,7 +35,11 @@ const MostTweets = () => {
               className="w-[260px] group hover:bg-gradient-to-t from-black to-[#0510a5] border border-gray-500  mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3 ease-in-out duration-300 bg-[#2c2b2b]"
             >
               <div className="flex justify-between pt-3 px-5 mb-10 gap-6">
-                <img className="w-14 h-14" src={item.img} alt={item.name} />
+                <img
+                  className="w-14 rounded-full h-14"
+                  src={item.img}
+                  alt={item.name}
+                />
                 <div className=" text-xl ">
                   {" "}
                   <h1 className=" font-bold text-3xl tracking-wider">348478</h1>
@@ -53,7 +57,7 @@ const MostTweets = () => {
         </div>
 
         <MdChevronRight
-          className="opacity-50 cursor-pointer hover:opacity-100"
+          className="opacity-50 rounded-full bg-gray-800 cursor-pointer hover:opacity-100"
           onClick={() => slide("right")}
           size={40}
         />

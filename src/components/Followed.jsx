@@ -14,7 +14,7 @@ const Followed = ({ followedStocks }) => {
           >
             <div className="flex">
               <div className="flex items-center px-2">
-                <div className="h-24 w-16">
+                <div className="h-24 w-16 rounded-full">
                   <img src={followedStock.img} alt="Stock" />
                 </div>
                 <div>

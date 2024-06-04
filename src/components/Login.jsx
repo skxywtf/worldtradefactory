@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
-import { IoClose } from "react-icons/io5";
+import { IoClose, IoMenu } from "react-icons/io5";
 
-const Signup = () => {
+const Login = () => {
   return (
-    <div className="h-full bg-gray-900 w-full pb-20">
+    <div className="h-screen bg-gray-900 w-full">
       <Link to="/">
         <div className=" fixed top-0 right-0 m-10">
           <IoClose size={30} />
         </div>
       </Link>
-      <div className=" h-full flex justify-center items-center">
+
+      <div className=" h-full  flex justify-center items-center">
         <div className="">
           <div className="my-10 text-center font-bold text-2xl tracking-widest">
-            Sign up
+            Login
           </div>
           <div className=" flex flex-col ">
             <form className=" flex flex-col gap-3 ">
@@ -26,14 +27,6 @@ const Signup = () => {
                   placeholder="username"
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <label className=" tracking-wider">email</label>
-                <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
-                  placeholder="email"
-                />
-              </div>
 
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">password</label>
@@ -43,17 +36,9 @@ const Signup = () => {
                   placeholder="password"
                 />
               </div>
-              <div className="flex flex-col gap-2">
-                <label className=" tracking-wider">confirm password</label>
-                <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
-                  placeholder="confirm password"
-                />
-              </div>
-              <Link to="/login">
+              <Link to="/signup">
                 <button className=" text-sm hover:text-blue-600">
-                  Already have an account?
+                  Don't have an account?
                 </button>
               </Link>
 
@@ -61,7 +46,7 @@ const Signup = () => {
                 className="border p-2 hover:bg-gray-700 rounded"
                 type="submit"
               >
-                Create Account
+                Login
               </button>
             </form>
             <div className="text-center my-5 text-xl">OR</div>
@@ -80,4 +65,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default Login;

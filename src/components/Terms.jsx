@@ -44,11 +44,11 @@ const Terms = () => {
         <br />
         <br />
         You are solely responsible for your investment decisions and actions
-        taken based on the information provided by Borea AI. Borea AI shall not
-        be held liable for any losses, damages, or financial consequences
-        arising from your reliance on its algorithms or services. You agree to
-        use Borea AI's services in compliance with applicable laws, regulations,
-        and these Terms. You shall not use the services for any unlawful or
+        taken based on the information provided by Skxywtf. Skxywtf shall not be
+        held liable for any losses, damages, or financial consequences arising
+        from your reliance on its algorithms or services. You agree to use
+        Skxywtf's services in compliance with applicable laws, regulations, and
+        these Terms. You shall not use the services for any unlawful or
         unauthorized purposes.
       </div>
 
@@ -56,20 +56,20 @@ const Terms = () => {
         <h1 className="text-3xl">Intellectual Property:</h1>
         <br />
         <br />
-        Borea AI retains all rights, title, and interest in and to its
+        Skxywtf retains all rights, title, and interest in and to its
         algorithms, software, and any related intellectual property. These Terms
-        do not grant you any ownership or license rights in Borea AI's
+        do not grant you any ownership or license rights in Skxywtf's
         intellectual property. You agree not to reproduce, modify, distribute,
-        or create derivative works based on Borea AI's algorithms or services
-        without prior written consent from Borea AI.
+        or create derivative works based on Skxywtf's algorithms or services
+        without prior written consent from Skxywtf.
       </div>
 
       <div className="text-xl mt-5 px-5 py-10">
         <h1 className="text-3xl">Modifications and Termination:</h1>
         <br />
         <br />
-        Borea AI reserves the right to modify, suspend, or terminate its
-        algorithms and services at any time without prior notice. Borea AI may
+        Skxywtf reserves the right to modify, suspend, or terminate its
+        algorithms and services at any time without prior notice. Skxywtf may
         update these Terms from time to time. Continued use of the services
         after any modifications to the Terms constitutes your acceptance of the
         revised Terms.
@@ -79,9 +79,9 @@ const Terms = () => {
         <h1 className="text-3xl">Disclaimer of Warranties:</h1>
         <br />
         <br />
-        Borea AI's algorithms and services are provided on an "as is" and "as
+        Skxywtf's algorithms and services are provided on an "as is" and "as
         available" basis, without any warranties or representations of any kind,
-        whether express or implied. Borea AI disclaims all warranties, including
+        whether express or implied. Skxywtf disclaims all warranties, including
         but not limited to the accuracy, reliability, availability, fitness for
         a particular purpose, and non-infringement of intellectual property
         rights.
@@ -91,10 +91,10 @@ const Terms = () => {
         <h1 className="text-3xl">Limitation of Liability:</h1>
         <br />
         <br />
-        In no event shall Borea AI be liable to you or any third party for any
+        In no event shall Skxywtf be liable to you or any third party for any
         direct, indirect, incidental, consequential, or punitive damages arising
         out of or in connection with the use of its algorithms or services.
-        Borea AI's total liability, whether in contract, tort, or otherwise,
+        Skxywtf's total liability, whether in contract, tort, or otherwise,
         shall not exceed the amount paid by you, if any, for accessing or using
         its services.
       </div>
@@ -104,14 +104,14 @@ const Terms = () => {
         <br />
         <br />
         These Terms shall be governed by and construed in accordance with the
-        laws of the jurisdiction where Borea AI is incorporated or operates. Any
+        laws of the jurisdiction where Skxywtf is incorporated or operates. Any
         disputes arising out of or in connection with these Terms shall be
         subject to the exclusive jurisdiction of the courts in the relevant
         jurisdiction.
       </div>
       <div className="mt-10 text-xl px-5 py-10">
-        Please read these Terms carefully before using Borea AI's algorithms and
-        services. If you do not agree with any part of these Terms, you
+        Please read these Terms carefully before using Skxywtf algorithms and
+        services. If you do not agree with any part of these Terms
       </div>
     </div>
   );

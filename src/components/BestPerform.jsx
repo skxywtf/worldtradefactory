@@ -17,9 +17,9 @@ const BestPerform = () => {
   return (
     <div>
       <h1 className="mt-10 text-3xl pl-14 lg:pl-20">Best Performing</h1>
-      <div className="relative flex items-center py-20 pl-4 lg:pl-10">
+      <div className="relative flex items-center py-20 px-3">
         <MdChevronLeft
-          className="opacity-50 cursor-pointer hover:opacity-100"
+          className="opacity-50 rounded-full bg-gray-800 cursor-pointer hover:opacity-100"
           onClick={() => slide("left")}
           size={40}
         />
@@ -36,7 +36,7 @@ const BestPerform = () => {
             >
               <div className="flex justify-between pt-3 px-7 mb-10 gap-6">
                 <img
-                  className="w-[60px] h-[60px]"
+                  className="w-[60px] h-[60px] rounded-full"
                   src={item.img}
                   alt={item.name}
                 />
@@ -57,7 +57,7 @@ const BestPerform = () => {
         </div>
 
         <MdChevronRight
-          className="opacity-50 cursor-pointer hover:opacity-100"
+          className="opacity-50 cursor-pointer hover:opacity-100 rounded-full bg-gray-800 "
           onClick={() => slide("right")}
           size={40}
         />
