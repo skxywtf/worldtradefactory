@@ -6,8 +6,8 @@ import Subscription from "./components/Subscription";
 import Terms from "./components/Terms";
 import About from "./components/About";
 import Footer from "./components/Footer";
-import Signup from "./components/Signup";
-import Login from "./components/Login";
+import Signup from "./components/LoginAndSignup/Signup";
+import Login from "./components/LoginAndSignup/Login";
 import Contact from "./components/Contact";
 
 // rgb(2, 2, 2)
