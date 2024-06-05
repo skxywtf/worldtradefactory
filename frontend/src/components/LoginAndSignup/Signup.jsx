@@ -2,8 +2,22 @@ import React from "react";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { IoClose } from "react-icons/io5";
-
+import { auth, googleAuthProvider } from "../../firebase.js";
+import { signInWithPopup } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
+  const handleSignInWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleAuthProvider);
+      console.log(result);
+      localStorage.setItem("token", result.user.accessToken);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="h-full bg-gray-900 w-full pb-20">
       <Link to="/">
@@ -66,7 +80,7 @@ const Signup = () => {
             </form>
             <div className="text-center my-5 text-xl">OR</div>
             <div>
-              <GoogleButton />
+              <GoogleButton onClick={handleSignInWithGoogle} />
               <div className="flex">
                 <div className="p-1"></div>
                 <div className="p-1"></div>
