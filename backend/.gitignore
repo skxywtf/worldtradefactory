@@ -1,5 +1,5 @@
 # Ignore virtual environment directory
 venv/
 .env
-api/__pycache__
-backend/__pycache__
+api/__pycache__/
+backend/__pycache__/
