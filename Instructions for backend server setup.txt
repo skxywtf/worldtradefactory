@@ -1,0 +1,14 @@
+0) Reach this path:
+<your_folder_name>\worldtradefactory>
+
+1) Activate the virtual environment:
+.\myenv\scripts\activate
+
+
+2) Run the following commands one by one on terminal. Make sure that your      internet connection is turned on:
+pip install -r req.txt
+
+3) cd backend
+python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver

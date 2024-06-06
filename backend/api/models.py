@@ -1,3 +1,9 @@
-from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-# Create your models here.
+# Additional custom fields will go here. 
+# Uncomment the: AUTH_USER_MODEL = 'yourapp.CustomUser' in settings.py
+# register in the admin.py
+# makemigartions and then migrate
+
+class CustomUser(AbstractUser):
+    pass
