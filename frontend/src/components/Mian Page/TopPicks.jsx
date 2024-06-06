@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Apple from "../assets/appleLogo.png";
-import Google from "../assets/googleLogo.webp";
-import Microsoft from "../assets/microsoftLogo.png";
+import Apple from "../../assets/appleLogo.png";
+import Google from "../../assets/googleLogo.webp";
+import Microsoft from "../../assets/microsoftLogo.png";
 
 const TopPicks = () => {
   return (

@@ -1,20 +1,21 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Main from "./components/Main";
-import Stock from "./components/Stock";
-import Subscription from "./components/Subscription";
-import Terms from "./components/Terms";
-import About from "./components/About";
-import Footer from "./components/Footer";
+
+import Subscription from "./components/header and Footer/Subscription";
+import Terms from "./components/header and Footer/Terms";
+import About from "./components/header and Footer/About";
 import Signup from "./components/LoginAndSignup/Signup";
 import Login from "./components/LoginAndSignup/Login";
-import Contact from "./components/Contact";
+import Contact from "./components/header and Footer/Contact";
+import Stock from "./components/Stock Page/Stock";
+import Main from "./components/Mian Page/Main";
 
 // rgb(2, 2, 2)
 function App() {
   return (
     // bg-[rgb(19,19,19)]  bg-[#06081e]  bg-[rgb(15,23,42)]  bg-[#03121f]  bg-[#020e18]
-    <div className={`  bg-[rgb(15,15,15)]  h-full w-full  text-white`}>
+    <div
+      className={` dark:bg-white dark:text-black bg-[#0c101e] text-gray-200 h-full w-full  font-mono `}
+    >
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/stock" element={<Stock />}></Route>

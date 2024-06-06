@@ -2,11 +2,11 @@ import React from "react";
 import { BiSolidUpArrow } from "react-icons/bi";
 import { FaShareAlt } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa6";
-import Google from "../assets/googleLogo.webp";
-import Ad from "./Ad";
-import BestPerform from "./BestPerform";
-import IndexETF from "./IndexETF";
-import Navbar from "./Navbar";
+import Google from "../../assets/googleLogo.webp";
+import BestPerform from "../Mian Page/BestPerform";
+import IndexETF from "../Mian Page/IndexETF";
+import Navbar from "../header and Footer/Navbar";
+import Footer from "../header and Footer/Footer";
 const Stock = () => {
   return (
     <div>
@@ -86,9 +86,10 @@ const Stock = () => {
       {/*  */}
       <div></div>
       {/*  */}
-      <Ad />
+      {/* <Ad /> */}
       <BestPerform />
       <IndexETF />
+      <Footer />
     </div>
   );
 };
