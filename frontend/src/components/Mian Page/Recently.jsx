@@ -1,26 +1,26 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Followed = ({ followedStocks }) => {
+const Recently = ({ recentStocks }) => {
   return (
     <div className="h-[450px] w-full">
-      <h1 className="text-4xl pl-5 pb-8 ">Followed Stocks</h1>
+      <h1 className="text-4xl pl-10 pb-8 ">Recently Viewed Stocks{">"}</h1>
       <div className="h-full w-full  overflow-y-auto no-scrollbar px-5">
-        {followedStocks.map((followedStock, index) => (
+        {recentStocks.map((recentStock, index) => (
           <Link
             key={index}
             to="/stock"
-            className="w-full mx-2 mb-5 py-5 rounded-md inline-block p-2 cursor-pointer gap-3 ease-in-out duration-300 group bg-[#212121] hover:bg-gradient-to-t from-black to-[#10177b] border border-gray-500"
+            className="w-full bg-opacity-50 dark:bg-gray-200 bg-[#192032] shadow-lg hover:border border-gray-400 mx-2 mb-5 py-5 rounded-md inline-block p-2 cursor-pointer gap-3  group "
           >
             <div className="flex">
               <div className="flex items-center px-2">
-                <div className="h-24 w-16 rounded-full">
-                  <img src={followedStock.img} alt="Stock" />
+                <div className="h-24 w-16">
+                  <img src={recentStock.img} alt="Stock" />
                 </div>
                 <div>
                   <div className="flex py-2 px-5">
-                    <button className="p-2 px-3 rounded-3xl border border-white font-medium text-white bg-[#3c3c3c] shadow-md group-hover:text-black group-hover:bg-white">
-                      {followedStock.name}
+                    <button className="p-2 px-3 rounded-3xl  border-white font-medium text-white bg-[#070e25] shadow-md group-hover:text-black group-hover:bg-white">
+                      Google
                     </button>
                   </div>
                   <div className="px-5 py-5">Lorem, ipsum dolor.</div>
@@ -38,4 +38,4 @@ const Followed = ({ followedStocks }) => {
   );
 };
 
-export default Followed;
+export default Recently;
