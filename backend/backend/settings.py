@@ -20,7 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=exnc37-+2!1bnrl(7)=-4jiy_!8-1ux6*ch0mh7iyw(^5i$o9'
+SECRET_KEY = 'django-insecure-2d2r#3g36j=9d4#vvjcqa_japrh%b$)29z0gc1!20ix^8buhbs'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -37,10 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-    'api',
     'rest_framework',
-    'corsheaders',
+    'rest_framework.authtoken',
+    'api',
 ]
 
 MIDDLEWARE = [
@@ -126,5 +125,21 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 CORS_ALLOW_ALL_ORIGINS = True
-CORS_ALLOW_CREDENTIALS = True
+
+'''
+CSRF_TRUSTED_ORIGINS = [
+    "https://read-and-write.example.com",
+]
+'''
+AUTH_USER_MODEL = 'api.CustomUser'
+
+# To stop the restframework default JSON View
+'''
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES' : (
+        'rest_framework.renderers.JSONRenderer',
+    )
+}
+'''
