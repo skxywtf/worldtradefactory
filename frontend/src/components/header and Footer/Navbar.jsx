@@ -3,19 +3,22 @@ import { IoClose, IoMenu } from "react-icons/io5";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { CiLight } from "react-icons/ci";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
+  const [search, setSearch] = useState(true);
+  const [navbarBackground, setNavbarBackground] = useState(false);
+  const [dark, setDark] = useState(localStorage.getItem("theme") === "dark");
+
   const handleNav = () => {
     setNav(!nav);
   };
 
-  const [search, setSearch] = useState(true);
   const handleSearch = () => {
     setSearch(!search);
   };
-
-  const [navbarBackground, setNavbarBackground] = useState(false);
 
   const changeBackground = () => {
     if (window.scrollY >= 600) {
@@ -32,8 +35,21 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+    localStorage.setItem("theme", dark ? "dark" : "light");
+  }, [dark]);
+
+  const toggleTheme = () => {
+    setDark(!dark);
+  };
+
   return (
-    <div className="fixed w-full z-20 ">
+    <div className="fixed w-full z-20 dark:text-white ">
       <div className={navbarBackground ? "navbar active" : "navbar"}>
         <div className="flex justify-between w-full px-10 lg:px-20 py-5 bg-[#00000000]">
           <Link
@@ -87,6 +103,20 @@ const Navbar = () => {
             <Link className="text-2xl p-2 rounded-full hover:bg-[rgba(80,77,77,0.55)]">
               <CgProfile />
             </Link>
+            <div
+              className="rounded-full p-2 text-xl lg:text-2xl hover:bg-[rgba(80,77,77,0.55)]"
+              onClick={toggleTheme}
+            >
+              {dark ? (
+                <CiLight size={24} className=" cursor-pointer" />
+              ) : (
+                <MdOutlineDarkMode
+                  size={24}
+                  className=" cursor-pointer lg:text-3xl"
+                />
+              )}
+            </div>
+
             <div
               className="rounded-full p-2 text-xl lg:text-2xl hover:bg-[rgba(80,77,77,0.55)]"
               onClick={handleNav}

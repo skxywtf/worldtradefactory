@@ -9,19 +9,19 @@ import BestPerform from "./BestPerform";
 import MostTweets from "./MostTweets";
 import RecFol from "./RecFol";
 
-import markData from "../data/MarketLeadersData";
-import recentData from "../data/RecentlyData";
-import FollowedData from "../data/FollowedData";
-import Navbar from "./Navbar";
-import Footer from "./Footer";
+import markData from "../../data/MarketLeadersData";
+import recentData from "../../data/RecentlyData";
+import FollowedData from "../../data/FollowedData";
+import Navbar from "../header and Footer/Navbar";
+import Footer from "../header and Footer/Footer";
 
 const Main = () => {
   const { stocks } = markData;
   const { recentStocks } = recentData;
   const { followedStocks } = FollowedData;
-
+  // bg-[#192032]    bg-[rgba(17,24,42,255)]  bg-[#070723]  bg-[#111827]  {  bg-[#0c101e]  }
   return (
-    <div className="">
+    <div className=" ">
       <Navbar />
       <MainSearch />
       <MarketLeaders stocks={stocks} />

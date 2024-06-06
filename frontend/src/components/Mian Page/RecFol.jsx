@@ -4,7 +4,7 @@ import Followed from "./Followed";
 
 const RecFol = ({ recentStocks, followedStocks }) => {
   return (
-    <div className="lg:flex h-full my-40 w-full">
+    <div className="  lg:flex h-full my-40 w-full">
       <Recently recentStocks={recentStocks} />
       <br />
       <br />
