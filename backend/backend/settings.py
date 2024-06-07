@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+# import environ
 
 from pathlib import Path
 from pathlib import Path
@@ -18,6 +19,13 @@ import os
 # Load environment variables from .env file
 load_dotenv()
 
+# env = environ.Env()
+# # reading .env file
+# environ.Env.read_env()
+
+# Raises django's ImproperlyConfigured exception if SECRET_KEY not in os.environ
+# SECRET_KEY = env("DB_NAME")
+# print(SECRET_KEY)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -90,11 +98,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': os.getenv('DB_NAME'),
+        'NAME': 'skxywtf',
         'ENFORCE_SCHEMA': True,
         'CLIENT': {
-            'host': os.getenv('DB_HOST'),
-            'port': int(os.getenv('DB_PORT')),
+            'host':'31.220.31.198',
+            'port': 27017,
         }
     }
 }
