@@ -19,50 +19,65 @@ const Signup = () => {
     }
   };
   return (
-    <div className="h-full bg-gray-900 w-full pb-20">
-      <Link to="/">
-        <div className=" fixed top-0 right-0 m-10">
-          <IoClose size={30} />
+    <div className="h-full w-full pb-20">
+      <div className=" w-full dark:bg-gray-200 bg-gray-950">
+        <div className="w-full flex justify-between px-5 py-4  md:py-5 md:px-10 ">
+          <div>
+            <Link className=" text-2xl" to="/">
+              SKXYWTF
+            </Link>
+          </div>
+          <div className=" rounded  hover:bg-opacity-45 hover:bg-gray-700">
+            <Link to="/">
+              <div>
+                <IoClose size={30} />
+              </div>
+            </Link>
+          </div>
         </div>
-      </Link>
+      </div>
       <div className=" h-full flex justify-center items-center">
-        <div className="">
+        <div className=" w-[65%] md:w-1/2 lg:w-1/3">
           <div className="my-10 text-center font-bold text-2xl tracking-widest">
             Sign up
           </div>
-          <div className=" flex flex-col ">
+          <div className=" flex flex-col  p-5 rounded ">
             <form className=" flex flex-col gap-3 ">
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">username</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="text"
                   placeholder="username"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">email</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
+                  type="email"
                   placeholder="email"
+                  required
                 />
               </div>
 
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">password</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
+                  type="password"
                   placeholder="password"
+                  required
                 />
               </div>
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">confirm password</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
+                  type="password"
                   placeholder="confirm password"
+                  required
                 />
               </div>
               <Link to="/login">
@@ -72,20 +87,18 @@ const Signup = () => {
               </Link>
 
               <button
-                className="border p-2 hover:bg-gray-700 rounded"
+                className=" p-2 dark:bg-cyan-400 dark:hover:bg-cyan-500 bg-blue-700 hover:bg-blue-800 rounded"
                 type="submit"
               >
                 Create Account
               </button>
             </form>
             <div className="text-center my-5 text-xl">OR</div>
-            <div>
-              <GoogleButton onClick={handleSignInWithGoogle} />
-              <div className="flex">
-                <div className="p-1"></div>
-                <div className="p-1"></div>
-                <div className="p-1"></div>
-              </div>
+            <div className=" w-full flex justify-center">
+              <GoogleButton
+                className=" w-full"
+                onClick={handleSignInWithGoogle}
+              />
             </div>
           </div>
         </div>

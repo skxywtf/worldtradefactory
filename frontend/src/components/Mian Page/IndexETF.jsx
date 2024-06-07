@@ -19,7 +19,7 @@ const IndexETF = () => {
         <h1 className="mt-10 text-3xl pl-10">Index ETFs Best Stocks{">"}</h1>
         <div className="relative flex  items-center py-20">
           <MdChevronLeft
-            className="opacity-50 cursor-pointer hover:opacity-100"
+            className="opacity-50 rounded-full dark:bg-gray-300 bg-gray-800  cursor-pointer hover:opacity-100"
             onClick={slideLeft}
             size={40}
           />
@@ -46,7 +46,7 @@ const IndexETF = () => {
             ))}
           </div>
           <MdChevronRight
-            className="opacity-50 cursor-pointer hover:opacity-100"
+            className="opacity-50 rounded-full dark:bg-gray-300 bg-gray-800  cursor-pointer hover:opacity-100"
             onClick={slideRight}
             size={40}
           />

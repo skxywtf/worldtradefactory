@@ -10,7 +10,7 @@ const Followed = ({ followedStocks }) => {
           <Link
             key={index}
             to="/stock"
-            className="w-full  bg-opacity-50 dark:bg-gray-200 bg-[#192032] shadow-lg hover:border border-gray-400  mx-2 mb-5 py-5 rounded-md inline-block p-2 cursor-pointer gap-3 ease-in-out duration-300 group"
+            className="w-full  bg-opacity-50 dark:bg-gray-200 bg-[#192032] shadow-lg hover:border border-gray-400  mx-2 mb-5 py-5 rounded-md inline-block p-2 cursor-pointer gap-3  group"
           >
             <div className="flex">
               <div className="flex items-center px-2">

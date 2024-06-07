@@ -19,7 +19,7 @@ const BestPerform = () => {
       <h1 className="mt-10 text-3xl pl-14 ">Best Performing{">"}</h1>
       <div className="relative flex items-center py-20 px-3">
         <MdChevronLeft
-          className="opacity-50 rounded-full bg-gray-800 cursor-pointer hover:opacity-100"
+          className="opacity-50 rounded-full dark:bg-gray-200 bg-gray-800 cursor-pointer hover:opacity-100"
           onClick={() => slide("left")}
           size={40}
         />
@@ -32,7 +32,7 @@ const BestPerform = () => {
             <Link
               to={`/stock`}
               key={item.id}
-              className="md:w-1/3 group shadow-md bg-opacity-50  bg-[#192032] hover:border border-gray-400  mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3  "
+              className="md:w-1/3 group shadow-md bg-opacity-50 dark:bg-gray-200 bg-[#192032] hover:border border-gray-400  mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3  "
             >
               <div className="flex mt-3 px-3 mb-10 gap-5 ">
                 <img
@@ -45,7 +45,7 @@ const BestPerform = () => {
                     <h1 className="  tracking-wider">Nvidia Corp</h1>
                   </div>
                   <div className=" w-full flex">
-                    <div className=" text-lg px-2  tracking-wider bg-[#040814] shadow-md rounded-xl  group-hover:text-white group-hover:bg-[#4f46e5]">
+                    <div className=" text-lg px-2  tracking-wider dark:text-white dark:bg-gray-400 bg-[#040814] shadow-md rounded-xl  group-hover:text-white group-hover:bg-[#4f46e5]">
                       NVDA
                     </div>
                   </div>
@@ -75,7 +75,7 @@ const BestPerform = () => {
         </div>
 
         <MdChevronRight
-          className="opacity-50 cursor-pointer hover:opacity-100 rounded-full bg-gray-800 "
+          className="opacity-50 cursor-pointer hover:opacity-100 rounded-full  dark:bg-gray-300  bg-gray-800 "
           onClick={() => slide("right")}
           size={40}
         />

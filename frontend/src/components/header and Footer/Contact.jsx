@@ -1,15 +1,34 @@
 import React from "react";
 import { FiSend } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
+import { Link } from "react-router-dom";
+import Footer from "../header and Footer/Footer";
 const Contact = () => {
   return (
     <div className="h-screen bg-gray-900 w-full">
-      <div className=" h-full  flex justify-center items-center">
+      <div className=" w-full dark:bg-gray-200 bg-gray-950">
+        <div className="w-full flex justify-between px-5 py-4  md:py-5 md:px-10 ">
+          <div>
+            <Link className=" text-2xl" to="/">
+              SKXYWTF
+            </Link>
+          </div>
+          <div className=" rounded  hover:bg-opacity-45 hover:bg-gray-700">
+            <Link to="/">
+              <div>
+                <IoClose size={30} />
+              </div>
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className=" h-full flex justify-center items-center">
         <div className=" w-1/2 md:w-1/3">
           <div className="my-10 text-center font-bold text-2xl tracking-widest">
             Contact Us
           </div>
           <div className=" flex flex-col ">
-            <form className=" flex flex-col gap-3 ">
+            <form className=" flex  flex-col gap-3 ">
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">Subject </label>
                 <input
@@ -29,7 +48,7 @@ const Contact = () => {
               </div>
 
               <button
-                className="border h-full flex justify-end gap-20 md:gap-40 px-5 p-2 hover:bg-gray-700 rounded"
+                className="border  h-full flex justify-end gap-20 md:gap-40 px-5 p-2 hover:bg-gray-700 rounded"
                 type="submit"
               >
                 <span>Send</span>
@@ -43,6 +62,7 @@ const Contact = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

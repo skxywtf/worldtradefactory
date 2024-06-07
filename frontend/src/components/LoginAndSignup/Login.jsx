@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
-import { IoClose, IoMenu } from "react-icons/io5";
+import { IoClose } from "react-icons/io5";
 import { auth, googleAuthProvider } from "../../firebase.js";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -19,15 +19,26 @@ const Login = () => {
     }
   };
   return (
-    <div className="h-screen bg-gray-900 w-full">
-      <Link to="/">
-        <div className=" fixed top-0 right-0 m-10">
-          <IoClose size={30} />
+    <div className="h-full w-full">
+      <div className=" w-full dark:bg-gray-200 bg-gray-950">
+        <div className="w-full flex justify-between px-5 py-4  md:py-5 md:px-10 ">
+          <div>
+            <Link className=" text-2xl" to="/">
+              SKXYWTF
+            </Link>
+          </div>
+          <div className=" rounded  hover:bg-opacity-45 hover:bg-gray-700">
+            <Link to="/">
+              <div>
+                <IoClose size={30} />
+              </div>
+            </Link>
+          </div>
         </div>
-      </Link>
+      </div>
 
       <div className=" h-full  flex justify-center items-center">
-        <div className="">
+        <div className=" w-[65%] md:w-1/2 lg:w-1/4">
           <div className="my-10 text-center font-bold text-2xl tracking-widest">
             Login
           </div>
@@ -36,7 +47,7 @@ const Login = () => {
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">username</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="text"
                   placeholder="username"
                 />
@@ -45,8 +56,8 @@ const Login = () => {
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">password</label>
                 <input
-                  className="p-2 border bg-gray-900 rounded"
-                  type="text"
+                  className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
+                  type="password"
                   placeholder="password"
                 />
               </div>
@@ -57,20 +68,15 @@ const Login = () => {
               </Link>
 
               <button
-                className="border p-2 hover:bg-gray-700 rounded"
+                className=" p-2  dark:bg-cyan-400 dark:hover:bg-cyan-500 bg-blue-700 hover:bg-blue-800 rounded"
                 type="submit"
               >
                 Login
               </button>
             </form>
             <div className="text-center my-5 text-xl">OR</div>
-            <div>
+            <div className=" w-full flex justify-center mb-32">
               <GoogleButton onClick={handleSignInWithGoogle} />
-              <div className="flex">
-                <div className="p-1"></div>
-                <div className="p-1"></div>
-                <div className="p-1"></div>
-              </div>
             </div>
           </div>
         </div>
