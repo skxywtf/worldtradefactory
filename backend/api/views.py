@@ -18,7 +18,7 @@ class UserSignupView(generics.CreateAPIView):
         return Response({
             "user": {
                 "username": user.username,
-                #"email": user.email
+                "email": user.email
             },
             #"token": token.key
         }, status=status.HTTP_201_CREATED)
@@ -37,7 +37,7 @@ class UserLoginView(generics.GenericAPIView):
             return Response({
                 "user": {
                     "username": user.username,
-                    #"email": user.email
+                    "email": user.email
                 },
                 #"token": token.key
             }, status=status.HTTP_200_OK)
