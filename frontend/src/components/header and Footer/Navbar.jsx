@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { IoClose, IoMenu } from "react-icons/io5";
-import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
+import { IoIosSearch } from "react-icons/io";
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
@@ -49,11 +49,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed w-full z-20 dark:text-white ">
+    <div className="fixed w-full z-20  dark:text-white ">
       <div className={navbarBackground ? "navbar active" : "navbar"}>
-        <div className="flex justify-between w-full px-10 lg:px-20 py-5 bg-[#00000000]">
+        <div className="flex h-full items-center justify-between w-full px-10 lg:px-20 py-5">
           <Link
-            className={`text-xl  items-center text-center lg:text-3xl ${
+            className={`text-2xl   items-center text-center lg:text-3xl ${
               search ? "block" : "hidden"
             } `}
             to="/"
@@ -84,17 +84,17 @@ const Navbar = () => {
               />
               <div
                 onClick={handleSearch}
-                className="rounded-full p-2 text-xl hover:bg-[rgba(80,77,77,0.55)]"
+                className="rounded-full p-1 text-xl hover:bg-[rgba(80,77,77,0.55)]"
               >
                 {!search ? (
                   <IoClose
                     size={24}
-                    className="menu-icon cursor-pointer"
+                    className="menu-icon  cursor-pointer text-2xl"
                     onClick={handleSearch}
                   />
                 ) : (
-                  <FaSearch
-                    className="menu-icon cursor-pointer  lg:text-2xl"
+                  <IoIosSearch
+                    className="menu-icon cursor-pointer  text-3xl"
                     onClick={handleSearch}
                   />
                 )}
@@ -133,7 +133,7 @@ const Navbar = () => {
           </div>
         </div>
         <div
-          className="menu-bar w-full h-full md:h-[60%] md:w-1/3 md:mr-20 md:rounded-lg bg-gray-800 py-10"
+          className="menu-bar w-full h-full md:h-[60%] md:w-1/2 lg:w-1/3 md:mr-20 md:rounded-lg bg-gray-800 py-10"
           style={{
             position: "fixed",
             top: 75,
@@ -149,25 +149,25 @@ const Navbar = () => {
         >
           <div className="text-center w-full px-10">
             <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/signup" className="lg:text-2xl">
+              <Link to="/signup" className="md:text-xl lg:text-2xl">
                 Signup
               </Link>
             </div>
             <hr />
             <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/about" className="lg:text-2xl">
+              <Link to="/about" className="md:text-xl  lg:text-2xl">
                 About Us
               </Link>
             </div>
             <hr />
             <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/subscription" className="lg:text-2xl">
+              <Link to="/subscription" className="md:text-xl  lg:text-2xl">
                 Subscription
               </Link>
             </div>
             <hr />
             <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/terms" className="lg:text-2xl">
+              <Link to="/terms" className="md:text-xl  lg:text-2xl">
                 Terms & Conditions
               </Link>
             </div>
