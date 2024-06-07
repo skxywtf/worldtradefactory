@@ -17,7 +17,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username',)
+        fields = ('username','email')
 
 class CustomUserChangeForm(UserChangeForm):
     password = forms.CharField(
@@ -28,37 +28,37 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model = CustomUser
-        fields = ('username','password')
+        fields = ('username','email', 'password')
 
 # admin register code
 
 class CustomUserCreationForm(UserCreationForm):
     class Meta:
         model = CustomUser
-        fields = ('username',)
+        fields = ('username', 'email')
 
 class CustomUserChangeForm(UserChangeForm):
     class Meta:
         model = CustomUser
-        fields = ('username',)
+        fields = ('username', 'email')
 
 class CustomUserAdmin(UserAdmin):
     add_form = CustomUserCreationForm
     form = CustomUserChangeForm
     model = CustomUser
-    list_display = ('username','is_staff', 'is_active')
-    list_filter = ('username', 'is_staff', 'is_active')
+    list_display = ('username', 'email', 'is_staff', 'is_active')
+    list_filter = ('username', 'email', 'is_staff', 'is_active')
     fieldsets = (
-        (None, {'fields': ('username', 'password')}),
+        (None, {'fields': ('username', 'email', 'password')}),
         ('Permissions', {'fields': ('is_staff', 'is_active')}),
     )
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('username','password1', 'password2', 'is_staff', 'is_active')}
+            'fields': ('username','email', 'password1', 'password2', 'is_staff', 'is_active')}
         ),
     )
-    search_fields = ('username',)
-    ordering = ('username',)
+    search_fields = ('username', 'email')
+    ordering = ('username', 'email')
 
 admin.site.register(CustomUser, CustomUserAdmin)
