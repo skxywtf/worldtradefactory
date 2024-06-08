@@ -1,8 +1,9 @@
 # validation will take place here
-
+# signup and login
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
+from .models import Contact # for contact us
 
 User = get_user_model()
 
@@ -35,3 +36,36 @@ class UserSignupSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(style={'input_type':'password'}, required=True)
+
+# for contact us
+#User = get_user_model()
+
+class ContactSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Contact
+        fields = ('first_name', 'last_name', 'email', 'phone', 'description')
+
+    def validate_first_name(self, value):
+        if len(value) > 100:
+            raise serializers.ValidationError("First name should not be greater than 100 letters.")
+        return value
+
+    def validate_last_name(self, value):
+        if len(value) > 100:
+            raise serializers.ValidationError("Last name should not be greater than 100 letters.")
+        return value
+
+    def validate_email(self, value):
+        if not User.objects.filter(email=value).exists():
+            raise serializers.ValidationError("Email ID not registered. Please register first.")
+        return value
+
+    def validate_phone(self, value):
+        if not value.isdigit() or len(value) != 10:
+            raise serializers.ValidationError("Phone number should be exactly 10 digits.")
+        return value
+
+    def validate_description(self, value):
+        if len(value.split()) > 100:
+            raise serializers.ValidationError("Description should not be more than 100 words.")
+        return value
