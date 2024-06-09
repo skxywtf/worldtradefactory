@@ -1,8 +1,9 @@
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import CustomUser
+from .models import CustomUser,Contact # Contact for contact us
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
+
 
 # Invisible password
 class CustomUserCreationForm(UserCreationForm):
@@ -62,3 +63,6 @@ class CustomUserAdmin(UserAdmin):
     ordering = ('username', 'email')
 
 admin.site.register(CustomUser, CustomUserAdmin)
+
+# for contact us
+admin.site.register(Contact)
