@@ -100,7 +100,10 @@ const Navbar = () => {
                 )}
               </div>
             </div>
-            <Link className="text-2xl p-2 rounded-full hover:bg-[rgba(80,77,77,0.55)]">
+            <Link
+              to="/signup"
+              className="text-2xl p-2 rounded-full hover:bg-[rgba(80,77,77,0.55)]"
+            >
               <CgProfile />
             </Link>
             <div

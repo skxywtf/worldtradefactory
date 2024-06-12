@@ -8,6 +8,7 @@ import Login from "./components/LoginAndSignup/Login";
 import Contact from "./components/header and Footer/Contact";
 import Stock from "./components/Stock Page/Stock";
 import Main from "./components/Mian Page/Main";
+import Account from "./components/LoginAndSignup/Account";
 
 // rgb(2, 2, 2)
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/account" element={<Account />}></Route>
       </Routes>
     </div>
   );

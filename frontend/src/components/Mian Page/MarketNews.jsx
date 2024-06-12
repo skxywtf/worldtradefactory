@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 
 const MarketNews = ({ Topnews }) => {
   return (
-    <div className=" my-20 h-full w-full">
+    <div className=" my-10 h-full w-full">
+      <div className="my-10 text-3xl pl-14"> Market News</div>
       <div className=" h-full gap-4 px-10 flex  w-full ">
         {Topnews.map((item) => (
-          <Link className=" w-full overflow-hidden ">
+          <Link className=" hover:border rounded-lg bg-gray-900 hover:bg-gray-800 w-full overflow-hidden ">
             <div className=" flex gap-2 pt-2 px-3">
               <div className="">
                 <img

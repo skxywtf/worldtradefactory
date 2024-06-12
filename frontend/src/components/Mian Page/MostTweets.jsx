@@ -2,81 +2,71 @@ import React, { useRef } from "react";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { data } from "../../data/IndexETFData";
+import Graph from "../Stock Page/Graph";
 
 const MostTweets = () => {
-  const sliderRef = useRef(null);
+  const slideLeft = () => {
+    var slider = document.getElementById("slider1");
+    slider.scrollLeft = slider.scrollLeft - 500;
+  };
 
-  const slide = (direction) => {
-    const slider = sliderRef.current;
-    const scrollAmount = direction === "left" ? -500 : 500;
-    if (slider) {
-      slider.scrollLeft += scrollAmount;
-    }
+  const slideRight = () => {
+    var slider = document.getElementById("slider1");
+    slider.scrollLeft = slider.scrollLeft + 500;
   };
   // bg-[#18935a]
   return (
     <div className="">
-      <h1 className="mt-10 text-3xl pl-14">Most Tweeted Stocks{">"}</h1>
+      <h1 className="mt-10 text-3xl pl-14">Energy Futures{">"}</h1>
       <div className="relative flex items-center py-20 px-3">
         <MdChevronLeft
           className="opacity-50 rounded-full dark:bg-gray-200 bg-gray-800 cursor-pointer hover:opacity-100"
-          onClick={() => slide("left")}
+          onClick={slideLeft}
           size={40}
         />
 
         <div
-          ref={sliderRef}
-          className="w-full h-full overflow-x-scroll scroll whitespace-nowrap scroll-smooth scrollbar-hide"
+          id="slider1"
+          className="w-full h-full overflow-x-scroll flex gap-3 whitespace-nowrap scroll-smooth scrollbar-hide"
+          style={{ display: "flex", overflowX: "scroll", whiteSpace: "nowrap" }}
         >
-          {data.map((item) => (
-            <Link
-              to={`/stock`}
-              key={item.id}
-              className="md:w-1/3 group shadow-md bg-opacity-50 dark:bg-gray-200  bg-[#192032] hover:border border-gray-400  mx-2 h-full py-5 rounded-md inline-block p-2 cursor-pointer gap-3  "
-            >
-              <div className="flex mt-3 px-3 mb-10 gap-5 ">
-                <img
-                  className="w-[60px] h-[60px]  rounded-full"
-                  src={item.img}
-                  alt={item.name}
-                />
-                <div className="text-xl flex flex-col  justify-between  ">
-                  <div>
-                    <h1 className="  tracking-wider">Nvidia Corp</h1>
-                  </div>
-                  <div className=" w-full flex">
-                    <div className=" text-lg px-2  tracking-wider dark:text-white dark:bg-gray-400 bg-[#040814] shadow-md rounded-xl  group-hover:text-white group-hover:bg-[#4f46e5]">
-                      NVDA
-                    </div>
-                  </div>
-                </div>
-                <div className=" hidden md:flex flex-col items-end justify-center md:ml-6">
-                  <div>
-                    1150.00 <span className=" text-sm">USD</span>
-                  </div>
-                  <div className=" text-lg text-green-400">+4.9%</div>
-                </div>
-              </div>
-              <div className="md:ml-20 px-2 pl-16 md:pl-0 text-xl flex justify-center md:justify-normal">
-                <div className="mx-1">Tweets</div>
-
-                <div className=" flex justify-center md:justify-end md:w-full ">
-                  <div className="mx-1 ">38k</div>
-                </div>
-              </div>
-              {/* <div className="flex h-full items-end justify-center md:pl-20 md:justify-normal w-full pt-3 pb-3">
-                <button className=" flex h-full items-end rounded-3xl tracking-widest  border-white font-semibold  text-white bg-[#070e25] px-4 p-2 shadow-md group-hover:text-black group-hover:bg-white">
-                  GOOG
-                </button>
-              </div>
-              <div className="text-center text-xl py-3">Google Corp</div> */}
-            </Link>
-          ))}
+          <div className="flex gap-3">
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="A9N1!" id="graph-40" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="VOO" id="graph-41" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="IVV" id="graph-42" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="VTI" id="graph-43" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="QQQ" id="graph-44" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="IJH" id="graph-45" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="VEA" id="graph-46" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="VUG" id="graph-47" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="IEFA" id="graph-48" />
+            </div>
+            <div className="flex-shrink-0" style={{ width: "350px" }}>
+              <Graph symbol="VTV" id="graph-49" />
+            </div>
+          </div>
         </div>
 
         <MdChevronRight
           className="opacity-50 rounded-full dark:bg-gray-300 bg-gray-800 cursor-pointer hover:opacity-100"
-          onClick={() => slide("right")}
+          onClick={slideRight}
           size={40}
         />
       </div>
