@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { IoClose } from "react-icons/io5";
 import { auth, googleAuthProvider } from "../../firebase.js";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 const Signup = () => {
   const navigate = useNavigate();
   const handleSignInWithGoogle = async () => {
@@ -18,14 +20,50 @@ const Signup = () => {
       console.log(error);
     }
   };
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!username || !email || !password || !confirmPassword) {
+      toast.error("Please fill all fields");
+      return;
+    }
+    if (password.length <= 6) {
+      toast.error("Password must be at least 6 characters");
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    axios
+      .post("http://127.0.0.1:8000/api/signup/", {
+        username,
+        email,
+        password,
+        confirmPassword,
+      })
+      .then((result) => {
+        console.log(result.data);
+        // localStorage.setItem("token", result.data.token);
+        // localStorage.setItem("user", JSON.stringify(result.data.user));
+        navigate("/account");
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error("error when signing in");
+      });
+  };
   return (
     <div className="h-full w-full pb-20">
       <div className=" w-full dark:bg-gray-200 bg-gray-950">
         <div className="w-full flex justify-between px-5 py-4  md:py-5 md:px-10 ">
           <div>
-            <Link className=" text-2xl" to="/">
-              SKXYWTF
-            </Link>
+            <Link className=" text-2xl">SKXYWTF</Link>
           </div>
           <div className=" rounded  hover:bg-opacity-45 hover:bg-gray-700">
             <Link to="/">
@@ -42,14 +80,16 @@ const Signup = () => {
             Sign up
           </div>
           <div className=" flex flex-col  p-5 rounded ">
-            <form className=" flex flex-col gap-3 ">
+            <form onSubmit={handleSubmit} className=" flex flex-col gap-3 ">
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">username</label>
                 <input
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="text"
                   placeholder="username"
-                  required
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -58,7 +98,9 @@ const Signup = () => {
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="email"
                   placeholder="email"
-                  required
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
                 />
               </div>
 
@@ -68,7 +110,9 @@ const Signup = () => {
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="password"
                   placeholder="password"
-                  required
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
               <div className="flex flex-col gap-2">
@@ -77,7 +121,9 @@ const Signup = () => {
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="password"
                   placeholder="confirm password"
-                  required
+                  onChange={(e) => {
+                    setConfirmPassword(e.target.value);
+                  }}
                 />
               </div>
               <Link to="/login">
@@ -85,13 +131,14 @@ const Signup = () => {
                   Already have an account?
                 </button>
               </Link>
-
-              <button
-                className=" p-2 dark:bg-cyan-400 dark:hover:bg-cyan-500 bg-blue-700 hover:bg-blue-800 rounded"
+              <div
+                className=" p-2 flex justify-center dark:bg-green-400 dark:hover:bg-green-500 bg-blue-700 hover:bg-blue-800 rounded"
                 type="submit"
               >
-                Create Account
-              </button>
+                {" "}
+                <button className=" h-full w-full">Create Account</button>{" "}
+                <Toaster />
+              </div>
             </form>
             <div className="text-center my-5 text-xl">OR</div>
             <div className=" w-full flex justify-center">

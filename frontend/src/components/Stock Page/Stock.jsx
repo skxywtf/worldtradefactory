@@ -7,6 +7,7 @@ import BestPerform from "../Mian Page/BestPerform";
 import IndexETF from "../Mian Page/IndexETF";
 import Navbar from "../header and Footer/Navbar";
 import Footer from "../header and Footer/Footer";
+
 const Stock = () => {
   return (
     <div>

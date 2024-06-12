@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import GoogleButton from "react-google-button";
 import { IoClose } from "react-icons/io5";
 import { auth, googleAuthProvider } from "../../firebase.js";
 import { signInWithPopup } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
 const Login = () => {
   const navigate = useNavigate();
   const handleSignInWithGoogle = async () => {
@@ -17,6 +19,35 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!username || !password) {
+      toast.error("Please fill all fields");
+      return;
+    }
+    axios
+      .post("http://127.0.0.1:8000/api/login/", { username, password })
+      .then(
+        (res) => {
+          console.log(res);
+          // localStorage.setItem("token", res.data.token);
+          // localStorage.setItem("user", JSON.stringify(res.data.user));
+          navigate("/account");
+        },
+        (err) => {
+          console.log(err);
+          toast.error("no user found");
+        }
+      )
+      .catch((err) => {
+        console.log(err);
+        toast.error("no user found");
+      });
   };
   return (
     <div className="h-full w-full">
@@ -43,13 +74,16 @@ const Login = () => {
             Login
           </div>
           <div className=" flex flex-col ">
-            <form className=" flex flex-col gap-3 ">
+            <form onSubmit={handleSubmit} className=" flex flex-col gap-3 ">
               <div className="flex flex-col gap-2">
                 <label className=" tracking-wider">username</label>
                 <input
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="text"
                   placeholder="username"
+                  onChange={(e) => {
+                    setUsername(e.target.value);
+                  }}
                 />
               </div>
 
@@ -59,6 +93,9 @@ const Login = () => {
                   className="p-2 border dark:bg-gray-200 bg-gray-900 rounded"
                   type="password"
                   placeholder="password"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
                 />
               </div>
               <Link to="/signup">
@@ -66,13 +103,13 @@ const Login = () => {
                   Don't have an account?
                 </button>
               </Link>
-
-              <button
-                className=" p-2  dark:bg-cyan-400 dark:hover:bg-cyan-500 bg-blue-700 hover:bg-blue-800 rounded"
+              <div
+                className=" p-2 flex justify-center dark:bg-green-400 dark:hover:bg-green-500 bg-blue-700 hover:bg-blue-800 rounded"
                 type="submit"
               >
-                Login
-              </button>
+                <button className=" h-full w-full">Login</button>
+                <Toaster />
+              </div>
             </form>
             <div className="text-center my-5 text-xl">OR</div>
             <div className=" w-full flex justify-center mb-32">
