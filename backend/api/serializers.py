@@ -4,6 +4,7 @@ from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from .models import Contact # for contact us
+from api.models import UploadedImage # for stock img ai
 
 User = get_user_model()
 
@@ -69,3 +70,15 @@ class ContactSerializer(serializers.ModelSerializer):
         if len(value.split()) > 100:
             raise serializers.ValidationError("Description should not be more than 100 words.")
         return value
+    
+# for stock img ai
+class UploadedImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UploadedImage
+        fields = ['id', 'image', 'uploaded_at']
+        '''
+        def get_photo_url(self, obj):
+            request=self.context.get('request')
+            photo_url=obj.fingerprint.url
+            return request.build_absolute_url(photo_url)
+        '''
