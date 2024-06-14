@@ -6,6 +6,11 @@ import { IoIosSearch } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 import { CiLight } from "react-icons/ci";
 import { MdOutlineDarkMode } from "react-icons/md";
+import ForexCrossRates from "../embeded codes/ForexCrossRates";
+import Screener from "../embeded codes/Screener";
+import CryptoMarket from "../embeded codes/CryptoMarket";
+import TechnicalAnalysis from "../embeded codes/TechnicalAnalysis";
+import SymbolInfo from "../embeded codes/SymbolInfo";
 
 const Account = () => {
   const [nav, setNav] = useState(false);
@@ -166,7 +171,13 @@ const Account = () => {
       </div>
 
       <div className=" h-screen w-full flex justify-center items-center text-3xl">
-        <div>Account</div>
+        <div>
+          {/* <ForexCrossRates /> */}
+          {/* <Screener /> */}
+          {/* <CryptoMarket /> */}
+          {/* <TechnicalAnalysis /> */}
+          {/* <SymbolInfo /> */}
+        </div>
       </div>
     </div>
   );
