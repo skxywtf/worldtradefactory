@@ -20,3 +20,8 @@ class Contact(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+# for stock image ai
+class UploadedImage(models.Model):
+    image = models.ImageField(upload_to='images')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
