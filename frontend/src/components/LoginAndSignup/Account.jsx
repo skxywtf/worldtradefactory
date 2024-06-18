@@ -11,6 +11,20 @@ import Screener from "../embeded codes/Screener";
 import CryptoMarket from "../embeded codes/CryptoMarket";
 import TechnicalAnalysis from "../embeded codes/TechnicalAnalysis";
 import SymbolInfo from "../embeded codes/SymbolInfo";
+import CryptoCoinHeatMap from "../embeded codes/HeatMaps/CryptoCoinHeatMap";
+import ETFHeatMap from "../embeded codes/HeatMaps/ETFHeatMap";
+import ForexHeatMap from "../embeded codes/HeatMaps/ForexHeatMap";
+import StockHeatMap from "../embeded codes/HeatMaps/StockHeatMap";
+import AdvanceRealTime from "../embeded codes/Advance widgets/AdvanceRealTime";
+import SymbolOverview from "../embeded codes/Advance widgets/SymbolOverview";
+import MiniChart from "../embeded codes/Advance widgets/MiniChart";
+import EconomicCalendar from "../embeded codes/Advance widgets/EconomicCalendar";
+import TopStories from "../embeded codes/Advance widgets/TopStories";
+import CompanyProfile from "../embeded codes/other widgets/CompanyProfile";
+import FundamentalData from "../embeded codes/other widgets/FundamentalData";
+import MarketData from "../embeded codes/other widgets/MarketData";
+import StockMarketWidget from "../embeded codes/other widgets/StockMarketWidget";
+import TickerTape from "../embeded codes/other widgets/TickerTape";
 
 const Account = () => {
   const [nav, setNav] = useState(false);
@@ -177,6 +191,20 @@ const Account = () => {
           {/* <CryptoMarket /> */}
           {/* <TechnicalAnalysis /> */}
           {/* <SymbolInfo /> */}
+          {/* <CryptoCoinHeatMap /> */}
+          {/* <ETFHeatMap /> */}
+          {/* <ForexHeatMap /> */}
+          {/* <StockHeatMap /> */}
+          {/* <AdvanceRealTime /> */}
+          {/* <SymbolOverview /> */}
+          {/* <MiniChart /> */}
+          {/* <EconomicCalendar /> */}
+          {/* <TopStories /> */}
+          {/* <CompanyProfile /> */}
+          {/* <FundamentalData /> */}
+          {/* <MarketData /> */}
+          {/* <StockMarketWidget /> */}
+          {/* <TickerTape /> */}
         </div>
       </div>
     </div>
