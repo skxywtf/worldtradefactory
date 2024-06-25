@@ -7,11 +7,11 @@ import BestPerform from "../Mian Page/BestPerform";
 import IndexETF from "../Mian Page/IndexETF";
 import Navbar from "../header and Footer/Navbar";
 import Footer from "../header and Footer/Footer";
-
-const Stock = () => {
+import CompanyProfile from "../embeded codes/other widgets/CompanyProfile";
+const Stock = ({ searchInput, theme, onThemeChange }) => {
   return (
     <div>
-      <Navbar />
+      <Navbar onThemeChange={onThemeChange} />
       <div className="pt-40 h-full w-full ">
         <div className="flex w-full justify-between px-10">
           {/* left */}
@@ -88,6 +88,7 @@ const Stock = () => {
       <div></div>
       {/*  */}
       {/* <Ad /> */}
+      <CompanyProfile theme={theme} searchInput={searchInput} />
       <BestPerform />
       <IndexETF />
       <Footer />

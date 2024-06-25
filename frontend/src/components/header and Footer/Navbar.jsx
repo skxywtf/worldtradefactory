@@ -6,7 +6,7 @@ import { MdOutlineDarkMode } from "react-icons/md";
 import { CiLight } from "react-icons/ci";
 import { IoIosSearch } from "react-icons/io";
 
-const Navbar = () => {
+const Navbar = ({ onThemeChange }) => {
   const [nav, setNav] = useState(false);
   const [search, setSearch] = useState(true);
   const [navbarBackground, setNavbarBackground] = useState(false);
@@ -44,26 +44,29 @@ const Navbar = () => {
     localStorage.setItem("theme", dark ? "dark" : "light");
   }, [dark]);
 
-  const toggleTheme = () => {
-    setDark(!dark);
+  const toggleTheme = (e) => {
+    e.preventDefault();
+    const newDarkMode = !dark;
+    setDark(newDarkMode);
+    onThemeChange();
   };
 
   return (
-    <div className="fixed w-full z-20  dark:text-white ">
+    <div className="fixed w-full z-20 dark:text-white">
       <div className={navbarBackground ? "navbar active" : "navbar"}>
         <div className="flex h-full items-center justify-between w-full px-10 lg:px-20 py-5">
           <Link
-            className={`text-2xl   items-center text-center lg:text-3xl ${
+            className={`text-2xl items-center text-center lg:text-3xl ${
               search ? "block" : "hidden"
-            } `}
+            }`}
             to="/"
           >
             SKXYWTF
           </Link>
           <Link
-            className={`lg:text-3xl   text-[0px] items-center text-center ${
+            className={`lg:text-3xl text-[0px] items-center text-center ${
               !search ? "lg:block" : "hidden"
-            }  `}
+            }`}
             to="/"
           >
             SKXYWTF
@@ -71,14 +74,14 @@ const Navbar = () => {
 
           <div className="flex justify-center items-center gap-5">
             <div
-              className={` ${
+              className={`${
                 navbarBackground ? "flex" : "hidden"
               } transition duration-1000`}
             >
               <input
                 type="text"
                 placeholder="search"
-                className={`w-68 lg:w-[600px] text-black rounded-sm  p-[1px] lg:p-[6px] px-3 search-input ${
+                className={`w-68 lg:w-[600px] text-black rounded-sm p-[1px] lg:p-[6px] px-3 search-input ${
                   search ? "search-input" : "search-input-active"
                 }`}
               />
@@ -89,12 +92,12 @@ const Navbar = () => {
                 {!search ? (
                   <IoClose
                     size={24}
-                    className="menu-icon  cursor-pointer text-2xl"
+                    className="menu-icon cursor-pointer text-2xl"
                     onClick={handleSearch}
                   />
                 ) : (
                   <IoIosSearch
-                    className="menu-icon cursor-pointer  text-3xl"
+                    className="menu-icon cursor-pointer text-3xl"
                     onClick={handleSearch}
                   />
                 )}
@@ -111,11 +114,11 @@ const Navbar = () => {
               onClick={toggleTheme}
             >
               {dark ? (
-                <CiLight size={24} className=" cursor-pointer" />
+                <CiLight size={24} className="cursor-pointer" />
               ) : (
                 <MdOutlineDarkMode
                   size={24}
-                  className=" cursor-pointer lg:text-3xl"
+                  className="cursor-pointer lg:text-3xl"
                 />
               )}
             </div>
@@ -151,26 +154,26 @@ const Navbar = () => {
           }}
         >
           <div className="text-center w-full px-10">
-            <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
+            <div className="my-4 py-1 rounded hover:bg-gray-700">
               <Link to="/signup" className="md:text-xl lg:text-2xl">
                 Signup
               </Link>
             </div>
             <hr />
-            <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/about" className="md:text-xl  lg:text-2xl">
+            <div className="my-4 py-1 rounded hover:bg-gray-700">
+              <Link to="/about" className="md:text-xl lg:text-2xl">
                 About Us
               </Link>
             </div>
             <hr />
-            <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/subscription" className="md:text-xl  lg:text-2xl">
+            <div className="my-4 py-1 rounded hover:bg-gray-700">
+              <Link to="/subscription" className="md:text-xl lg:text-2xl">
                 Subscription
               </Link>
             </div>
             <hr />
-            <div className="my-4 py-1 rounded  hover:bg-gray-700 ">
-              <Link to="/terms" className="md:text-xl  lg:text-2xl">
+            <div className="my-4 py-1 rounded hover:bg-gray-700">
+              <Link to="/terms" className="md:text-xl lg:text-2xl">
                 Terms & Conditions
               </Link>
             </div>
