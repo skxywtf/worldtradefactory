@@ -9,17 +9,47 @@ import Contact from "./components/header and Footer/Contact";
 import Stock from "./components/Stock Page/Stock";
 import Main from "./components/Mian Page/Main";
 import Account from "./components/LoginAndSignup/Account";
+import { useState } from "react";
 
 // rgb(2, 2, 2)
 function App() {
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleSearchSubmit = (input) => {
+    setSearchInput(input);
+  };
+  const [theme, setTheme] = useState("light");
+
+  const handleTheme = (color) => {
+    setTheme(color);
+  };
+
   return (
     // bg-[rgb(19,19,19)]  bg-[#06081e]  bg-[rgb(15,23,42)]  bg-[#03121f]  bg-[#020e18]
     <div
       className={` dark:bg-white dark:text-black bg-[#0c101e] text-gray-200 h-full w-full  font-mono `}
     >
       <Routes>
-        <Route path="/" element={<Main />}></Route>
-        <Route path="/stock" element={<Stock />}></Route>
+        <Route
+          path="/"
+          element={
+            <Main
+              onSearchSubmit={handleSearchSubmit}
+              onThemeChange={handleTheme}
+              searchInput={searchInput}
+            />
+          }
+        ></Route>
+        <Route
+          path="/stock"
+          element={
+            <Stock
+              searchInput={searchInput}
+              onThemeChange={handleTheme}
+              theme={theme}
+            />
+          }
+        ></Route>
         <Route path="/subscription" element={<Subscription />}></Route>
         <Route path="/terms" element={<Terms />}></Route>
         <Route path="/about" element={<About />}></Route>

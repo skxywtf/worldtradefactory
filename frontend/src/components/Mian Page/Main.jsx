@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import MainSearch from "./MainSearch";
 import MarketLeaders from "./MarketLeaders";
 import Ad from "./Ad";
@@ -10,23 +10,24 @@ import MostTweets from "./MostTweets";
 import RecFol from "./RecFol";
 import Navbar from "../header and Footer/Navbar";
 import Footer from "../header and Footer/Footer";
-
 import markData from "../../data/MarketLeadersData";
 import recentData from "../../data/RecentlyData";
 import FollowedData from "../../data/FollowedData";
 import marketNewsData from "../../data/MarketNewsData";
 import MarketNews from "./MarketNews";
+import CompanyProfile from "../embeded codes/other widgets/CompanyProfile";
 
-const Main = () => {
+const Main = ({ onSearchSubmit, onThemeChange, searchInput }) => {
   const { stocks } = markData;
   const { recentStocks } = recentData;
   const { followedStocks } = FollowedData;
   const { Topnews } = marketNewsData;
   // bg-[#192032]    bg-[rgba(17,24,42,255)]  bg-[#070723]  bg-[#111827]  {  bg-[#0c101e]  }
+
   return (
     <div className=" ">
-      <Navbar />
-      <MainSearch />
+      <Navbar onThemeChange={onThemeChange} />
+      <MainSearch onSearchSubmit={onSearchSubmit} />
       <MarketLeaders stocks={stocks} />
       {/* <Ad /> */}
       <RecFol recentStocks={recentStocks} followedStocks={followedStocks} />

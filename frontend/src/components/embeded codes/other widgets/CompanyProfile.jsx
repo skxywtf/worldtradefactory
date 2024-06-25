@@ -1,12 +1,45 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const CompanyProfile = () => {
+const CompanyProfile = ({ searchInput, theme }) => {
   const containerRef = useRef(null);
+  const scriptRef = useRef(null);
+
+  // Retrieve the saved symbol and theme from localStorage
+  const [symbol, setSymbol] = useState(() => {
+    return localStorage.getItem("searchSymbol") || "NASDAQ:AAPL";
+  });
+  const [currentTheme, setCurrentTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
+
+  useEffect(() => {
+    if (searchInput) {
+      setSymbol(searchInput);
+      localStorage.setItem("searchSymbol", searchInput);
+    }
+  }, [searchInput]);
+
+  useEffect(() => {
+    if (theme) {
+      const newTheme = theme ? "dark" : "light";
+      setCurrentTheme(newTheme);
+      localStorage.setItem("theme", newTheme);
+    }
+  }, [theme]);
 
   useEffect(() => {
     const container = containerRef.current;
 
-    if (container && !container.querySelector("script")) {
+    const cleanUp = () => {
+      if (scriptRef.current && scriptRef.current.parentElement === container) {
+        container.removeChild(scriptRef.current);
+        scriptRef.current = null;
+      }
+    };
+
+    const createScript = () => {
+      cleanUp(); // Clean up previous script
+
       const script = document.createElement("script");
       script.src =
         "https://s3.tradingview.com/external-embedding/embed-widget-symbol-profile.js";
@@ -17,28 +50,27 @@ const CompanyProfile = () => {
           "width": "100%",
           "height": "100%",
           "isTransparent": false,
-          "colorTheme": "dark",
-          "symbol": "NASDAQ:AAPL",
+          "colorTheme": "${currentTheme}",
+          "symbol": "${symbol}",
           "locale": "en"
         }`;
 
-      // Append script to container after a delay to ensure DOM is fully ready
-      const timeoutId = setTimeout(() => {
-        container.appendChild(script);
-      }, 100);
+      container.appendChild(script);
+      scriptRef.current = script;
+    };
 
-      // Clear the timeout if component unmounts before script is appended
-      return () => {
-        clearTimeout(timeoutId);
-        if (container && container.querySelector("script")) {
-          container.removeChild(container.querySelector("script"));
-        }
-      };
-    }
-  }, []);
+    const timeoutId = setTimeout(() => {
+      createScript();
+    }, 0); // Run the createScript function in the next event loop iteration
+
+    return () => {
+      clearTimeout(timeoutId);
+      cleanUp();
+    };
+  }, [symbol, currentTheme]); // Recreate the script when symbol or currentTheme changes
 
   return (
-    <div className=" h-screen w-screen">
+    <div className="h-screen w-screen">
       <div
         className="tradingview-widget-container h-full w-full px-5 py-20"
         ref={containerRef}
