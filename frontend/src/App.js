@@ -10,6 +10,7 @@ import Stock from "./components/Stock Page/Stock";
 import Main from "./components/Mian Page/Main";
 import Account from "./components/LoginAndSignup/Account";
 import { useState } from "react";
+import LandingPage from "./components/landing page/LandingPage";
 
 // rgb(2, 2, 2)
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
         <Route path="/account" element={<Account />}></Route>
+        <Route path="/landing" element={<LandingPage />}></Route>
       </Routes>
     </div>
   );
