@@ -14,19 +14,19 @@ const HeaderLand = () => {
         </div>
         {/* middle parameters */}
         <div className=" hidden md:flex gap-7">
-          <button className=" p-1 px-2 text-lg hover:bg-neutral-800 rounded-md">
+          <button className=" p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
             Stocks
           </button>
-          <button className=" p-1 px-2 text-lg hover:bg-neutral-800 rounded-md">
+          <button className=" p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
             Bonds
           </button>
-          <button className=" p-1 px-2 text-lg hover:bg-neutral-800 rounded-md">
+          <button className=" p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
             Forex
           </button>
-          <button className=" p-1 px-2 text-lg hover:bg-neutral-800 rounded-md">
+          <button className=" p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
             Crypto
           </button>
-          <button className=" p-1 px-2 text-lg hover:bg-neutral-800 rounded-md">
+          <button className=" p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
             About Us
           </button>
         </div>
