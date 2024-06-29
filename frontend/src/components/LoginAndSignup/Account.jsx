@@ -190,8 +190,8 @@ const Account = () => {
           {/* <Screener /> */}
           {/* <CryptoMarket /> */}
           {/* <TechnicalAnalysis /> */}
-          <SymbolInfo />
-          {/* <CryptoCoinHeatMap /> */}
+          {/* <SymbolInfo /> */}
+          <CryptoCoinHeatMap />
           {/* <ETFHeatMap /> */}
           {/* <ForexHeatMap /> */}
           {/* <StockHeatMap /> */}

@@ -4,171 +4,103 @@ const MarketData = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const container = containerRef.current;
-
-    if (container && !container.querySelector("script")) {
+    const timeoutId = setTimeout(() => {
+      // Create the script element
       const script = document.createElement("script");
       script.src =
-        "https://s3.tradingview.com/external-embedding/embed-widget-market-quotes.js";
-      script.type = "text/javascript";
+        "https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js";
       script.async = true;
       script.innerHTML = `
-        {
-          "width": "100%",
-          "height": "100%",
-          "symbolsGroups": [
-            {
-              "name": "Indices",
-              "originalName": "Indices",
-              "symbols": [
-                {
-                  "name": "FOREXCOM:SPXUSD",
-                  "displayName": "S&P 500 Index"
-                },
-                {
-                  "name": "FOREXCOM:NSXUSD",
-                  "displayName": "US 100 Cash CFD"
-                },
-                {
-                  "name": "FOREXCOM:DJI",
-                  "displayName": "Dow Jones Industrial Average Index"
-                },
-                {
-                  "name": "INDEX:NKY",
-                  "displayName": "Nikkei 225"
-                },
-                {
-                  "name": "INDEX:DEU40",
-                  "displayName": "DAX Index"
-                },
-                {
-                  "name": "FOREXCOM:UKXGBP",
-                  "displayName": "FTSE 100 Index"
-                }
-              ]
-            },
-            {
-              "name": "Futures",
-              "originalName": "Futures",
-              "symbols": [
-                {
-                  "name": "CME_MINI:ES1!",
-                  "displayName": "S&P 500"
-                },
-                {
-                  "name": "CME:6E1!",
-                  "displayName": "Euro"
-                },
-                {
-                  "name": "COMEX:GC1!",
-                  "displayName": "Gold"
-                },
-                {
-                  "name": "NYMEX:CL1!",
-                  "displayName": "WTI Crude Oil"
-                },
-                {
-                  "name": "NYMEX:NG1!",
-                  "displayName": "Gas"
-                },
-                {
-                  "name": "CBOT:ZC1!",
-                  "displayName": "Corn"
-                }
-              ]
-            },
-            {
-              "name": "Bonds",
-              "originalName": "Bonds",
-              "symbols": [
-                {
-                  "name": "CBOT:ZB1!",
-                  "displayName": "T-Bond"
-                },
-                {
-                  "name": "CBOT:UB1!",
-                  "displayName": "Ultra T-Bond"
-                },
-                {
-                  "name": "EUREX:FGBL1!",
-                  "displayName": "Euro Bund"
-                },
-                {
-                  "name": "EUREX:FBTP1!",
-                  "displayName": "Euro BTP"
-                },
-                {
-                  "name": "EUREX:FGBM1!",
-                  "displayName": "Euro BOBL"
-                }
-              ]
-            },
-            {
-              "name": "Forex",
-              "originalName": "Forex",
-              "symbols": [
-                {
-                  "name": "FX:EURUSD",
-                  "displayName": "EUR to USD"
-                },
-                {
-                  "name": "FX:GBPUSD",
-                  "displayName": "GBP to USD"
-                },
-                {
-                  "name": "FX:USDJPY",
-                  "displayName": "USD to JPY"
-                },
-                {
-                  "name": "FX:USDCHF",
-                  "displayName": "USD to CHF"
-                },
-                {
-                  "name": "FX:AUDUSD",
-                  "displayName": "AUD to USD"
-                },
-                {
-                  "name": "FX:USDCAD",
-                  "displayName": "USD to CAD"
-                }
-              ]
-            },
-            {
-              "name": "Add tab",
-              "symbols": []
-            }
-          ],
-          "showSymbolLogo": true,
-          "isTransparent": false,
-          "colorTheme": "dark",
-          "locale": "en",
-          "backgroundColor": "#131722"
-        }`;
+      {
+        "colorTheme": "dark",
+        "dateRange": "12M",
+        "showChart": true,
+        "locale": "en",
+        "largeChartUrl": "",
+        "isTransparent": false,
+        "showSymbolLogo": true,
+        "showFloatingTooltip": false,
+        "width": "400",
+        "height": "480",
+        "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+        "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+        "gridLineColor": "rgba(42, 46, 57, 0)",
+        "scaleFontColor": "rgba(209, 212, 220, 1)",
+        "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+        "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+        "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+        "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+        "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+        "tabs": [
+          {
+            "title": "Indices",
+            "symbols": [
+              { "s": "FOREXCOM:SPXUSD", "d": "S&P 500 Index" },
+              { "s": "FOREXCOM:NSXUSD", "d": "US 100 Cash CFD" },
+              { "s": "FOREXCOM:DJI", "d": "Dow Jones Industrial Average Index" },
+              { "s": "INDEX:NKY", "d": "Nikkei 225" },
+              { "s": "INDEX:DEU40", "d": "DAX Index" },
+              { "s": "FOREXCOM:UKXGBP", "d": "FTSE 100 Index" }
+            ],
+            "originalTitle": "Indices"
+          },
+          {
+            "title": "Futures",
+            "symbols": [
+              { "s": "CME_MINI:ES1!", "d": "S&P 500" },
+              { "s": "CME:6E1!", "d": "Euro" },
+              { "s": "COMEX:GC1!", "d": "Gold" },
+              { "s": "NYMEX:CL1!", "d": "WTI Crude Oil" },
+              { "s": "NYMEX:NG1!", "d": "Gas" },
+              { "s": "CBOT:ZC1!", "d": "Corn" }
+            ],
+            "originalTitle": "Futures"
+          },
+          {
+            "title": "Bonds",
+            "symbols": [
+              { "s": "CBOT:ZB1!", "d": "T-Bond" },
+              { "s": "CBOT:UB1!", "d": "Ultra T-Bond" },
+              { "s": "EUREX:FGBL1!", "d": "Euro Bund" },
+              { "s": "EUREX:FBTP1!", "d": "Euro BTP" },
+              { "s": "EUREX:FGBM1!", "d": "Euro BOBL" }
+            ],
+            "originalTitle": "Bonds"
+          },
+          {
+            "title": "Forex",
+            "symbols": [
+              { "s": "FX:EURUSD", "d": "EUR to USD" },
+              { "s": "FX:GBPUSD", "d": "GBP to USD" },
+              { "s": "FX:USDJPY", "d": "USD to JPY" },
+              { "s": "FX:USDCHF", "d": "USD to CHF" },
+              { "s": "FX:AUDUSD", "d": "AUD to USD" },
+              { "s": "FX:USDCAD", "d": "USD to CAD" }
+            ],
+            "originalTitle": "Forex"
+          }
+        ]
+      }`;
 
-      // Append script to container after a delay to ensure DOM is fully ready
-      const timeoutId = setTimeout(() => {
-        container.appendChild(script);
-      }, 100);
+      // Append the script to the container
+      if (containerRef.current) {
+        containerRef.current.appendChild(script);
+      }
+    }, 1000); // Adjust the delay as needed
 
-      // Clear the timeout if component unmounts before script is appended
-      return () => {
-        clearTimeout(timeoutId);
-        if (container && container.querySelector("script")) {
-          container.removeChild(container.querySelector("script"));
-        }
-      };
-    }
+    // Cleanup function to remove the script
+    return () => {
+      clearTimeout(timeoutId);
+      if (containerRef.current) {
+        containerRef.current.innerHTML = "";
+      }
+    };
   }, []);
 
   return (
-    <div className=" h-screen w-screen">
-      <div
-        className="tradingview-widget-container h-full w-full px-5 py-20"
-        ref={containerRef}
-      >
-        <div className="tradingview-widget-container__widget"></div>
-        <div className="tradingview-widget-copyright"></div>
-      </div>
+    <div className="tradingview-widget-container pt-10" ref={containerRef}>
+      <div className="tradingview-widget-container__widget"></div>
+      <div className="tradingview-widget-copyright"></div>
     </div>
   );
 };

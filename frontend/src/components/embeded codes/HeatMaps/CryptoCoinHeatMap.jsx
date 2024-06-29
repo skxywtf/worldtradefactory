@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 
-function TradingViewWidget() {
+function CryptoCoinHeatMap() {
   const container = useRef(null);
 
   useEffect(() => {
@@ -32,14 +32,11 @@ function TradingViewWidget() {
   }, []);
 
   return (
-    <div
-      className="tradingview-widget-container fixed top-0 left-0 h-[600px] w-full px-10 py-28 overflow-auto"
-      ref={container}
-    >
+    <div className="tradingview-widget-container " ref={container}>
       <div className="tradingview-widget-container__widget"></div>
       <div className="tradingview-widget-copyright"></div>
     </div>
   );
 }
 
-export default TradingViewWidget;
+export default CryptoCoinHeatMap;
