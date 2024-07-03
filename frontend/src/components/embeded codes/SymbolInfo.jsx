@@ -19,15 +19,9 @@ const SymbolInfo = ({ searchInputValue }) => {
       script.async = true;
       script.innerHTML = JSON.stringify({
         symbol: searchInputValue,
-        // width: "100%",
         locale: "en",
         colorTheme: "dark",
         isTransparent: false,
-        // Add onClick event listener to navigate to "/stock"
-        onWidgetClick: () => {
-          navigate("/stock");
-          return false; // Prevent default behavior
-        },
       });
 
       widgetContainer.appendChild(script);
@@ -44,10 +38,18 @@ const SymbolInfo = ({ searchInputValue }) => {
     };
   }, [searchInputValue]);
 
+  const handleWidgetClick = () => {
+    navigate("/stock");
+  };
+
   return (
-    <div className="tradingview-widget-container w-full">
+    <div className="tradingview-widget-container w-full h-full relative">
       <div id="tradingview-symbol-info-widget" className="h-full w-full"></div>
-      <div className="tradingview-widget-copyright"></div>
+      <div
+        className="absolute top-0 left-0 w-full h-full"
+        onClick={handleWidgetClick}
+        style={{ cursor: "pointer" }}
+      ></div>
     </div>
   );
 };
