@@ -5,6 +5,8 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
 from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
+# for data saving into database from 3rd-party
+from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData
 
 User = get_user_model()
 
@@ -82,3 +84,40 @@ class UploadedImageSerializer(serializers.ModelSerializer):
             photo_url=obj.fingerprint.url
             return request.build_absolute_url(photo_url)
         '''
+
+# for data saving into database from 3rd-party
+class CountryDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CountryData
+        fields = 'country', 'country_code', 'gdp', 'inflation', 'population', 'literacy_rate', 'updated_at'
+
+class EducationDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EducationData
+        fields = 'country','country_code', 'literacy_rate', 'school_enrollment_primary', 'school_enrollment_secondary', 'education_expenditure', 'updated_at'
+
+class HealthDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = HealthData
+        fields = 'country','country_code', 'life_expectancy', 'mortality_rate_under_5', 'health_expenditure', 'updated_at'
+
+class EmploymentDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EmploymentData
+        fields = 'country','country_code', 'unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services', 'updated_at'
+
+class EnvironmentalDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EnvironmentalData
+        fields = 'country','country_code', 'co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption', 'updated_at'
+
+class EconomicDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = EconomicData
+        fields = 'country','country_code', 'trade_balance', 'foreign_direct_investment', 'government_debt', 'updated_at'
+
+class SocialDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SocialData
+        fields = 'country','country_code', 'poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage', 'updated_at'
+
