@@ -6,7 +6,7 @@ from django.contrib.auth.password_validation import validate_password
 from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
 # for data saving into database from 3rd-party
-from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData
+from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate
 
 User = get_user_model()
 
@@ -121,3 +121,28 @@ class SocialDataSerializer(serializers.ModelSerializer):
         model = SocialData
         fields = 'country','country_code', 'poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage', 'updated_at'
 
+# for exchange rates
+class CurrencySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Currency
+        fields = ['code']
+
+class ExchangeRateSerializer(serializers.ModelSerializer):
+    base_currency_code = serializers.CharField(source='base_currency.code')
+    target_currency_code = serializers.CharField(source='target_currency.code')
+
+    class Meta:
+        model = ExchangeRate
+        fields = [
+            'base_currency_code', 'target_currency_code', 'rate', 'date',
+            'success', 'timestamp'
+        ]
+
+    def create(self, validated_data):
+        base_currency_code = validated_data.pop('base_currency')['code']
+        target_currency_code = validated_data.pop('target_currency')['code']
+
+        base_currency, _ = Currency.objects.get_or_create(code=base_currency_code)
+        target_currency, _ = Currency.objects.get_or_create(code=target_currency_code)
+
+        return ExchangeRate.objects.create(base_currency=base_currency, target_currency=target_currency, **validated_data)
