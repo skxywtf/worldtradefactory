@@ -11,7 +11,7 @@ from .views import (
     fetch_environmental_data, fetch_health_data, fetch_social_data,
     display_country_data, display_economic_data, display_education_data, 
     display_employment_data, display_environment_data, display_health_data, 
-    display_social_data
+    display_social_data, fetch_exchange_rates, list_exchange_rates, get_exchange_rate_by_code
 )
 
 urlpatterns = [
@@ -44,4 +44,9 @@ urlpatterns = [
     path('environmental-data/<str:country_code>/', display_environment_data, name='display_environment_data'),
     path('health-data/<str:country_code>/', display_health_data, name='display_health_data'),
     path('social-data/<str:country_code>/', display_social_data, name='display_social_data'),
+
+    # for exchange rate fetch and saving data in our db
+    path('load', fetch_exchange_rates, name='load'),
+    path('get', list_exchange_rates, name='get'),
+    path('get/<str:target_currency_code>', get_exchange_rate_by_code, name='get_by_code'),
 ]

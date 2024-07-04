@@ -5,7 +5,7 @@ from .models import CustomUser,Contact,UploadedImage # Contact for contact us
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 # for 3rd-party data saving into db
-from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData
+from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate
 
 # Invisible password
 class CustomUserCreationForm(UserCreationForm):
@@ -78,3 +78,7 @@ admin.site.register(EmploymentData)
 admin.site.register(EnvironmentalData)
 admin.site.register(EconomicData)
 admin.site.register(SocialData)
+
+# for exchange rates
+admin.site.register(Currency)
+admin.site.register(ExchangeRate)
