@@ -6,7 +6,10 @@ from django.contrib.auth.password_validation import validate_password
 from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
 # for data saving into database from 3rd-party
-from .models import CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate
+from .models import (
+    CountryData, EducationData, HealthData, EmploymentData,
+    EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade
+)
 
 User = get_user_model()
 
@@ -146,3 +149,9 @@ class ExchangeRateSerializer(serializers.ModelSerializer):
         target_currency, _ = Currency.objects.get_or_create(code=target_currency_code)
 
         return ExchangeRate.objects.create(base_currency=base_currency, target_currency=target_currency, **validated_data)
+
+# for coin-ems
+class TradeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Trade
+        fields = 'symbol', 'price', 'size', 'taker_side', 'timestamp'

@@ -1,9 +1,9 @@
 # signup and login
 from django.urls import path
-from .views import UserSignupView, UserLoginView, ImageUploadView
+#from .views import UserSignupView, UserLoginView, ImageUploadView
 
 # contact us
-from .views import ContactCreateView
+#from .views import ContactCreateView
 
 # for 3rd-party data saving into our database
 from .views import (
@@ -11,7 +11,9 @@ from .views import (
     fetch_environmental_data, fetch_health_data, fetch_social_data,
     display_country_data, display_economic_data, display_education_data, 
     display_employment_data, display_environment_data, display_health_data, 
-    display_social_data, fetch_exchange_rates, list_exchange_rates, get_exchange_rate_by_code
+    display_social_data, fetch_exchange_rates, list_exchange_rates, get_exchange_rate_by_code,
+    fetch_trades, list_trades, UserSignupView, UserLoginView, ImageUploadView,
+    ContactCreateView
 )
 
 urlpatterns = [
@@ -22,13 +24,13 @@ urlpatterns = [
     path('listai/', ImageUploadView.as_view(), name='listai'), #done
 
     # for 3rd-party data saving into our db
-    path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
-    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
-    path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),
-    path('fetch-employment-data/', fetch_employment_data, name='fetch_employment_data'),
-    path('fetch-environmental-data/', fetch_environmental_data, name='fetch_environmental_data'),
-    path('fetch-health-data/', fetch_health_data, name='fetch_health_data'),
-    path('fetch-social-data/', fetch_social_data, name='fetch_social_data'),
+    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
+    #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
+    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),
+    #path('fetch-employment-data/', fetch_employment_data, name='fetch_employment_data'),
+    #path('fetch-environmental-data/', fetch_environmental_data, name='fetch_environmental_data'),
+    #path('fetch-health-data/', fetch_health_data, name='fetch_health_data'),
+    #path('fetch-social-data/', fetch_social_data, name='fetch_social_data'),
     path('country-data/', display_country_data, name='country_data'),
     path('economic-data/', display_economic_data, name='economic_data'),
     path('education-data/', display_education_data, name='education_data'),
@@ -46,7 +48,11 @@ urlpatterns = [
     path('social-data/<str:country_code>/', display_social_data, name='display_social_data'),
 
     # for exchange rate fetch and saving data in our db
-    path('load', fetch_exchange_rates, name='load'),
+    #path('exchange-rate-load', fetch_exchange_rates, name='exchange_rate_load'),
     path('get', list_exchange_rates, name='get'),
     path('get/<str:target_currency_code>', get_exchange_rate_by_code, name='get_by_code'),
+
+    # for coin-ems
+    #path('coin-ems-load', fetch_trades, name='coin_ems_load'),
+    path('get-trades', list_trades, name='get_trades'),
 ]
