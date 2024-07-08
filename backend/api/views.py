@@ -4,11 +4,11 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
-from .serializers import UserSignupSerializer, UserLoginSerializer
+#from .serializers import UserSignupSerializer, UserLoginSerializer
 
 # contact us
-from .serializers import ContactSerializer
-from .models import Contact
+#from .serializers import ContactSerializer
+#from .models import Contact
 
 # for stock img ai
 from rest_framework import status, views
@@ -29,12 +29,14 @@ from rest_framework.decorators import api_view
 #from rest_framework.response import Response
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
-    EnvironmentalData, EconomicData, SocialData
+    EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Contact,
+    Trade
 )
 from .serializers import (
     CountryDataSerializer, EducationDataSerializer, HealthDataSerializer,
     EmploymentDataSerializer, EnvironmentalDataSerializer, EconomicDataSerializer,
-    SocialDataSerializer
+    SocialDataSerializer, ExchangeRateSerializer, CurrencySerializer, ContactSerializer,
+    UserSignupSerializer, UserLoginSerializer, TradeSerializer
 )
 
 # for exchange rates
@@ -43,8 +45,8 @@ from django.shortcuts import render, get_object_or_404
 #from rest_framework.response import Response
 #from rest_framework import status
 #import requests
-from .models import Currency, ExchangeRate
-from .serializers import ExchangeRateSerializer, CurrencySerializer
+#from .models import Currency, ExchangeRate
+#from .serializers import ExchangeRateSerializer, CurrencySerializer
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
@@ -435,4 +437,35 @@ def get_exchange_rate_by_code(request, target_currency_code):
     target_currency_code = target_currency_code.upper()  # Normalize to uppercase
     exchange_rate = get_object_or_404(ExchangeRate, target_currency__code=target_currency_code)
     serializer = ExchangeRateSerializer(exchange_rate)
+    return Response(serializer.data)
+
+# for coin-ems
+API_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'
+API_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'
+HEADERS = {'X-CoinAPI-Key': API_KEY}
+
+@api_view(['GET'])
+def fetch_trades(request):
+    response = requests.get(API_URL, headers=HEADERS)
+    
+    if response.status_code == 200:
+        Trade.objects.all().delete()
+        trades = response.json()
+        for trade_data in trades:
+            trade = Trade(
+                symbol=trade_data['symbol_id'],
+                price=trade_data['price'],
+                size=trade_data['size'],
+                taker_side=trade_data['taker_side'],
+                timestamp=trade_data['time_exchange']
+            )
+            trade.save()
+        return Response({'message': 'Trades fetched and saved successfully.'}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'Failed to fetch data from CoinAPI'}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def list_trades(request):
+    trades = Trade.objects.all()
+    serializer = TradeSerializer(trades, many=True)
     return Response(serializer.data)
