@@ -11,9 +11,9 @@ from .views import (
     fetch_environmental_data, fetch_health_data, fetch_social_data,
     display_country_data, display_economic_data, display_education_data, 
     display_employment_data, display_environment_data, display_health_data, 
-    display_social_data, fetch_exchange_rates, list_exchange_rates, get_exchange_rate_by_code,
-    fetch_trades, list_trades, UserSignupView, UserLoginView, ImageUploadView,
-    ContactCreateView
+    display_social_data, fetch_exchange_rates, list_exchange_rates, #get_exchange_rate_by_code,
+    save_exchange_rates, fetch_trades, list_trades, save_trades, UserSignupView, UserLoginView, ImageUploadView,
+    ContactCreateView,FileUploadView, ImageUploadView_FileProcessing
 )
 
 urlpatterns = [
@@ -48,11 +48,17 @@ urlpatterns = [
     path('social-data/<str:country_code>/', display_social_data, name='display_social_data'),
 
     # for exchange rate fetch and saving data in our db
-    #path('exchange-rate-load', fetch_exchange_rates, name='exchange_rate_load'),
-    path('get', list_exchange_rates, name='get'),
-    path('get/<str:target_currency_code>', get_exchange_rate_by_code, name='get_by_code'),
+    path('load-exchange-rate', fetch_exchange_rates, name='exchange_rate_load'),# fetch live
+    path('save-exchange-rate', save_exchange_rates, name='save_exchange_rates'), #(call load before save to save in the db) save in database with post=yes
+    path('get-exchange-rate', list_exchange_rates, name='get'), # fetch from database
+    #path('get/<str:target_currency_code>', get_exchange_rate_by_code, name='get_by_code'), # works for the commented v0 code of exchange rate only
 
     # for coin-ems
-    #path('coin-ems-load', fetch_trades, name='coin_ems_load'),
-    path('get-trades', list_trades, name='get_trades'),
+    path('load-coin-ems-trades', fetch_trades, name='coin_ems_load'), # use this to show live
+    path('get-coin-ems-trades', list_trades, name='get_trades'), #use this to show from database
+    path('save-coin-ems-trades', save_trades, name='save_trades'), #use this with post=yes to save in database
+
+    # for file processing ai
+    path('upload/', FileUploadView.as_view(), name='file-upload'),
+    path('upload-image/', ImageUploadView_FileProcessing.as_view(), name='image-upload'),
 ]

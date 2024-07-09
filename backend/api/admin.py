@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 # for 3rd-party data saving into db
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData, EnvironmentalData,
-    EconomicData, SocialData, Currency, ExchangeRate, Trade
+    EconomicData, SocialData, Currency, ExchangeRate, Trade, UploadedFile
 )
 
 # Invisible password
@@ -88,3 +88,6 @@ admin.site.register(ExchangeRate)
 
 # for coin-ems
 admin.site.register(Trade)
+
+# for file processing ai
+admin.site.register(UploadedFile)

@@ -8,7 +8,8 @@ from api.models import UploadedImage # for stock img ai
 # for data saving into database from 3rd-party
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
-    EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade
+    EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade,
+    UploadedFile
 )
 
 User = get_user_model()
@@ -155,3 +156,9 @@ class TradeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Trade
         fields = 'symbol', 'price', 'size', 'taker_side', 'timestamp'
+
+# for file-processing LLM
+class UploadedFileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UploadedFile
+        fields = ['file', 'uploaded_at']
