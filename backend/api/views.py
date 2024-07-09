@@ -1,5 +1,5 @@
 # signup and login
-from rest_framework import generics, status
+from rest_framework import generics, status, views
 from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
@@ -11,12 +11,14 @@ from rest_framework.permissions import AllowAny
 #from .models import Contact
 
 # for stock img ai
-from rest_framework import status, views
+#from rest_framework import status, views
 #from rest_framework.response import Response
 from rest_framework.parsers import MultiPartParser, FormParser
 from api.models import UploadedImage
 from api.serializers import UploadedImageSerializer
-from .ai import analyze_graph_sections  # assuming AI.py is renamed to ai.py and placed in the same app
+from .ai import analyze_graph_sections  
+from . import ai
+from PIL import Image
 import openai
 #import os
 #import cv2
@@ -30,13 +32,13 @@ from rest_framework.decorators import api_view
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
     EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Contact,
-    Trade
+    Trade, UploadedFile
 )
 from .serializers import (
     CountryDataSerializer, EducationDataSerializer, HealthDataSerializer,
     EmploymentDataSerializer, EnvironmentalDataSerializer, EconomicDataSerializer,
     SocialDataSerializer, ExchangeRateSerializer, CurrencySerializer, ContactSerializer,
-    UserSignupSerializer, UserLoginSerializer, TradeSerializer
+    UserSignupSerializer, UserLoginSerializer, TradeSerializer, UploadedFileSerializer
 )
 
 # for exchange rates
@@ -49,6 +51,9 @@ from django.shortcuts import render, get_object_or_404
 #from .serializers import ExchangeRateSerializer, CurrencySerializer
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
+
+# for file-processing LLM
+
 
 # Data from the UI will be received here
 class UserSignupView(generics.CreateAPIView):
@@ -369,7 +374,8 @@ def display_social_data(request, country_code=None):
     serializer = SocialDataSerializer(social_data, many=True)
     return Response(serializer.data)
 
-# for exchange rate
+# for exchange rate v0 without y/n feature
+'''
 @api_view(['GET'])
 def fetch_exchange_rates(request):
     access_key = 'f638ce07b446f7a900ded80b837af730'
@@ -438,8 +444,101 @@ def get_exchange_rate_by_code(request, target_currency_code):
     exchange_rate = get_object_or_404(ExchangeRate, target_currency__code=target_currency_code)
     serializer = ExchangeRateSerializer(exchange_rate)
     return Response(serializer.data)
+'''
+# updated exchange rate with y/n feature
+# Global variable to temporarily hold fetched data
+temp_data = {}
 
-# for coin-ems
+@api_view(['GET'])
+def fetch_exchange_rates(request):
+    global temp_data
+    access_key = 'f638ce07b446f7a900ded80b837af730'
+    url = f"http://api.exchangeratesapi.io/v1/latest?access_key={access_key}"
+    response = requests.get(url)
+    
+    if response.status_code == 200:
+        data = response.json()
+        if 'rates' in data:
+            base_currency_code = 'USD'
+            date = data['date']
+            timestamp = datetime.utcfromtimestamp(data['timestamp']) if 'timestamp' in data else datetime.now()
+            success = data.get('success', False)
+
+            rates = data['rates']
+            eur_to_usd_rate = rates.get('USD', None)
+
+            if eur_to_usd_rate is None:
+                return Response({"error": "USD rate not available in the API response"}, status=status.HTTP_400_BAD_REQUEST)
+
+            fetched_data = []
+
+            for code, rate in rates.items():
+                try:
+                    if code == 'USD':
+                        converted_rate = Decimal(rate)
+                    else:
+                        converted_rate = Decimal(rate) / Decimal(eur_to_usd_rate)
+                    
+                    fetched_data.append({
+                        'base_currency': base_currency_code,
+                        'target_currency': code,
+                        'rate': str(converted_rate),
+                        'date': date,
+                        'success': success,
+                        'timestamp': timestamp,
+                    })
+                except InvalidOperation:
+                    continue
+
+            temp_data['exchange_rates'] = fetched_data
+            return Response({"message": "Exchange rates fetched successfully", "data": fetched_data}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Unexpected API response format"}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({"error": f"API request failed with status code {response.status_code}"}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def save_exchange_rates(request):
+    global temp_data
+
+    user_response = request.data.get('response')
+    if user_response is None:
+        return Response({"error": "User response not provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if user_response.lower() == 'yes':
+        try:    
+            ExchangeRate.objects.all().delete()
+            for rate_data in temp_data.get('exchange_rates', []):
+                base_currency, _ = Currency.objects.get_or_create(code=rate_data['base_currency'])
+                target_currency, _ = Currency.objects.get_or_create(code=rate_data['target_currency'])
+
+                ExchangeRate.objects.create(
+                base_currency=base_currency,
+                target_currency=target_currency,
+                rate=rate_data['rate'],
+                date=rate_data['date'],
+                success=rate_data['success'],
+                timestamp=rate_data['timestamp'],
+            )
+            #print(base_currency)
+            temp_data = {}
+            return Response({"message": "Exchange rates saved successfully"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": f"Failed to save exchange rates: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    elif user_response.lower() == 'no':
+        temp_data = {}
+        return Response({"message": "Exchange rates discarded"}, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Invalid user response"}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def list_exchange_rates(request):
+    exchange_rates = ExchangeRate.objects.all()
+    serializer = ExchangeRateSerializer(exchange_rates, many=True)
+    return Response(serializer.data)
+
+# for coin-ems v0 with no option for y/n
+''' 
 API_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'
 API_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'
 HEADERS = {'X-CoinAPI-Key': API_KEY}
@@ -469,3 +568,114 @@ def list_trades(request):
     trades = Trade.objects.all()
     serializer = TradeSerializer(trades, many=True)
     return Response(serializer.data)
+'''
+# for coin-ems with y/n feature before saving
+API_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'
+API_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'
+HEADERS = {'X-CoinAPI-Key': API_KEY}
+
+# Global variable to temporarily hold fetched data
+temp_trades = []
+
+@api_view(['GET'])
+def fetch_trades(request):
+    global temp_trades
+    response = requests.get(API_URL, headers=HEADERS)
+    
+    if response.status_code == 200:
+        trades = response.json()
+        temp_trades = []
+
+        for trade_data in trades:
+            temp_trades.append({
+                'symbol': trade_data['symbol_id'],
+                'price': trade_data['price'],
+                'size': trade_data['size'],
+                'taker_side': trade_data['taker_side'],
+                'timestamp': trade_data['time_exchange']
+            })
+
+        return Response({'message': 'Trades fetched successfully.', 'data': temp_trades}, status=status.HTTP_200_OK)
+    else:
+        return Response({'error': 'Failed to fetch data from CoinAPI'}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['POST'])
+def save_trades(request):
+    global temp_trades
+
+    user_response = request.data.get('response')
+    if user_response is None:
+        return Response({"error": "User response not provided"}, status=status.HTTP_400_BAD_REQUEST)
+
+    if user_response.lower() == 'yes':
+        try:
+            Trade.objects.all().delete()
+            for trade_data in temp_trades:
+                trade = Trade(
+                    symbol=trade_data['symbol'],
+                    price=trade_data['price'],
+                    size=trade_data['size'],
+                    taker_side=trade_data['taker_side'],
+                    timestamp=trade_data['timestamp']
+                )
+                trade.save()
+
+            temp_trades = []
+            return Response({"message": "Trades saved successfully"}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({"error": f"Failed to save trades: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    elif user_response.lower() == 'no':
+        temp_trades = []
+        return Response({"message": "Trades discarded"}, status=status.HTTP_200_OK)
+    else:
+        return Response({"error": "Invalid user response"}, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+def list_trades(request):
+    trades = Trade.objects.all()
+    serializer = TradeSerializer(trades, many=True)
+    return Response(serializer.data)
+
+# for file processing LLM
+class FileUploadView(views.APIView):
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, *args, **kwargs):
+        file_serializer = UploadedFileSerializer(data=request.data)
+        if file_serializer.is_valid():
+            file_serializer.save()
+            file_instance = file_serializer.instance
+
+            try:
+                # Process the uploaded file
+                document_text = ai.read_document(file_instance.file)
+                document_chunks = ai.split_text(document_text, 1500)
+                question = request.data.get('question', '')
+                if not question:
+                    return Response({'error': 'Question is required.'}, status=status.HTTP_400_BAD_REQUEST)
+                answer = ai.ask_questionEd_about_document(document_chunks, question)
+
+                return Response({'answer': answer}, status=status.HTTP_200_OK)
+            except Exception as e:
+                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            return Response(file_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class ImageUploadView_FileProcessing(views.APIView): #ImageUploadView name for stock img
+    parser_classes = (MultiPartParser, FormParser)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            uploaded_image = request.FILES['file']
+            image = Image.open(uploaded_image)
+            encoded_image = ai.encode_image(image)
+            image_url = f"data:image/png;base64,{encoded_image}"
+
+            question = request.data.get('question', '')
+            if not question:
+                return Response({'error': 'Question is required.'}, status=status.HTTP_400_BAD_REQUEST)
+            answer = ai.ask_question_about_image(question, image_url)
+
+            return Response({'answer': answer}, status=status.HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

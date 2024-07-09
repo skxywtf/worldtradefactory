@@ -138,3 +138,8 @@ class Trade(models.Model):
     def __str__(self):
         return f"{self.symbol} - {self.price} - {self.size}"
     
+# models for file-processing LLM
+class UploadedFile(models.Model):
+    file = models.FileField(upload_to='uploads/')
+    uploaded_at = models.DateTimeField(auto_now_add=True)
+#json: file: and question: foloow strictly lowercase
