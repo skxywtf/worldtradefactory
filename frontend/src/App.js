@@ -1,5 +1,4 @@
 import { Route, Routes } from "react-router-dom";
-
 import Subscription from "./components/header and Footer/Subscription";
 import Terms from "./components/header and Footer/Terms";
 import About from "./components/header and Footer/About";
