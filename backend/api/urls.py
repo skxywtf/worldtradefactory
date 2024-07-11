@@ -13,7 +13,7 @@ from .views import (
     display_employment_data, display_environment_data, display_health_data, 
     display_social_data, fetch_exchange_rates, list_exchange_rates, #get_exchange_rate_by_code,
     save_exchange_rates, fetch_trades, list_trades, save_trades, UserSignupView, UserLoginView, ImageUploadView,
-    ContactCreateView,FileUploadView, ImageUploadView_FileProcessing
+    ContactCreateView,FileUploadView, ImageUploadView_FileProcessing, AllLiveStockDataAPIView
 )
 
 urlpatterns = [
@@ -61,4 +61,9 @@ urlpatterns = [
     # for file processing ai
     path('upload/', FileUploadView.as_view(), name='file-upload'),
     path('upload-image/', ImageUploadView_FileProcessing.as_view(), name='image-upload'),
+
+    # team1 last 5 years stock price
+    # fetches live data based on ticker and do not saves in db otherwise db will crack
+    # since more than 7000 tickers are there
+    path('live/<str:ticker>/', AllLiveStockDataAPIView.as_view(), name='live-stock-data'),
 ]

@@ -142,4 +142,32 @@ class Trade(models.Model):
 class UploadedFile(models.Model):
     file = models.FileField(upload_to='uploads/')
     uploaded_at = models.DateTimeField(auto_now_add=True)
-#json: file: and question: foloow strictly lowercase
+#json: file: and question: follow strictly lowercase
+
+# team1 API stock price for last 5 years
+class Stock(models.Model):
+    ticker = models.CharField(max_length=10, unique=True)
+    company_name = models.CharField(max_length=255)
+    company_address = models.TextField()
+    company_location = models.CharField(max_length=255)
+    avg_stock_price_5yrs = models.FloatField()
+    avg_revenue_5yrs = models.FloatField()
+    percentage_change = models.FloatField()
+
+    def __str__(self):
+        return self.ticker
+    
+'''
+The avg_stock_price_5yrs fetched using yfinance in the provided code is in the 
+currency specified by the stock market from which the data is retrieved. yfinance fetches
+data from various stock exchanges globally, and the currency of the avg_stock_price_5yrs
+will depend on the primary currency used for trading that particular stock on its 
+respective exchange.
+
+For example:
+
+Stocks traded on the New York Stock Exchange (NYSE) are typically in USD (US Dollars).
+Stocks traded on the London Stock Exchange (LSE) are in GBP (British Pounds).
+Stocks traded on the Tokyo Stock Exchange (TSE) are in JPY (Japanese Yen).
+'''
+

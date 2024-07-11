@@ -9,7 +9,7 @@ from api.models import UploadedImage # for stock img ai
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
     EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade,
-    UploadedFile
+    UploadedFile, Stock
 )
 
 User = get_user_model()
@@ -162,3 +162,9 @@ class UploadedFileSerializer(serializers.ModelSerializer):
     class Meta:
         model = UploadedFile
         fields = ['file', 'uploaded_at']
+
+# team1 API stock price for last 5 years
+class StockSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Stock
+        fields = '__all__'

@@ -32,13 +32,14 @@ from rest_framework.decorators import api_view
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
     EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Contact,
-    Trade, UploadedFile
+    Trade, UploadedFile, Stock
 )
 from .serializers import (
     CountryDataSerializer, EducationDataSerializer, HealthDataSerializer,
     EmploymentDataSerializer, EnvironmentalDataSerializer, EconomicDataSerializer,
     SocialDataSerializer, ExchangeRateSerializer, CurrencySerializer, ContactSerializer,
-    UserSignupSerializer, UserLoginSerializer, TradeSerializer, UploadedFileSerializer
+    UserSignupSerializer, UserLoginSerializer, TradeSerializer, UploadedFileSerializer,
+    StockSerializer
 )
 
 # for exchange rates
@@ -52,7 +53,10 @@ from django.shortcuts import render, get_object_or_404
 from datetime import datetime
 from decimal import Decimal, InvalidOperation
 
-# for file-processing LLM
+# team1 last 5 years stock price
+import yfinance as yf
+import pandas as pd
+import os
 
 
 # Data from the UI will be received here
@@ -679,3 +683,71 @@ class ImageUploadView_FileProcessing(views.APIView): #ImageUploadView name for s
             return Response({'answer': answer}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+# team1 last 5 years stock price
+class AllLiveStockDataAPIView(APIView):
+    # Path to the tickers.xlsx file
+    tickers_file_path = os.path.join(os.path.dirname(__file__), 'data', 'ticker.xlsx')
+
+    def get_predefined_tickers(self):
+        # Read tickers from the Excel file
+        df = pd.read_excel(self.tickers_file_path, sheet_name='Sheet1')  # Adjust sheet name if necessary
+        tickers_list = df['Ticker'].tolist()  # Assuming 'Ticker' is the column header
+        return tickers_list
+
+    def get(self, request, ticker=None):
+        if not ticker:
+            # Delete all existing data if no ticker is provided
+            self.clear_existing_data()
+
+        if ticker:
+            tickers_list = [ticker]
+        else:
+            tickers_list = self.get_predefined_tickers()
+
+        data = []
+        for ticker in tickers_list:
+            try:
+                stock_info = yf.Ticker(ticker).info
+                company_data = {
+                    'ticker': ticker,
+                    'company_name': stock_info.get('shortName', 'N/A'),
+                    'company_address': stock_info.get('address1', 'N/A'),
+                    'company_location': f"{stock_info.get('city', 'N/A')}, {stock_info.get('state', 'N/A')}, {stock_info.get('country', 'N/A')}",
+                    'avg_stock_price_5yrs': self.calculate_avg_stock_price(ticker),
+                    'avg_revenue_5yrs': self.calculate_avg_revenue_5yrs(ticker),
+                    'percentage_change': self.calculate_percentage_change(ticker)
+                }
+                data.append(company_data)
+
+                # Save to database only if no specific ticker is provided
+                #if not ticker:
+                 #   self.save_to_database(company_data)
+            except Exception as e:
+                data.append({
+                    'ticker': ticker,
+                    'error': str(e)
+                })
+        return Response(data)
+
+    def calculate_avg_stock_price(self, ticker):
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period="5y")
+        if hist.empty:
+            return 'No data available'
+        return hist['Close'].mean()
+
+    def calculate_percentage_change(self, ticker):
+        stock = yf.Ticker(ticker)
+        hist = stock.history(period="5y")
+        if hist.empty:
+            return 'No data available'
+        return ((hist['Close'].iloc[-1] - hist['Close'].iloc[0]) / hist['Close'].iloc[0]) * 100
+
+    def calculate_avg_revenue_5yrs(self, ticker):
+        stock = yf.Ticker(ticker)
+        financials = stock.financials
+        if financials.empty:
+            return 'No data available'
+        revenue = financials.loc['Total Revenue']
+        return revenue.head(5).mean()
