@@ -13,7 +13,8 @@ from .views import (
     display_employment_data, display_environment_data, display_health_data, 
     display_social_data, fetch_exchange_rates, list_exchange_rates, #get_exchange_rate_by_code,
     save_exchange_rates, fetch_trades, list_trades, save_trades, UserSignupView, UserLoginView, ImageUploadView,
-    ContactCreateView,FileUploadView, ImageUploadView_FileProcessing, AllLiveStockDataAPIView
+    ContactCreateView,FileUploadView, ImageUploadView_FileProcessing, AllLiveStockDataAPIView,
+    load_stock_data,load_stock_monthly,load_stock_quote,load_stock_weekly
 )
 
 urlpatterns = [
@@ -66,4 +67,11 @@ urlpatterns = [
     # fetches live data based on ticker and do not saves in db otherwise db will crack
     # since more than 7000 tickers are there
     path('live/<str:ticker>/', AllLiveStockDataAPIView.as_view(), name='live-stock-data'),
+
+    # alpha vantage core stock api, no need to store data in db , fetches from third-party directly
+    path('load-daily/<str:symbol>', load_stock_data, name='load_stock_data'),
+    path('load-weekly/<str:symbol>', load_stock_weekly, name='weekly_data'),
+    path('load-monthly/<str:symbol>', load_stock_monthly, name='monthly_data'),
+    path('load-quote/<str:symbol>', load_stock_quote, name='load_stock_quote'),
+
 ]

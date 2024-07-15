@@ -58,6 +58,8 @@ import yfinance as yf
 import pandas as pd
 import os
 
+# for alphavantage core stock api
+from django.http import JsonResponse
 
 # Data from the UI will be received here
 class UserSignupView(generics.CreateAPIView):
@@ -751,3 +753,75 @@ class AllLiveStockDataAPIView(APIView):
             return 'No data available'
         revenue = financials.loc['Total Revenue']
         return revenue.head(5).mean()
+
+# alpha vantage core stock api, no need for models and serializers here
+ALPHA_VANTAGE_API_KEY = 'JPCM9P87TQO7IG3N'
+ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'
+
+@api_view(['GET'])
+def load_stock_data(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TIME_SERIES_DAILY',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stock_weekly(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TIME_SERIES_WEEKLY',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stock_monthly(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TIME_SERIES_MONTHLY',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stock_quote(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'GLOBAL_QUOTE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
