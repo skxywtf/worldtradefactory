@@ -825,3 +825,379 @@ def load_stock_quote(request, symbol):
         return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
     
     return JsonResponse(data, safe=False)
+
+# forex
+#ALPHA_VANTAGE_API_KEY = 'JPCM9P87TQO7IG3N'
+#ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'
+
+@api_view(['POST'])
+def load_currency_exchange_rate(request):
+    # Get the 'from_currency' and 'to_currency' from the request body
+    from_currency = request.data.get('from_currency')
+    to_currency = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not from_currency or not to_currency:
+        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={from_currency}&to_currency={to_currency}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_fxdaily(request):
+    # Get the 'from_symbol' and 'to_symbol' from the request body
+    from_symbol = request.data.get('from_currency')
+    to_symbol = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not from_symbol or not to_symbol:
+        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=FX_DAILY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_fxweekly(request):
+    # Get the 'from_symbol' and 'to_symbol' from the request body
+    from_symbol = request.data.get('from_currency')
+    to_symbol = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not from_symbol or not to_symbol:
+        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_fxmonthly(request):
+    # Get the 'from_symbol' and 'to_symbol' from the request body
+    from_symbol = request.data.get('from_currency')
+    to_symbol = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not from_symbol or not to_symbol:
+        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+#crypto
+@api_view(['POST'])
+def load_crypto_exchange_rate(request):
+    # Get the 'from_currency' and 'to_currency' from the request body
+    from_currency = request.data.get('from_currency')
+    to_currency = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not from_currency or not to_currency:
+        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={from_currency}&to_currency={to_currency}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_cdaily(request):
+    # Get the 'symbol' and 'market' from the request body
+    symbol = request.data.get('from_currency')
+    market = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not symbol or not market:
+        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_cweekly(request):
+    # Get the 'symbol' and 'market' from the request body
+    symbol = request.data.get('from_currency')
+    market = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not symbol or not market:
+        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_WEEKLY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['POST'])
+def load_cmonthly(request):
+    # Get the 'symbol' and 'market' from the request body
+    symbol = request.data.get('from_currency')
+    market = request.data.get('to_currency')
+    
+    # Validate that both currencies are provided
+    if not symbol or not market:
+        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+#commodities
+'''
+@api_view(['GET'])
+def load_wti_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=WTI&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_brent_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=BRENT&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_natural_gas_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=NATURAL_GAS&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_copper_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=COPPER&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_aluminum_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=ALUMINUM&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_wheat_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=WHEAT&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_corn_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=CORN&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_cotton_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=COTTON&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_sugar_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=SUGAR&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_coffee_data(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=COFFEE&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_all_commodities(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=ALL_COMMODITIES&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+'''

@@ -14,7 +14,12 @@ from .views import (
     display_social_data, fetch_exchange_rates, list_exchange_rates, #get_exchange_rate_by_code,
     save_exchange_rates, fetch_trades, list_trades, save_trades, UserSignupView, UserLoginView, ImageUploadView,
     ContactCreateView,FileUploadView, ImageUploadView_FileProcessing, AllLiveStockDataAPIView,
-    load_stock_data,load_stock_monthly,load_stock_quote,load_stock_weekly
+    load_stock_data,load_stock_monthly,load_stock_quote,load_stock_weekly,
+    load_currency_exchange_rate, load_fxdaily, load_fxmonthly, load_fxweekly,
+    load_cdaily,load_cmonthly,load_crypto_exchange_rate,load_cweekly,
+    #load_wti_data, load_aluminum_data, load_all_commodities, load_brent_data,
+    #load_coffee_data, load_copper_data, load_corn_data, load_cotton_data,
+    ##load_natural_gas_data, load_sugar_data, load_wheat_data
 )
 
 urlpatterns = [
@@ -74,4 +79,30 @@ urlpatterns = [
     path('load-monthly/<str:symbol>', load_stock_monthly, name='monthly_data'),
     path('load-quote/<str:symbol>', load_stock_quote, name='load_stock_quote'),
 
+    #forex: POST with from_currency:usd,to_currency:eur
+    path('load-forex', load_currency_exchange_rate, name='load_currency_exchange_rate'),
+    path('load-fxdaily', load_fxdaily, name='load_fxdaily'),
+    path('load-fxweekly', load_fxweekly, name='load_fxweekly'),
+    path('load-fxmonthly', load_fxmonthly, name='load_fxmonthly'),
+
+    # crypto
+    path('load-crypto', load_crypto_exchange_rate, name='load_currency_exchange_rate'),
+    path('load-cdaily', load_cdaily, name='load_cdaily'),
+    path('load-cweekly', load_cweekly, name='load_cweekly'), #not tested
+    path('load-cmonthly', load_cmonthly, name='load_cmonthly'), #not tested
+
+    #commodities
+    '''
+    path('load-wti', load_wti_data, name='load_wti_data'),
+    path('load-brent', load_brent_data, name='load_brent_data'),
+    path('load-natural', load_natural_gas_data, name='load_natural_gas_data'),
+    path('load-copper', load_copper_data, name='load_copper_data'),
+    path('load-aluminum', load_aluminum_data, name='load_aluminum_data'),
+    path('load-wheat', load_wheat_data, name='load_wheat_data'),
+    path('load-corn', load_corn_data, name='load_corn_data'),
+    path('load-cotton', load_cotton_data, name='load_cotton_data'),
+    path('load-sugar', load_sugar_data, name='load_sugar_data'),
+    path('load-coffee', load_coffee_data, name='load_coffee_data'),
+    path('load-commodities', load_all_commodities, name='load_all_commodities'),
+    '''
 ]
