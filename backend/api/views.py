@@ -1024,7 +1024,6 @@ def load_cmonthly(request):
     return JsonResponse(data, safe=False)
 
 #commodities
-'''
 @api_view(['GET'])
 def load_wti_data(request):
     # Define the URL for the Alpha Vantage API request
@@ -1200,4 +1199,302 @@ def load_all_commodities(request):
     
     # Return the API response directly
     return JsonResponse(data, safe=False)
-'''
+
+# Economic indicators
+@api_view(['GET'])
+def load_real_gdp(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=REAL_GDP&interval=annual&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_capita_gdp(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=REAL_GDP_PER_CAPITA&interval=annual&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_treasury_yield(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_federal_funds_rate(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=FEDERAL_FUNDS_RATE&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_cpi(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=CPI&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_inflation(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=INFLATION&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_retail_sales(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=RETAIL_SALES&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_durable_goods_orders(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=DURABLES&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_unemployment_rate(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=UNEMPLOYMENT&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_nonfarm_payroll(request):
+    # Define the URL for the Alpha Vantage API request
+    url = f'https://www.alphavantage.co/query?function=NONFARM_PAYROLL&apikey={ALPHA_VANTAGE_API_KEY}'
+    
+    # Fetch data from Alpha Vantage
+    response = requests.get(url)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'error', 'message': data["Error Message"]}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Return the API response directly
+    return JsonResponse(data, safe=False)
+
+# options data
+@api_view(['GET'])
+def load_historical_options(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HISTORICAL_OPTIONS',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+# fundamental data
+@api_view(['GET'])
+def load_overview(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'OVERVIEW',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dividends(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'DIVIDENDS',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_splits(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'SPLITS',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_income_statement(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'INCOME_STATEMENT',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_balance_sheet(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'BALANCE_SHEET',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_cash_flow(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'CASH_FLOW',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_earnings(request, symbol):
+
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'EARNINGS',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
