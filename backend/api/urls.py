@@ -91,8 +91,10 @@ urlpatterns = [
     path('load-cweekly', load_cweekly, name='load_cweekly'), #not tested
     path('load-cmonthly', load_cmonthly, name='load_cmonthly'), #not tested
 
-    #commodities
-    '''
+]
+
+#commodities
+'''
     path('load-wti', load_wti_data, name='load_wti_data'),
     path('load-brent', load_brent_data, name='load_brent_data'),
     path('load-natural', load_natural_gas_data, name='load_natural_gas_data'),
@@ -104,5 +106,4 @@ urlpatterns = [
     path('load-sugar', load_sugar_data, name='load_sugar_data'),
     path('load-coffee', load_coffee_data, name='load_coffee_data'),
     path('load-commodities', load_all_commodities, name='load_all_commodities'),
-    '''
-]
+'''
