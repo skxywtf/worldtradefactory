@@ -96,26 +96,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-'''
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'skxywtf',
-        'ENFORCE_SCHEMA': True,
         'CLIENT': {
-            'host':'31.220.31.198',
-            'port': 27017,
+            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',
         }
     }
 }
-'''
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
