@@ -17,9 +17,14 @@ from .views import (
     load_stock_data,load_stock_monthly,load_stock_quote,load_stock_weekly,
     load_currency_exchange_rate, load_fxdaily, load_fxmonthly, load_fxweekly,
     load_cdaily,load_cmonthly,load_crypto_exchange_rate,load_cweekly,
-    #load_wti_data, load_aluminum_data, load_all_commodities, load_brent_data,
-    #load_coffee_data, load_copper_data, load_corn_data, load_cotton_data,
-    ##load_natural_gas_data, load_sugar_data, load_wheat_data
+    load_wti_data, load_aluminum_data, load_all_commodities, load_brent_data,
+    load_coffee_data, load_copper_data, load_corn_data, load_cotton_data,
+    load_natural_gas_data, load_sugar_data, load_wheat_data,
+    load_capita_gdp,load_cpi,load_durable_goods_orders,load_federal_funds_rate,
+    load_inflation,load_nonfarm_payroll,load_real_gdp,load_retail_sales,
+    load_treasury_yield,load_unemployment_rate,load_historical_options,
+    load_balance_sheet,load_cash_flow,load_dividends,load_earnings,
+    load_income_statement,load_overview,load_splits
 )
 
 urlpatterns = [
@@ -88,13 +93,10 @@ urlpatterns = [
     # crypto
     path('load-crypto', load_crypto_exchange_rate, name='load_currency_exchange_rate'),
     path('load-cdaily', load_cdaily, name='load_cdaily'),
-    path('load-cweekly', load_cweekly, name='load_cweekly'), #not tested
-    path('load-cmonthly', load_cmonthly, name='load_cmonthly'), #not tested
+    path('load-cweekly', load_cweekly, name='load_cweekly'), 
+    path('load-cmonthly', load_cmonthly, name='load_cmonthly'), 
 
-]
-
-#commodities
-'''
+    #commodities
     path('load-wti', load_wti_data, name='load_wti_data'),
     path('load-brent', load_brent_data, name='load_brent_data'),
     path('load-natural', load_natural_gas_data, name='load_natural_gas_data'),
@@ -106,4 +108,28 @@ urlpatterns = [
     path('load-sugar', load_sugar_data, name='load_sugar_data'),
     path('load-coffee', load_coffee_data, name='load_coffee_data'),
     path('load-commodities', load_all_commodities, name='load_all_commodities'),
-'''
+
+    # economic indicators
+    path('load-rgdp', load_real_gdp, name='load_real_gdp'),
+    path('load-cgdp', load_capita_gdp, name='load_capita_gdp'),
+    path('load-treasury', load_treasury_yield, name='load_treasury_yield'),
+    path('load-funds', load_federal_funds_rate, name='load_federal_funds_rate'),
+    path('load-cpi', load_cpi, name='load_cpi'),
+    path('load-retail', load_retail_sales, name='load_retail_sales'),
+    path('load-durable', load_durable_goods_orders, name='load_durable_goods_orders'),
+    path('load-unemployment', load_unemployment_rate, name='load_unemployment_rate'),
+    path('load-nonfarm', load_nonfarm_payroll, name='load_nonfarm_payroll'),
+
+    # options data
+    path('load-hoptions/<str:symbol>', load_historical_options, name='load_historical_options'),
+
+    # fundamental data
+    path('load-overview/<str:symbol>', load_overview, name='load_overview'),
+    path('load-dividends/<str:symbol>', load_dividends, name='load_dividends'),
+    path('load-splits/<str:symbol>', load_splits, name='load_splits'),
+    path('load-income/<str:symbol>', load_income_statement, name='load_income_statement'),
+    path('load-sheet/<str:symbol>', load_balance_sheet, name='load_balance_sheet'),
+    path('load-cash/<str:symbol>', load_cash_flow, name='load_cash_flow'),
+    path('load-earnings/<str:symbol>', load_earnings, name='load_earnings'),
+]
+
