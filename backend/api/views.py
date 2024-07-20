@@ -1498,3 +1498,68 @@ def load_earnings(request, symbol):
         return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
     
     return JsonResponse(data, safe=False)
+
+# Alpha-Intelligence
+@api_view(['GET'])
+def load_stock_news(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'NEWS_SENTIMENT',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stock_gl(request):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TOP_GAINERS_LOSERS',
+        'apikey': ALPHA_VANTAGE_API_KEY
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+'''
+@api_view(['POST'])
+def load_stock_analytics(request):
+    # Get the 'symbols' from the request body
+    symbols = request.data.get('symbols')
+    
+    # Validate that symbols are provided
+    if not symbols:
+        return JsonResponse({'status': 'error', 'message': 'Symbols are required'}, status=status.HTTP_400_BAD_REQUEST)
+    
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ANALYTICS_FIXED_WINDOW',
+        'SYMBOLS': symbols,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'RANGE': '2024-01-01',
+        'RANGE': '2024-07-01',
+        'INTERVAL': 'DAILY', 
+        'OHLC': 'close',
+        'CALCULATIONS': 'MEAN,STDDEV,CORRELATION',
+        # 'CALCULATIONS': 'MIN,MAX,MEAN,MEDIAN,CUMULATIVE_RETURN,VARIANCE,STDDEV,MAX_DRAWDOWN,HISTOGRAM,AUTOCORRELATION,COVARIANCE,CORRELATION',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+'''
