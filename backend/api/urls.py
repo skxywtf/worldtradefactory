@@ -24,7 +24,8 @@ from .views import (
     load_inflation,load_nonfarm_payroll,load_real_gdp,load_retail_sales,
     load_treasury_yield,load_unemployment_rate,load_historical_options,
     load_balance_sheet,load_cash_flow,load_dividends,load_earnings,
-    load_income_statement,load_overview,load_splits
+    load_income_statement,load_overview,load_splits,
+    load_stock_gl,load_stock_news
 )
 
 urlpatterns = [
@@ -35,7 +36,7 @@ urlpatterns = [
     path('listai/', ImageUploadView.as_view(), name='listai'), #done
 
     # for 3rd-party data saving into our db
-    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
+    path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
     #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
     #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),
     #path('fetch-employment-data/', fetch_employment_data, name='fetch_employment_data'),
@@ -131,5 +132,10 @@ urlpatterns = [
     path('load-sheet/<str:symbol>', load_balance_sheet, name='load_balance_sheet'),
     path('load-cash/<str:symbol>', load_cash_flow, name='load_cash_flow'),
     path('load-earnings/<str:symbol>', load_earnings, name='load_earnings'),
+
+    # Alpha-Intelligence
+    path('load-news/<str:symbol>', load_stock_news, name='load_stock_news'),
+    path('load-gl', load_stock_gl, name='gain_loss'),
+    #path('load-analytics', load_stock_analytics, name='analytics_data'),
 ]
 
