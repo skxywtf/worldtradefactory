@@ -99,7 +99,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'skxywtf',
+        'NAME': 'worldtradefactory',
         'CLIENT': {
             'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',
         }

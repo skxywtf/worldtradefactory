@@ -51,6 +51,151 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "django.db.models.deletion",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.db.models.deletion",
+        "description": "django.db.models.deletion",
+        "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
         "label": "forms",
         "importPath": "django",
         "description": "django",
@@ -99,6 +244,110 @@
         "documentation": {}
     },
     {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "cv2",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
+        "documentation": {}
+    },
+    {
+        "label": "openai",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "openai",
+        "description": "openai",
+        "detail": "openai",
+        "documentation": {}
+    },
+    {
+        "label": "PdfReader",
+        "importPath": "PyPDF2",
+        "description": "PyPDF2",
+        "isExtraImport": true,
+        "detail": "PyPDF2",
+        "documentation": {}
+    },
+    {
+        "label": "fitz",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "fitz",
+        "description": "fitz",
+        "detail": "fitz",
+        "documentation": {}
+    },
+    {
+        "label": "Presentation",
+        "importPath": "pptx",
+        "description": "pptx",
+        "isExtraImport": true,
+        "detail": "pptx",
+        "documentation": {}
+    },
+    {
+        "label": "docx",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "docx",
+        "description": "docx",
+        "detail": "docx",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "io",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "io",
+        "description": "io",
+        "detail": "io",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "Image",
+        "importPath": "PIL",
+        "description": "PIL",
+        "isExtraImport": true,
+        "detail": "PIL",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -131,6 +380,14 @@
         "documentation": {}
     },
     {
+        "label": "views",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "get_user_model",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -152,6 +409,22 @@
         "description": "django.contrib.auth.password_validation",
         "isExtraImport": true,
         "detail": "django.contrib.auth.password_validation",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedImage",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedImage",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
         "documentation": {}
     },
     {
@@ -211,12 +484,127 @@
         "documentation": {}
     },
     {
+        "label": "MultiPartParser",
+        "importPath": "rest_framework.parsers",
+        "description": "rest_framework.parsers",
+        "isExtraImport": true,
+        "detail": "rest_framework.parsers",
+        "documentation": {}
+    },
+    {
+        "label": "FormParser",
+        "importPath": "rest_framework.parsers",
+        "description": "rest_framework.parsers",
+        "isExtraImport": true,
+        "detail": "rest_framework.parsers",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedImageSerializer",
+        "importPath": "api.serializers",
+        "description": "api.serializers",
+        "isExtraImport": true,
+        "detail": "api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "APIView",
+        "importPath": "rest_framework.views",
+        "description": "rest_framework.views",
+        "isExtraImport": true,
+        "detail": "rest_framework.views",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "render",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "get_object_or_404",
+        "importPath": "django.shortcuts",
+        "description": "django.shortcuts",
+        "isExtraImport": true,
+        "detail": "django.shortcuts",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "datetime",
+        "description": "datetime",
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "Decimal",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "InvalidOperation",
+        "importPath": "decimal",
+        "description": "decimal",
+        "isExtraImport": true,
+        "detail": "decimal",
+        "documentation": {}
+    },
+    {
+        "label": "yfinance",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "yfinance",
+        "description": "yfinance",
+        "detail": "yfinance",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "os",
         "description": "os",
         "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
         "documentation": {}
     },
     {
@@ -252,6 +640,22 @@
         "documentation": {}
     },
     {
+        "label": "settings",
+        "importPath": "django.conf",
+        "description": "django.conf",
+        "isExtraImport": true,
+        "detail": "django.conf",
+        "documentation": {}
+    },
+    {
+        "label": "static",
+        "importPath": "django.conf.urls.static",
+        "description": "django.conf.urls.static",
+        "isExtraImport": true,
+        "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
         "label": "get_wsgi_application",
         "importPath": "django.core.wsgi",
         "description": "django.core.wsgi",
@@ -269,28 +673,117 @@
         "documentation": {}
     },
     {
-        "label": "json",
+        "label": "getpass",
+        "importPath": "getpass",
+        "description": "getpass",
+        "isExtraImport": true,
+        "detail": "getpass",
+        "documentation": {}
+    },
+    {
+        "label": "OptionParser",
+        "importPath": "optparse",
+        "description": "optparse",
+        "isExtraImport": true,
+        "detail": "optparse",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "peewee",
+        "description": "peewee",
+        "isExtraImport": true,
+        "detail": "peewee",
+        "documentation": {}
+    },
+    {
+        "label": "print_",
+        "importPath": "peewee",
+        "description": "peewee",
+        "isExtraImport": true,
+        "detail": "peewee",
+        "documentation": {}
+    },
+    {
+        "label": "__version__",
+        "importPath": "peewee",
+        "description": "peewee",
+        "isExtraImport": true,
+        "detail": "peewee",
+        "documentation": {}
+    },
+    {
+        "label": "CockroachDatabase",
+        "importPath": "playhouse.cockroachdb",
+        "description": "playhouse.cockroachdb",
+        "isExtraImport": true,
+        "detail": "playhouse.cockroachdb",
+        "documentation": {}
+    },
+    {
+        "label": "*",
+        "importPath": "playhouse.reflection",
+        "description": "playhouse.reflection",
+        "isExtraImport": true,
+        "detail": "playhouse.reflection",
+        "documentation": {}
+    },
+    {
+        "label": "zip",
+        "importPath": "builtins",
+        "description": "builtins",
+        "isExtraImport": true,
+        "detail": "builtins",
+        "documentation": {}
+    },
+    {
+        "label": "str",
+        "importPath": "builtins",
+        "description": "builtins",
+        "isExtraImport": true,
+        "detail": "builtins",
+        "documentation": {}
+    },
+    {
+        "label": "os.path",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
+        "importPath": "os.path",
+        "description": "os.path",
+        "detail": "os.path",
         "documentation": {}
     },
     {
-        "label": "stringify",
-        "importPath": "flatted",
-        "description": "flatted",
+        "label": "cElementTree",
+        "importPath": "xml.etree",
+        "description": "xml.etree",
         "isExtraImport": true,
-        "detail": "flatted",
+        "detail": "xml.etree",
         "documentation": {}
     },
     {
-        "label": "parse",
-        "importPath": "flatted",
-        "description": "flatted",
+        "label": "pyxnat",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "flatted",
+        "importPath": "pyxnat",
+        "description": "pyxnat",
+        "detail": "pyxnat",
+        "documentation": {}
+    },
+    {
+        "label": "ZipFile",
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "isExtraImport": true,
+        "detail": "zipfile",
+        "documentation": {}
+    },
+    {
+        "label": "BadZipFile",
+        "importPath": "zipfile",
+        "description": "zipfile",
+        "isExtraImport": true,
+        "detail": "zipfile",
         "documentation": {}
     },
     {
@@ -300,6 +793,78 @@
         "description": "backend.api.migrations.0001_initial",
         "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CustomUser',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "backend.api.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0002_contact",
+        "description": "backend.api.migrations.0002_contact",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Contact',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('first_name', models.CharField(max_length=100)),",
+        "detail": "backend.api.migrations.0002_contact",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0003_uploadedimage",
+        "description": "backend.api.migrations.0003_uploadedimage",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0002_contact'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='UploadedImage',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('image', models.ImageField(upload_to='uploads/')),",
+        "detail": "backend.api.migrations.0003_uploadedimage",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0004_alter_uploadedimage_image",
+        "description": "backend.api.migrations.0004_alter_uploadedimage_image",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0003_uploadedimage'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='uploadedimage',\n            name='image',\n            field=models.ImageField(upload_to='images'),\n        ),",
+        "detail": "backend.api.migrations.0004_alter_uploadedimage_image",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
+        "description": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0004_alter_uploadedimage_image'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CountryData',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('country', models.CharField(max_length=100)),",
+        "detail": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0006_currency_exchangerate",
+        "description": "backend.api.migrations.0006_currency_exchangerate",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0005_countrydata_economicdata_educationdata_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Currency',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('code', models.CharField(max_length=3, unique=True)),",
+        "detail": "backend.api.migrations.0006_currency_exchangerate",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0007_trade",
+        "description": "backend.api.migrations.0007_trade",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0006_currency_exchangerate'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Trade',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('symbol', models.CharField(max_length=10)),",
+        "detail": "backend.api.migrations.0007_trade",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0008_uploadedfile",
+        "description": "backend.api.migrations.0008_uploadedfile",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0007_trade'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='UploadedFile',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('file', models.FileField(upload_to='uploads/')),",
+        "detail": "backend.api.migrations.0008_uploadedfile",
+        "documentation": {}
+    },
+    {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0009_stock",
+        "description": "backend.api.migrations.0009_stock",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0008_uploadedfile'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Stock',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('ticker', models.CharField(max_length=10, unique=True)),",
+        "detail": "backend.api.migrations.0009_stock",
         "documentation": {}
     },
     {
@@ -316,7 +881,7 @@
         "kind": 6,
         "importPath": "backend.api.admin",
         "description": "backend.api.admin",
-        "peekOfCode": "class CustomUserChangeForm(UserChangeForm):\n    password = forms.CharField(\n        label='Password',\n        widget=forms.PasswordInput,\n        help_text=\"Leave blank if unchanged.\"\n    )\n    class Meta:\n        model = CustomUser\n        fields = ('username','password')\n# admin register code",
+        "peekOfCode": "class CustomUserChangeForm(UserChangeForm):\n    password = forms.CharField(\n        label='Password',\n        widget=forms.PasswordInput,\n        help_text=\"Leave blank if unchanged.\"\n    )\n    class Meta:\n        model = CustomUser\n        fields = ('username','email', 'password')\n# admin register code",
         "detail": "backend.api.admin",
         "documentation": {}
     },
@@ -325,7 +890,7 @@
         "kind": 6,
         "importPath": "backend.api.admin",
         "description": "backend.api.admin",
-        "peekOfCode": "class CustomUserCreationForm(UserCreationForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username',)\nclass CustomUserChangeForm(UserChangeForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username',)\nclass CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm",
+        "peekOfCode": "class CustomUserCreationForm(UserCreationForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username', 'email')\nclass CustomUserChangeForm(UserChangeForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username', 'email')\nclass CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm",
         "detail": "backend.api.admin",
         "documentation": {}
     },
@@ -334,7 +899,7 @@
         "kind": 6,
         "importPath": "backend.api.admin",
         "description": "backend.api.admin",
-        "peekOfCode": "class CustomUserChangeForm(UserChangeForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username',)\nclass CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm\n    form = CustomUserChangeForm\n    model = CustomUser\n    list_display = ('username','is_staff', 'is_active')\n    list_filter = ('username', 'is_staff', 'is_active')",
+        "peekOfCode": "class CustomUserChangeForm(UserChangeForm):\n    class Meta:\n        model = CustomUser\n        fields = ('username', 'email')\nclass CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm\n    form = CustomUserChangeForm\n    model = CustomUser\n    list_display = ('username', 'email', 'is_staff', 'is_active')\n    list_filter = ('username', 'email', 'is_staff', 'is_active')",
         "detail": "backend.api.admin",
         "documentation": {}
     },
@@ -343,8 +908,80 @@
         "kind": 6,
         "importPath": "backend.api.admin",
         "description": "backend.api.admin",
-        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm\n    form = CustomUserChangeForm\n    model = CustomUser\n    list_display = ('username','is_staff', 'is_active')\n    list_filter = ('username', 'is_staff', 'is_active')\n    fieldsets = (\n        (None, {'fields': ('username', 'password')}),\n        ('Permissions', {'fields': ('is_staff', 'is_active')}),\n    )",
+        "peekOfCode": "class CustomUserAdmin(UserAdmin):\n    add_form = CustomUserCreationForm\n    form = CustomUserChangeForm\n    model = CustomUser\n    list_display = ('username', 'email', 'is_staff', 'is_active')\n    list_filter = ('username', 'email', 'is_staff', 'is_active')\n    fieldsets = (\n        (None, {'fields': ('username', 'email', 'password')}),\n        ('Permissions', {'fields': ('is_staff', 'is_active')}),\n    )",
         "detail": "backend.api.admin",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_candlestick_section",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def analyze_candlestick_section(image):\n    gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)\n    blurred = cv2.GaussianBlur(gray, (5, 5), 0)\n    thresh = cv2.adaptiveThreshold(blurred, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY_INV, 11, 2)\n    contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)\n    candlestick_centers = []\n    for cnt in contours:\n        x, y, w, h = cv2.boundingRect(cnt)\n        center_y = y + h // 2\n        candlestick_centers.append((x + w // 2, center_y))",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "analyze_graph_sections",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def analyze_graph_sections(image_path, num_sections=3):\n    image = cv2.imread(image_path)\n    image_rgb = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)\n    height, width = image.shape[:2]\n    section_width = width // num_sections\n    sections = [(i * section_width, (i + 1) * section_width) for i in range(num_sections)]\n    section_trends = []\n    cropped_images = []\n    for section in sections:\n        cropped_image = image[:, section[0]:section[1]]",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "read_document",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def read_document(file):\n    text = \"\"\n    file_content = file.read()\n    filename = file.name\n    if filename.endswith('.pdf'):\n        with fitz.open(stream=file_content, filetype='pdf') as doc:\n            for page in doc:\n                text += page.get_text()\n    elif filename.endswith('.docx'):\n        doc = docx.Document(io.BytesIO(file_content))",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "split_text",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def split_text(text, max_tokens):\n    words = text.split()\n    chunks = []\n    current_chunk = []\n    current_length = 0\n    for word in words:\n        current_length += len(word) + 1  # +1 for space\n        if current_length > max_tokens:\n            chunks.append(' '.join(current_chunk))\n            current_chunk = [word]",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "ask_questionEd_about_document",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def ask_questionEd_about_document(document_chunks, question):\n    answers = []\n    for chunk in document_chunks:\n        response = openai.ChatCompletion.create(\n            model=\"gpt-4\",\n            messages=[\n                {\"role\": \"system\", \"content\": \"You are an assistant who can answer questions about documents.\"},\n                {\"role\": \"user\", \"content\": f\"Document chunk: {chunk}\\n\\nQuestion: {question}\"}\n            ],\n            max_tokens=1000",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "encode_image",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def encode_image(image):\n    img_byte_arr = io.BytesIO()\n    image.save(img_byte_arr, format='PNG')\n    return base64.b64encode(img_byte_arr.getvalue()).decode('utf-8')\ndef ask_question_about_image(question, image_url):\n    response = openai.ChatCompletion.create(\n        model='gpt-4-turbo',\n        messages=[\n            {\n                \"role\": \"user\",",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "ask_question_about_image",
+        "kind": 2,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "def ask_question_about_image(question, image_url):\n    response = openai.ChatCompletion.create(\n        model='gpt-4-turbo',\n        messages=[\n            {\n                \"role\": \"user\",\n                \"content\": [\n                    {\"type\": \"text\", \"text\": question},\n                    {\"type\": \"image_url\", \"image_url\": {\"url\": image_url}}\n                ],",
+        "detail": "backend.api.ai",
+        "documentation": {}
+    },
+    {
+        "label": "openai.api_key",
+        "kind": 5,
+        "importPath": "backend.api.ai",
+        "description": "backend.api.ai",
+        "peekOfCode": "openai.api_key = 'sk-proj-jxiVl2buV6WfIODqxThQT3BlbkFJn1bViSVnZDrzlNx6qrh2'\ndef read_document(file):\n    text = \"\"\n    file_content = file.read()\n    filename = file.name\n    if filename.endswith('.pdf'):\n        with fitz.open(stream=file_content, filetype='pdf') as doc:\n            for page in doc:\n                text += page.get_text()\n    elif filename.endswith('.docx'):",
+        "detail": "backend.api.ai",
         "documentation": {}
     },
     {
@@ -361,7 +998,133 @@
         "kind": 6,
         "importPath": "backend.api.models",
         "description": "backend.api.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    pass",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n# contact us models\nclass Contact(models.Model):\n    first_name = models.CharField(max_length=100)\n    last_name = models.CharField(max_length=100)\n    email = models.EmailField()\n    phone = models.CharField(max_length=10)\n    description = models.TextField()\n    def __str__(self):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Contact",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class Contact(models.Model):\n    first_name = models.CharField(max_length=100)\n    last_name = models.CharField(max_length=100)\n    email = models.EmailField()\n    phone = models.CharField(max_length=10)\n    description = models.TextField()\n    def __str__(self):\n        return f\"{self.first_name} {self.last_name}\"\n# for stock image ai\nclass UploadedImage(models.Model):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedImage",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class UploadedImage(models.Model):\n    image = models.ImageField(upload_to='images')\n    uploaded_at = models.DateTimeField(auto_now_add=True)\n# Models for saving third-party fetch data\nclass CountryData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    gdp = models.FloatField(null=True, blank=True)\n    inflation = models.FloatField(null=True, blank=True)\n    population = models.BigIntegerField(null=True, blank=True)",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "CountryData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class CountryData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    gdp = models.FloatField(null=True, blank=True)\n    inflation = models.FloatField(null=True, blank=True)\n    population = models.BigIntegerField(null=True, blank=True)\n    literacy_rate = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "EducationData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class EducationData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    literacy_rate = models.FloatField(null=True, blank=True)\n    school_enrollment_primary = models.FloatField(null=True, blank=True)\n    school_enrollment_secondary = models.FloatField(null=True, blank=True)\n    education_expenditure = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "HealthData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class HealthData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    life_expectancy = models.FloatField(null=True, blank=True)\n    mortality_rate_under_5 = models.FloatField(null=True, blank=True)\n    health_expenditure = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country\nclass EmploymentData(models.Model):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "EmploymentData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class EmploymentData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    unemployment_rate = models.FloatField(null=True, blank=True)\n    labor_force_participation_rate = models.FloatField(null=True, blank=True)\n    employment_agriculture = models.FloatField(null=True, blank=True)\n    employment_industry = models.FloatField(null=True, blank=True)\n    employment_services = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "EnvironmentalData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class EnvironmentalData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    co2_emissions = models.FloatField(null=True, blank=True)\n    access_to_clean_water = models.FloatField(null=True, blank=True) \n    renewable_energy_consumption = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country\nclass EconomicData(models.Model):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "EconomicData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class EconomicData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    trade_balance = models.FloatField(null=True, blank=True)\n    foreign_direct_investment = models.FloatField(null=True, blank=True)\n    government_debt = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country\nclass SocialData(models.Model):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "SocialData",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class SocialData(models.Model):\n    country = models.CharField(max_length=100)\n    country_code = models.CharField(max_length=3, default='DDD')  # Default value added\n    poverty_headcount_ratio = models.FloatField(null=True, blank=True)\n    income_inequality_gini = models.FloatField(null=True, blank=True)\n    social_protection_coverage = models.FloatField(null=True, blank=True)\n    updated_at = models.DateTimeField(auto_now=True)\n    def __str__(self):\n        return self.country\n# models for exchange rates",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Currency",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class Currency(models.Model):\n    code = models.CharField(max_length=3, unique=True)\n    def __str__(self):\n        return self.code\nclass ExchangeRate(models.Model):\n    base_currency = models.ForeignKey(Currency, related_name='base_currency', on_delete=models.CASCADE)\n    target_currency = models.ForeignKey(Currency, related_name='target_currency', on_delete=models.CASCADE)\n    rate = models.DecimalField(max_digits=20, decimal_places=10)\n    date = models.DateField()\n    success = models.BooleanField()",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "ExchangeRate",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class ExchangeRate(models.Model):\n    base_currency = models.ForeignKey(Currency, related_name='base_currency', on_delete=models.CASCADE)\n    target_currency = models.ForeignKey(Currency, related_name='target_currency', on_delete=models.CASCADE)\n    rate = models.DecimalField(max_digits=20, decimal_places=10)\n    date = models.DateField()\n    success = models.BooleanField()\n    timestamp = models.DateTimeField()\n    def __str__(self):\n        return f\"{self.base_currency} to {self.target_currency} rate on {self.date}\"\n# models for coin-ems",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Trade",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class Trade(models.Model):\n    symbol = models.CharField(max_length=10)\n    price = models.DecimalField(max_digits=20, decimal_places=8)\n    size = models.DecimalField(max_digits=20, decimal_places=8)\n    taker_side = models.CharField(max_length=10)\n    timestamp = models.DateTimeField()\n    def __str__(self):\n        return f\"{self.symbol} - {self.price} - {self.size}\"\n# models for file-processing LLM\nclass UploadedFile(models.Model):",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedFile",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class UploadedFile(models.Model):\n    file = models.FileField(upload_to='uploads/')\n    uploaded_at = models.DateTimeField(auto_now_add=True)\n#json: file: and question: follow strictly lowercase\n# team1 API stock price for last 5 years\nclass Stock(models.Model):\n    ticker = models.CharField(max_length=10, unique=True)\n    company_name = models.CharField(max_length=255)\n    company_address = models.TextField()\n    company_location = models.CharField(max_length=255)",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Stock",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class Stock(models.Model):\n    ticker = models.CharField(max_length=10, unique=True)\n    company_name = models.CharField(max_length=255)\n    company_address = models.TextField()\n    company_location = models.CharField(max_length=255)\n    avg_stock_price_5yrs = models.FloatField()\n    avg_revenue_5yrs = models.FloatField()\n    percentage_change = models.FloatField()\n    def __str__(self):\n        return self.ticker",
         "detail": "backend.api.models",
         "documentation": {}
     },
@@ -370,7 +1133,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'password', 'password_confirm') # email removed\n        #extra_kwargs={\n        #    'password': {'write_only' : True}\n        #}\n    def validate(self, attrs):",
+        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm') \n        #extra_kwargs={\n        #    'password': {'write_only' : True}\n        #}\n    def validate(self, attrs):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -379,7 +1142,133 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)",
+        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n# for contact us\n#User = get_user_model()\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ContactSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:\n            raise serializers.ValidationError(\"First name should not be greater than 100 letters.\")\n        return value\n    def validate_last_name(self, value):\n        if len(value) > 100:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedImageSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class UploadedImageSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = UploadedImage\n        fields = ['id', 'image', 'uploaded_at']\n        '''\n        def get_photo_url(self, obj):\n            request=self.context.get('request')\n            photo_url=obj.fingerprint.url\n            return request.build_absolute_url(photo_url)\n        '''",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "CountryDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class CountryDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = CountryData\n        fields = 'country', 'country_code', 'gdp', 'inflation', 'population', 'literacy_rate', 'updated_at'\nclass EducationDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EducationData\n        fields = 'country','country_code', 'literacy_rate', 'school_enrollment_primary', 'school_enrollment_secondary', 'education_expenditure', 'updated_at'\nclass HealthDataSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "EducationDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class EducationDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EducationData\n        fields = 'country','country_code', 'literacy_rate', 'school_enrollment_primary', 'school_enrollment_secondary', 'education_expenditure', 'updated_at'\nclass HealthDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = HealthData\n        fields = 'country','country_code', 'life_expectancy', 'mortality_rate_under_5', 'health_expenditure', 'updated_at'\nclass EmploymentDataSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "HealthDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class HealthDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = HealthData\n        fields = 'country','country_code', 'life_expectancy', 'mortality_rate_under_5', 'health_expenditure', 'updated_at'\nclass EmploymentDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EmploymentData\n        fields = 'country','country_code', 'unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services', 'updated_at'\nclass EnvironmentalDataSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "EmploymentDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class EmploymentDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EmploymentData\n        fields = 'country','country_code', 'unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services', 'updated_at'\nclass EnvironmentalDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EnvironmentalData\n        fields = 'country','country_code', 'co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption', 'updated_at'\nclass EconomicDataSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "EnvironmentalDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class EnvironmentalDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EnvironmentalData\n        fields = 'country','country_code', 'co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption', 'updated_at'\nclass EconomicDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EconomicData\n        fields = 'country','country_code', 'trade_balance', 'foreign_direct_investment', 'government_debt', 'updated_at'\nclass SocialDataSerializer(serializers.ModelSerializer):\n    class Meta:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "EconomicDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class EconomicDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = EconomicData\n        fields = 'country','country_code', 'trade_balance', 'foreign_direct_investment', 'government_debt', 'updated_at'\nclass SocialDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = SocialData\n        fields = 'country','country_code', 'poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage', 'updated_at'\n# for exchange rates\nclass CurrencySerializer(serializers.ModelSerializer):",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "SocialDataSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class SocialDataSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = SocialData\n        fields = 'country','country_code', 'poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage', 'updated_at'\n# for exchange rates\nclass CurrencySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Currency\n        fields = ['code']\nclass ExchangeRateSerializer(serializers.ModelSerializer):",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "CurrencySerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class CurrencySerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Currency\n        fields = ['code']\nclass ExchangeRateSerializer(serializers.ModelSerializer):\n    base_currency_code = serializers.CharField(source='base_currency.code')\n    target_currency_code = serializers.CharField(source='target_currency.code')\n    class Meta:\n        model = ExchangeRate\n        fields = [",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ExchangeRateSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class ExchangeRateSerializer(serializers.ModelSerializer):\n    base_currency_code = serializers.CharField(source='base_currency.code')\n    target_currency_code = serializers.CharField(source='target_currency.code')\n    class Meta:\n        model = ExchangeRate\n        fields = [\n            'base_currency_code', 'target_currency_code', 'rate', 'date',\n            'success', 'timestamp'\n        ]\n    def create(self, validated_data):",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "TradeSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class TradeSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Trade\n        fields = 'symbol', 'price', 'size', 'taker_side', 'timestamp'\n# for file-processing LLM\nclass UploadedFileSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = UploadedFile\n        fields = ['file', 'uploaded_at']\n# team1 API stock price for last 5 years",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "UploadedFileSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class UploadedFileSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = UploadedFile\n        fields = ['file', 'uploaded_at']\n# team1 API stock price for last 5 years\nclass StockSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Stock\n        fields = '__all__'",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "StockSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class StockSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Stock\n        fields = '__all__'",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -388,7 +1277,16 @@
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "User = get_user_model()\n# style parameter in password to hide password while typing\nclass UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'password', 'password_confirm') # email removed\n        #extra_kwargs={\n        #    'password': {'write_only' : True}",
+        "peekOfCode": "User = get_user_model()\n# style parameter in password to hide password while typing\nclass UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm') \n        #extra_kwargs={\n        #    'password': {'write_only' : True}",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "#User",
+        "kind": 5,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "#User = get_user_model()\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:\n            raise serializers.ValidationError(\"First name should not be greater than 100 letters.\")\n        return value\n    def validate_last_name(self, value):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -397,7 +1295,7 @@
         "kind": 5,
         "importPath": "backend.api.urls",
         "description": "backend.api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),\n    path('login/', UserLoginView.as_view(), name='login'),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),\n    path('login/', UserLoginView.as_view(), name='login'),\n    path('contact/', ContactCreateView.as_view(), name='contact-create'), #done\n    path('ai/', ImageUploadView.as_view(), name='ai'), #done\n    path('listai/', ImageUploadView.as_view(), name='listai'), #done\n    # for 3rd-party data saving into our db\n    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),\n    #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),\n    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),",
         "detail": "backend.api.urls",
         "documentation": {}
     },
@@ -416,6 +1314,816 @@
         "importPath": "backend.api.views",
         "description": "backend.api.views",
         "peekOfCode": "class UserLoginView(generics.GenericAPIView):\n    serializer_class = UserLoginSerializer\n    permission_classes = [AllowAny]\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = authenticate(username=serializer.validated_data['username'], password=serializer.validated_data['password'])\n        if user is not None:\n            token, created = Token.objects.get_or_create(user=user)\n            return Response({",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ContactCreateView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class ContactCreateView(generics.CreateAPIView):\n    serializer_class = ContactSerializer\n    def create(self, request, *args, **kwargs):\n        email = request.data.get('email')\n        phone = request.data.get('phone')\n        if Contact.objects.filter(email=email).exists():\n            return Response({\"message\": \"Email ID already used.\"}, status=status.HTTP_400_BAD_REQUEST)\n        if Contact.objects.filter(phone=phone).exists():\n            return Response({\"message\": \"Phone number already used.\"}, status=status.HTTP_400_BAD_REQUEST)\n        serializer = self.get_serializer(data=request.data)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ImageUploadView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class ImageUploadView(views.APIView):\n    parser_classes = [MultiPartParser, FormParser]\n    def post(self, request, *args, **kwargs):\n        file_serializer = UploadedImageSerializer(data=request.data)\n        if file_serializer.is_valid():\n            file_serializer.save()\n            # Retrieve the saved image file path\n            image_path = file_serializer.instance.image.path\n            # Perform AI analysis\n            try:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "FileUploadView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class FileUploadView(views.APIView):\n    parser_classes = (MultiPartParser, FormParser)\n    def post(self, request, *args, **kwargs):\n        file_serializer = UploadedFileSerializer(data=request.data)\n        if file_serializer.is_valid():\n            file_serializer.save()\n            file_instance = file_serializer.instance\n            try:\n                # Process the uploaded file\n                document_text = ai.read_document(file_instance.file)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ImageUploadView_FileProcessing",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class ImageUploadView_FileProcessing(views.APIView): #ImageUploadView name for stock img\n    parser_classes = (MultiPartParser, FormParser)\n    def post(self, request, *args, **kwargs):\n        try:\n            uploaded_image = request.FILES['file']\n            image = Image.open(uploaded_image)\n            encoded_image = ai.encode_image(image)\n            image_url = f\"data:image/png;base64,{encoded_image}\"\n            question = request.data.get('question', '')\n            if not question:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "AllLiveStockDataAPIView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class AllLiveStockDataAPIView(APIView):\n    # Path to the tickers.xlsx file\n    tickers_file_path = os.path.join(os.path.dirname(__file__), 'data', 'ticker.xlsx')\n    def get_predefined_tickers(self):\n        # Read tickers from the Excel file\n        df = pd.read_excel(self.tickers_file_path, sheet_name='Sheet1')  # Adjust sheet name if necessary\n        tickers_list = df['Ticker'].tolist()  # Assuming 'Ticker' is the column header\n        return tickers_list\n    def get(self, request, ticker=None):\n        if not ticker:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_indicator_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_indicator_data(country, indicator):\n    response = requests.get(WORLD_BANK_API_URL.format(country=country, indicator=indicator))\n    if response.status_code == 200:\n        json_data = response.json()\n        if isinstance(json_data, list) and len(json_data) > 1 and isinstance(json_data[1], list) and json_data[1]:\n            return json_data[1][0]['value']\n    return None\ndef fetch_all_countries():\n    countries = []\n    page = 1",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_all_countries",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_all_countries():\n    countries = []\n    page = 1\n    while True:\n        response = requests.get(f\"https://api.worldbank.org/v2/country?format=json&per_page=500&page={page}\")\n        if response.status_code != 200:\n            break\n        data = response.json()\n        if len(data) < 2 or not data[1]:\n            break",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_and_store_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_and_store_data(model, indicators):\n    model.objects.all().delete()  # Delete old data to avoid duplicates\n    # Fetch the list of all countries with pagination\n    all_countries = fetch_all_countries()\n    # Combine hardcoded countries with dynamically fetched countries\n    country_codes = {country['id']: country['name'] for country in all_countries}\n    for country_code in COUNTRIES:\n        if country_code not in country_codes:\n            # Ensure all hardcoded countries are included\n            country_codes[country_code] = country_code  # Fallback to code if name not found",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_country_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_country_data(request):\n    fetch_and_store_data(CountryData, {key: INDICATORS[key] for key in ['gdp', 'inflation', 'population', 'literacy_rate']})\n    return Response({\"status\": \"Country data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_education_data(request):\n    fetch_and_store_data(EducationData, {key: INDICATORS[key] for key in ['literacy_rate', 'school_enrollment_primary', 'school_enrollment_secondary', 'education_expenditure']})\n    return Response({\"status\": \"Education data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_health_data(request):\n    fetch_and_store_data(HealthData, {key: INDICATORS[key] for key in ['life_expectancy', 'mortality_rate_under_5', 'health_expenditure']})",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_education_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_education_data(request):\n    fetch_and_store_data(EducationData, {key: INDICATORS[key] for key in ['literacy_rate', 'school_enrollment_primary', 'school_enrollment_secondary', 'education_expenditure']})\n    return Response({\"status\": \"Education data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_health_data(request):\n    fetch_and_store_data(HealthData, {key: INDICATORS[key] for key in ['life_expectancy', 'mortality_rate_under_5', 'health_expenditure']})\n    return Response({\"status\": \"Health data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_employment_data(request):\n    fetch_and_store_data(EmploymentData, {key: INDICATORS[key] for key in ['unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services']})",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_health_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_health_data(request):\n    fetch_and_store_data(HealthData, {key: INDICATORS[key] for key in ['life_expectancy', 'mortality_rate_under_5', 'health_expenditure']})\n    return Response({\"status\": \"Health data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_employment_data(request):\n    fetch_and_store_data(EmploymentData, {key: INDICATORS[key] for key in ['unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services']})\n    return Response({\"status\": \"Employment data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_environmental_data(request):\n    fetch_and_store_data(EnvironmentalData, {key: INDICATORS[key] for key in ['co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption']})",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_employment_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_employment_data(request):\n    fetch_and_store_data(EmploymentData, {key: INDICATORS[key] for key in ['unemployment_rate', 'labor_force_participation_rate', 'employment_agriculture', 'employment_industry', 'employment_services']})\n    return Response({\"status\": \"Employment data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_environmental_data(request):\n    fetch_and_store_data(EnvironmentalData, {key: INDICATORS[key] for key in ['co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption']})\n    return Response({\"status\": \"Environmental data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_economic_data(request):\n    fetch_and_store_data(EconomicData, {key: INDICATORS[key] for key in ['trade_balance', 'foreign_direct_investment', 'government_debt']})",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_environmental_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_environmental_data(request):\n    fetch_and_store_data(EnvironmentalData, {key: INDICATORS[key] for key in ['co2_emissions', 'access_to_clean_water', 'renewable_energy_consumption']})\n    return Response({\"status\": \"Environmental data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_economic_data(request):\n    fetch_and_store_data(EconomicData, {key: INDICATORS[key] for key in ['trade_balance', 'foreign_direct_investment', 'government_debt']})\n    return Response({\"status\": \"Economic data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_social_data(request):\n    fetch_and_store_data(SocialData, {key: INDICATORS[key] for key in ['poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage']})",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_economic_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_economic_data(request):\n    fetch_and_store_data(EconomicData, {key: INDICATORS[key] for key in ['trade_balance', 'foreign_direct_investment', 'government_debt']})\n    return Response({\"status\": \"Economic data fetched and stored\"})\n@api_view(['GET'])\ndef fetch_social_data(request):\n    fetch_and_store_data(SocialData, {key: INDICATORS[key] for key in ['poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage']})\n    return Response({\"status\": \"Social data fetched and stored\"})\n@api_view(['GET'])\ndef display_country_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_social_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_social_data(request):\n    fetch_and_store_data(SocialData, {key: INDICATORS[key] for key in ['poverty_headcount_ratio', 'income_inequality_gini', 'social_protection_coverage']})\n    return Response({\"status\": \"Social data fetched and stored\"})\n@api_view(['GET'])\ndef display_country_data(request, country_code=None):\n    if country_code:\n        country_data = CountryData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = CountryData.objects.all()\n    serializer = CountryDataSerializer(country_data, many=True)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_country_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_country_data(request, country_code=None):\n    if country_code:\n        country_data = CountryData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = CountryData.objects.all()\n    serializer = CountryDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_education_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_education_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_education_data(request, country_code=None):\n    if country_code:\n        country_data = EducationData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = EducationData.objects.all()\n    serializer = EducationDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_health_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_health_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_health_data(request, country_code=None):\n    if country_code:\n        country_data = HealthData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = HealthData.objects.all()\n    serializer = HealthDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_employment_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_employment_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_employment_data(request, country_code=None):\n    if country_code:\n        country_data = EmploymentData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = EmploymentData.objects.all()\n    serializer = EmploymentDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_environment_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_environment_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_environment_data(request, country_code=None):\n    if country_code:\n        country_data = EnvironmentalData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = EnvironmentalData.objects.all()\n    serializer = EnvironmentalDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_economic_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_economic_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_economic_data(request, country_code=None):\n    if country_code:\n        country_data = EconomicData.objects.filter(country_code=country_code.upper())\n    else:\n        country_data = EconomicData.objects.all()\n    serializer = EconomicDataSerializer(country_data, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef display_social_data(request, country_code=None):\n    if country_code:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "display_social_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def display_social_data(request, country_code=None):\n    if country_code:\n        social_data = SocialData.objects.filter(country_code=country_code.upper())\n    else:\n        social_data = SocialData.objects.all()\n    serializer = SocialDataSerializer(social_data, many=True)\n    return Response(serializer.data)\n# for exchange rate v0 without y/n feature\n'''\n@api_view(['GET'])",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_exchange_rates",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_exchange_rates(request):\n    access_key = 'f638ce07b446f7a900ded80b837af730'\n    url = f\"http://api.exchangeratesapi.io/v1/latest?access_key={access_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        data = response.json()\n        if 'rates' in data:\n            # Change base currency code to USD\n            base_currency_code = 'USD'\n            base_currency, created = Currency.objects.get_or_create(code=base_currency_code)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "list_exchange_rates",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def list_exchange_rates(request):\n    exchange_rates = ExchangeRate.objects.all()\n    serializer = ExchangeRateSerializer(exchange_rates, many=True)\n    return Response(serializer.data)\n@api_view(['GET'])\ndef get_exchange_rate_by_code(request, target_currency_code):\n    target_currency_code = target_currency_code.upper()  # Normalize to uppercase\n    exchange_rate = get_object_or_404(ExchangeRate, target_currency__code=target_currency_code)\n    serializer = ExchangeRateSerializer(exchange_rate)\n    return Response(serializer.data)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "get_exchange_rate_by_code",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def get_exchange_rate_by_code(request, target_currency_code):\n    target_currency_code = target_currency_code.upper()  # Normalize to uppercase\n    exchange_rate = get_object_or_404(ExchangeRate, target_currency__code=target_currency_code)\n    serializer = ExchangeRateSerializer(exchange_rate)\n    return Response(serializer.data)\n'''\n# updated exchange rate with y/n feature\n# Global variable to temporarily hold fetched data\ntemp_data = {}\n@api_view(['GET'])",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_exchange_rates",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_exchange_rates(request):\n    global temp_data\n    access_key = 'f638ce07b446f7a900ded80b837af730'\n    url = f\"http://api.exchangeratesapi.io/v1/latest?access_key={access_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        data = response.json()\n        if 'rates' in data:\n            base_currency_code = 'USD'\n            date = data['date']",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "save_exchange_rates",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def save_exchange_rates(request):\n    global temp_data\n    user_response = request.data.get('response')\n    if user_response is None:\n        return Response({\"error\": \"User response not provided\"}, status=status.HTTP_400_BAD_REQUEST)\n    if user_response.lower() == 'yes':\n        try:    \n            ExchangeRate.objects.all().delete()\n            for rate_data in temp_data.get('exchange_rates', []):\n                base_currency, _ = Currency.objects.get_or_create(code=rate_data['base_currency'])",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "list_exchange_rates",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def list_exchange_rates(request):\n    exchange_rates = ExchangeRate.objects.all()\n    serializer = ExchangeRateSerializer(exchange_rates, many=True)\n    return Response(serializer.data)\n# for coin-ems v0 with no option for y/n\n''' \nAPI_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'\nAPI_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n@api_view(['GET'])",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_trades",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_trades(request):\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        Trade.objects.all().delete()\n        trades = response.json()\n        for trade_data in trades:\n            trade = Trade(\n                symbol=trade_data['symbol_id'],\n                price=trade_data['price'],\n                size=trade_data['size'],",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "list_trades",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def list_trades(request):\n    trades = Trade.objects.all()\n    serializer = TradeSerializer(trades, many=True)\n    return Response(serializer.data)\n'''\n# for coin-ems with y/n feature before saving\nAPI_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'\nAPI_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n# Global variable to temporarily hold fetched data",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "fetch_trades",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def fetch_trades(request):\n    global temp_trades\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        trades = response.json()\n        temp_trades = []\n        for trade_data in trades:\n            temp_trades.append({\n                'symbol': trade_data['symbol_id'],\n                'price': trade_data['price'],",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "save_trades",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def save_trades(request):\n    global temp_trades\n    user_response = request.data.get('response')\n    if user_response is None:\n        return Response({\"error\": \"User response not provided\"}, status=status.HTTP_400_BAD_REQUEST)\n    if user_response.lower() == 'yes':\n        try:\n            Trade.objects.all().delete()\n            for trade_data in temp_trades:\n                trade = Trade(",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "list_trades",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def list_trades(request):\n    trades = Trade.objects.all()\n    serializer = TradeSerializer(trades, many=True)\n    return Response(serializer.data)\n# for file processing LLM\nclass FileUploadView(views.APIView):\n    parser_classes = (MultiPartParser, FormParser)\n    def post(self, request, *args, **kwargs):\n        file_serializer = UploadedFileSerializer(data=request.data)\n        if file_serializer.is_valid():",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stock_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stock_data(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TIME_SERIES_DAILY',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    # Check if the response contains error message",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stock_weekly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stock_weekly(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TIME_SERIES_WEEKLY',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    # Check if the response contains error message",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stock_monthly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stock_monthly(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TIME_SERIES_MONTHLY',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    # Check if the response contains error message",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stock_quote",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stock_quote(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'GLOBAL_QUOTE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    # Check if the response contains error message",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_currency_exchange_rate",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_currency_exchange_rate(request):\n    # Get the 'from_currency' and 'to_currency' from the request body\n    from_currency = request.data.get('from_currency')\n    to_currency = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_currency or not to_currency:\n        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={from_currency}&to_currency={to_currency}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_fxdaily",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_fxdaily(request):\n    # Get the 'from_symbol' and 'to_symbol' from the request body\n    from_symbol = request.data.get('from_currency')\n    to_symbol = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_symbol or not to_symbol:\n        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=FX_DAILY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_fxweekly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_fxweekly(request):\n    # Get the 'from_symbol' and 'to_symbol' from the request body\n    from_symbol = request.data.get('from_currency')\n    to_symbol = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_symbol or not to_symbol:\n        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=FX_WEEKLY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_fxmonthly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_fxmonthly(request):\n    # Get the 'from_symbol' and 'to_symbol' from the request body\n    from_symbol = request.data.get('from_currency')\n    to_symbol = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_symbol or not to_symbol:\n        return JsonResponse({'status': 'error', 'message': 'Both from_symbol and to_symbol are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=FX_MONTHLY&from_symbol={from_symbol}&to_symbol={to_symbol}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_crypto_exchange_rate",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_crypto_exchange_rate(request):\n    # Get the 'from_currency' and 'to_currency' from the request body\n    from_currency = request.data.get('from_currency')\n    to_currency = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_currency or not to_currency:\n        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency={from_currency}&to_currency={to_currency}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cdaily",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cdaily(request):\n    # Get the 'symbol' and 'market' from the request body\n    symbol = request.data.get('from_currency')\n    market = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not symbol or not market:\n        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cweekly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cweekly(request):\n    # Get the 'symbol' and 'market' from the request body\n    symbol = request.data.get('from_currency')\n    market = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not symbol or not market:\n        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_WEEKLY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cmonthly",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cmonthly(request):\n    # Get the 'symbol' and 'market' from the request body\n    symbol = request.data.get('from_currency')\n    market = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not symbol or not market:\n        return JsonResponse({'status': 'error', 'message': 'Both symbol and market are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_MONTHLY&symbol={symbol}&market={market}&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_wti_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_wti_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=WTI&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_brent_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_brent_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=BRENT&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_natural_gas_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_natural_gas_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=NATURAL_GAS&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_copper_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_copper_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=COPPER&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_aluminum_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_aluminum_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=ALUMINUM&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_wheat_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_wheat_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=WHEAT&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_corn_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_corn_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=CORN&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cotton_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cotton_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=COTTON&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_sugar_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_sugar_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=SUGAR&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_coffee_data",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_coffee_data(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=COFFEE&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_all_commodities",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_all_commodities(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=ALL_COMMODITIES&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_real_gdp",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_real_gdp(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=REAL_GDP&interval=annual&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_capita_gdp",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_capita_gdp(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=REAL_GDP_PER_CAPITA&interval=annual&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_treasury_yield",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_treasury_yield(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=TREASURY_YIELD&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_federal_funds_rate",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_federal_funds_rate(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=FEDERAL_FUNDS_RATE&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cpi",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cpi(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=CPI&interval=monthly&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_inflation",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_inflation(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=INFLATION&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_retail_sales",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_retail_sales(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=RETAIL_SALES&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_durable_goods_orders",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_durable_goods_orders(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=DURABLES&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_unemployment_rate",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_unemployment_rate(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=UNEMPLOYMENT&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_nonfarm_payroll",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_nonfarm_payroll(request):\n    # Define the URL for the Alpha Vantage API request\n    url = f'https://www.alphavantage.co/query?function=NONFARM_PAYROLL&apikey={ALPHA_VANTAGE_API_KEY}'\n    # Fetch data from Alpha Vantage\n    response = requests.get(url)\n    data = response.json()\n    # Check if the response contains error message\n    if \"Error Message\" in data:\n        return JsonResponse({'status': 'error', 'message': data[\"Error Message\"]}, status=status.HTTP_400_BAD_REQUEST)\n    # Return the API response directly",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_historical_options",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_historical_options(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HISTORICAL_OPTIONS',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    # Check if the response contains error message",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_overview",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_overview(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'OVERVIEW',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dividends",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dividends(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'DIVIDENDS',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_splits",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_splits(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'SPLITS',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_income_statement",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_income_statement(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'INCOME_STATEMENT',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_balance_sheet",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_balance_sheet(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'BALANCE_SHEET',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cash_flow",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cash_flow(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'CASH_FLOW',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_earnings",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_earnings(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'EARNINGS',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()\n    if \"Error Message\" in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "openai.api_key",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "openai.api_key = \"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\"\nclass ImageUploadView(views.APIView):\n    parser_classes = [MultiPartParser, FormParser]\n    def post(self, request, *args, **kwargs):\n        file_serializer = UploadedImageSerializer(data=request.data)\n        if file_serializer.is_valid():\n            file_serializer.save()\n            # Retrieve the saved image file path\n            image_path = file_serializer.instance.image.path\n            # Perform AI analysis",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "COUNTRIES",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "COUNTRIES = ['AFG', 'ALB', 'DZA', 'AND', 'AGO', 'ATG', 'ARG', 'ARM', 'AUS', 'AUT', \n    'AZE', 'BHS', 'BHR', 'BGD', 'BRB', 'BLR', 'BEL', 'BLZ', 'BEN', 'BTN', \n    'BOL', 'BIH', 'BWA', 'BRA', 'BRN', 'BGR', 'BFA', 'BDI', 'CPV', 'KHM', \n    'CMR', 'CAN', 'CAF', 'TCD', 'CHL', 'CHN', 'COL', 'COM', 'COG', 'COD', \n    'CRI', 'CIV', 'HRV', 'CUB', 'CYP', 'CZE', 'DNK', 'DJI', 'DMA', 'DOM', \n    'ECU', 'EGY', 'SLV', 'GNQ', 'ERI', 'EST', 'SWZ', 'ETH', 'FJI', 'FIN', \n    'FRA', 'GAB', 'GMB', 'GEO', 'DEU', 'GHA', 'GRC', 'GRD', 'GTM', 'GIN', \n    'GNB', 'GUY', 'HTI', 'HND', 'HUN', 'ISL', 'IND', 'IDN', 'IRN', 'IRQ', \n    'IRL', 'ISR', 'ITA', 'JAM', 'JPN', 'JOR', 'KAZ', 'KEN', 'KIR', 'PRK', \n    'KOR', 'KWT', 'KGZ', 'LAO', 'LVA', 'LBN', 'LSO', 'LBR', 'LBY', 'LIE', ",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "WORLD_BANK_API_URL",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "WORLD_BANK_API_URL = \"https://api.worldbank.org/v2/country/{country}/indicator/{indicator}?format=json&date=2020&per_page=500\"\nINDICATORS = {\n    'gdp': 'NY.GDP.MKTP.CD',\n    'inflation': 'FP.CPI.TOTL',\n    'population': 'SP.POP.TOTL',\n    'literacy_rate': 'SE.ADT.LITR.ZS',\n    'school_enrollment_primary': 'SE.PRM.ENRR',\n    'school_enrollment_secondary': 'SE.SEC.ENRR',\n    'education_expenditure': 'SE.XPD.TOTL.GD.ZS',\n    'life_expectancy': 'SP.DYN.LE00.IN',",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "INDICATORS",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "INDICATORS = {\n    'gdp': 'NY.GDP.MKTP.CD',\n    'inflation': 'FP.CPI.TOTL',\n    'population': 'SP.POP.TOTL',\n    'literacy_rate': 'SE.ADT.LITR.ZS',\n    'school_enrollment_primary': 'SE.PRM.ENRR',\n    'school_enrollment_secondary': 'SE.SEC.ENRR',\n    'education_expenditure': 'SE.XPD.TOTL.GD.ZS',\n    'life_expectancy': 'SP.DYN.LE00.IN',\n    'mortality_rate_under_5': 'SH.DYN.MORT',",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "temp_data",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "temp_data = {}\n@api_view(['GET'])\ndef fetch_exchange_rates(request):\n    global temp_data\n    access_key = 'f638ce07b446f7a900ded80b837af730'\n    url = f\"http://api.exchangeratesapi.io/v1/latest?access_key={access_key}\"\n    response = requests.get(url)\n    if response.status_code == 200:\n        data = response.json()\n        if 'rates' in data:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "API_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'\nAPI_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n@api_view(['GET'])\ndef fetch_trades(request):\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        Trade.objects.all().delete()\n        trades = response.json()\n        for trade_data in trades:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "API_URL",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "API_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n@api_view(['GET'])\ndef fetch_trades(request):\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        Trade.objects.all().delete()\n        trades = response.json()\n        for trade_data in trades:\n            trade = Trade(",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "HEADERS",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "HEADERS = {'X-CoinAPI-Key': API_KEY}\n@api_view(['GET'])\ndef fetch_trades(request):\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        Trade.objects.all().delete()\n        trades = response.json()\n        for trade_data in trades:\n            trade = Trade(\n                symbol=trade_data['symbol_id'],",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "API_KEY",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "API_KEY = '24C1F795-41A0-4DD5-88A8-273B4DB96B65'\nAPI_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n# Global variable to temporarily hold fetched data\ntemp_trades = []\n@api_view(['GET'])\ndef fetch_trades(request):\n    global temp_trades\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "API_URL",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "API_URL = 'https://rest.coinapi.io/v1/trades/latest?symbol=BITSTAMP_SPOT_BTC_USD'\nHEADERS = {'X-CoinAPI-Key': API_KEY}\n# Global variable to temporarily hold fetched data\ntemp_trades = []\n@api_view(['GET'])\ndef fetch_trades(request):\n    global temp_trades\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        trades = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "HEADERS",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "HEADERS = {'X-CoinAPI-Key': API_KEY}\n# Global variable to temporarily hold fetched data\ntemp_trades = []\n@api_view(['GET'])\ndef fetch_trades(request):\n    global temp_trades\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        trades = response.json()\n        temp_trades = []",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "temp_trades",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "temp_trades = []\n@api_view(['GET'])\ndef fetch_trades(request):\n    global temp_trades\n    response = requests.get(API_URL, headers=HEADERS)\n    if response.status_code == 200:\n        trades = response.json()\n        temp_trades = []\n        for trade_data in trades:\n            temp_trades.append({",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ALPHA_VANTAGE_API_KEY",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "ALPHA_VANTAGE_API_KEY = 'JPCM9P87TQO7IG3N'\nALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'\n@api_view(['GET'])\ndef load_stock_data(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TIME_SERIES_DAILY',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ALPHA_VANTAGE_BASE_URL",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'\n@api_view(['GET'])\ndef load_stock_data(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TIME_SERIES_DAILY',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "#ALPHA_VANTAGE_API_KEY",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "#ALPHA_VANTAGE_API_KEY = 'JPCM9P87TQO7IG3N'\n#ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'\n@api_view(['POST'])\ndef load_currency_exchange_rate(request):\n    # Get the 'from_currency' and 'to_currency' from the request body\n    from_currency = request.data.get('from_currency')\n    to_currency = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_currency or not to_currency:\n        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "#ALPHA_VANTAGE_BASE_URL",
+        "kind": 5,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "#ALPHA_VANTAGE_BASE_URL = 'https://www.alphavantage.co/query'\n@api_view(['POST'])\ndef load_currency_exchange_rate(request):\n    # Get the 'from_currency' and 'to_currency' from the request body\n    from_currency = request.data.get('from_currency')\n    to_currency = request.data.get('to_currency')\n    # Validate that both currencies are provided\n    if not from_currency or not to_currency:\n        return JsonResponse({'status': 'error', 'message': 'Both from_currency and to_currency are required'}, status=status.HTTP_400_BAD_REQUEST)\n    # Define the URL for the Alpha Vantage API request",
         "detail": "backend.api.views",
         "documentation": {}
     },
@@ -505,7 +2213,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': os.getenv('DB_NAME'),\n        'ENFORCE_SCHEMA': True,\n        'CLIENT': {\n            'host': os.getenv('DB_HOST'),",
+        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',\n        }",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -514,7 +2222,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': os.getenv('DB_NAME'),\n        'ENFORCE_SCHEMA': True,\n        'CLIENT': {\n            'host': os.getenv('DB_HOST'),\n            'port': int(os.getenv('DB_PORT')),\n        }\n    }",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',\n        }\n    }\n}\n# DATABASES = {",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -604,7 +2312,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'api.CustomUser'\n# To stop the restframework default JSON View\n'''\nREST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES' : (\n        'rest_framework.renderers.JSONRenderer',\n    )\n}\n'''",
+        "peekOfCode": "AUTH_USER_MODEL = 'api.CustomUser'\n# To stop the restframework default JSON View\n'''\nREST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES' : (\n        'rest_framework.renderers.JSONRenderer',\n    )\n}\n'''\n'''",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -613,7 +2321,34 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES' : (\n        'rest_framework.renderers.JSONRenderer',\n    )\n}\n'''",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_RENDERER_CLASSES' : (\n        'rest_framework.renderers.JSONRenderer',\n    )\n}\n'''\n'''\nREST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework.authentication.TokenAuthentication',",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "REST_FRAMEWORK",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "REST_FRAMEWORK = {\n    'DEFAULT_AUTHENTICATION_CLASSES': (\n        'rest_framework.authentication.TokenAuthentication',\n    ),\n    'DEFAULT_PERMISSION_CLASSES': (\n        'rest_framework.permissions.IsAuthenticated',\n    ),\n}\n'''\nMEDIA_URL = '/media/'",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_URL",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "MEDIA_URL = '/media/'\nMEDIA_ROOT = BASE_DIR / 'media'",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "MEDIA_ROOT",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "MEDIA_ROOT = BASE_DIR / 'media'",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -622,7 +2357,7 @@
         "kind": 5,
         "importPath": "backend.backend.urls",
         "description": "backend.backend.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('api.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('api.urls')),\n    #path('ai', views.ImageUploadView.as_view(), name='image-upload'),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for ai api",
         "detail": "backend.backend.urls",
         "documentation": {}
     },
@@ -636,183 +2371,381 @@
         "documentation": {}
     },
     {
+        "label": "BaseModel",
+        "kind": 6,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "class BaseModel(Model):\n    class Meta:\n        database = database\n\"\"\"\nUNKNOWN_FIELD = \"\"\"\\\nclass UnknownField(object):\n    def __init__(self, *_, **__): pass\n\"\"\"\nDATABASE_ALIASES = {\n    CockroachDatabase: ['cockroach', 'cockroachdb', 'crdb'],",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "UnknownField",
+        "kind": 6,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "class UnknownField(object):\n    def __init__(self, *_, **__): pass\n\"\"\"\nDATABASE_ALIASES = {\n    CockroachDatabase: ['cockroach', 'cockroachdb', 'crdb'],\n    MySQLDatabase: ['mysql', 'mysqldb'],\n    PostgresqlDatabase: ['postgres', 'postgresql'],\n    SqliteDatabase: ['sqlite', 'sqlite3'],\n}\nDATABASE_MAP = dict((value, key)",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "make_introspector",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def make_introspector(database_type, database_name, **kwargs):\n    if database_type not in DATABASE_MAP:\n        err('Unrecognized database, must be one of: %s' %\n            ', '.join(DATABASE_MAP.keys()))\n        sys.exit(1)\n    schema = kwargs.pop('schema', None)\n    DatabaseClass = DATABASE_MAP[database_type]\n    db = DatabaseClass(database_name, **kwargs)\n    return Introspector.from_database(db, schema=schema)\ndef print_models(introspector, tables=None, preserve_order=False,",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "print_models",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def print_models(introspector, tables=None, preserve_order=False,\n                 include_views=False, ignore_unknown=False, snake_case=True):\n    database = introspector.introspect(table_names=tables,\n                                       include_views=include_views,\n                                       snake_case=snake_case)\n    db_kwargs = introspector.get_database_kwargs()\n    header = HEADER % (\n        introspector.get_additional_imports(),\n        introspector.get_database_class().__name__,\n        introspector.get_database_name(),",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "print_header",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def print_header(cmd_line, introspector):\n    timestamp = datetime.datetime.now()\n    print_('# Code generated by:')\n    print_('# python -m pwiz %s' % cmd_line)\n    print_('# Date: %s' % timestamp.strftime('%B %d, %Y %I:%M%p'))\n    print_('# Database: %s' % introspector.get_database_name())\n    print_('# Peewee version: %s' % peewee_version)\n    print_('')\ndef err(msg):\n    sys.stderr.write('\\033[91m%s\\033[0m\\n' % msg)",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "err",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def err(msg):\n    sys.stderr.write('\\033[91m%s\\033[0m\\n' % msg)\n    sys.stderr.flush()\ndef get_option_parser():\n    parser = OptionParser(usage='usage: %prog [options] database_name')\n    ao = parser.add_option\n    ao('-H', '--host', dest='host')\n    ao('-p', '--port', dest='port', type='int')\n    ao('-u', '--user', dest='user')\n    ao('-P', '--password', dest='password', action='store_true')",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "get_option_parser",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def get_option_parser():\n    parser = OptionParser(usage='usage: %prog [options] database_name')\n    ao = parser.add_option\n    ao('-H', '--host', dest='host')\n    ao('-p', '--port', dest='port', type='int')\n    ao('-u', '--user', dest='user')\n    ao('-P', '--password', dest='password', action='store_true')\n    engines = sorted(DATABASE_MAP)\n    ao('-e', '--engine', dest='engine', choices=engines,\n       help=('Database type, e.g. sqlite, mysql, postgresql or cockroachdb. '",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "get_connect_kwargs",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "def get_connect_kwargs(options):\n    ops = ('host', 'port', 'user', 'schema')\n    kwargs = dict((o, getattr(options, o)) for o in ops if getattr(options, o))\n    if options.password:\n        kwargs['password'] = getpass()\n    return kwargs\nif __name__ == '__main__':\n    raw_argv = sys.argv\n    parser = get_option_parser()\n    options, args = parser.parse_args()",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "HEADER",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "HEADER = \"\"\"from peewee import *%s\ndatabase = %s('%s'%s)\n\"\"\"\nBASE_MODEL = \"\"\"\\\nclass BaseModel(Model):\n    class Meta:\n        database = database\n\"\"\"\nUNKNOWN_FIELD = \"\"\"\\\nclass UnknownField(object):",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "database",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "database = %s('%s'%s)\n\"\"\"\nBASE_MODEL = \"\"\"\\\nclass BaseModel(Model):\n    class Meta:\n        database = database\n\"\"\"\nUNKNOWN_FIELD = \"\"\"\\\nclass UnknownField(object):\n    def __init__(self, *_, **__): pass",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "BASE_MODEL",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "BASE_MODEL = \"\"\"\\\nclass BaseModel(Model):\n    class Meta:\n        database = database\n\"\"\"\nUNKNOWN_FIELD = \"\"\"\\\nclass UnknownField(object):\n    def __init__(self, *_, **__): pass\n\"\"\"\nDATABASE_ALIASES = {",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "UNKNOWN_FIELD",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "UNKNOWN_FIELD = \"\"\"\\\nclass UnknownField(object):\n    def __init__(self, *_, **__): pass\n\"\"\"\nDATABASE_ALIASES = {\n    CockroachDatabase: ['cockroach', 'cockroachdb', 'crdb'],\n    MySQLDatabase: ['mysql', 'mysqldb'],\n    PostgresqlDatabase: ['postgres', 'postgresql'],\n    SqliteDatabase: ['sqlite', 'sqlite3'],\n}",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_ALIASES",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "DATABASE_ALIASES = {\n    CockroachDatabase: ['cockroach', 'cockroachdb', 'crdb'],\n    MySQLDatabase: ['mysql', 'mysqldb'],\n    PostgresqlDatabase: ['postgres', 'postgresql'],\n    SqliteDatabase: ['sqlite', 'sqlite3'],\n}\nDATABASE_MAP = dict((value, key)\n                    for key in DATABASE_ALIASES\n                    for value in DATABASE_ALIASES[key])\ndef make_introspector(database_type, database_name, **kwargs):",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_MAP",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.pwiz",
+        "description": "backend.myenv.Scripts.pwiz",
+        "peekOfCode": "DATABASE_MAP = dict((value, key)\n                    for key in DATABASE_ALIASES\n                    for value in DATABASE_ALIASES[key])\ndef make_introspector(database_type, database_name, **kwargs):\n    if database_type not in DATABASE_MAP:\n        err('Unrecognized database, must be one of: %s' %\n            ', '.join(DATABASE_MAP.keys()))\n        sys.exit(1)\n    schema = kwargs.pop('schema', None)\n    DatabaseClass = DATABASE_MAP[database_type]",
+        "detail": "backend.myenv.Scripts.pwiz",
+        "documentation": {}
+    },
+    {
+        "label": "cmp",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def cmp(a, b):\n    return (a > b) - (a < b)\nfrom builtins import zip\nfrom builtins import str\nimport os\nimport os.path as op\nimport sys\nfrom xml.etree import cElementTree as ET\nimport pyxnat\nPROJ_ATTRS = [",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_attrs",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_attrs(src_obj, dest_obj, attr_list):\n    \"\"\" Copies list of attributes form source to destination\"\"\"\n    src_attrs = src_obj.attrs.mget(attr_list)\n    src_list = dict(list(zip(attr_list, src_attrs)))\n    # NOTE: For some reason need to set te again b/c a bug somewhere sets te\n    # to sequence name\n    te_key = 'xnat:mrScanData/parameters/te'\n    if te_key in src_list:\n        src_list[te_key] = src_obj.attrs.get(te_key)\n    dest_obj.attrs.mset(src_list)",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_attributes",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_attributes(src_obj, dest_obj):\n    '''Copy attributes from src to dest'''\n    src_type = src_obj.datatype()\n    types = {'xnat:projectData': PROJ_ATTRS,\n             'xnat:subjectData': SUBJ_ATTRS,\n             'xnat:mrSessionData': MR_EXP_ATTRS,\n             'xnat:petSessionData': PET_EXP_ATTRS,\n             'xnat:ctSessionData': CT_EXP_ATTRS,\n             'xnat:mrScanData': MR_SCAN_ATTRS,\n             'xnat:petScanData': PET_SCAN_ATTRS,",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "subj_compare",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def subj_compare(item1, item2):\n    '''Compare sort of items'''\n    return cmp(item1.label(), item2.label())\ndef copy_file(src_f, dest_r, cache_d):\n    '''\n    Copy file from XNAT file source to XNAT resource destination,\n    using local cache in between'''\n    f_label = src_f.label()\n    loc_f = cache_d + '/' + f_label\n    # Make subdirectories",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_file",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_file(src_f, dest_r, cache_d):\n    '''\n    Copy file from XNAT file source to XNAT resource destination,\n    using local cache in between'''\n    f_label = src_f.label()\n    loc_f = cache_d + '/' + f_label\n    # Make subdirectories\n    loc_d = op.dirname(loc_f)\n    if not op.exists(loc_d):\n        os.makedirs(loc_d)",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_res_zip",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_res_zip(src_r, dest_r, cache_d):\n    '''\n    Copy a resource from XNAT source to XNAT destination using local cache\n    in between\n    '''\n    try:\n        # Download zip of resource\n        print('INFO:Downloading resource as zip...')\n        cache_z = src_r.get(cache_d, extract=False)\n        # Upload zip of resource",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "is_empty_resource",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def is_empty_resource(_res):\n    '''Check if resource contains any files'''\n    f_count = 0\n    for f_in in _res.files().fetchall('obj'):\n        f_count += 1\n        break\n    return f_count == 0\n# copy_project and copy_subject are untested\n# def copy_project(src_proj, dst_proj, proj_cache_dir):\n#     '''Copy XNAT project from source to destination'''",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_session",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_session(src_sess, dst_sess, sess_cache_dir):\n    '''Copy XNAT session from source to destination'''\n    print('INFO:uploading session attributes as xml')\n    # Write xml to file\n    if not op.exists(sess_cache_dir):\n        os.makedirs(sess_cache_dir)\n    sess_xml = src_sess.get()\n    xml_path = op.join(sess_cache_dir, 'sess.xml')\n    write_xml(sess_xml, xml_path)\n    sess_type = src_sess.datatype()",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_scan",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_scan(src_scan, dst_scan, scan_cache_dir):\n    '''Copy scan from source XNAT to destination XNAT'''\n    scan_type = src_scan.datatype()\n    if scan_type == '':\n        scan_type = 'xnat:otherDicomScanData'\n    dst_scan.create(scans=scan_type)\n    copy_attributes(src_scan, dst_scan)\n    # Process each resource of scan\n    for src_res in src_scan.resources().fetchall('obj'):\n        res_label = src_res.label()",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "copy_res",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def copy_res(src_res, dst_res, res_cache_dir, use_zip=False):\n    '''Copy resource from source XNAT to destination XNAT'''\n    # Create cache dir\n    if not op.exists(res_cache_dir):\n        os.makedirs(res_cache_dir)\n    # Prepare resource and check for empty\n    is_empty = False\n    print(dst_res._uri)\n    if not dst_res.exists():\n        dst_res.create()",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "write_xml",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def write_xml(xml_str, file_path, clean_tags=True):\n    \"\"\"Writing XML.\"\"\"\n    root = ET.fromstring(xml_str)\n    # We only want the tags and attributes relevant to root, no children\n    if clean_tags:\n        # Remove ID\n        if 'ID' in root.attrib:\n            del root.attrib['ID']\n        # Remove sharing tags\n        tag = '{http://nrg.wustl.edu/xnat}sharing'",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "create_parser",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def create_parser():\n    import argparse\n    \"\"\"Parse commandline arguments.\"\"\"\n    arg_parser = argparse.ArgumentParser(\n        description='Downloads a given experiment/session from an XNAT instance '\n                    'and uploads it to an independent one. Only DICOM resources '\n                    'will be imported.',\n        formatter_class=argparse.RawTextHelpFormatter)\n    arg_parser.add_argument(\n        '--h1', '--source_config', dest='source_config',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "def main(args):\n    x1 = pyxnat.Interface(config=args.source_config)\n    x2 = pyxnat.Interface(config=args.dest_config)\n    columns = ['subject_label', 'label']\n    e1 = x1.array.experiments(experiment_id=args.experiment_id,\n                              columns=columns).data[0]\n    p = x2.select.project(args.project_id)\n    s = p.subject(e1['subject_label'])\n    if not s.exists():\n        s.create()",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "PROJ_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "PROJ_ATTRS = [\n    'xnat:projectData/name',\n    'xnat:projectData/description',\n    'xnat:projectData/keywords',\n]\nSUBJ_ATTRS = [\n    'xnat:subjectData/group',\n    'xnat:subjectData/src',\n    'xnat:subjectData/investigator/firstname',\n    'xnat:subjectData/investigator/lastname',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "SUBJ_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "SUBJ_ATTRS = [\n    'xnat:subjectData/group',\n    'xnat:subjectData/src',\n    'xnat:subjectData/investigator/firstname',\n    'xnat:subjectData/investigator/lastname',\n    'xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/dob',\n    'xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/yob',\n    'xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/age',\n    'xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/gender',\n    'xnat:subjectData/demographics[@xsi:type=xnat:demographicData]/handedness',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "MR_EXP_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "MR_EXP_ATTRS = [\n    'xnat:experimentData/date',\n    'xnat:experimentData/visit_id',\n    'xnat:experimentData/time',\n    'xnat:experimentData/note',\n    'xnat:experimentData/investigator/firstname',\n    'xnat:experimentData/investigator/lastname',\n    'xnat:imageSessionData/scanner/manufacturer',\n    'xnat:imageSessionData/scanner/model',\n    'xnat:imageSessionData/operator',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "OTHER_DICOM_SCAN_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "OTHER_DICOM_SCAN_ATTRS = [\n    'xnat:imageScanData/type',\n    'xnat:imageScanData/UID',\n    'xnat:imageScanData/note',\n    'xnat:imageScanData/quality',\n    'xnat:imageScanData/condition',\n    'xnat:imageScanData/series_description',\n    'xnat:imageScanData/documentation',\n    'xnat:imageScanData/frames',\n    'xnat:imageScanData/startTime',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "MR_SCAN_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "MR_SCAN_ATTRS = [\n    'xnat:imageScanData/type',\n    'xnat:imageScanData/UID',\n    'xnat:imageScanData/note',\n    'xnat:imageScanData/quality',\n    'xnat:imageScanData/condition',\n    'xnat:imageScanData/series_description',\n    'xnat:imageScanData/documentation',\n    'xnat:imageScanData/frames',\n    'xnat:imageScanData/startTime',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "SC_SCAN_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "SC_SCAN_ATTRS = [\n    'xnat:imageScanData/type',\n    'xnat:imageScanData/UID',\n    'xnat:imageScanData/note',\n    'xnat:imageScanData/quality',\n    'xnat:imageScanData/condition',\n    'xnat:imageScanData/series_description',\n    'xnat:imageScanData/documentation',\n    'xnat:imageScanData/frames',\n    'xnat:imageScanData/scanner/manufacturer',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "PET_EXP_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "PET_EXP_ATTRS = [\n    'xnat:experimentData/date',\n    'xnat:experimentData/visit_id',\n    'xnat:experimentData/time',\n    'xnat:experimentData/note',\n    'xnat:experimentData/investigator/firstname',\n    'xnat:experimentData/investigator/lastname',\n    'xnat:imageSessionData/scanner/manufacturer',\n    'xnat:imageSessionData/scanner/model',\n    'xnat:imageSessionData/operator',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "CT_EXP_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "CT_EXP_ATTRS = [\n    'xnat:experimentData/date',\n    'xnat:experimentData/visit_id',\n    'xnat:experimentData/time',\n    'xnat:experimentData/note',\n    'xnat:experimentData/investigator/firstname',\n    'xnat:experimentData/investigator/lastname',\n    'xnat:imageSessionData/scanner/manufacturer',\n    'xnat:imageSessionData/scanner/model',\n    'xnat:imageSessionData/operator',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "PET_SCAN_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "PET_SCAN_ATTRS = [\n    'xnat:imageScanData/type',\n    'xnat:imageScanData/UID',\n    'xnat:imageScanData/note',\n    'xnat:imageScanData/quality',\n    'xnat:imageScanData/condition',\n    'xnat:imageScanData/series_description',\n    'xnat:imageScanData/documentation',\n    'xnat:imageScanData/frames',\n    'xnat:imageScanData/scanner/manufacturer',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "CT_SCAN_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "CT_SCAN_ATTRS = [\n    'xnat:imageScanData/type',\n    'xnat:imageScanData/UID',\n    'xnat:imageScanData/note',\n    'xnat:imageScanData/quality',\n    'xnat:imageScanData/condition',\n    'xnat:imageScanData/series_description',\n    'xnat:imageScanData/documentation',\n    'xnat:imageScanData/frames',\n    'xnat:imageScanData/scanner/manufacturer',",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "PROC_ATTRS",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.sessionmirror",
+        "description": "backend.myenv.Scripts.sessionmirror",
+        "peekOfCode": "PROC_ATTRS = [\n    'proc:genProcData/validation/status',\n    'proc:genProcData/procstatus',\n    'proc:genProcData/proctype',\n    'proc:genProcData/procversion',\n    'proc:genProcData/walltimeused',\n    'proc:genProcData/memused'\n]\ndef copy_attrs(src_obj, dest_obj, attr_list):\n    \"\"\" Copies list of attributes form source to destination\"\"\"",
+        "detail": "backend.myenv.Scripts.sessionmirror",
+        "documentation": {}
+    },
+    {
+        "label": "extract_file",
+        "kind": 2,
+        "importPath": "backend.myenv.Scripts.vba_extract",
+        "description": "backend.myenv.Scripts.vba_extract",
+        "peekOfCode": "def extract_file(xlsm_zip, filename):\n    # Extract a single file from an Excel xlsm macro file.\n    data = xlsm_zip.read(\"xl/\" + filename)\n    # Write the data to a local file.\n    file = open(filename, \"wb\")\n    file.write(data)\n    file.close()\n# The VBA project file and project signature file we want to extract.\nvba_filename = \"vbaProject.bin\"\nvba_signature_filename = \"vbaProjectSignature.bin\"",
+        "detail": "backend.myenv.Scripts.vba_extract",
+        "documentation": {}
+    },
+    {
+        "label": "vba_filename",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.vba_extract",
+        "description": "backend.myenv.Scripts.vba_extract",
+        "peekOfCode": "vba_filename = \"vbaProject.bin\"\nvba_signature_filename = \"vbaProjectSignature.bin\"\n# Get the xlsm file name from the commandline.\nif len(sys.argv) > 1:\n    xlsm_file = sys.argv[1]\nelse:\n    print(\n        \"\\nUtility to extract a vbaProject.bin binary from an Excel 2007+ \"\n        \"xlsm macro file for insertion into an XlsxWriter file.\\n\"\n        \"If the macros are digitally signed, extracts also a vbaProjectSignature.bin \"",
+        "detail": "backend.myenv.Scripts.vba_extract",
+        "documentation": {}
+    },
+    {
+        "label": "vba_signature_filename",
+        "kind": 5,
+        "importPath": "backend.myenv.Scripts.vba_extract",
+        "description": "backend.myenv.Scripts.vba_extract",
+        "peekOfCode": "vba_signature_filename = \"vbaProjectSignature.bin\"\n# Get the xlsm file name from the commandline.\nif len(sys.argv) > 1:\n    xlsm_file = sys.argv[1]\nelse:\n    print(\n        \"\\nUtility to extract a vbaProject.bin binary from an Excel 2007+ \"\n        \"xlsm macro file for insertion into an XlsxWriter file.\\n\"\n        \"If the macros are digitally signed, extracts also a vbaProjectSignature.bin \"\n        \"file.\\n\"",
+        "detail": "backend.myenv.Scripts.vba_extract",
+        "documentation": {}
+    },
+    {
         "label": "main",
         "kind": 2,
         "importPath": "backend.manage",
         "description": "backend.manage",
         "peekOfCode": "def main():\n    \"\"\"Run administrative tasks.\"\"\"\n    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')\n    try:\n        from django.core.management import execute_from_command_line\n    except ImportError as exc:\n        raise ImportError(\n            \"Couldn't import Django. Are you sure it's installed and \"\n            \"available on your PYTHONPATH environment variable? Did you \"\n            \"forget to activate a virtual environment?\"",
         "detail": "backend.manage",
-        "documentation": {}
-    },
-    {
-        "label": "_Known",
-        "kind": 6,
-        "importPath": "frontend.node_modules.flatted.python.flatted",
-        "description": "frontend.node_modules.flatted.python.flatted",
-        "peekOfCode": "class _Known:\n    def __init__(self):\n        self.key = []\n        self.value = []\nclass _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0",
-        "detail": "frontend.node_modules.flatted.python.flatted",
-        "documentation": {}
-    },
-    {
-        "label": "_String",
-        "kind": 6,
-        "importPath": "frontend.node_modules.flatted.python.flatted",
-        "description": "frontend.node_modules.flatted.python.flatted",
-        "peekOfCode": "class _String:\n    def __init__(self, value):\n        self.value = value\ndef _array_keys(value):\n    keys = []\n    i = 0\n    for _ in value:\n        keys.append(i)\n        i += 1\n    return keys",
-        "detail": "frontend.node_modules.flatted.python.flatted",
-        "documentation": {}
-    },
-    {
-        "label": "parse",
-        "kind": 2,
-        "importPath": "frontend.node_modules.flatted.python.flatted",
-        "description": "frontend.node_modules.flatted.python.flatted",
-        "peekOfCode": "def parse(value, *args, **kwargs):\n    json = _json.loads(value, *args, **kwargs)\n    wrapped = []\n    for value in json:\n        wrapped.append(_wrap(value))\n    input = []\n    for value in wrapped:\n        if isinstance(value, _String):\n            input.append(value.value)\n        else:",
-        "detail": "frontend.node_modules.flatted.python.flatted",
-        "documentation": {}
-    },
-    {
-        "label": "stringify",
-        "kind": 2,
-        "importPath": "frontend.node_modules.flatted.python.flatted",
-        "description": "frontend.node_modules.flatted.python.flatted",
-        "peekOfCode": "def stringify(value, *args, **kwargs):\n    known = _Known()\n    input = []\n    output = []\n    i = int(_index(known, input, value))\n    while i < len(input):\n        output.append(_transform(known, input, input[i]))\n        i += 1\n    return _json.dumps(output, *args, **kwargs)",
-        "detail": "frontend.node_modules.flatted.python.flatted",
-        "documentation": {}
-    },
-    {
-        "label": "stringify",
-        "kind": 2,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "def stringify(value):\n    return _stringify(value, separators=(',', ':'))\nassert stringify([None, None]) == '[[null,null]]'\na = []\no = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "a",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "a = []\no = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o = {}\nassert stringify(a) == '[[]]'\nassert stringify(o) == '[{}]'\na.append(a)\no['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['o']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['o'] = o\nassert stringify(a) == '[[\"0\"]]'\nassert stringify(o) == '[{\"o\":\"0\"}]'\nb = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)\na.append('two')\na.append(True)\no['one'] = 1\no['two'] = 'two'",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "b",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "b = parse(stringify(a))\nassert isinstance(b, list) and b[0] == b\na.append(1)\na.append('two')\na.append(True)\no['one'] = 1\no['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['one']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['one'] = 1\no['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['two']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['two'] = 'two'\no['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['three']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['three'] = True\nassert stringify(a) == '[[\"0\",1,\"1\",true],\"two\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true},\"two\"]'\na.append(o)\no['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])\no['test'] = {'test': 'OK'}",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['a']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['a'] = a\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\"}]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\"},\"two\",[\"2\",1,\"1\",true,\"0\"]]'\na.append({'test': 'OK'})\na.append([1, 2, 3])\no['test'] = {'test': 'OK'}\no['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['test']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['test'] = {'test': 'OK'}\no['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o['array']",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o['array'] = [1, 2, 3]\nassert stringify(a) == '[[\"0\",1,\"1\",true,\"2\",\"3\",\"4\"],\"two\",{\"o\":\"2\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"0\",\"test\":\"3\",\"array\":\"4\"},{\"test\":\"5\"},[1,2,3],\"OK\"]'\nassert stringify(o) == '[{\"o\":\"0\",\"one\":1,\"two\":\"1\",\"three\":true,\"a\":\"2\",\"test\":\"3\",\"array\":\"4\"},\"two\",[\"2\",1,\"1\",true,\"0\",\"3\",\"4\"],{\"test\":\"5\"},[1,2,3],\"OK\"]'\na2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "a2",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "a2 = parse(stringify(a));\no2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "o2",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "o2 = parse(stringify(o));\nassert a2[0] == a2\nassert o2['o'] == o2\nassert a2[1] == 1 and a2[2] == 'two' and a2[3] == True and isinstance(a2[4], dict)\nassert a2[4] == a2[4]['o'] and a2 == a2[4]['o']['a']\nstr = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "str",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "str = parse('[{\"prop\":\"1\",\"a\":\"2\",\"b\":\"3\"},{\"value\":123},[\"4\",\"5\"],{\"e\":\"6\",\"t\":\"7\",\"p\":4},{},{\"b\":\"8\"},\"f\",{\"a\":\"9\"},[\"10\"],\"sup\",{\"a\":1,\"d\":2,\"c\":\"7\",\"z\":\"11\",\"h\":1},{\"g\":2,\"a\":\"7\",\"b\":\"12\",\"f\":6},{\"r\":4,\"u\":\"7\",\"c\":5}]')\nassert str['b']['t']['a'] == 'sup' and str['a'][1]['b'][0]['c'] == str['b']['t']\noo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
-        "detail": "frontend.node_modules.flatted.python.test",
-        "documentation": {}
-    },
-    {
-        "label": "oo",
-        "kind": 5,
-        "importPath": "frontend.node_modules.flatted.python.test",
-        "description": "frontend.node_modules.flatted.python.test",
-        "peekOfCode": "oo = parse('[{\"a\":\"1\",\"b\":\"0\",\"c\":\"2\"},{\"aa\":\"3\"},{\"ca\":\"4\",\"cb\":\"5\",\"cc\":\"6\",\"cd\":\"7\",\"ce\":\"8\",\"cf\":\"9\"},{\"aaa\":\"10\"},{\"caa\":\"4\"},{\"cba\":\"5\"},{\"cca\":\"2\"},{\"cda\":\"4\"},\"value2\",\"value3\",\"value1\"]');\nassert oo['a']['aa']['aaa'] == 'value1' and oo == oo['b'] and oo['c']['ca']['caa'] == oo['c']['ca']\nprint('OK')",
-        "detail": "frontend.node_modules.flatted.python.test",
         "documentation": {}
     }
 ]
