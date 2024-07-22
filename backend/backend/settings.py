@@ -58,7 +58,6 @@ INSTALLED_APPS = [
     'rest_framework',
     #'rest_framework.authtoken',
     'corsheaders',
-    'drf_yasg',
     
 ]
 
@@ -102,21 +101,10 @@ DATABASES = {
         'ENGINE': 'djongo',
         'NAME': 'worldtradefactory',
         'CLIENT': {
-            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',
-        }
-    },
-    'user_db': {
-        'ENGINE': 'djongo',
-        'NAME': 'skxywtf',
-        'CLIENT': {
             'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',
         }
     }
 }
-
-
-DATABASE_ROUTERS = ['api.routers.UserRouter']
-AUTH_USER_MODEL = 'api.CustomUser'
 
 
 # DATABASES = {
