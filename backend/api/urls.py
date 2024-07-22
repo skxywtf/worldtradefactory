@@ -45,7 +45,7 @@ urlpatterns = [
 
     # for 3rd-party data saving into our db
     #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
-    #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
+    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
     #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),
     #path('fetch-employment-data/', fetch_employment_data, name='fetch_employment_data'),
     #path('fetch-environmental-data/', fetch_environmental_data, name='fetch_environmental_data'),
