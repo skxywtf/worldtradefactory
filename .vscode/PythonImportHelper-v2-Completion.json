@@ -388,6 +388,14 @@
         "documentation": {}
     },
     {
+        "label": "permissions",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "get_user_model",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
@@ -453,6 +461,14 @@
     },
     {
         "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "re_path",
         "importPath": "django.urls",
         "description": "django.urls",
         "isExtraImport": true,
@@ -653,6 +669,22 @@
         "description": "django.conf.urls.static",
         "isExtraImport": true,
         "detail": "django.conf.urls.static",
+        "documentation": {}
+    },
+    {
+        "label": "get_schema_view",
+        "importPath": "drf_yasg.views",
+        "description": "drf_yasg.views",
+        "isExtraImport": true,
+        "detail": "drf_yasg.views",
+        "documentation": {}
+    },
+    {
+        "label": "openapi",
+        "importPath": "drf_yasg",
+        "description": "drf_yasg",
+        "isExtraImport": true,
+        "detail": "drf_yasg",
         "documentation": {}
     },
     {
@@ -1126,6 +1158,15 @@
         "description": "backend.api.models",
         "peekOfCode": "class Stock(models.Model):\n    ticker = models.CharField(max_length=10, unique=True)\n    company_name = models.CharField(max_length=255)\n    company_address = models.TextField()\n    company_location = models.CharField(max_length=255)\n    avg_stock_price_5yrs = models.FloatField()\n    avg_revenue_5yrs = models.FloatField()\n    percentage_change = models.FloatField()\n    def __str__(self):\n        return self.ticker",
         "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "UserRouter",
+        "kind": 6,
+        "importPath": "backend.api.routers",
+        "description": "backend.api.routers",
+        "peekOfCode": "class UserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    auth application (CustomUser).\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api':  # Replace 'api' with your actual app name",
+        "detail": "backend.api.routers",
         "documentation": {}
     },
     {
@@ -2213,7 +2254,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',\n        }",
+        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',\n        }",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -2222,7 +2263,25 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',\n        }\n    }\n}\n# DATABASES = {",
+        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',\n        }\n    },\n    'user_db': {\n        'ENGINE': 'djongo',",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "DATABASE_ROUTERS",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "DATABASE_ROUTERS = ['api.routers.UserRouter']\nAUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "AUTH_USER_MODEL",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "AUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -2353,11 +2412,20 @@
         "documentation": {}
     },
     {
+        "label": "schema_view",
+        "kind": 5,
+        "importPath": "backend.backend.urls",
+        "description": "backend.backend.urls",
+        "peekOfCode": "schema_view = get_schema_view(\n   openapi.Info(\n      title=\"Snippets API\",\n      default_version='v1',\n      description=\"Test description\",\n      terms_of_service=\"https://www.google.com/policies/terms/\",\n      contact=openapi.Contact(email=\"contact@snippets.local\"),\n      license=openapi.License(name=\"BSD License\"),\n   ),\n   public=True,",
+        "detail": "backend.backend.urls",
+        "documentation": {}
+    },
+    {
         "label": "urlpatterns",
         "kind": 5,
         "importPath": "backend.backend.urls",
         "description": "backend.backend.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('api.urls')),\n    #path('ai', views.ImageUploadView.as_view(), name='image-upload'),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for ai api",
+        "peekOfCode": "urlpatterns = [\n    path('swagger<format>/', schema_view.without_ui(cache_timeout=0), name='schema-json'),\n    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),\n    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),\n    path('admin/', admin.site.urls),\n    path('api/', include('api.urls')),\n    #path('ai', views.ImageUploadView.as_view(), name='image-upload'),\n] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for ai api",
         "detail": "backend.backend.urls",
         "documentation": {}
     },
