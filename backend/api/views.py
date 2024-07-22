@@ -9,7 +9,10 @@ from rest_framework.permissions import AllowAny
 # contact us
 #from .serializers import ContactSerializer
 #from .models import Contact
-
+from api.models import Contact, CustomUser
+from django.core.exceptions import ValidationError
+from api.models import CustomUser as User
+#from django.contrib.auth.models import User
 # for stock img ai
 #from rest_framework import status, views
 #from rest_framework.response import Response
@@ -61,6 +64,7 @@ import os
 # for alphavantage core stock api
 from django.http import JsonResponse
 
+
 # Data from the UI will be received here
 class UserSignupView(generics.CreateAPIView):
     serializer_class = UserSignupSerializer
@@ -99,8 +103,66 @@ class UserLoginView(generics.GenericAPIView):
             }, status=status.HTTP_200_OK)
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
-# contact us
+#contact us
+class ContactCreateView(generics.CreateAPIView):
+    serializer_class = ContactSerializer
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response({"message": "Contact information saved successfully!"}, status=status.HTTP_201_CREATED)
+        else:
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+'''
+# correct with less validation in email due to django and not code
+class ContactCreateView(generics.CreateAPIView):
+    serializer_class = ContactSerializer
+
+    def post(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        try:
+            if serializer.is_valid(raise_exception=True):
+                self.perform_create(serializer)
+                return Response({"message": "Contact information saved successfully!"}, status=status.HTTP_201_CREATED)
+        except ValidationError as e:
+            return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)
+
+    def perform_create(self, serializer):
+        # Additional checks can be implemented here if necessary
+        serializer.save()
+
+    def validate_data(self, data):
+        # Custom validation logic
+        if len(data.get('first_name', '')) > 100:
+            raise ValidationError({'first_name': ["First name should not be greater than 100 letters."]})
+        if len(data.get('last_name', '')) > 100:
+            raise ValidationError({'last_name': ["Last name should not be greater than 100 letters."]})
+        if not CustomUser.objects.filter(email=data.get('email')).exists():
+            raise ValidationError({'email': ["Email ID not registered. Please register first."]})
+        if not data.get('phone', '').isdigit() or len(data.get('phone')) != 10:
+            raise ValidationError({'phone': ["Phone number should be exactly 10 digits."]})
+        if len(data.get('description', '').split()) > 100:
+            raise ValidationError({'description': ["Description should not be more than 100 words."]})
+        if Contact.objects.filter(email=data.get('email')).exists():
+            raise ValidationError({'email': ["Email ID already used."]})
+        if Contact.objects.filter(phone=data.get('phone')).exists():
+            raise ValidationError({'phone': ["Phone number already used."]})
+
+    def get_serializer_context(self):
+        """
+        Extra context provided to the serializer class.
+        """
+        return {
+            'request': self.request,
+            'format': self.format_kwarg,
+            'view': self
+        }
+# correct with less validation in email due to django and not code
+'''
+'''
+# working correct but giving djongo and mongo db error due to validations in serializers.py
 class ContactCreateView(generics.CreateAPIView):
     serializer_class = ContactSerializer
 
@@ -120,7 +182,9 @@ class ContactCreateView(generics.CreateAPIView):
             return Response({"message": "Contact information saved successfully!"}, status=status.HTTP_201_CREATED)
         else:
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        #working correct but giving djongo and mongo db error
         '''
+'''
         # Detailed error for csrf
         else:
             custom_error_message = "It looks like there is an error. Please check your input or try again later."
@@ -129,7 +193,7 @@ class ContactCreateView(generics.CreateAPIView):
                 "errors": serializer.errors
             }
             return Response(error_response, status=status.HTTP_400_BAD_REQUEST)
-        '''
+'''
 
 # for stock img ai
 openai.api_key = "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"
