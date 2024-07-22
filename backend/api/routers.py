@@ -1,4 +1,5 @@
 # api/routers.py
+'''
 class UserRouter:
     """
     A router to control database operations for models in the 'api' app,
@@ -44,7 +45,7 @@ class UserRouter:
                 return db == 'user_db'
             return db == 'default'
         return None  # Defer to other routers or the default router for apps not within 'api'
-
+'''
 
 '''
 class UserRouter:
@@ -87,7 +88,7 @@ class UserRouter:
             return db == 'default'  # All other models in the 'api' app migrate to the default database
         return None  # Allow migrations for other apps to default settings
 '''
-'''
+
 class UserRouter:
     def db_for_read(self, model, **hints):
         if model.__name__ == 'CustomUser':
@@ -110,7 +111,7 @@ class UserRouter:
             if model_name == 'customuser':
                 return db == 'user_db'
         return db == 'default'
-'''
+
 '''
 class UserRouter:
     """
