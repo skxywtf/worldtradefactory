@@ -1532,7 +1532,7 @@ def load_stock_gl(request):
         return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
     
     return JsonResponse(data, safe=False)
-'''
+
 @api_view(['POST'])
 def load_stock_analytics(request):
     # Get the 'symbols' from the request body
@@ -1562,4 +1562,1012 @@ def load_stock_analytics(request):
         return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
     
     return JsonResponse(data, safe=False)
-'''
+
+# Alpha vantage technical indicators
+@api_view(['GET'])
+def load_sma(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'SMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_ema(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'EMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_wma(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'WMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dema(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'DEMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_tema(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TEMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_trima(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TRIMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_kama(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'KAMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_mama(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MAMA',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_tt(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'T3',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_tt(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'T3',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_macdext(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MACDEXT',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stoch(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'STOCH',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stochf(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'STOCHF',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_rsi(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'RSI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_stochrsi(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'STOCHRSI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_willr(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'WILLR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_adx(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ADX',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_adxr(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ADXR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_apo(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'APO',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_ppo(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'PPO',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_mom(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MOM',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_bop(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'BOP',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_cci(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'CCI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_cmo(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'CMO',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_roc(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ROC',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_rocr(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ROCR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_aroon(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'AROON',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_aroonosc(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'AROONOSC',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_mfi(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MFI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_trix(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TRIX',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_ultosc(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ULTOSC',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dx(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'DX',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_minus_di(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MINUS_DI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_plus_di(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'PLUS_DI',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_minus_dm(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MINUS_DM',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_plus_dm(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'PLUS_DM',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_bbands(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'BBANDS',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_midpoint(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MIDPOINT',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_midprice(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'MIDPRICE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_sar(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'SAR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_trange(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'TRANGE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_atr(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ATR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_natr(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'NATR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_ad(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'AD',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_adosc(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'ADOSC',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_obv(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'OBV',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_trendline(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_TRENDLINE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_sine(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_SINE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_trendmode(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_TRENDMODE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dcperiod(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_DCPERIOD',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dcphase(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_DCPHASE',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
+
+@api_view(['GET'])
+def load_dcphasor(request, symbol):
+    # Fetch new data from Alpha Vantage
+    params = {
+        'function': 'HT_PHASOR',
+        'symbol': symbol,
+        'apikey': ALPHA_VANTAGE_API_KEY,
+        'interval': 'weekly',
+        'time_period': '10',
+        'series_type': 'open',
+    }
+    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)
+    data = response.json()
+    
+    # Check if the response contains error message
+    if "Error Message" in data:
+        return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
+    
+    return JsonResponse(data, safe=False)
