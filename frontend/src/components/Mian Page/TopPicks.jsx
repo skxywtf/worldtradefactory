@@ -1,8 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Apple from "../../assets/appleLogo.png";
 import Google from "../../assets/googleLogo.webp";
 import Microsoft from "../../assets/microsoftLogo.png";
+import Link from "next/link";
 
 const TopPicks = () => {
   return (
@@ -17,13 +17,22 @@ const TopPicks = () => {
             </button>
           </div>
           <div className="flex justify-center w-full gap-7 overflow-x-hidden">
-            <Link to="/stock" className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200">
+            <Link
+              href="/main/stock"
+              className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200"
+            >
               <img src={Apple} className="h-full w-full" alt="apple" />
             </Link>
-            <Link to="/stock" className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200">
+            <Link
+              href="/main/stock"
+              className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200"
+            >
               <img src={Google} className="h-full w-full" alt="google" />
             </Link>
-            <Link to="/stock" className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200">
+            <Link
+              href="/main/stock"
+              className="h-24 w-24 lg:h-32 lg:w-36 bg-teal-200"
+            >
               <img src={Microsoft} className="h-full w-full" alt="microsoft" />
             </Link>
           </div>
