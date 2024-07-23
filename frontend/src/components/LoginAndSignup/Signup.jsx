@@ -1,21 +1,22 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+"use client";
+import { useState } from "react";
 import GoogleButton from "react-google-button";
 import { IoClose } from "react-icons/io5";
 import { auth, googleAuthProvider } from "../../firebase.js";
 import { signInWithPopup } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import axios from "axios";
+import { useRouter } from "next/navigation";
+import Link from "next/link.js";
 const Signup = () => {
-  const navigate = useNavigate();
+  const navigate = useRouter();
   const handleSignInWithGoogle = async () => {
     try {
       const result = await signInWithPopup(auth, googleAuthProvider);
       console.log(result);
       localStorage.setItem("token", result.user.accessToken);
       localStorage.setItem("user", JSON.stringify(result.user));
-      navigate("/");
+      navigate.push("/main");
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +52,7 @@ const Signup = () => {
         console.log(result.data);
         // localStorage.setItem("token", result.data.token);
         // localStorage.setItem("user", JSON.stringify(result.data.user));
-        navigate("/account");
+        navigate.push("/main/login");
       })
       .catch((error) => {
         console.log(error);
@@ -63,10 +64,12 @@ const Signup = () => {
       <div className=" w-full dark:bg-gray-200 bg-gray-950">
         <div className="w-full flex justify-between px-5 py-4  md:py-5 md:px-10 ">
           <div>
-            <Link className=" text-2xl">SKXYWTF</Link>
+            <Link href="/main" className=" text-2xl">
+              SKXYWTF
+            </Link>
           </div>
           <div className=" rounded  hover:bg-opacity-45 hover:bg-gray-700">
-            <Link to="/">
+            <Link href="/main">
               <div>
                 <IoClose size={30} />
               </div>
@@ -126,7 +129,7 @@ const Signup = () => {
                   }}
                 />
               </div>
-              <Link to="/login">
+              <Link href="/main/login">
                 <button className=" text-sm hover:text-blue-600">
                   Already have an account?
                 </button>

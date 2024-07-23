@@ -1,13 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
+"use client";
 
-const MarketNews = ({ Topnews }) => {
+import Link from "next/link";
+import data3 from "../../data/MarketNewsData";
+
+const MarketNews = () => {
+  const { Topnews } = data3;
   return (
     <div className=" my-10 h-full w-full">
       <div className="my-10 text-3xl pl-14"> Market News</div>
       <div className=" h-full gap-4 px-10 flex  w-full ">
         {Topnews.map((item) => (
-          <Link className=" hover:border rounded-lg bg-gray-900 hover:bg-gray-800 w-full overflow-hidden ">
+          <Link
+            href="/main/stock"
+            className=" hover:border rounded-lg bg-gray-900 hover:bg-gray-800 w-full overflow-hidden "
+          >
             <div className=" flex gap-2 pt-2 px-3">
               <div className="">
                 <img
