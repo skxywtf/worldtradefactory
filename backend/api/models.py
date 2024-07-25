@@ -9,6 +9,7 @@ class CustomUser(AbstractUser):
 
     class Meta:
         db_table = 'api_customuser'
+        app_label = 'api'
 '''
 # earlier correct
 class CustomUser(AbstractUser):

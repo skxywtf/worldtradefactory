@@ -26,15 +26,6 @@
         "documentation": {}
     },
     {
-        "label": "django.utils.timezone",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "django.utils.timezone",
-        "description": "django.utils.timezone",
-        "detail": "django.utils.timezone",
-        "documentation": {}
-    },
-    {
         "label": "migrations",
         "importPath": "django.db",
         "description": "django.db",
@@ -52,126 +43,6 @@
     },
     {
         "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
         "importPath": "django.db",
         "description": "django.db",
         "isExtraImport": true,
@@ -193,6 +64,15 @@
         "importPath": "django.db.models.deletion",
         "description": "django.db.models.deletion",
         "detail": "django.db.models.deletion",
+        "documentation": {}
+    },
+    {
+        "label": "django.utils.timezone",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "django.utils.timezone",
+        "description": "django.utils.timezone",
+        "detail": "django.utils.timezone",
         "documentation": {}
     },
     {
@@ -420,7 +300,55 @@
         "documentation": {}
     },
     {
+        "label": "ValidationError",
+        "importPath": "django.contrib.auth.password_validation",
+        "description": "django.contrib.auth.password_validation",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.password_validation",
+        "documentation": {}
+    },
+    {
         "label": "UploadedImage",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Contact",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "Contact",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "importPath": "api.models",
+        "description": "api.models",
+        "isExtraImport": true,
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
         "importPath": "api.models",
         "description": "api.models",
         "isExtraImport": true,
@@ -433,6 +361,22 @@
         "description": "api.models",
         "isExtraImport": true,
         "detail": "api.models",
+        "documentation": {}
+    },
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "UniqueValidator",
+        "importPath": "rest_framework.validators",
+        "description": "rest_framework.validators",
+        "isExtraImport": true,
+        "detail": "rest_framework.validators",
         "documentation": {}
     },
     {
@@ -497,6 +441,14 @@
         "description": "rest_framework.permissions",
         "isExtraImport": true,
         "detail": "rest_framework.permissions",
+        "documentation": {}
+    },
+    {
+        "label": "ValidationError",
+        "importPath": "django.core.exceptions",
+        "description": "django.core.exceptions",
+        "isExtraImport": true,
+        "detail": "django.core.exceptions",
         "documentation": {}
     },
     {
@@ -823,80 +775,17 @@
         "kind": 6,
         "importPath": "backend.api.migrations.0001_initial",
         "description": "backend.api.migrations.0001_initial",
-        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CustomUser',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n        ('auth', '0012_alter_user_first_name_max_length'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Contact',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),",
         "detail": "backend.api.migrations.0001_initial",
         "documentation": {}
     },
     {
         "label": "Migration",
         "kind": 6,
-        "importPath": "backend.api.migrations.0002_contact",
-        "description": "backend.api.migrations.0002_contact",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0001_initial'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Contact',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('first_name', models.CharField(max_length=100)),",
-        "detail": "backend.api.migrations.0002_contact",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0003_uploadedimage",
-        "description": "backend.api.migrations.0003_uploadedimage",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0002_contact'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='UploadedImage',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('image', models.ImageField(upload_to='uploads/')),",
-        "detail": "backend.api.migrations.0003_uploadedimage",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0004_alter_uploadedimage_image",
-        "description": "backend.api.migrations.0004_alter_uploadedimage_image",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0003_uploadedimage'),\n    ]\n    operations = [\n        migrations.AlterField(\n            model_name='uploadedimage',\n            name='image',\n            field=models.ImageField(upload_to='images'),\n        ),",
-        "detail": "backend.api.migrations.0004_alter_uploadedimage_image",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
-        "description": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0004_alter_uploadedimage_image'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='CountryData',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('country', models.CharField(max_length=100)),",
-        "detail": "backend.api.migrations.0005_countrydata_economicdata_educationdata_and_more",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0006_currency_exchangerate",
-        "description": "backend.api.migrations.0006_currency_exchangerate",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0005_countrydata_economicdata_educationdata_and_more'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Currency',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('code', models.CharField(max_length=3, unique=True)),",
-        "detail": "backend.api.migrations.0006_currency_exchangerate",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0007_trade",
-        "description": "backend.api.migrations.0007_trade",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0006_currency_exchangerate'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Trade',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('symbol', models.CharField(max_length=10)),",
-        "detail": "backend.api.migrations.0007_trade",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0008_uploadedfile",
-        "description": "backend.api.migrations.0008_uploadedfile",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0007_trade'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='UploadedFile',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('file', models.FileField(upload_to='uploads/')),",
-        "detail": "backend.api.migrations.0008_uploadedfile",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0009_stock",
-        "description": "backend.api.migrations.0009_stock",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0008_uploadedfile'),\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Stock',\n            fields=[\n                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('ticker', models.CharField(max_length=10, unique=True)),",
-        "detail": "backend.api.migrations.0009_stock",
+        "importPath": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
+        "description": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='customuser',\n            options={},\n        ),\n        migrations.AlterModelTable(",
+        "detail": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
         "documentation": {}
     },
     {
@@ -1030,7 +919,16 @@
         "kind": 6,
         "importPath": "backend.api.models",
         "description": "backend.api.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n# contact us models\nclass Contact(models.Model):\n    first_name = models.CharField(max_length=100)\n    last_name = models.CharField(max_length=100)\n    email = models.EmailField()\n    phone = models.CharField(max_length=10)\n    description = models.TextField()\n    def __str__(self):",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n    class Meta:\n        db_table = 'api_customuser'\n        app_label = 'api'\n'''\n# earlier correct\nclass CustomUser(AbstractUser):\n    pass\n# earlier correct",
+        "detail": "backend.api.models",
+        "documentation": {}
+    },
+    {
+        "label": "CustomUser",
+        "kind": 6,
+        "importPath": "backend.api.models",
+        "description": "backend.api.models",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n# earlier correct\n'''\n# contact us models\nclass Contact(models.Model):\n    first_name = models.CharField(max_length=100)\n    last_name = models.CharField(max_length=100)\n    email = models.EmailField()\n    phone = models.CharField(max_length=10)",
         "detail": "backend.api.models",
         "documentation": {}
     },
@@ -1161,11 +1059,11 @@
         "documentation": {}
     },
     {
-        "label": "UserRouter",
+        "label": "CustomUserRouter",
         "kind": 6,
         "importPath": "backend.api.routers",
         "description": "backend.api.routers",
-        "peekOfCode": "class UserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    auth application (CustomUser).\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api':  # Replace 'api' with your actual app name",
+        "peekOfCode": "class CustomUserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    'api' application for the CustomUser model.\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api' and model._meta.model_name == 'customuser':",
         "detail": "backend.api.routers",
         "documentation": {}
     },
@@ -1174,7 +1072,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm') \n        #extra_kwargs={\n        #    'password': {'write_only' : True}\n        #}\n    def validate(self, attrs):",
+        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):\n        # Connect to MongoDB",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1183,7 +1081,25 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n# for contact us\n#User = get_user_model()\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):",
+        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n# contact us\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ContactSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:\n            raise serializers.ValidationError(\"First name should not be greater than 100 letters.\")\n        return value\n    def validate_last_name(self, value):\n        if len(value) > 100:",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "ContactSerializer",
+        "kind": 6,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "class ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n# correct with less validation in email due to django and not code\n'''\n#User = get_user_model()\n'''\n# working correct but giving djongo and mongo db error due to validations in serializers.py\nclass ContactSerializer(serializers.ModelSerializer):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1318,7 +1234,7 @@
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "User = get_user_model()\n# style parameter in password to hide password while typing\nclass UserSignupSerializer(serializers.ModelSerializer):\n    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm') \n        #extra_kwargs={\n        #    'password': {'write_only' : True}",
+        "peekOfCode": "User = get_user_model()\n# style parameter in password to hide password while typing\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1327,7 +1243,7 @@
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "#User = get_user_model()\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:\n            raise serializers.ValidationError(\"First name should not be greater than 100 letters.\")\n        return value\n    def validate_last_name(self, value):",
+        "peekOfCode": "#User = get_user_model()\n'''\n# working correct but giving djongo and mongo db error due to validations in serializers.py\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:\n            raise serializers.ValidationError(\"First name should not be greater than 100 letters.\")",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1336,7 +1252,7 @@
         "kind": 5,
         "importPath": "backend.api.urls",
         "description": "backend.api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),\n    path('login/', UserLoginView.as_view(), name='login'),\n    path('contact/', ContactCreateView.as_view(), name='contact-create'), #done\n    path('ai/', ImageUploadView.as_view(), name='ai'), #done\n    path('listai/', ImageUploadView.as_view(), name='listai'), #done\n    # for 3rd-party data saving into our db\n    path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),\n    #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),\n    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),",
+        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),\n    path('login/', UserLoginView.as_view(), name='login'),\n    path('contact/', ContactCreateView.as_view(), name='contact-create'), #done\n    path('ai/', ImageUploadView.as_view(), name='ai'), #done\n    path('listai/', ImageUploadView.as_view(), name='listai'), #done\n    # for 3rd-party data saving into our db\n    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),\n    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),\n    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),",
         "detail": "backend.api.urls",
         "documentation": {}
     },
@@ -1355,6 +1271,24 @@
         "importPath": "backend.api.views",
         "description": "backend.api.views",
         "peekOfCode": "class UserLoginView(generics.GenericAPIView):\n    serializer_class = UserLoginSerializer\n    permission_classes = [AllowAny]\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = authenticate(username=serializer.validated_data['username'], password=serializer.validated_data['password'])\n        if user is not None:\n            token, created = Token.objects.get_or_create(user=user)\n            return Response({",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ContactCreateView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class ContactCreateView(generics.CreateAPIView):\n    serializer_class = ContactSerializer\n    def create(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        if serializer.is_valid():\n            serializer.save()\n            return Response({\"message\": \"Contact information saved successfully!\"}, status=status.HTTP_201_CREATED)\n        else:\n            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)\n'''",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "ContactCreateView",
+        "kind": 6,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "class ContactCreateView(generics.CreateAPIView):\n    serializer_class = ContactSerializer\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        try:\n            if serializer.is_valid(raise_exception=True):\n                self.perform_create(serializer)\n                return Response({\"message\": \"Contact information saved successfully!\"}, status=status.HTTP_201_CREATED)\n        except ValidationError as e:\n            return Response(e.detail, status=status.HTTP_400_BAD_REQUEST)",
         "detail": "backend.api.views",
         "documentation": {}
     },
@@ -2052,6 +1986,474 @@
         "documentation": {}
     },
     {
+        "label": "load_sma",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_sma(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'SMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_ema",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_ema(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'EMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_wma",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_wma(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'WMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dema",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dema(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'DEMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_tema",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_tema(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TEMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_trima",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_trima(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TRIMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_kama",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_kama(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'KAMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_mama",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_mama(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MAMA',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_tt",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_tt(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'T3',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_tt",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_tt(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'T3',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_macdext",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_macdext(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MACDEXT',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'series_type': 'open',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stoch",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stoch(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'STOCH',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stochf",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stochf(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'STOCHF',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_rsi",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_rsi(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'RSI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_stochrsi",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_stochrsi(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'STOCHRSI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_willr",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_willr(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'WILLR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_adx",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_adx(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ADX',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_adxr",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_adxr(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ADXR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_apo",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_apo(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'APO',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'series_type': 'open',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_ppo",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_ppo(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'PPO',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'series_type': 'open',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_mom",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_mom(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MOM',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_bop",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_bop(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'BOP',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cci",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cci(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'CCI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_cmo",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_cmo(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'CMO',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_roc",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_roc(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ROC',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_rocr",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_rocr(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ROCR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_aroon",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_aroon(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'AROON',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_aroonosc",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_aroonosc(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'AROONOSC',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_mfi",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_mfi(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MFI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_trix",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_trix(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TRIX',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_ultosc",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_ultosc(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ULTOSC',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dx",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dx(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'DX',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_minus_di",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_minus_di(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MINUS_DI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_plus_di",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_plus_di(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'PLUS_DI',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_minus_dm",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_minus_dm(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MINUS_DM',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_plus_dm",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_plus_dm(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'PLUS_DM',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_bbands",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_bbands(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'BBANDS',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_midpoint",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_midpoint(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MIDPOINT',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_midprice",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_midprice(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'MIDPRICE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_sar",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_sar(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'SAR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_trange",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_trange(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'TRANGE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_atr",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_atr(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ATR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_natr",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_natr(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'NATR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_ad",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_ad(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'AD',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_adosc",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_adosc(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'ADOSC',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_obv",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_obv(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'OBV',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n    }\n    response = requests.get(ALPHA_VANTAGE_BASE_URL, params=params)\n    data = response.json()",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_trendline",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_trendline(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_TRENDLINE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_sine",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_sine(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_SINE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_trendmode",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_trendmode(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_TRENDMODE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dcperiod",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dcperiod(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_DCPERIOD',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dcphase",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dcphase(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_DCPHASE',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
+        "label": "load_dcphasor",
+        "kind": 2,
+        "importPath": "backend.api.views",
+        "description": "backend.api.views",
+        "peekOfCode": "def load_dcphasor(request, symbol):\n    # Fetch new data from Alpha Vantage\n    params = {\n        'function': 'HT_PHASOR',\n        'symbol': symbol,\n        'apikey': ALPHA_VANTAGE_API_KEY,\n        'interval': 'weekly',\n        'time_period': '10',\n        'series_type': 'open',\n    }",
+        "detail": "backend.api.views",
+        "documentation": {}
+    },
+    {
         "label": "openai.api_key",
         "kind": 5,
         "importPath": "backend.api.views",
@@ -2299,7 +2701,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "DATABASE_ROUTERS = ['api.routers.UserRouter']\nAUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators",
+        "peekOfCode": "DATABASE_ROUTERS = ['api.routers.CustomUserRouter']\nAUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators",
         "detail": "backend.backend.settings",
         "documentation": {}
     },

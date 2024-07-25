@@ -2,11 +2,14 @@
 # signup and login
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.password_validation import validate_password, ValidationError as PasswordValidationError
 from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
 from api.models import Contact
 from api.models import CustomUser as User
+from pymongo import MongoClient 
+
+from rest_framework.validators import UniqueValidator
 # for data saving into database from 3rd-party
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
@@ -17,31 +20,66 @@ from .models import (
 User = get_user_model()
 
 # style parameter in password to hide password while typing
+
 class UserSignupSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(write_only=True, required=True, style={'input_type':'password'}, validators=[validate_password])
-    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type':'password'})
+    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})
+    email = serializers.EmailField(required=True)
+    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])
+    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})
 
     class Meta:
         model = User
-        fields = ('username', 'email', 'password', 'password_confirm') 
-        #extra_kwargs={
-        #    'password': {'write_only' : True}
-        #}
+        fields = ('username', 'email', 'password', 'password_confirm')
+
     def validate(self, attrs):
+        # Connect to MongoDB
+        client = MongoClient('mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin')
+        db = client['skxywtf']
+
+        # Check if the passwords match
         if attrs['password'] != attrs['password_confirm']:
             raise serializers.ValidationError({"password": "Password fields didn't match."})
+
+        # Validate password using Django's built-in validators
+        try:
+            validate_password(attrs['password'])
+        except PasswordValidationError as e:
+            raise serializers.ValidationError({"password": list(e.messages)})
+
+        # Check if the email already exists in the MongoDB collection
+        if db.api_customuser.find_one({'email': attrs['email']}):
+            raise serializers.ValidationError({"email": "Email is already in use."})
+
+        # Check if the username already exists in the MongoDB collection
+        if db.api_customuser.find_one({'username': attrs['username']}):
+            raise serializers.ValidationError({"username": "Username is already in use."})
 
         return attrs
 
     def create(self, validated_data):
+        # Directly interact with MongoDB for user creation
+        client = MongoClient('mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin')
+        db = client['skxywtf']
+
+        # Hash the password before saving
         user = User(
             username=validated_data['username'],
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
-        user.save()
-        return user
 
+        # Prepare user data with hashed password
+        user_data = {
+            'username': user.username,
+            'email': user.email,
+            'password': user.password  # Store the hashed password
+        }
+
+        # Insert the user into MongoDB
+        db.api_customuser.insert_one(user_data)
+
+        # Optionally, return the user object
+        return user
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(style={'input_type':'password'}, required=True)

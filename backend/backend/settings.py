@@ -115,7 +115,7 @@ DATABASES = {
 }
 
 
-DATABASE_ROUTERS = ['api.routers.UserRouter']
+DATABASE_ROUTERS = ['api.routers.CustomUserRouter']
 AUTH_USER_MODEL = 'api.CustomUser'
 
 
