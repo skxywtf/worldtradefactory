@@ -1,11 +1,9 @@
 from django.contrib.auth.models import AbstractUser # for signup and login
 from django.db import models # for contactus
-# Additional custom fields will go here. 
-# Uncomment the: AUTH_USER_MODEL = 'yourapp.CustomUser' in settings.py
-# register in the admin.py
-# makemigartions and then migrate
+from bson import ObjectId
+
 class CustomUser(AbstractUser):
-    pass
+    mongo_id = models.CharField(max_length=24, unique=True, blank=True, null=True)
 
     class Meta:
         db_table = 'api_customuser'
