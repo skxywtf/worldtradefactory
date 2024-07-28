@@ -50,6 +50,22 @@
         "documentation": {}
     },
     {
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -236,6 +252,22 @@
         "documentation": {}
     },
     {
+        "label": "ObjectId",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
+        "label": "ObjectId",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -377,6 +409,14 @@
         "description": "rest_framework.validators",
         "isExtraImport": true,
         "detail": "rest_framework.validators",
+        "documentation": {}
+    },
+    {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
         "documentation": {}
     },
     {
@@ -789,6 +829,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "backend.api.migrations.0003_customuser_mongo_id",
+        "description": "backend.api.migrations.0003_customuser_mongo_id",
+        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0002_alter_customuser_options_alter_customuser_table'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='mongo_id',\n            field=models.CharField(blank=True, max_length=24, null=True, unique=True),\n        ),",
+        "detail": "backend.api.migrations.0003_customuser_mongo_id",
+        "documentation": {}
+    },
+    {
         "label": "CustomUserCreationForm",
         "kind": 6,
         "importPath": "backend.api.admin",
@@ -919,7 +968,7 @@
         "kind": 6,
         "importPath": "backend.api.models",
         "description": "backend.api.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n    class Meta:\n        db_table = 'api_customuser'\n        app_label = 'api'\n'''\n# earlier correct\nclass CustomUser(AbstractUser):\n    pass\n# earlier correct",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    mongo_id = models.CharField(max_length=24, unique=True, blank=True, null=True)\n    class Meta:\n        db_table = 'api_customuser'\n        app_label = 'api'\n'''\n# earlier correct\nclass CustomUser(AbstractUser):\n    pass\n# earlier correct",
         "detail": "backend.api.models",
         "documentation": {}
     },
@@ -1072,7 +1121,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):\n        # Connect to MongoDB",
+        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):\n        client = MongoClient(Mongo_Connection_String)",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1234,7 +1283,16 @@
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "User = get_user_model()\n# style parameter in password to hide password while typing\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')",
+        "peekOfCode": "User = get_user_model()\nMongo_Connection_String = config('Mongo_Connection_String')\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "Mongo_Connection_String",
+        "kind": 5,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "Mongo_Connection_String = config('Mongo_Connection_String')\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1252,7 +1310,7 @@
         "kind": 5,
         "importPath": "backend.api.urls",
         "description": "backend.api.urls",
-        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),\n    path('login/', UserLoginView.as_view(), name='login'),\n    path('contact/', ContactCreateView.as_view(), name='contact-create'), #done\n    path('ai/', ImageUploadView.as_view(), name='ai'), #done\n    path('listai/', ImageUploadView.as_view(), name='listai'), #done\n    # for 3rd-party data saving into our db\n    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),\n    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),\n    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),",
+        "peekOfCode": "urlpatterns = [\n    path('signup/', UserSignupView.as_view(), name='signup'),#checked\n    path('login/', UserLoginView.as_view(), name='login'), #checked\n    path('contact/', ContactCreateView.as_view(), name='contact-create'), #checked\n    path('ai/', ImageUploadView.as_view(), name='ai'), #checked\n    path('listai/', ImageUploadView.as_view(), name='listai'), #done\n    # for 3rd-party data saving into our db\n    #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),\n    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),\n    #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),",
         "detail": "backend.api.urls",
         "documentation": {}
     },
