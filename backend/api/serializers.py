@@ -45,7 +45,7 @@ class UserSignupSerializer(serializers.ModelSerializer):
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
     password = serializers.CharField(style={'input_type':'password'}, required=True)
-
+#prev
 # contact us
 class ContactSerializer(serializers.ModelSerializer):
     class Meta:
