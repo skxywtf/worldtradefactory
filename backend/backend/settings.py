@@ -15,6 +15,7 @@ from pathlib import Path
 from pathlib import Path
 from dotenv import load_dotenv
 import os
+from decouple import config
 
 # Load environment variables from .env file
 load_dotenv()
@@ -97,21 +98,43 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'worldtradefactory',
+#         'CLIENT': {
+#             'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',
+#         }
+#     },
+#     'user_db': {
+#         'ENGINE': 'djongo',
+#         'NAME': 'skxywtf',
+#         'CLIENT': {
+#             'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',
+#         }
+#     }
+# }
+USER = config('USER')
+PASSWORD= config('PASSWORD')
+HOST= config('HOST')
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'worldtradefactory',
-        'CLIENT': {
-            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',
-        }
+    "default": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "worldtradefactory",
+        "USER": USER,
+        "PASSWORD":PASSWORD ,
+        "HOST": HOST,
+        "PORT": "5432",
     },
-    'user_db': {
-        'ENGINE': 'djongo',
-        'NAME': 'skxywtf',
-        'CLIENT': {
-            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/skxywtf?authSource=admin',
-        }
-    }
+    "user_db": {
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": "skxywtf",
+        "USER": USER,
+        "PASSWORD": PASSWORD,
+        "HOST":HOST,
+        "PORT": "5432",
+    },
 }
 
 

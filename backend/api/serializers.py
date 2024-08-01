@@ -9,7 +9,6 @@ from api.models import CustomUser as User
 from pymongo import MongoClient 
 from bson import ObjectId
 from rest_framework.validators import UniqueValidator
-from decouple import config
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
     EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade,
@@ -17,7 +16,7 @@ from .models import (
 )
 
 User = get_user_model()
-Mongo_Connection_String = config('Mongo_Connection_String')
+
 
 class UserSignupSerializer(serializers.ModelSerializer):
     username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})
@@ -30,35 +29,30 @@ class UserSignupSerializer(serializers.ModelSerializer):
         fields = ('username', 'email', 'password', 'password_confirm')
 
     def validate(self, attrs):
-        client = MongoClient(Mongo_Connection_String)
-        db = client['skxywtf']
-
         if attrs['password'] != attrs['password_confirm']:
-            raise serializers.ValidationError({"password": "Password fields didn't match."})
+            raise ValidationError({"password": "Password fields didn't match."})
 
         try:
             validate_password(attrs['password'])
-        except PasswordValidationError as e:
-            raise serializers.ValidationError({"password": list(e.messages)})
+        except ValidationError as e:
+            raise ValidationError({"password": list(e.messages)})
 
-        if db.api_customuser.find_one({'email': attrs['email']}):
-            raise serializers.ValidationError({"email": "Email is already in use."})
+        if User.objects.filter(email=attrs['email']).exists():
+            raise ValidationError({"email": "Email is already in use."})
 
-        if db.api_customuser.find_one({'username': attrs['username']}):
-            raise serializers.ValidationError({"username": "Username is already in use."})
+        if User.objects.filter(username=attrs['username']).exists():
+            raise ValidationError({"username": "Username is already in use."})
 
         return attrs
 
     def create(self, validated_data):
         user = User(
             username=validated_data['username'],
-            email=validated_data['email'],
-            mongo_id=str(ObjectId())
+            email=validated_data['email']
         )
         user.set_password(validated_data['password'])
         user.save()
         return user
-
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)

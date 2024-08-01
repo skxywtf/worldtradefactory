@@ -8,7 +8,7 @@ class CustomUserRouter:
         """
         Attempts to read CustomUser models go to user_db.
         """
-        if model._meta.app_label == 'api' and model._meta.model_name == 'customuser':
+        if model._meta.app_label == 'api' and model._meta.model_name == 'CustomUser':
             return 'user_db'
         return 'default'
 
@@ -16,7 +16,7 @@ class CustomUserRouter:
         """
         Attempts to write CustomUser models go to user_db.
         """
-        if model._meta.app_label == 'api' and model._meta.model_name == 'customuser':
+        if model._meta.app_label == 'api' and model._meta.model_name == 'CustomUser':
             return 'user_db'
         return 'default'
 
@@ -33,6 +33,6 @@ class CustomUserRouter:
         Make sure the CustomUser model only appears in the 'user_db'
         database.
         """
-        if app_label == 'api' and model_name == 'customuser':
+        if app_label == 'api' and model_name == 'CustomUser':
             return db == 'user_db'
         return db == 'default'

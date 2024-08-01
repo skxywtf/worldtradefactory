@@ -3,11 +3,7 @@ from django.db import models # for contactus
 from bson import ObjectId
 
 class CustomUser(AbstractUser):
-    mongo_id = models.CharField(max_length=24, unique=True, blank=True, null=True)
-
-    class Meta:
-        db_table = 'api_customuser'
-        app_label = 'api'
+    pass
 '''
 # earlier correct
 class CustomUser(AbstractUser):

@@ -42,30 +42,6 @@
         "documentation": {}
     },
     {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "migrations",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
         "label": "models",
         "importPath": "django.db",
         "description": "django.db",
@@ -412,14 +388,6 @@
         "documentation": {}
     },
     {
-        "label": "config",
-        "importPath": "decouple",
-        "description": "decouple",
-        "isExtraImport": true,
-        "detail": "decouple",
-        "documentation": {}
-    },
-    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -648,6 +616,14 @@
         "documentation": {}
     },
     {
+        "label": "config",
+        "importPath": "decouple",
+        "description": "decouple",
+        "isExtraImport": true,
+        "detail": "decouple",
+        "documentation": {}
+    },
+    {
         "label": "settings",
         "importPath": "django.conf",
         "description": "django.conf",
@@ -820,24 +796,6 @@
         "documentation": {}
     },
     {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
-        "description": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0001_initial'),\n    ]\n    operations = [\n        migrations.AlterModelOptions(\n            name='customuser',\n            options={},\n        ),\n        migrations.AlterModelTable(",
-        "detail": "backend.api.migrations.0002_alter_customuser_options_alter_customuser_table",
-        "documentation": {}
-    },
-    {
-        "label": "Migration",
-        "kind": 6,
-        "importPath": "backend.api.migrations.0003_customuser_mongo_id",
-        "description": "backend.api.migrations.0003_customuser_mongo_id",
-        "peekOfCode": "class Migration(migrations.Migration):\n    dependencies = [\n        ('api', '0002_alter_customuser_options_alter_customuser_table'),\n    ]\n    operations = [\n        migrations.AddField(\n            model_name='customuser',\n            name='mongo_id',\n            field=models.CharField(blank=True, max_length=24, null=True, unique=True),\n        ),",
-        "detail": "backend.api.migrations.0003_customuser_mongo_id",
-        "documentation": {}
-    },
-    {
         "label": "CustomUserCreationForm",
         "kind": 6,
         "importPath": "backend.api.admin",
@@ -968,7 +926,7 @@
         "kind": 6,
         "importPath": "backend.api.models",
         "description": "backend.api.models",
-        "peekOfCode": "class CustomUser(AbstractUser):\n    mongo_id = models.CharField(max_length=24, unique=True, blank=True, null=True)\n    class Meta:\n        db_table = 'api_customuser'\n        app_label = 'api'\n'''\n# earlier correct\nclass CustomUser(AbstractUser):\n    pass\n# earlier correct",
+        "peekOfCode": "class CustomUser(AbstractUser):\n    pass\n'''\n# earlier correct\nclass CustomUser(AbstractUser):\n    pass\n# earlier correct\n'''\n# contact us models\nclass Contact(models.Model):",
         "detail": "backend.api.models",
         "documentation": {}
     },
@@ -1112,7 +1070,7 @@
         "kind": 6,
         "importPath": "backend.api.routers",
         "description": "backend.api.routers",
-        "peekOfCode": "class CustomUserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    'api' application for the CustomUser model.\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api' and model._meta.model_name == 'customuser':",
+        "peekOfCode": "class CustomUserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    'api' application for the CustomUser model.\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api' and model._meta.model_name == 'CustomUser':",
         "detail": "backend.api.routers",
         "documentation": {}
     },
@@ -1121,7 +1079,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):\n        client = MongoClient(Mongo_Connection_String)",
+        "peekOfCode": "class UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):\n        if attrs['password'] != attrs['password_confirm']:",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1130,7 +1088,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n# contact us\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):\n        if len(value) > 100:",
+        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n#prev\n# contact us\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1283,16 +1241,7 @@
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "User = get_user_model()\nMongo_Connection_String = config('Mongo_Connection_String')\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')",
-        "detail": "backend.api.serializers",
-        "documentation": {}
-    },
-    {
-        "label": "Mongo_Connection_String",
-        "kind": 5,
-        "importPath": "backend.api.serializers",
-        "description": "backend.api.serializers",
-        "peekOfCode": "Mongo_Connection_String = config('Mongo_Connection_String')\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):",
+        "peekOfCode": "User = get_user_model()\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -2741,7 +2690,16 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',\n        }",
+        "peekOfCode": "WSGI_APPLICATION = 'backend.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/5.0/ref/settings/#databases\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'djongo',\n#         'NAME': 'worldtradefactory',\n#         'CLIENT': {\n#             'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',\n#         }",
+        "detail": "backend.backend.settings",
+        "documentation": {}
+    },
+    {
+        "label": "USER",
+        "kind": 5,
+        "importPath": "backend.backend.settings",
+        "description": "backend.backend.settings",
+        "peekOfCode": "USER = config('USER')\nPASSWORD= config('PASSWORD')\nHOST= config('HOST')\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"worldtradefactory\",\n        \"USER\": USER,\n        \"PASSWORD\":PASSWORD ,\n        \"HOST\": HOST,",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -2750,7 +2708,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'djongo',\n        'NAME': 'worldtradefactory',\n        'CLIENT': {\n            'host': 'mongodb://admin:W0rldTr%40deFact0ry@31.220.31.198:27017/worldtradefactory?authSource=admin',\n        }\n    },\n    'user_db': {\n        'ENGINE': 'djongo',",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"worldtradefactory\",\n        \"USER\": USER,\n        \"PASSWORD\":PASSWORD ,\n        \"HOST\": HOST,\n        \"PORT\": \"5432\",\n    },\n    \"user_db\": {",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
