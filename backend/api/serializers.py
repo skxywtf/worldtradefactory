@@ -1,7 +1,7 @@
 
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
-from django.contrib.auth.password_validation import validate_password, ValidationError as PasswordValidationError
+from django.contrib.auth.password_validation import validate_password, ValidationError 
 from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
 from api.models import Contact
