@@ -4,6 +4,7 @@ from rest_framework.response import Response
 from django.contrib.auth import authenticate
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
+from django.contrib.auth import login
 #from .serializers import UserSignupSerializer, UserLoginSerializer
 
 # contact us
@@ -74,7 +75,7 @@ class UserSignupView(generics.CreateAPIView):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         user = serializer.save()
-        token, created = Token.objects.get_or_create(user=user)
+        # token, created = Token.objects.get_or_create(user=user)
         return Response({
             "user": {
                 "username": user.username,
@@ -82,7 +83,6 @@ class UserSignupView(generics.CreateAPIView):
             },
             #"token": token.key
         }, status=status.HTTP_201_CREATED)
-
 class UserLoginView(generics.GenericAPIView):
     serializer_class = UserLoginSerializer
     permission_classes = [AllowAny]
@@ -90,17 +90,20 @@ class UserLoginView(generics.GenericAPIView):
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
-        user = authenticate(username=serializer.validated_data['username'], password=serializer.validated_data['password'])
+        user = serializer.validated_data['user']
         
         if user is not None:
-            token, created = Token.objects.get_or_create(user=user)
+            # Log the user in
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            
             return Response({
                 "user": {
                     "username": user.username,
                     "email": user.email
                 },
-                #"token": token.key
+                # "token": token.key
             }, status=status.HTTP_200_OK)
+        
         return Response({"detail": "Invalid credentials"}, status=status.HTTP_401_UNAUTHORIZED)
 
 #contact us

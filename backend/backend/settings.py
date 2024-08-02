@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 # import environ
 
 from pathlib import Path
-from pathlib import Path
 from dotenv import load_dotenv
 import os
 from decouple import config
@@ -36,7 +35,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2d2r#3g36j=9d4#vvjcqa_japrh%b$)29z0gc1!20ix^8buhbs'
+SECRET_KEY=config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -138,8 +137,7 @@ DATABASES = {
 }
 
 
-DATABASE_ROUTERS = ['api.routers.CustomUserRouter']
-AUTH_USER_MODEL = 'api.CustomUser'
+
 
 
 # DATABASES = {

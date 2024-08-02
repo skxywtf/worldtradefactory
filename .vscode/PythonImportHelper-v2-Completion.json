@@ -50,6 +50,14 @@
         "documentation": {}
     },
     {
+        "label": "connections",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
         "label": "django.db.models.deletion",
         "kind": 6,
         "isExtraImport": true,
@@ -236,14 +244,6 @@
         "documentation": {}
     },
     {
-        "label": "ObjectId",
-        "importPath": "bson",
-        "description": "bson",
-        "isExtraImport": true,
-        "detail": "bson",
-        "documentation": {}
-    },
-    {
         "label": "serializers",
         "importPath": "rest_framework",
         "description": "rest_framework",
@@ -292,7 +292,23 @@
         "documentation": {}
     },
     {
+        "label": "get_user_model",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
         "label": "authenticate",
+        "importPath": "django.contrib.auth",
+        "description": "django.contrib.auth",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth",
+        "documentation": {}
+    },
+    {
+        "label": "login",
         "importPath": "django.contrib.auth",
         "description": "django.contrib.auth",
         "isExtraImport": true,
@@ -372,19 +388,27 @@
         "documentation": {}
     },
     {
-        "label": "MongoClient",
-        "importPath": "pymongo",
-        "description": "pymongo",
-        "isExtraImport": true,
-        "detail": "pymongo",
-        "documentation": {}
-    },
-    {
         "label": "UniqueValidator",
         "importPath": "rest_framework.validators",
         "description": "rest_framework.validators",
         "isExtraImport": true,
         "detail": "rest_framework.validators",
+        "documentation": {}
+    },
+    {
+        "label": "check_password",
+        "importPath": "django.contrib.auth.hashers",
+        "description": "django.contrib.auth.hashers",
+        "isExtraImport": true,
+        "detail": "django.contrib.auth.hashers",
+        "documentation": {}
+    },
+    {
+        "label": "AuthenticationFailed",
+        "importPath": "rest_framework.exceptions",
+        "description": "rest_framework.exceptions",
+        "isExtraImport": true,
+        "detail": "rest_framework.exceptions",
         "documentation": {}
     },
     {
@@ -589,14 +613,6 @@
         "description": "django.core.asgi",
         "isExtraImport": true,
         "detail": "django.core.asgi",
-        "documentation": {}
-    },
-    {
-        "label": "Path",
-        "importPath": "pathlib",
-        "description": "pathlib",
-        "isExtraImport": true,
-        "detail": "pathlib",
         "documentation": {}
     },
     {
@@ -1066,15 +1082,6 @@
         "documentation": {}
     },
     {
-        "label": "CustomUserRouter",
-        "kind": 6,
-        "importPath": "backend.api.routers",
-        "description": "backend.api.routers",
-        "peekOfCode": "class CustomUserRouter:\n    \"\"\"\n    A router to control all database operations on models in the\n    'api' application for the CustomUser model.\n    \"\"\"\n    def db_for_read(self, model, **hints):\n        \"\"\"\n        Attempts to read CustomUser models go to user_db.\n        \"\"\"\n        if model._meta.app_label == 'api' and model._meta.model_name == 'CustomUser':",
-        "detail": "backend.api.routers",
-        "documentation": {}
-    },
-    {
         "label": "UserSignupSerializer",
         "kind": 6,
         "importPath": "backend.api.serializers",
@@ -1088,7 +1095,7 @@
         "kind": 6,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type':'password'}, required=True)\n#prev\n# contact us\nclass ContactSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Contact\n        fields = ('first_name', 'last_name', 'email', 'phone', 'description')\n    def validate_first_name(self, value):",
+        "peekOfCode": "class UserLoginSerializer(serializers.Serializer):\n    username = serializers.CharField(required=True)\n    password = serializers.CharField(style={'input_type': 'password'}, required=True)\n    def validate(self, data):\n        username = data.get('username')\n        password = data.get('password')\n        # Authenticate using the user_db database\n        try:\n            user = User.objects.using('user_db').get(username=username)\n            if not user.check_password(password):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1237,11 +1244,20 @@
         "documentation": {}
     },
     {
+        "label": "authenticate_user_db",
+        "kind": 2,
+        "importPath": "backend.api.serializers",
+        "description": "backend.api.serializers",
+        "peekOfCode": "def authenticate_user_db(username=None, password=None):\n    try:\n        user = User.objects.using('user_db').get(username=username)\n        if user.check_password(password):\n            return user\n    except User.DoesNotExist:\n        return None\n    return None\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})",
+        "detail": "backend.api.serializers",
+        "documentation": {}
+    },
+    {
         "label": "User",
         "kind": 5,
         "importPath": "backend.api.serializers",
         "description": "backend.api.serializers",
-        "peekOfCode": "User = get_user_model()\nclass UserSignupSerializer(serializers.ModelSerializer):\n    username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})\n    email = serializers.EmailField(required=True)\n    password = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, validators=[validate_password])\n    password_confirm = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'})\n    class Meta:\n        model = User\n        fields = ('username', 'email', 'password', 'password_confirm')\n    def validate(self, attrs):",
+        "peekOfCode": "User = get_user_model()\ndef authenticate_user_db(username=None, password=None):\n    try:\n        user = User.objects.using('user_db').get(username=username)\n        if user.check_password(password):\n            return user\n    except User.DoesNotExist:\n        return None\n    return None\nclass UserSignupSerializer(serializers.ModelSerializer):",
         "detail": "backend.api.serializers",
         "documentation": {}
     },
@@ -1268,7 +1284,7 @@
         "kind": 6,
         "importPath": "backend.api.views",
         "description": "backend.api.views",
-        "peekOfCode": "class UserSignupView(generics.CreateAPIView):\n    serializer_class = UserSignupSerializer\n    permission_classes = [AllowAny]\n    def create(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.save()\n        token, created = Token.objects.get_or_create(user=user)\n        return Response({\n            \"user\": {",
+        "peekOfCode": "class UserSignupView(generics.CreateAPIView):\n    serializer_class = UserSignupSerializer\n    permission_classes = [AllowAny]\n    def create(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.save()\n        # token, created = Token.objects.get_or_create(user=user)\n        return Response({\n            \"user\": {",
         "detail": "backend.api.views",
         "documentation": {}
     },
@@ -1277,7 +1293,7 @@
         "kind": 6,
         "importPath": "backend.api.views",
         "description": "backend.api.views",
-        "peekOfCode": "class UserLoginView(generics.GenericAPIView):\n    serializer_class = UserLoginSerializer\n    permission_classes = [AllowAny]\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = authenticate(username=serializer.validated_data['username'], password=serializer.validated_data['password'])\n        if user is not None:\n            token, created = Token.objects.get_or_create(user=user)\n            return Response({",
+        "peekOfCode": "class UserLoginView(generics.GenericAPIView):\n    serializer_class = UserLoginSerializer\n    permission_classes = [AllowAny]\n    def post(self, request, *args, **kwargs):\n        serializer = self.get_serializer(data=request.data)\n        serializer.is_valid(raise_exception=True)\n        user = serializer.validated_data['user']\n        if user is not None:\n            # Log the user in\n            login(request, user, backend='django.contrib.auth.backends.ModelBackend')",
         "detail": "backend.api.views",
         "documentation": {}
     },
@@ -2618,16 +2634,7 @@
         "kind": 5,
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
-        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = 'django-insecure-2d2r#3g36j=9d4#vvjcqa_japrh%b$)29z0gc1!20ix^8buhbs'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
-        "detail": "backend.backend.settings",
-        "documentation": {}
-    },
-    {
-        "label": "SECRET_KEY",
-        "kind": 5,
-        "importPath": "backend.backend.settings",
-        "description": "backend.backend.settings",
-        "peekOfCode": "SECRET_KEY = 'django-insecure-2d2r#3g36j=9d4#vvjcqa_japrh%b$)29z0gc1!20ix^8buhbs'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "BASE_DIR = Path(__file__).resolve().parent.parent\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY=config('SECRET_KEY')\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
         "detail": "backend.backend.settings",
         "documentation": {}
     },
@@ -2709,24 +2716,6 @@
         "importPath": "backend.backend.settings",
         "description": "backend.backend.settings",
         "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"worldtradefactory\",\n        \"USER\": USER,\n        \"PASSWORD\":PASSWORD ,\n        \"HOST\": HOST,\n        \"PORT\": \"5432\",\n    },\n    \"user_db\": {",
-        "detail": "backend.backend.settings",
-        "documentation": {}
-    },
-    {
-        "label": "DATABASE_ROUTERS",
-        "kind": 5,
-        "importPath": "backend.backend.settings",
-        "description": "backend.backend.settings",
-        "peekOfCode": "DATABASE_ROUTERS = ['api.routers.CustomUserRouter']\nAUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators",
-        "detail": "backend.backend.settings",
-        "documentation": {}
-    },
-    {
-        "label": "AUTH_USER_MODEL",
-        "kind": 5,
-        "importPath": "backend.backend.settings",
-        "description": "backend.backend.settings",
-        "peekOfCode": "AUTH_USER_MODEL = 'api.CustomUser'\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.sqlite3',\n#         'NAME': BASE_DIR / 'db.sqlite3',\n#     }\n# }\n# Password validation\n# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [",
         "detail": "backend.backend.settings",
         "documentation": {}
     },

@@ -6,17 +6,27 @@ from .models import Contact # for contact us
 from api.models import UploadedImage # for stock img ai
 from api.models import Contact
 from api.models import CustomUser as User
-from pymongo import MongoClient 
-from bson import ObjectId
+from django.contrib.auth import get_user_model
 from rest_framework.validators import UniqueValidator
 from .models import (
     CountryData, EducationData, HealthData, EmploymentData,
     EnvironmentalData, EconomicData, SocialData, Currency, ExchangeRate, Trade,
     UploadedFile, Stock
 )
+from django.contrib.auth.hashers import check_password
+from rest_framework.exceptions import AuthenticationFailed
+from django.db import connections
 
 User = get_user_model()
 
+def authenticate_user_db(username=None, password=None):
+    try:
+        user = User.objects.using('user_db').get(username=username)
+        if user.check_password(password):
+            return user
+    except User.DoesNotExist:
+        return None
+    return None
 
 class UserSignupSerializer(serializers.ModelSerializer):
     username = serializers.CharField(write_only=True, required=True, style={'input_type': 'text'})
@@ -37,10 +47,10 @@ class UserSignupSerializer(serializers.ModelSerializer):
         except ValidationError as e:
             raise ValidationError({"password": list(e.messages)})
 
-        if User.objects.filter(email=attrs['email']).exists():
+        if User.objects.using('user_db').filter(email=attrs['email']).exists():
             raise ValidationError({"email": "Email is already in use."})
 
-        if User.objects.filter(username=attrs['username']).exists():
+        if User.objects.using('user_db').filter(username=attrs['username']).exists():
             raise ValidationError({"username": "Username is already in use."})
 
         return attrs
@@ -51,12 +61,30 @@ class UserSignupSerializer(serializers.ModelSerializer):
             email=validated_data['email']
         )
         user.set_password(validated_data['password'])
-        user.save()
+        user.save(using='user_db')
         return user
+
 
 class UserLoginSerializer(serializers.Serializer):
     username = serializers.CharField(required=True)
-    password = serializers.CharField(style={'input_type':'password'}, required=True)
+    password = serializers.CharField(style={'input_type': 'password'}, required=True)
+
+    def validate(self, data):
+        username = data.get('username')
+        password = data.get('password')
+
+        # Authenticate using the user_db database
+        try:
+            user = User.objects.using('user_db').get(username=username)
+            if not user.check_password(password):
+                raise AuthenticationFailed("Invalid login credentials")
+        except User.DoesNotExist:
+            raise AuthenticationFailed("Invalid login credentials")
+
+        data['user'] = user
+        return data
+   
+
 #prev
 # contact us
 class ContactSerializer(serializers.ModelSerializer):
