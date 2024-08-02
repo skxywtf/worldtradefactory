@@ -40,12 +40,12 @@ urlpatterns = [
     path('signup/', UserSignupView.as_view(), name='signup'),#checked
     path('login/', UserLoginView.as_view(), name='login'), #checked
     path('contact/', ContactCreateView.as_view(), name='contact-create'), #checked
-    path('ai/', ImageUploadView.as_view(), name='ai'), #checked
-    path('listai/', ImageUploadView.as_view(), name='listai'), #done
+    #path('ai/', ImageUploadView.as_view(), name='ai'), #checked
+    #path('listai/', ImageUploadView.as_view(), name='listai'), #done
 
     # for 3rd-party data saving into our db
     #path('fetch-country-data/', fetch_country_data, name='fetch_country_data'),
-    path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
+    #path('fetch-economic-data/', fetch_economic_data, name='fetch_economic_data'),
     #path('fetch-education-data/', fetch_education_data, name='fetch_education_data'),
     #path('fetch-employment-data/', fetch_employment_data, name='fetch_employment_data'),
     #path('fetch-environmental-data/', fetch_environmental_data, name='fetch_environmental_data'),
