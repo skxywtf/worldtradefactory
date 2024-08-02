@@ -199,6 +199,7 @@ class ContactCreateView(generics.CreateAPIView):
 '''
 
 # for stock img ai
+
 openai.api_key = "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"
 
 class ImageUploadView(views.APIView):

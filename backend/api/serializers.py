@@ -162,7 +162,8 @@ class ContactSerializer(serializers.ModelSerializer):
         return value
 # working correct but giving djongo and mongo db error due to validations in serializers.py
 '''
-    
+
+ 
 # for stock img ai
 class UploadedImageSerializer(serializers.ModelSerializer):
     class Meta:
