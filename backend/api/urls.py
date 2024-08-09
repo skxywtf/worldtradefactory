@@ -40,7 +40,7 @@ urlpatterns = [
     path('signup/', UserSignupView.as_view(), name='signup'),#checked
     path('login/', UserLoginView.as_view(), name='login'), #checked
     path('contact/', ContactCreateView.as_view(), name='contact-create'), #checked
-    #path('ai/', ImageUploadView.as_view(), name='ai'), #checked
+    path('ai/', ImageUploadView.as_view(), name='ai'), #checked
     #path('listai/', ImageUploadView.as_view(), name='listai'), #done
 
     # for 3rd-party data saving into our db
