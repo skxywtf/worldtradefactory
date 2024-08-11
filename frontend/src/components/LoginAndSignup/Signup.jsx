@@ -24,11 +24,13 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
+  //const [confirmPassword, setConfirmPassword] = useState("");
+  const [password_confirm, setpassword_confirm] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!username || !email || !password || !confirmPassword) {
+    //if (!username || !email || !password || !confirmPassword) {
+      if (!username || !email || !password || !password_confirm) {
       toast.error("Please fill all fields");
       return;
     }
@@ -36,7 +38,8 @@ const Signup = () => {
       toast.error("Password must be at least 6 characters");
       return;
     }
-    if (password !== confirmPassword) {
+    //if (password !== confirmPassword) {
+      if (password !== password_confirm) {
       toast.error("Passwords do not match");
       return;
     }
@@ -46,7 +49,8 @@ const Signup = () => {
         username,
         email,
         password,
-        confirmPassword,
+        //confirmPassword,
+        password_confirm,
       })
       .then((result) => {
         console.log(result.data);
@@ -125,7 +129,8 @@ const Signup = () => {
                   type="password"
                   placeholder="confirm password"
                   onChange={(e) => {
-                    setConfirmPassword(e.target.value);
+                    //setConfirmPassword(e.target.value);
+                    setpassword_confirm(e.target.value);
                   }}
                 />
               </div>
@@ -143,12 +148,17 @@ const Signup = () => {
                 <Toaster />
               </div>
             </form>
+            {/*
             <div className="text-center my-5 text-xl">OR</div>
+            */}
             <div className=" w-full flex justify-center">
+              {/* 
               <GoogleButton
-                className=" w-full"
-                onClick={handleSignInWithGoogle}
+               // <GoogleButton className=" w-full"
+               // onClick={handleSignInWithGoogle} 
               />
+              */}
+              
             </div>
           </div>
         </div>

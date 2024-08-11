@@ -114,9 +114,13 @@ const Login = () => {
                 <Toaster />
               </div>
             </form>
+            {/*}
             <div className="text-center my-5 text-xl">OR</div>
+            */}
             <div className=" w-full flex justify-center mb-32">
+              {/*}
               <GoogleButton onClick={handleSignInWithGoogle} />
+              */}
             </div>
           </div>
         </div>
