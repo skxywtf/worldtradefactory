@@ -28,5 +28,6 @@ urlpatterns = [
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
+    path('trading/', include('trading.urls')),
     #path('ai', views.ImageUploadView.as_view(), name='image-upload'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # for ai api
