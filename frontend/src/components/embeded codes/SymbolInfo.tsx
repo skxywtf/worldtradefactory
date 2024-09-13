@@ -65,3 +65,5 @@ const SymbolInfo: React.FC<SymbolInfoProps> = ({ searchInputValue }) => {
 };
 
 export default SymbolInfo;
+
+
