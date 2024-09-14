@@ -3,6 +3,8 @@ from thread_manager import ThreadManager
 from assistant_manager import AssistantManager
 import requests
 import json
+import time
+import datetime
 import pandas as pd    
 import yfinance as yf
 from scipy.stats import skew
@@ -14,50 +16,166 @@ import matplotlib.ticker as mticker
 import pandas as pd
 import matplotlib.pyplot as plt
 import alpaca_trade_api as tradeapi
+import os
+from dotenv import load_dotenv
+import json
 # Set up the Alpaca API client
-ALPACA_API_KEY = ('PKK8X2I51Z08PE8D2TE8')
-ALPACA_SECRET_KEY = ('9fWCMQsNvRUfzC2rPwPgIgAybECYQpZuJDA2eTwx')
-BASE_URL = 'https://paper-api.alpaca.markets'    
-
+ALPACA_API_KEY= os.getenv('ALPACA_API_KEY')
+ALPACA_SECRET_KEY = os.getenv('ALPACA_SECRET_KEY')
+ASSISTANT_ID= os.getenv('ASSISTANT_ID')
+thread_id = os.getenv('THREAD_ID')
+BASE_URL = 'https://paper-api.alpaca.markets'
 api = tradeapi.REST(ALPACA_API_KEY, ALPACA_SECRET_KEY, BASE_URL, api_version='v2')
 
-def buy_shares(stock_symbol: str, quantity: int):
-    try:   
-        # Submit a market order to buy the shares
-        api.submit_order(
+# Define a global stop flag
+stop_flag = False
+
+def stop_trading():
+    global stop_flag
+    stop_flag = True
+    print("Trading has been stopped.")
+
+
+def place_order(api, stock_symbol, quantity, order_type='market', limit_price=None, stop_price=None):
+    try:
+        # Validate that required prices are provided based on the order type
+        if order_type == 'limit' and limit_price is None:
+            raise ValueError("Limit orders require a limit price.")
+        elif order_type == 'stop' and stop_price is None:
+            raise ValueError("Stop orders require a stop price.")
+        elif order_type == 'stop_limit' and (limit_price is None or stop_price is None):
+            raise ValueError("Stop-limit orders require both a stop price and a limit price.")
+
+        # Construct the order payload
+        order = api.submit_order(
             symbol=stock_symbol,
             qty=quantity,
             side='buy',
-            type='market',
-            time_in_force='gtc'  # Good 'Til Canceled
+            type=order_type,
+            time_in_force='gtc',  # Good till canceled
+            limit_price=limit_price if order_type in ['limit', 'stop_limit'] else None,
+            stop_price=stop_price if order_type in ['stop', 'stop_limit'] else None
         )
-        return f"Successfully placed an order to buy {quantity} shares of {stock_symbol}."
+
+        # Convert the order to a dictionary or string, handling Timestamps
+        order_info = {
+            "symbol": order.symbol,
+            "quantity": order.qty,
+            "order_type": order.type,
+            "status": order.status,
+            "submitted_at": order.submitted_at.isoformat() if order.submitted_at else None
+        }
+
+        print(f"Order placed: {quantity} shares of {stock_symbol} as a {order_type} order")
+        return order_info
+
     except Exception as e:
-        return f"Failed to place order: {str(e)}"    
+        print(f"Error placing order: {str(e)}")
+        return f"Error placing order: {str(e)}"
 
-def sell_shares(symbol: str, qty: int):
+
+
+
+# Function to get portfolio information
+def get_portfolio():
     try:
-        # Check if you have enough shares to sell
-        position = api.get_position(symbol)
-        if int(position.qty) < qty:
-            return f"Error: You don't have enough shares to sell. You currently own {position.qty} shares."
+        portfolio = api.list_positions()
+        portfolio_value = 0.0  # Initialize portfolio value as float
+        portfolio_details = []
 
-        # Place a market sell order
+        for position in portfolio:
+            symbol = position.symbol
+            qty = float(position.qty)  # Convert quantity to float
+            avg_entry_price = float(position.avg_entry_price)  # Ensure price is float
+
+            # Multiply to get the value of that particular stock holding
+            stock_value = qty * avg_entry_price
+            portfolio_value += stock_value
+
+            portfolio_details.append({
+                'symbol': symbol,
+                'quantity': qty,
+                'avg_entry_price': avg_entry_price,
+                'stock_value': stock_value
+            })
+
+        # Print the total portfolio value and details
+        print(f"Total Portfolio Value: {portfolio_value}")
+        print("Portfolio Details:")
+        for detail in portfolio_details:
+            print(detail)
+
+        return {
+            'total_portfolio_value': portfolio_value,
+            'portfolio_details': portfolio_details
+        }
+
+    except Exception as e:
+        print(f"Error retrieving portfolio: {str(e)}")
+        return f"Error retrieving portfolio: {str(e)}"
+
+
+# Function to get the latest price of a stock using barset
+def get_latest_price(symbol):
+    try:
+        # Get the latest bar for the stock symbol
+        last_quote = api.get_latest_bar(symbol)    
+        current_price=last_quote.c
+    
+        return f"The current price for {symbol} is: ${current_price}"   
+    except Exception as e:
+        print(f"Error retrieving price for {symbol}: {e}")
+        return None
+
+# Function to get the cash balance in the Alpaca account
+def get_cash_balance():
+    try:
+        account = api.get_account()
+        return f"Available cash balance is {account.cash}"
+    except Exception as e:
+        print(f"Error retrieving cash balance: {e}")
+        return None
+
+# Function to execute the trading logic based on inputs
+def start_trading(symbol, qty, side, order_type='market', time_in_force='gtc', interval_minutes=None):
+    global stop_flag
+    stop_flag = False  # Reset stop flag when starting trading
+
+    if interval_minutes is None:
+        # Place the order only once
+        current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        print(f"Running trading logic at {current_time}")
+        place_order(symbol, qty, side, order_type, time_in_force)
+    else:
+        # Convert interval to seconds
+        interval_seconds = interval_minutes * 60
+        while not stop_flag:  # Check stop flag before every trade
+            current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+            print(f"Running trading logic at {current_time}")
+            place_order(symbol, qty, side, order_type, time_in_force)
+            # Sleep for the specified interval (in seconds)
+            time.sleep(interval_seconds)
+        print("Trading stopped due to stop_flag being set.")
+
+# Define function to place a crypto order
+def place_crypto_order(symbol, quantity, side, order_type='market', limit_price=None):
+    try:
+        # Check if limit price is required
+        if order_type == 'limit' and limit_price is None:
+            raise ValueError("Limit orders require a limit price.")
+
+        # Place a cryptocurrency order
         order = api.submit_order(
             symbol=symbol,
-            qty=qty,
-            side='sell',
-            type='market',
-            time_in_force='gtc'  # Good 'til canceled
+            qty=quantity,
+            side=side,
+            type=order_type,
+            limit_price=limit_price if order_type == 'limit' else None,
+            time_in_force='gtc'
         )
-        
-        return f"Sell order placed: {qty} shares of {symbol}."
-    
+        return f"Order placed: {side} {quantity} {symbol} as a {order_type} order."
     except Exception as e:
-        return f"Error: {str(e)}"
-
-    
-
+        return f"Error placing crypto order: {str(e)}"
 
 def calculate_metric(data, metric):                     
     results = {}
@@ -265,7 +383,9 @@ class ChatSession:
         if not thread_id:
             thread = await self.thread_manager.create_thread(messages=[])
             thread_id = thread.id
-            self.thread_manager.save_thread_data(thread_id)
+            
+            self.thread_manager.save_thread_data(self.assistant_id, thread_id)
+
         return thread_id
 
     async def find_or_create_assistant(self, name: str, model: str):
@@ -329,8 +449,9 @@ class ChatSession:
                                         }
                                     },
                                     "required": ["topic"],
+                }
+                }
                 },
-                },},
                 {"type": "function",
                  "function": {
                     "name": "get_financial_metric",
@@ -358,58 +479,180 @@ class ChatSession:
 
                         },
                         "required": ["company_name", "metric"]             
-                    },
-                },
+                    }
+                }
             },
-            {"type":"function",
-             "function":{
-                "name": "buy_shares",
-                "description": "Buy a specified number of shares of a given stock using the Alpaca API.",
-                "parameters": {
-                    "type": "object",
+            {
+                "type": "function",
+                "function": {
+                    "name": "place_order",
+                    "description": "Place an order to buy a stock using the Alpaca API, supporting different order types and prices when required.",
+                    "parameters": {
+                        "type": "object",
                         "properties": {
                             "stock_symbol": {
                                 "type": "string",
                                 "description": "The stock symbol of the company to buy shares of, e.g., AAPL for Apple."
                             },
                             "quantity": {
-                                "type": "integer",
-                                "description": "The number of shares to buy."
+                                "type": "number",
+                                "description": "The number of shares to buy. Supports fractional shares."
                             },
-                        },  
-                        "required": ["stock_symbol", "quantity"] 
-                },
-                
+                            "order_type": {
+                                "type": "string",
+                                "description": "The type of order to place (e.g., market, limit, stop, stop_limit). Default is market.",
+                                "enum": ["market", "limit", "stop", "stop_limit"]
+                            },
+                            "limit_price": {
+                                "type": "number",
+                                "description": "The price at which to execute a limit order. Required for limit and stop-limit orders.",
+                                "nullable": True
+                            },
+                            "stop_price": {
+                                "type": "number",
+                                "description": "The price at which to trigger a stop order. Required for stop and stop-limit orders.",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["stock_symbol", "quantity"]
+                    }
+                }
             },
-          },
-          {"type":"function",
-            "function":{
-                "name": "sell_shares",
-                "description": "Sell shares of a given stock using Alpaca's API.",
+            {
+                "type": "function",
+                "function": {
+                    "name": "place_crypto_order",
+                    "description": "Place a cryptocurrency order using the Alpaca API. Supports market and limit orders for cryptocurrencies like BTC, ETH, and more.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "The symbol of the cryptocurrency to trade, e.g., BTCUSD, ETHUSD."
+                            },
+                            "quantity": {
+                                "type": "number",
+                                "description": "The quantity of cryptocurrency to buy or sell."
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": ["buy", "sell"],
+                                "description": "Whether to buy or sell the cryptocurrency."
+                            },
+                            "order_type": {
+                                "type": "string",
+                                "enum": ["market", "limit"],
+                                "description": "The type of order to place. Default is 'market'."
+                            },
+                            "limit_price": {
+                                "type": "number",
+                                "description": "The limit price at which to execute a limit order. Required for limit orders.",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["symbol", "quantity", "side"]
+                    }
+                }
+            },
+
+
+          {
+            "type": "function",
+            "function": {
+                "name": "start_trading",
+                "description": "Starts a trading bot on Alpaca that places a buy or sell order. If interval is provided, orders will be placed at that interval; otherwise, the order will be placed only once. Supports fractional shares. Default order type is 'market' if not specified. Default time in force is 'gtc' if not specified",
                 "parameters": {
-                    "type": "object",
-                    "properties": {
+                "type": "object",
+                "properties": {
+                    "stock_symbol": {
+                    "type": "string",
+                    "description": "The stock symbol of the company to trade shares of, e.g., AAPL for Apple."
+                    },
+                    "quantity": {
+                    "type": "number",
+                    "description": "The number of shares to buy or sell. Supports fractional shares."
+                    },
+                    "side": {
+                    "type": "string",
+                    "enum": ["buy", "sell"],
+                    "description": "Whether to buy or sell the shares."
+                    },
+                    "order_type": {
+                    "type": "string",
+                    "enum": ["market", "limit", "stop", "stop_limit"],
+                    "description": "The type of order to place. Default is 'market'."
+                    },
+                    "time_in_force": {
+                    "type": "string",
+                    "enum":["gtc","day","fok","ioc","opg","cls"],
+                    "description":"The time in force for the order. Default is 'gtc'."
+                    },
+                    "interval_minutes": {
+                    "type": "integer",
+                    "description": "The optional time interval in minutes between each trade execution. If not provided, the order will be placed only once."
+                    }
+                },
+                "required": ["stock_symbol", "quantity", "side"]
+                }
+                }
+            },
+            {"type": "function",
+                        "function":{
+                        "name": "get_portfolio",
+                        "description": "Retrieves the current portfolio information including stock symbols, quantities, average entry price, current price, and market value.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {},
+                            "required": []
+                        }
+                        }
+                },
+          {"type": "function",
+            "function":
+                    {
+                    "name": "get_latest_price",
+                    "description": "Retrieves the latest price of the specified stock symbol using barset.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
                         "symbol": {
                             "type": "string",
-                            "description": "The ticker symbol of the stock to sell."
+                            "description": "The stock symbol to get the latest price for, e.g., AAPL."
+                        }
                         },
-                        "qty": {
-                            "type": "integer",
-                            "description": "The number of shares to sell."
-                        },
-                    },
-                    "required": ["symbol","qty"]
-            },
-            },       
-          }
+                        "required": ["symbol"]
+                    }
+                }
+          },
+          {"type": "function",
+            "function":
+                    {
+                    "name": "get_cash_balance",
+                    "description": "Retrieves the cash balance available in the Alpaca account.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {},
+                        "required": []
+                    }
+                }
+          },
+          {
+            "type": "function",
+            "function": {
+                "name": "stop_trading",
+                "description": "Stops the trading process for the ongoing trading bot on Alpaca.",
+                "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+                }
+            }
+            }
 
 
-                
-                
-                
-            ],
-                model=model,  
-            )
+    ],
+            model=model,  
+    )
 
             assistant = await self.assistant_manager.beta.assistants.update(
             assistant_id=assistant.id,
@@ -457,6 +700,17 @@ class ChatSession:
         return await self.retrieve_latest_response()  
 
     async def create_run(self):
+        # Check if there are any active runs
+        runs = await self.thread_manager.list_runs(self.thread_id)
+        
+        # Loop through existing runs to find any active one
+        for run in runs.data:
+            if run.status == "active":
+                print(f"An active run is still ongoing: {run.id}")
+                # Wait for the run to complete or return an error message
+                return f"An active run {run.id} is still ongoing. Please wait for it to complete."
+
+        # If no active run is found, create a new one
         return await self.thread_manager.create_run(self.thread_id, self.assistant_id)
 
 ############################################################################################################
@@ -490,30 +744,118 @@ class ChatSession:
                         final_str = output
                     tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
                     print("data retrived successfully...")     
-            elif func_name == "buy_shares":
+
+            elif func_name == "place_order":
+                    # Extract the required parameters from the user's input
+                    stock_symbol = arguments["stock_symbol"]
+                    quantity = arguments["quantity"]
+
+                    # Optional parameters
+                    order_type = arguments.get("order_type", "market")  # Default to market if not provided
+                    limit_price = arguments.get("limit_price")  # Only required for limit or stop-limit orders
+                    stop_price = arguments.get("stop_price")  # Only required for stop or stop-limit orders
+
+                    # Call the function to place the order with extracted arguments
+                    output = place_order(api=api, stock_symbol=stock_symbol, quantity=quantity, 
+                                        order_type=order_type, limit_price=limit_price, stop_price=stop_price)
+
+                    # Append the result for the tool call
+                    tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps(output)})
+                    print("Order processed successfully...")
+
+
+
+            elif func_name == "start_trading":
                     stock_symbol = arguments["stock_symbol"]
                     quantity = arguments.get("quantity")
-                    output = buy_shares(stock_symbol=stock_symbol, quantity=quantity)
-                    if isinstance(output, dict) and "error" in output:
-                        final_str = output["error"]    
-                    else:
-                        final_str = output
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
-                    print("data retrived successfully...")
-            elif func_name == "sell_shares":
+                    side = arguments.get("side")
+                    order_type = arguments.get("order_type", 'market')  # Default to 'market' if not provided
+                    time_in_force = arguments.get("time_in_force", 'gtc')
+                    interval_minutes = arguments.get("interval_minutes", None)  # Default to None if not provided
+
+                    try:
+                        # Call the start_trading function with all required and optional parameters
+                        output = start_trading(
+                            symbol=stock_symbol,
+                            qty=quantity,
+                            side=side,
+                            order_type=order_type,
+                            time_in_force=time_in_force,
+                            interval_minutes=interval_minutes
+                        )
+                        final_str = "Trading operation executed successfully."
+                    except Exception as e:
+                        final_str = str(e)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    print("Data retrieved successfully...")
+
+            elif func_name == "place_crypto_order":
+                    # Extract the required parameters from the user's input
                     symbol = arguments["symbol"]
-                    qty = arguments.get("qty")
-                    output = sell_shares(symbol=symbol, qty=qty)
-                    if isinstance(output, dict) and "error" in output:
-                        final_str = output["error"]    
-                    else:
-                        final_str = output
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
-                    print("data retrived successfully...")                   
+                    quantity = arguments["quantity"]
+                    side = arguments.get("side", "buy")  # Default to buy
+                    order_type = arguments.get("order_type", "market")  # Default to market order
+                    limit_price = arguments.get("limit_price")  # Optional limit price for limit orders
 
+                    # Call the place_crypto_order function
+                    output = place_crypto_order(
+                        symbol=symbol,
+                        quantity=quantity,
+                        side=side,
+                        order_type=order_type,
+                        limit_price=limit_price
+                    )
 
-            else:
-                raise ValueError(f"Unknown function: {func_name}")
+                    # Return the result of the function
+                    tool_outputs.append({"tool_call_id": action["id"], "output": output})
+                    print("Crypto order processed successfully...")
+
+            elif func_name == "get_portfolio":
+                    try:
+                        # Call the get_portfolio function
+                        output = get_portfolio()
+                        final_str = str(output)
+                    except Exception as e:
+                        final_str = str(e)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    print("Data retrieved successfully...")
+
+            elif func_name == "get_latest_price":
+                    stock_symbol = arguments["symbol"]
+
+                    try:
+                        # Call the get_latest_price function
+                        output = get_latest_price(stock_symbol)
+                        final_str = f"Latest price of {stock_symbol}: {output}"
+                    except Exception as e:
+                        final_str = str(e)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    print("Data retrieved successfully...")
+
+            elif func_name == "get_cash_balance":
+                    try:
+                        # Call the get_cash_balance function
+                        output = get_cash_balance()
+                        final_str = f"Cash balance: {output}"
+                    except Exception as e:
+                        final_str = str(e)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    print("Data retrieved successfully...")
+
+            elif func_name == "stop_trading":
+                    try:
+                        stop_trading()
+                        final_str = "Trading stopped successfully."
+                    except Exception as e:
+                        final_str = str(e)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    print("Trading stop command processed successfully...")
+
+                           
+
+        else:
+                final_str = f"Error: Unknown function '{func_name}'"
+
 
         print("Submitting outputs back to the Assistant...")
         await self.assistant_manager.client.beta.threads.runs.submit_tool_outputs_and_poll(
@@ -529,8 +871,8 @@ class ChatSession:
                 break
             elif latest_run.status == "requires_action":
                 await self.call_required_functions(
-                        required_actions=latest_run.required_action.submit_tool_outputs.model_dump(),run = latest_run
-                    )
+                    required_actions=latest_run.required_action.submit_tool_outputs.model_dump(), run=latest_run
+                )
 
             await asyncio.sleep(2)  # Wait for 2 seconds before checking again
 

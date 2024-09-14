@@ -14,11 +14,11 @@ load_dotenv()
 
 client = openai.OpenAI()
 file = client.files.create(
-  file=open("data.csv", "rb"),         
+  file=open("trade.csv", "rb"),         
   purpose='assistants'
 )
 image_file = client.files.create(
-    file=open("MSFT.csv", "rb"),                   
+    file=open("data.csv", "rb"),                   
     purpose='assistants'
 )
 
@@ -60,7 +60,7 @@ print(file_batch.file_counts)
 
 # Step 2 - Create an assistant 
 assistant = client.beta.assistants.create(
-    name="Finance Educator",
+    name="Devdoot",
     instructions="""You are a helpful study assistant who knows a lot about understanding research papers.
     Your role is to summarize papers, clarify terminology within context, and extract key figures and data.
     Cross-reference information for additional insights and answer related questions comprehensively.
@@ -76,7 +76,7 @@ assistant = client.beta.assistants.create(
     making it user-friendly and approachable for a wide range of users.  Normally the mpl_finance module would be used; however,
     it is not available.  Create a custom candlestick chart using basic matplotlib functionalities only.
     """,
-    tools=[{"type": "code_interpreter"},{"type": "file_search"},              
+    tools=[{"type": "code_interpreter"},{"type": "file_search"},                  
            {"type": "function",
             "function": {
                 "name": "get_news",
@@ -120,61 +120,178 @@ assistant = client.beta.assistants.create(
                     },
                 },
             },
-            {"type":"function",
-             "function":{
-                "name": "buy_shares",
-                "description": "Buy a specified number of shares of a given stock symbol or stock name using the Alpaca API.",
-                "parameters": {
-                    "type": "object",
+            {
+                "type": "function",
+                "function": {
+                    "name": "place_order",
+                    "description": "Place an order to buy a stock using the Alpaca API, supporting different order types and prices when required.",
+                    "parameters": {
+                        "type": "object",
                         "properties": {
                             "stock_symbol": {
                                 "type": "string",
-                                "description": "The stock symbol of the company to buy shares of, E.g., AAPL for Apple."
-                            },
-                            "stock_name":{
-                                "type": "string",
-                                "description":"The stock name of the symbol to buy shares of, E.g., Apple for AAPL"
+                                "description": "The stock symbol of the company to buy shares of, e.g., AAPL for Apple."
                             },
                             "quantity": {
-                                "type": "integer",
-                                "description": "The number of shares to buy."
+                                "type": "number",
+                                "description": "The number of shares to buy. Supports fractional shares."
                             },
-                        }, 
-                        "required": ["stock_symbol"or"stock_name", "quantity"]  
-                },
-                
-
+                            "order_type": {
+                                "type": "string",
+                                "description": "The type of order to place (e.g., market, limit, stop, stop_limit). Default is market.",
+                                "enum": ["market", "limit", "stop", "stop_limit"]
+                            },
+                            "limit_price": {
+                                "type": "number",
+                                "description": "The price at which to execute a limit order. Required for limit and stop-limit orders.",
+                                "nullable": True
+                            },
+                            "stop_price": {
+                                "type": "number",
+                                "description": "The price at which to trigger a stop order. Required for stop and stop-limit orders.",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["stock_symbol", "quantity"]
+                    }
+                }
             },
-          },
-          {"type":"function",
-            "function":{
-                "name": "sell_shares",
-                "description": "Sell shares of a given stock symbol or stock name using Alpaca's API.",
+
+            {
+            "type": "function",
+            "function": {
+                "name": "start_trading",
+                "description": "Starts a trading bot on Alpaca that places a buy or sell order. If interval is provided, orders will be placed at that interval; otherwise, the order will be placed only once. Supports fractional shares. Default order type is 'market' if not specified.",
                 "parameters": {
-                    "type": "object",
-                    "properties": {
+                "type": "object",
+                "properties": {
+                    "stock_symbol": {
+                    "type": "string",
+                    "description": "The stock symbol of the company to trade shares of, e.g., AAPL for Apple."
+                    },
+                    "quantity": {
+                    "type": "number",
+                    "description": "The number of shares to buy or sell. Supports fractional shares."
+                    },
+                    "side": {
+                    "type": "string",
+                    "enum": ["buy", "sell"],
+                    "description": "Whether to buy or sell the shares."
+                    },
+                    "order_type": {
+                    "type": "string",
+                    "enum": ["market", "limit", "stop", "stop_limit"],
+                    "description": "The type of order to place. Default is 'market'."
+                    },
+                    "time_in_force": {
+                    "type": "string",
+                    "enum":["gtc","day","fok","ioc","opg","cls"],
+                    "description":"The time in force for the order. Default is 'gtc'."
+                    },
+                    "interval_minutes": {
+                    "type": "integer",
+                    "description": "The optional time interval in minutes between each trade execution. If not provided, the order will be placed only once."
+                    }
+                },
+                "required": ["stock_symbol", "quantity", "side"]
+                }
+                }
+            },
+            {
+                "type": "function",
+                "function": {
+                    "name": "place_crypto_order",
+                    "description": "Place a cryptocurrency order using the Alpaca API. Supports market and limit orders for cryptocurrencies like BTC, ETH, and more.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "The symbol of the cryptocurrency to trade, e.g., BTCUSD, ETHUSD."
+                            },
+                            "quantity": {
+                                "type": "number",
+                                "description": "The quantity of cryptocurrency to buy or sell."
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": ["buy", "sell"],
+                                "description": "Whether to buy or sell the cryptocurrency."
+                            },
+                            "order_type": {
+                                "type": "string",
+                                "enum": ["market", "limit"],
+                                "description": "The type of order to place. Default is 'market'."
+                            },
+                            "limit_price": {
+                                "type": "number",
+                                "description": "The limit price at which to execute a limit order. Required for limit orders.",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["symbol", "quantity", "side"]
+                    }
+                }
+            },
+            {"type": "function",
+                        "function":{
+                        "name": "get_portfolio",
+                        "description": "Retrieves the current portfolio information including stock symbols, quantities, average entry price, current price, and market value.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {},
+                            "required": []
+                        }
+                        }
+                },
+          {"type": "function",
+            "function":
+                    {
+                    "name": "get_latest_price",
+                    "description": "Retrieves the latest price of the specified stock symbol using barset.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
                         "symbol": {
                             "type": "string",
-                            "description": "The ticker symbol of the stock to sell."
+                            "description": "The stock symbol to get the latest price for, e.g., AAPL."
+                        }
                         },
-                        "name":{
-                                "type": "string",
-                                "description":"The stock name of the symbol to buy shares of, E.g., Apple for AAPL"
-                            },
-                        "qty": {
-                            "type": "integer",
-                            "description": "The number of shares to sell."
-                        },
-                    },
-                    "required": ["symbol"or"name","qty"]
-            },
-            },       
-          }            
-            ],
+                        "required": ["symbol"]
+                    }
+                }
+          },
+          {"type": "function",
+            "function":
+                    {
+                    "name": "get_cash_balance",
+                    "description": "Retrieves the cash balance available in the Alpaca account.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {},
+                        "required": []
+                    }
+                }
+          },
+          {
+            "type": "function",
+            "function": {
+                "name": "stop_trading",
+                "description": "Stops the trading process for the ongoing trading bot on Alpaca.",
+                "parameters": {
+                "type": "object",
+                "properties": {},
+                "required": []
+                }
+            }
+            }
+
+          
+            ],  
     model=model,  
     tool_resources={
     "code_interpreter": {
-      "file_ids": [file.id, image_file.id]            
+      "file_ids": [file.id, image_file.id]              
     }
   }          
 )
@@ -240,6 +357,34 @@ def wait_for_run_completion(client, thread_id, run_id, sleep_interval=5):
             break
         logging.info("Waiting for run to complete...")
         time.sleep(sleep_interval)
+
+# Path to your .env file
+env_file = '.env'
+
+# Function to update .env file
+def update_env_file(assistant_id: str, thread_id: str, env_file: str = '.env'):
+    # Read existing .env file content
+    if os.path.exists(env_file):
+        with open(env_file, 'r') as file:
+            lines = file.readlines()
+    else:
+        lines = []
+
+    # Filter out lines containing ASSISTANT_ID or THREAD_ID
+    lines = [line for line in lines if not line.startswith('ASSISTANT_ID=') and not line.startswith('THREAD_ID=')]
+
+    # Add the new assistant_id and thread_id
+    lines.append(f'ASSISTANT_ID={assistant_id}\n')
+    lines.append(f'THREAD_ID={thread_id}\n')
+
+    # Write the updated content back to the .env file
+    with open(env_file, 'w') as file:
+        file.writelines(lines)
+
+
+update_env_file(assis_id, thread_id)
+
+print(f"Added ASSISTANT_ID and THREAD_ID to {env_file}")
 
  
 # == Run it

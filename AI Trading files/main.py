@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from thread_manager import ThreadManager
 from assistant_manager import AssistantManager
-from chat_session import ChatSession
+from chat_session import ChatSession, stop_trading
 
 # Load environment variables from .env file
 load_dotenv()
@@ -30,10 +30,26 @@ async def main():
     # Start a chat session with the assistant name and model name
     chat_session = ChatSession(thread_manager, assistant_manager, ASSISTANT_NAME, MODEL_NAME, ASSISTANT_ID)
     await chat_session.start_session()
+    while True:
+        user_input = input("Enter command (start/stop/exit): ").strip().lower()
+
+        if user_input == "start":
+            # Example of starting trading with fixed parameters (can be dynamic)
+            await chat_session.get_latest_response("start_trading")  # Trigger assistant command
+        elif user_input == "stop":
+            stop_trading()  # Call stop_trading directly to stop the ongoing trading
+        elif user_input == "exit":
+            print("Exiting assistant.")
+            break
+        else:
+            print("Unknown command. Please enter 'start', 'stop', or 'exit'.")
 
 
 
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    try:
+        asyncio.run(main())
+    except KeyboardInterrupt:
+        print("Assistant interrupted.")
