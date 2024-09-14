@@ -1,0 +1,12 @@
+openai
+python-dotenv
+mplfinance
+yfinance
+alpaca_trade_api
+logging
+gpt3_tokenizer
+typing
+asyncio
+scipy
+quantstats
+IPython

@@ -23,7 +23,7 @@ class AssistantManager:
             model=model
         )
 
-    async def update_assistant(self, assistant_id: str, name: Optional[str] = None, description: Optional[str] = None,
+    async def update_assistant(self, assistant_id: str, name: str, description: Optional[str] = None,
                                instructions: Optional[str] = None, tools: Optional[list] = None):
         update_fields = {}
         if name is not None:
