@@ -17,7 +17,7 @@ class AssistantManager:
 
     async def create_assistant(self, name: str, instructions: str, tools: list, model: str):
         return await self.client.beta.assistants.create(
-            name=name,
+            name="Devdoot",
             instructions=instructions,
             tools=tools,
             model=model
@@ -27,7 +27,7 @@ class AssistantManager:
                                instructions: Optional[str] = None, tools: Optional[list] = None):
         update_fields = {}
         if name is not None:
-            update_fields['name'] = name
+            update_fields['name'] = "Devdoot"
         if description is not None:
             update_fields['description'] = description
         if instructions is not None:
