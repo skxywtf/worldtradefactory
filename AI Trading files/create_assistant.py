@@ -124,7 +124,7 @@ assistant = client.beta.assistants.create(
                 "type": "function",
                 "function": {
                     "name": "place_order",
-                    "description": "Place an order to buy a stock using the Alpaca API, supporting different order types and prices when required.",
+                    "description": "Place an order to buy a stock using the Alpaca API, supporting different order types such as market, limit, stop, and stop-limit. Supports fractional shares.",
                     "parameters": {
                         "type": "object",
                         "properties": {
@@ -136,65 +136,29 @@ assistant = client.beta.assistants.create(
                                 "type": "number",
                                 "description": "The number of shares to buy. Supports fractional shares."
                             },
+                            "side": {
+                                "type": "string",
+                                "enum": ["buy", "sell"],
+                                "description": "Whether to buy or sell the stock."
+                            },
                             "order_type": {
                                 "type": "string",
-                                "description": "The type of order to place (e.g., market, limit, stop, stop_limit). Default is market.",
+                                "description": "The type of order to place (market, limit, stop, stop_limit). Default is 'market'.",
                                 "enum": ["market", "limit", "stop", "stop_limit"]
                             },
                             "limit_price": {
                                 "type": "number",
-                                "description": "The price at which to execute a limit order. Required for limit and stop-limit orders.",
+                                "description": "The price at which to execute a limit or stop-limit order. Required for limit and stop-limit orders.",
                                 "nullable": True
                             },
                             "stop_price": {
                                 "type": "number",
-                                "description": "The price at which to trigger a stop order. Required for stop and stop-limit orders.",
+                                "description": "The price at which to trigger a stop or stop-limit order. Required for stop and stop-limit orders.",
                                 "nullable": True
                             }
                         },
-                        "required": ["stock_symbol", "quantity"]
+                        "required": ["stock_symbol", "quantity","side"]
                     }
-                }
-            },
-
-            {
-            "type": "function",
-            "function": {
-                "name": "start_trading",
-                "description": "Starts a trading bot on Alpaca that places a buy or sell order. If interval is provided, orders will be placed at that interval; otherwise, the order will be placed only once. Supports fractional shares. Default order type is 'market' if not specified.",
-                "parameters": {
-                "type": "object",
-                "properties": {
-                    "stock_symbol": {
-                    "type": "string",
-                    "description": "The stock symbol of the company to trade shares of, e.g., AAPL for Apple."
-                    },
-                    "quantity": {
-                    "type": "number",
-                    "description": "The number of shares to buy or sell. Supports fractional shares."
-                    },
-                    "side": {
-                    "type": "string",
-                    "enum": ["buy", "sell"],
-                    "description": "Whether to buy or sell the shares."
-                    },
-                    "order_type": {
-                    "type": "string",
-                    "enum": ["market", "limit", "stop", "stop_limit"],
-                    "description": "The type of order to place. Default is 'market'."
-                    },
-                    "time_in_force": {
-                    "type": "string",
-                    "enum":["gtc","day","fok","ioc","opg","cls"],
-                    "description":"The time in force for the order. Default is 'gtc'."
-                    },
-                    "interval_minutes": {
-                    "type": "integer",
-                    "description": "The optional time interval in minutes between each trade execution. If not provided, the order will be placed only once."
-                    }
-                },
-                "required": ["stock_symbol", "quantity", "side"]
-                }
                 }
             },
             {
@@ -233,6 +197,54 @@ assistant = client.beta.assistants.create(
                     }
                 }
             },
+
+
+          {
+                "type": "function",
+                "function": {
+                    "name": "start_trading",
+                    "description": "Starts a trading bot on Alpaca that places a buy or sell order for either stocks or cryptocurrency. If interval_minutes is provided, orders will be placed at that interval; otherwise, the order will be placed only once. Supports fractional shares.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "symbol": {
+                                "type": "string",
+                                "description": "The symbol of the stock or cryptocurrency to trade, e.g., AAPL for Apple stock or BTCUSD for Bitcoin."
+                            },
+                            "quantity": {
+                                "type": "number",
+                                "description": "The number of shares or cryptocurrency quantity to buy or sell. Supports fractional shares."
+                            },
+                            "side": {
+                                "type": "string",
+                                "enum": ["buy", "sell"],
+                                "description": "Whether to buy or sell the asset."
+                            },
+                            "order_type": {
+                                "type": "string",
+                                "enum": ["market", "limit", "stop", "stop_limit"],
+                                "description": "The type of order to place. Default is 'market'."
+                            },
+                            "time_in_force": {
+                                "type": "string",
+                                "enum": ["gtc", "day", "fok", "ioc", "opg", "cls"],
+                                "description": "The time in force for the order. Default is 'gtc'."
+                            },
+                            "interval_minutes": {
+                                "type": "integer",
+                                "description": "The optional time interval in minutes between each trade execution. If not provided, the order will be placed only once.",
+                                "nullable": True
+                            },
+                            "duration_minutes": {
+                                "type": "integer",
+                                "description": "The total duration in minutes for executing repeated trades. Used in conjunction with interval_minutes to control the number of executions.",
+                                "nullable": True
+                            }
+                        },
+                        "required": ["symbol", "quantity", "side"]
+                    }
+                }
+            },
             {"type": "function",
                         "function":{
                         "name": "get_portfolio",
@@ -244,6 +256,29 @@ assistant = client.beta.assistants.create(
                         }
                         }
                 },
+                        {
+                "type": "function",
+                "function": {
+                    "name": "get_past_orders",
+                    "description": "Retrieve past stock or crypto orders placed on Alpaca, including details like order ID, symbol, quantity, and side. You can filter orders by status and limit the number of results.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "status": {
+                                "type": "string",
+                                "description": "Filter orders by their status. Options are 'open', 'closed', or 'all'. Default is 'all'.",
+                                "enum": ["open", "closed", "all"],
+                                "default": "all"
+                            },
+                            "limit": {
+                                "type": "number",
+                                "description": "The maximum number of orders to retrieve. Default is 10.",
+                                "default": 10
+                            }
+                        }
+                    }
+                }
+            },
           {"type": "function",
             "function":
                     {
