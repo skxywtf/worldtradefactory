@@ -79,6 +79,7 @@ const TopStoriesWidget: React.FC<TopStoriesWidgetProps> = ({ searchInputValue })
         colorTheme: 'dark', // Set to dark theme
         isTransparent: false,
         symbol: typedInput, // Use dynamic symbol
+        largeChartUrl: "http://localhost:3000/main/stock",
         locale: 'en'
       });
 

@@ -373,7 +373,7 @@ const MarketData: React.FC = () => {
         dateRange: "12M",
         showChart: true,
         locale: "en",
-        largeChartUrl: "",
+        largeChartUrl: "http://localhost:3000",
         isTransparent: false,
         showSymbolLogo: false, // Disable the symbol logo
         showFloatingTooltip: false,

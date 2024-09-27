@@ -89,7 +89,8 @@ const TechnicalAnalysisWidget: React.FC<TechnicalAnalysisWidgetProps> = ({ searc
         showIntervalTabs: true,
         displayMode: "single",
         locale: "en",
-        colorTheme: "dark" // Ensure dark theme
+        colorTheme: "dark", // Ensure dark theme
+        largeChartUrl: "http://localhost:3000/main/stock"
       });
 
       container.appendChild(script);

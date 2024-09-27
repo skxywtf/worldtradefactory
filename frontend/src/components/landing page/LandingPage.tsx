@@ -4,6 +4,7 @@ import TickerTape from "../embeded codes/other widgets/TickerTape";
 import MainCOntentLand from "./ContentLand Page/MainCOntentLand";
 import FooterLand from "./header footer landing/FooterLand";
 
+
 const LandingPage = () => {
   return (
     <div className=" h-full w-full bg-black text-white">

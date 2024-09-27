@@ -75,6 +75,7 @@ const EconomicCalendar: React.FC = () => {
           "width": "400",
           "height": "550",
           "locale": "en",
+          "largeChartUrl": "http://localhost:3000",
           "importanceFilter": "-1,0,1",
           "countryFilter": "ar,au,br,ca,cn,fr,de,in,id,it,jp,kr,mx,ru,sa,za,tr,gb,us,eu"
         }`;

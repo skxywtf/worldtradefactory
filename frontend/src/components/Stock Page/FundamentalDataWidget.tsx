@@ -76,7 +76,7 @@ const FundamentalDataWidget: React.FC<FundamentalDataWidgetProps> = ({ searchInp
       script.async = true;
       script.innerHTML = JSON.stringify({
         isTransparent: false,
-        largeChartUrl: "",
+        largeChartUrl: "http://localhost:3000/main/stock",
         displayMode: "regular",
         width: "100%",
         height: "100%",

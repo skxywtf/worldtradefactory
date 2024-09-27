@@ -71,6 +71,7 @@ const CompanyProfileWidget: React.FC<CompanyProfileWidgetProps> = ({ searchInput
         height: '100%',
         isTransparent: false,
         colorTheme: 'dark', // Set to dark theme
+        largeChartUrl: "http://localhost:3000/main/stock",
         symbol: typedInput, // Use dynamic symbol
         locale: 'en'
       });

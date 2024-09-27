@@ -101,6 +101,7 @@ const TickerTape: React.FC = () => {
         isTransparent: false,
         displayMode: "adaptive",
         colorTheme: "dark",
+        "largeChartUrl": "http://localhost:3000/Stock",
         locale: "en"
       });
 
@@ -116,10 +117,16 @@ const TickerTape: React.FC = () => {
 
       const timeoutId = setTimeout(disableLinks, 500); // Apply after a short delay
 
+      // return () => {
+      //   clearTimeout(timeoutId);
+      //   if (container) {
+      //     container.removeChild(script);
+      //   }
+      // };
       return () => {
         clearTimeout(timeoutId);
-        if (container) {
-          container.removeChild(script);
+        if (container.querySelector("script")) {
+          container.removeChild(container.querySelector("script") as HTMLScriptElement);
         }
       };
     }
