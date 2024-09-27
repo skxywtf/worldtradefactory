@@ -76,6 +76,7 @@ const TopStories: React.FC = () => {
         {
           "feedMode": "all_symbols",
           "isTransparent": false,
+          "largeChartUrl": "http://localhost:3000",
           "displayMode": "adaptive",
           "width": 400,
           "height": 550,

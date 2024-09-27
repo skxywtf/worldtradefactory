@@ -23,7 +23,7 @@ const StockHeatMap: React.FC = () => {
             "blockSize": "market_cap_basic",
             "blockColor": "change",
             "locale": "en",
-            "symbolUrl": "",
+            "symbolUrl": "http://localhost:3000",
             "colorTheme": "dark",
             "hasTopBar": false,
             "isDataSetEnabled": false,

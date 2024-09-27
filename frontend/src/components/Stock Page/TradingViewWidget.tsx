@@ -25,6 +25,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ symbol }) => {
                 hide_side_toolbar: false,
                 allow_symbol_change: true,
                 studies: ['STD;MACD'],
+                largeChartUrl: "http://localhost:3000/main/stock",
                 container_id: 'tradingview_chart'
             });
 
