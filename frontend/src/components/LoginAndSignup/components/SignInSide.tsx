@@ -1,0 +1,83 @@
+import * as React from 'react';
+import CssBaseline from '@mui/material/CssBaseline';
+import Stack from '@mui/material/Stack';
+import { createTheme, ThemeProvider, PaletteMode } from '@mui/material/styles';
+import getSignInSideTheme from '../../mui/theme/getSignInSideTheme'
+import SignInCard from './SignInCard';
+import Content from './content';
+import TemplateFrame from './TemplateFrame';
+
+export default function SignInSide() {
+  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const [showCustomTheme, setShowCustomTheme] = React.useState(true);
+  const defaultTheme = createTheme({ palette: { mode } });
+  const SignInSideTheme = createTheme(getSignInSideTheme(mode));
+
+  React.useEffect(() => {
+    const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
+    if (savedMode) {
+      setMode(savedMode);
+    } else {
+      const systemPrefersDark = window.matchMedia(
+        '(prefers-color-scheme: dark)',
+      ).matches;
+      setMode(systemPrefersDark ? 'dark' : 'light');
+    }
+  }, []);
+
+  const toggleColorMode = () => {
+    const newMode = mode === 'dark' ? 'light' : 'dark';
+    setMode(newMode);
+    localStorage.setItem('themeMode', newMode);
+  };
+
+  const toggleCustomTheme = () => {
+    setShowCustomTheme((prev) => !prev);
+  };
+
+  return (
+    <TemplateFrame
+      toggleCustomTheme={toggleCustomTheme}
+      showCustomTheme={showCustomTheme}
+      mode={mode}
+      toggleColorMode={toggleColorMode}
+    >
+      <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
+        <CssBaseline enableColorScheme />
+        <Stack
+          direction="column"
+          component="main"
+          sx={[
+            {
+              justifyContent: 'space-between',
+              height: { xs: 'auto', md: '100%' },
+            },
+            (theme) => ({
+              backgroundImage:
+                'radial-gradient(ellipse at 70% 51%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))',
+              backgroundSize: 'cover',
+              ...theme.applyStyles('dark', {
+                backgroundImage: 'radial-gradient(ellipse at center, #1a2231 10%, #0d1117 70%)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }),
+            }),
+          ]}
+        >
+          <Stack
+            direction={{ xs: 'column-reverse', md: 'row' }}
+            sx={{
+              justifyContent: 'center',
+              gap: { xs: 6, sm: 12 },
+              p: 2,
+              m: 'auto',
+            }}
+          >
+            <Content />
+            <SignInCard />
+          </Stack>
+        </Stack>
+      </ThemeProvider>
+    </TemplateFrame>
+  );
+}
