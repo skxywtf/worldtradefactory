@@ -1,77 +1,66 @@
 "use client";
 import Link from "next/link";
-import { FaFacebook } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const FooterLand = () => {
   return (
-    <div className=" h-full w-full pt-40">
-      <div className=" w-full md:flex px-20 py-20">
-        {/* description */}
-
-        <div className="px-5 w-full">
-          <div className=" text-2xl">SKXYWTF</div>
-          <div className=" text-sm text-neutral-400 pt-10">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident
-            minus exercitationem vitae
+    <footer className="w-full justify-between bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200">
+      <div className=" x-auto px-10 md:px-20">
+        <div className="grid md:grid-cols-4 gap-10 py-16 border-b border-neutral-200 dark:border-neutral-800">
+          {/* Description */}
+          <div>
+            <h2 className="text-3xl font-bold">SKXYWTF</h2>
+            <p className="text-sm text-neutral-700 dark:text-neutral-200 mt-5">
+            Skxywtf provides stock price predictions and stock ratings based on past
+        market behavior and historical stock performance. Past performance is
+        not an indicator of future results. Skxywtf cannot substitute
+        professional investment advice.
+            </p>
           </div>
-        </div>
 
-        {/* company */}
-
-        <div className="px-5 w-full">
-          <div className=" text-2xl">COMPANY</div>
-          <div className=" text-neutral-400 text-sm pt-10">
-            <div className="pb-3">About Us</div>
-            <div className="pb-3">Privacy Policy</div>
-            <div className="pb-3">Careers</div>
+          {/* Company */}
+          <div>
+            <h3 className="text-xl font-semibold">COMPANY</h3>
+            <ul className="mt-5 space-y-3 text-neutral-800 dark:text-neutral-300">
+              <li>About Us</li>
+              <li>Privacy Policy</li>
+              {/* <li>Careers</li> */}
+            </ul>
           </div>
-        </div>
 
-        {/* support */}
-
-        <div className="px-5 w-full">
-          <div className=" text-2xl">SUPPORT</div>
-          <div className=" text-neutral-400 text-sm pt-10">
-            <div className="pb-3">Contact Us</div>
-            <div className="pb-3">Documentation</div>
-            <div className="pb-3">Community</div>
+          {/* Support */}
+          <div>
+            <h3 className="text-xl font-semibold">SUPPORT</h3>
+            <ul className="mt-5 space-y-3 text-neutral-800 dark:text-neutral-300">
+              <li>Contact Us</li>
+            </ul>
           </div>
-        </div>
 
-        {/* socials */}
-
-        <div className="px-5 w-full">
-          <div className="text-2xl">SOCIALS</div>
-          <div className=" text-xl flex gap-7 pt-10">
-            <div>
-              <FaFacebook />
-            </div>
-            <div>
-              <FaInstagram />
-            </div>
-            <div>
-              <FaSquareXTwitter />
+          {/* Socials */}
+          <div>
+            <h3 className="text-xl font-semibold">SOCIALS</h3>
+            <div className="flex space-x-5 mt-5 text-2xl">
+              <FaFacebook className="hover:text-blue-600 transition-colors duration-200" />
+              <FaInstagram className="hover:text-pink-500 transition-colors duration-200" />
+              <FaTwitter className="hover:text-blue-400 transition-colors duration-200" />
             </div>
           </div>
         </div>
-      </div>
-      {/* copyright */}
 
-      <hr />
-      <div className=" h-20 items-center w-full flex justify-between px-20">
-        <div className=" text-sm text-neutral-400">
-          {" "}
-          Copyright &copy;2024 - SKXYWTF
-        </div>
-        <div>
-          <Link href="/main" className=" bg-blue-400 px-3 rounded-lg py-2">
+        {/* Copyright and CTA */}
+        <div className="flex flex-col md:flex-row justify-between items-center py-6">
+          <p className="text-sm text-neutral-500 dark:text-neutral-300">
+            Copyright &copy; 2024 - SKXYWTF
+          </p>
+          <Link
+            href="/main"
+            className="mt-4 md:mt-0 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-200"
+          >
             Get Started
           </Link>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
 
