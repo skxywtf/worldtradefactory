@@ -2,8 +2,8 @@ import React from "react";
 import MarketData from "../../embeded codes/other widgets/MarketData";
 import TopStories from "../../embeded codes/Advance widgets/TopStories";
 import EconomicCalendar from "../../embeded codes/Advance widgets/EconomicCalendar";
-import StockHeatMap from "../../embeded codes/HeatMaps/StockHeatMap";
-import CryptoCoinHeatMap from "@/components/embeded codes/HeatMaps/CryptoCoinHeatMap";
+// import StockHeatMap from "../../embeded codes/HeatMaps/StockHeatMap";
+// import CryptoCoinHeatMap from "@/components/embeded codes/HeatMaps/CryptoCoinHeatMap";
 import GetStarted from "./GetStarted";
 import HeatMaps from "./HeatMaps";
 
