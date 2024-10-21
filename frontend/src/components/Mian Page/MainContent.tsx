@@ -3,10 +3,10 @@
 import React from "react";
 import MainSearch from "./MainSearch";
 import MarketLeaders from "./MarketLeaders";
-import Ad from "./Ad";
+// import Ad from "./Ad";
 import IndexETF from "./IndexETF";
 import TopMovers from "./TopMovers";
-import TopPicks from "./TopPicks";
+// import TopPicks from "./TopPicks";
 import BestPerform from "./BestPerform";
 import MostTweets from "./MostTweets";
 import RecFol from "./RecFol";
@@ -17,7 +17,7 @@ import recentData from "../../data/RecentlyData";
 import FollowedData from "../../data/FollowedData";
 import marketNewsData from "../../data/MarketNewsData";
 import MarketNews from "./MarketNews";
-import CompanyProfile from "../embeded codes/other widgets/CompanyProfile";
+// import CompanyProfile from "../embeded codes/other widgets/CompanyProfile";
 
 // Define types for the data imported
 interface StockData {
@@ -38,9 +38,9 @@ interface MarketNewsData {
 
 const MainContent: React.FC = () => {
   const { stocks }: StockData = markData;
-  const { recentStocks }: RecentData = recentData;
-  const { followedStocks }: FollowedData = FollowedData;
-  const { Topnews }: MarketNewsData = marketNewsData;
+  // const { recentStocks }: RecentData = recentData;
+  // const { followedStocks }: FollowedData = FollowedData;
+  // const { Topnews }: MarketNewsData = marketNewsData;
 
   return (
     <div className="dark:bg-gray-200 dark:text-black">
