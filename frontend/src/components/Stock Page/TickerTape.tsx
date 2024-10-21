@@ -29,7 +29,7 @@ const TickerTape: React.FC<{ onSymbolChange: (symbol: string) => void }> = ({ on
                 isTransparent: false,
                 displayMode: "adaptive",
                 locale: "en",
-                largeChartUrl: "http://localhost:3000/main/stock"
+                largeChartUrl: "http://localhost:3000/main/stock",
             });
 
             containerRef.current.innerHTML = '';

@@ -6,7 +6,7 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 
 const FooterLand = () => {
   return (
-    <div className=" h-full w-full pt-20">
+    <div className="h-full w-full pt-20 bg-black text-white text-left">
       <div className=" w-full md:flex px-20 py-20">
         {/* description */}
 

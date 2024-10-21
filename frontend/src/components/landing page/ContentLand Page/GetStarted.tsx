@@ -4,7 +4,7 @@ const GetStarted = () => {
   return (
     <div className=" h-full w-full">
       <div className=" h-full w-full">
-        <div className=" text-3xl w-full flex justify-center pt-10">
+        <div className=" text-3xl w-full flex justify-center pt-20">
           <div className=" text-blue-600">Ready to Explore our Website</div>
         </div>
 

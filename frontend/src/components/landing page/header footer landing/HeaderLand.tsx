@@ -258,18 +258,19 @@ const HeaderLand = () => {
   };
 
   return (
-    <div className="border-b border-white w-full h-16">
+    <div className="border-b bg-stone-900 border-white w-full h-16">
       <div className="h-full flex items-center justify-between px-10 w-full">
         {/* logo */}
         <div className="w-28">
           <Image
             className="cursor-pointer py-4 h-full w-full"
+            onClick={() => router.push("/")}
             src={Logo}
             alt="Logo"
           />
         </div>
         {/* middle parameters */}
-        <div className="hidden md:flex gap-7">
+        <div className="hidden md:flex gap-7 text-white">
           <button
             className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full"
             onClick={() => router.push("/main/stock")}
@@ -294,8 +295,8 @@ const HeaderLand = () => {
           <form onSubmit={handleSubmit} className="h-full items-center">
             <input
               type="text"
-              placeholder="search stocks"
-              className="h-8 bg-neutral-800 focus:outline-none focus:border-transparent rounded-full px-3"
+              placeholder="Search stocks..."
+              className="h-8 bg-neutral-800 focus:outline-none focus:border-transparent rounded-full px-3 text-white"
               onChange={(e) => setSearchInput(e.target.value)}
             />
           </form>

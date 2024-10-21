@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Send } from 'lucide-react'
+import HeaderLand from '@/components/landing page/header footer landing/HeaderLand'
 
 export default function Chat() {
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat()
@@ -34,8 +35,9 @@ export default function Chat() {
   if(!isClient) return null
 
   return (
-    <div className="flex flex-col h-screen bg-white">
-      <header className="sticky top-0 z-10 bg-white border-b px-4">
+    <div className="flex flex-col h-screen">
+      <HeaderLand />
+      <header className="sticky top-0 z-10 border-b px-4">
         <div className="container flex items-center justify-between h-14">
           <h1 className="text-xl font-bold">AI Chatbot</h1>
         </div>

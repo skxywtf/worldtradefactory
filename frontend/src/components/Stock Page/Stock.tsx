@@ -258,7 +258,7 @@ const Stock: React.FC = () => {
         if (savedInput) {
             setSearchInput(savedInput);
         }
-    }, []);
+    });
 
     return (
         <main>
@@ -267,7 +267,7 @@ const Stock: React.FC = () => {
             <section id="company-profile"><CompanyProfileWidget searchInputValue={searchInput} /></section>
             <section id="fundamental-data"><FundamentalDataWidget searchInputValue={searchInput}  /></section>
             <section id="technical-analysis"><TechnicalAnalysisWidget searchInputValue={searchInput} /></section>         
-            <section id="top-stories"><TopStoriesWidget searchInputValue={searchInput} /></section>
+            <section id="top-stories" className="mt-5"><TopStoriesWidget searchInputValue={searchInput} /></section>
         </main>
     );  
 };
