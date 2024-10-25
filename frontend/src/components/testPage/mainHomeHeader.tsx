@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import Logo from "../../assets/skxywtfLogo.jpeg"
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
-export const TestHeader = () => {
+export const HomeHeader = () => {
   const router = useRouter()
   const [isScrolled, setIsScrolled] = useState(false);
+  const [searchInput, setSearchInput] = useState<string>("");
 
   const handleScroll = () => {
     if (window.scrollY > 20) {
@@ -22,6 +23,12 @@ export const TestHeader = () => {
       window.removeEventListener('scroll', handleScroll);
   };
   }, []);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    localStorage.setItem("searchInput", searchInput);
+    router.push("/main/stock");
+  };
 
     return(
       <div className={`w-full h-20 fixed transition-all duration-300 ease-in-out ${isScrolled ? 'bg-black bg-opacity-100' : ''}`}>
@@ -59,12 +66,12 @@ export const TestHeader = () => {
         </div>
         {/* search bar */}
         <div>
-          <form className="h-full items-center">
+          <form onSubmit={handleSubmit} className="h-full items-center">
             <input
               type="text"
               placeholder="Search Stocks..."
               className="h-8 bg-neutral-800 focus:outline-none focus:border-transparent rounded-full px-3 text-white"
-            //   onChange={(e) => setSearchInput(e.target.value)}
+              onChange={(e) => setSearchInput(e.target.value)}
             />
           </form>
         </div>

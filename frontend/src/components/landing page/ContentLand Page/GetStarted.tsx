@@ -12,7 +12,7 @@ const GetStarted = () => {
             theme === "light" ? "text-black" : "text-white"
           }`}
         >
-          <div className=" text-blue-600">Ready to Explore our Website</div>
+          <div className="mt-8 text-blue-600">Ready to Explore our Website</div>
         </div>
 
         <div className=" w-full flex justify-center pt-10">

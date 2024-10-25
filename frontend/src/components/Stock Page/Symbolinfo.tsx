@@ -166,6 +166,8 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from "next-themes";
+
 
 interface SymbolInfoProps {
   searchInputValue?: string;
@@ -174,6 +176,8 @@ interface SymbolInfoProps {
 const Symbolinfo: React.FC<SymbolInfoProps> = ({ searchInputValue }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const typedInput = searchInputValue || "AAPL"; // Default to "AAPL" if no input is provided
+  const { theme } = useTheme();
+ 
 
   useEffect(() => {
     const container = containerRef.current;
@@ -191,7 +195,7 @@ const Symbolinfo: React.FC<SymbolInfoProps> = ({ searchInputValue }) => {
         symbol: typedInput, // Use dynamic symbol
         width: "100%",
         locale: "en",
-        colorTheme: "dark", // Set to dark theme
+        colorTheme: theme === "dark" ? "dark" : "light", // Set to dark theme
         isTransparent: false,
         height: 185,
         largeChartUrl: `http://localhost:3000/main/stock?symbol=${typedInput}` // Redirect to your custom path
@@ -207,7 +211,7 @@ const Symbolinfo: React.FC<SymbolInfoProps> = ({ searchInputValue }) => {
         existingScript.remove();
       }
     };
-  }, [typedInput]); // Update whenever the symbol changes
+  }, [typedInput, theme]); // Update whenever the symbol changes
 
   return (
     <div className="tradingview-widget-container">

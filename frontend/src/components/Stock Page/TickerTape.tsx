@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from "next-themes";
 
 const TickerTape: React.FC<{ onSymbolChange: (symbol: string) => void }> = ({ onSymbolChange }) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    const { theme } = useTheme();
 
     useEffect(() => {
         if (containerRef.current) {
@@ -25,7 +27,7 @@ const TickerTape: React.FC<{ onSymbolChange: (symbol: string) => void }> = ({ on
                     { description: "", proName: "NYSE:WMT" }
                 ],
                 showSymbolLogo: true,
-                colorTheme: "dark",
+                colorTheme: theme === "dark" ? "dark" : "light",
                 isTransparent: false,
                 displayMode: "adaptive",
                 locale: "en",
@@ -49,7 +51,7 @@ const TickerTape: React.FC<{ onSymbolChange: (symbol: string) => void }> = ({ on
                 containerRef.current.innerHTML = '';
             }
         };
-    }, [onSymbolChange]);
+    }, [onSymbolChange, theme]);
 
     return <div id="ticker-tape" ref={containerRef}></div>;
 };

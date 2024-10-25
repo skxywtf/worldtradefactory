@@ -59,12 +59,14 @@
 // with the search box
 "use client";
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from 'next-themes';
 
 interface TechnicalAnalysisWidgetProps {
   searchInputValue?: string;
 }
 
 const TechnicalAnalysisWidget: React.FC<TechnicalAnalysisWidgetProps> = ({ searchInputValue }) => {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const typedInput = searchInputValue || "AAPL"; // Default to "AAPL" if no input is provided
 
@@ -89,7 +91,7 @@ const TechnicalAnalysisWidget: React.FC<TechnicalAnalysisWidgetProps> = ({ searc
         showIntervalTabs: true,
         displayMode: "single",
         locale: "en",
-        colorTheme: "dark", // Ensure dark theme
+        colorTheme: theme === "dark" ? "dark" : "light", // Ensure dark theme
         largeChartUrl: "http://localhost:3000/main/stock"
       });
 
@@ -103,7 +105,7 @@ const TechnicalAnalysisWidget: React.FC<TechnicalAnalysisWidgetProps> = ({ searc
         container.innerHTML = ''; // Clear the container content
       }
     };
-  }, [typedInput]); // Update whenever the symbol changes
+  }, [typedInput, theme]); // Update whenever the symbol changes
 
   return (
     <div className="tradingview-widget-container" ref={containerRef} style={{ height: '100%', width: '100%' }}>

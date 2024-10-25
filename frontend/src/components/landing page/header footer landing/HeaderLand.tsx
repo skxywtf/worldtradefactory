@@ -42,7 +42,7 @@ const HeaderLand = () => {
         <div className="w-28">
           <Image
             className="cursor-pointer py-4 h-full w-full"
-            onClick={() => router.push("/")}
+            onClick={() => router.push("/home")}
             src={Logo}
             alt="Logo"
           />
@@ -101,7 +101,7 @@ const HeaderLand = () => {
           <form onSubmit={handleSubmit} className="h-full items-center">
             <input
               type="text"
-              placeholder="search stocks"
+              placeholder="Search stocks"
               className={`h-8 focus:outline-none focus:border-transparent rounded-full p-4 ${
                 currentTheme === "dark"
                   ? "bg-neutral-800 text-white"

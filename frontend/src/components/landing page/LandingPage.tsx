@@ -8,7 +8,7 @@ const LandingPage = () => {
   const { theme  } = useTheme(); // Get the current theme and toggle function
 
   return (
-    <div className={`h-full w-full ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
+    <div className={`h-full w-screen ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
       <HeaderLand />
 
       <div className="w-full">

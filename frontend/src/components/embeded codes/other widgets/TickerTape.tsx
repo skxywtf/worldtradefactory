@@ -1,20 +1,22 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
+import { useTheme } from "next-themes";
 
 const TickerTape: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
-  const [theme, setTheme] = useState("dark");
+  const { theme } = useTheme();
+  // const [theme, setTheme] = useState("dark");
 
   const detectTheme = () => {
     const userPreferredTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-    setTheme(userPreferredTheme);
+    // setTheme(userPreferredTheme);
   };
 
   useEffect(() => {
     detectTheme();
     const themeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     themeMediaQuery.addEventListener("change", (e) => {
-      setTheme(e.matches ? "dark" : "light");
+      // setTheme(e.matches ? "dark" : "light");
     });
 
     const container = containerRef.current;
@@ -37,7 +39,7 @@ const TickerTape: React.FC = () => {
         showSymbolLogo: true,
         isTransparent: false,
         displayMode: "adaptive",
-        colorTheme: theme,
+        colorTheme: theme === "dark" ? "dark" : "light",
         "largeChartUrl": "http://localhost:3000/Stock",
         locale: "en"
       });

@@ -49,13 +49,16 @@
 
 
 "use client";
+import { useTheme } from 'next-themes';
 import React, { useEffect, useRef } from 'react';
+
 
 interface TopStoriesWidgetProps {
   searchInputValue?: string;
 }
 
 const TopStoriesWidget: React.FC<TopStoriesWidgetProps> = ({ searchInputValue }) => {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const typedInput = searchInputValue || "AAPL"; // Default to "AAPL" if no input is provided
 
@@ -76,7 +79,7 @@ const TopStoriesWidget: React.FC<TopStoriesWidgetProps> = ({ searchInputValue })
         feedMode: 'all',
         width: '100%',
         height: '100%',
-        colorTheme: 'dark', // Set to dark theme
+        colorTheme: theme === "dark" ? "dark" : "light", // Set to dark theme
         isTransparent: false,
         symbol: typedInput, // Use dynamic symbol
         largeChartUrl: "http://localhost:3000/main/stock",
@@ -93,7 +96,7 @@ const TopStoriesWidget: React.FC<TopStoriesWidgetProps> = ({ searchInputValue })
         containerRef.current.innerHTML = '';
       }
     };
-  }, [typedInput]); // Update whenever the symbol changes
+  }, [typedInput, theme]); // Update whenever the symbol changes
 
   return <div id="top-stories" ref={containerRef} style={{ height: '425px' }}></div>;
 };

@@ -47,12 +47,14 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from "next-themes";
 
 interface CompanyProfileWidgetProps {
   searchInputValue?: string;
 }
 
 const CompanyProfileWidget: React.FC<CompanyProfileWidgetProps> = ({ searchInputValue }) => {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const typedInput = searchInputValue || "AAPL"; // Default to "AAPL" if no input is provided
 
@@ -70,7 +72,7 @@ const CompanyProfileWidget: React.FC<CompanyProfileWidgetProps> = ({ searchInput
         width: '100%',
         height: '100%',
         isTransparent: false,
-        colorTheme: 'dark', // Set to dark theme
+        colorTheme: theme === "dark" ? "dark" : "light", // Set to dark theme
         largeChartUrl: "http://localhost:3000/main/stock",
         symbol: typedInput, // Use dynamic symbol
         locale: 'en'
@@ -84,7 +86,7 @@ const CompanyProfileWidget: React.FC<CompanyProfileWidgetProps> = ({ searchInput
         containerRef.current.innerHTML = '';
       }
     };
-  }, [typedInput]); // Update whenever the symbol changes
+  }, [typedInput, theme]); // Update whenever the symbol changes
 
   return (
     <div className="tradingview-widget-container" ref={containerRef} style={{ height: '100%', width: '100%' }}>
