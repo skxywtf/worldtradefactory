@@ -53,12 +53,14 @@
 "use client";
 
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from "next-themes";
 
 interface FundamentalDataWidgetProps {
   searchInputValue?: string;
 }
 
 const FundamentalDataWidget: React.FC<FundamentalDataWidgetProps> = ({ searchInputValue }) => {
+  const { theme } = useTheme();
   const containerRef = useRef<HTMLDivElement>(null);
   const typedInput = searchInputValue || "AAPL"; // Default to "AAPL" if no input is provided
 
@@ -80,7 +82,7 @@ const FundamentalDataWidget: React.FC<FundamentalDataWidgetProps> = ({ searchInp
         displayMode: "regular",
         width: "100%",
         height: "100%",
-        colorTheme: "dark", // Set to dark theme
+        colorTheme: theme === "dark" ? "dark" : "light", // Set to dark theme
         symbol: typedInput, // Use dynamic symbol
         locale: "en"
       });
@@ -95,7 +97,7 @@ const FundamentalDataWidget: React.FC<FundamentalDataWidgetProps> = ({ searchInp
         container.innerHTML = ''; // Clear the container content
       }
     };
-  }, [typedInput]); // Update whenever the symbol changes
+  }, [typedInput, theme]); // Update whenever the symbol changes
 
   return (
     <div className="tradingview-widget-container" ref={containerRef} style={{ height: '100%', width: '100%' }}>

@@ -1,34 +1,39 @@
 "use client";
 
-
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import './global.css';
 import Stock from "@/components/Stock Page/Stock";
-import { SymbolProvider } from "@/components/Stock Page/SymbolContext";
+import { usePathname, useSearchParams } from "next/navigation";
+import {SymbolProvider} from "@/components/Stock Page/SymbolContext";
 import Header from "@/components/Stock Page/Header"; // Adjust import path as needed
 import Footer from "@/components/header and Footer/Footer"; // Adjust import path as needed
 import TickerTape from "@/components/Stock Page/TickerTape"; // Adjust import path as needed
-
+import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+import FooterLand from "../../../components/landing page/header footer landing/FooterLand"
+import { useTheme } from "next-themes";
 
 const StockPage: React.FC = () => {
-  const [selectedSymbol, setSelectedSymbol] = useState<string>("");
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [selectedSymbol, setSelectedSymbol] = useState<string>("NASDAQ:AAPL");
+  const { theme } = useTheme(); // Get the current theme and toggle function
 
   useEffect(() => {
-    // Read symbol from localStorage
-    const symbolFromStorage = localStorage.getItem("stockSymbol");
-    if (symbolFromStorage) {
-      setSelectedSymbol(symbolFromStorage);
+    const symbolFromUrl = searchParams.get("tvwidgetsymbol");
+    if (symbolFromUrl) {
+      setSelectedSymbol(decodeURIComponent(symbolFromUrl));
+      localStorage.setItem("searchInput", symbolFromUrl);
     }
-  }, []);
+  }, 
+  // [pathname, searchParams, selectedSymbol]          // dependecies are commented to test search functionality
+  );
 
   const handleSymbolChange = (symbol: string) => {
     setSelectedSymbol(symbol);
-    // Optionally, you can update localStorage here if needed
-    localStorage.setItem("stockSymbol", symbol);
-    // Update URL without query parameters
+    // Update the URL search params to reflect the new symbol
     const url = new URL(window.location.href);
-    url.pathname = "/main/stock";
+    url.searchParams.set("tvwidgetsymbol", encodeURIComponent(symbol));
     window.history.pushState({}, "", url.toString());
   };
 
@@ -38,13 +43,17 @@ const StockPage: React.FC = () => {
         <title>Stock Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
+     <div className={`flex flex-col items-center ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}> 
       <SymbolProvider>  
         {/* initialSymbol={selectedSymbol}> */}
-        <Header />
+        {/* <Header /> */}
+        <HeaderLand />
+        {/* <HeaderLand /> */}
         <TickerTape onSymbolChange={handleSymbolChange} />
         <Stock  />
-        <Footer />
+        <FooterLand />
       </SymbolProvider>
+      </div> 
     </>
   );
 };

@@ -1,10 +1,12 @@
 import React, { useEffect, useRef } from 'react';
+import { useTheme } from "next-themes";
 
 interface TradingViewWidgetProps {
     symbol: string;
 }
 
 const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ symbol }) => {
+    const { theme } = useTheme();
     const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -19,7 +21,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ symbol }) => {
                 symbol: symbol,
                 interval: 'D',
                 timezone: 'Etc/UTC',
-                theme: 'dark',
+                theme: theme === "dark" ? "dark" : "light",
                 style: '1',
                 locale: 'en',
                 hide_side_toolbar: false,
@@ -40,7 +42,7 @@ const TradingViewWidget: React.FC<TradingViewWidgetProps> = ({ symbol }) => {
                 containerRef.current.innerHTML = '';
             }
         };
-    }, [symbol]);
+    }, [symbol, theme]);
 
     return <div id="tradingview_chart" ref={containerRef} style={{ height: '500px' }}></div>;
 };
