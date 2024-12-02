@@ -6,9 +6,11 @@ import { useTheme } from 'next-themes'
 
 const LandingPage = () => {
   const { theme  } = useTheme(); // Get the current theme and toggle function
-
+  console.log(theme)
   return (
-    <div className={`h-full w-screen ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
+    // <div className={`h-full ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
+    // <div className={`h-full ${theme === "dark" ? "text-white" : "text-black"}`}>
+    <div>
       <HeaderLand />
 
       <div className="w-full">

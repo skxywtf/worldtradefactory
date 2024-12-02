@@ -28,7 +28,7 @@ const MarketData: React.FC = () => {
         showSymbolLogo: false,
         showFloatingTooltip: false,
         width: "400",
-        height: "480",
+        height: "510",
         plotLineColorGrowing: "rgba(41, 98, 255, 1)",
         plotLineColorFalling: "rgba(41, 98, 255, 1)",
         gridLineColor: "rgba(42, 46, 57, 0)",

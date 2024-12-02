@@ -41,20 +41,16 @@ export default function HomePage() {
   
     return (
       <div className="text-center">
-        {/* Fixed Header */}
+  
         <div className="fixed top-0 left-0 right-0 z-50 h-16">
           <HomeHeader />
         </div>
   
-        {/* Background image with dark overlay */}
-        {/* Added padding-top (pt-16) to push the content down */}
         <div className="relative bg-cover bg-center h-screen pt-16" 
-        // style={{ backgroundImage: 'url(../../assets/globeTrade.jpg)' }}
         style={{ backgroundImage: `url(${globeTrade.src})` }}>
           
-          <div className="absolute inset-0 bg-black opacity-50"></div> {/* Dark overlay */}
-   
-          {/* Main content with letter-by-letter animation */}
+          <div className="absolute inset-0 bg-black opacity-50"></div> 
+
           <div className="relative flex flex-col items-center justify-center h-full space-y-8">
             
             {/* Company Name */}

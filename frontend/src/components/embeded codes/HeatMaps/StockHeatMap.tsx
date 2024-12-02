@@ -16,21 +16,21 @@ const StockHeatMap: React.FC = () => {
       script.async = true;
       script.innerHTML = `
         {
-          "exchanges": [],
+         "exchanges": [],
           "dataSource": "SPX500",
-          "grouping": "sector",
-          "blockSize": "market_cap_basic",
+          "grouping": "no_group",
+          "blockSize": "volume|1M",
           "blockColor": "change",
           "locale": "en",
-          "symbolUrl": "http://localhost:3000",
+          "symbolUrl": "",
           "colorTheme": "${theme === 'dark' ? 'dark' : 'light'}",
-          "hasTopBar": false,
-          "isDataSetEnabled": false,
+          "hasTopBar": true,
+          "isDataSetEnabled": true,
           "isZoomEnabled": true,
           "hasSymbolTooltip": true,
-          "isMonoSize": false,
+          "isMonoSize": true,
           "width": "100%",
-          "height": "100%"
+          "height": "90%"
         }`;
 
       container.appendChild(script);

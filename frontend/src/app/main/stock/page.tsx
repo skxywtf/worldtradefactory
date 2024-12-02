@@ -43,7 +43,7 @@ const StockPage: React.FC = () => {
         <title>Stock Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-     <div className={`flex flex-col items-center ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}> 
+     <div className={`flex flex-col items-center`}> 
       <SymbolProvider>  
         {/* initialSymbol={selectedSymbol}> */}
         {/* <Header /> */}
@@ -60,3 +60,4 @@ const StockPage: React.FC = () => {
 
 export default StockPage;
 
+// ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}
