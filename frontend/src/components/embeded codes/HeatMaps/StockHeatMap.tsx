@@ -24,7 +24,7 @@ const StockHeatMap: React.FC = () => {
           "locale": "en",
           "symbolUrl": "http://localhost:3000",
           "colorTheme": "${theme === 'dark' ? 'dark' : 'light'}",
-          "hasTopBar": false,
+          "hasTopBar": true,
           "isDataSetEnabled": false,
           "isZoomEnabled": true,
           "hasSymbolTooltip": true,
