@@ -1,50 +1,34 @@
 "use client";
 import React, { useState } from "react";
-// import { SocialIcon } from "react-social-icons";
-
-import {
-  IconArrowLeft,
-  IconBrandTabler,
-  IconSettings,
-  IconUserBolt,
-} from "@tabler/icons-react";
+import { IconArrowLeft } from "@tabler/icons-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { FaHome, FaChartLine, FaRegNewspaper, FaEnvelope } from "react-icons/fa";
+
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/Sidebar1";
 import CareerPage from "../Career";
-
-import {
-  FaHome,
-  FaChartLine,
-  FaRegNewspaper,
-  FaFileAlt,
-  FaEnvelope,
-  FaBell,
-} from "react-icons/fa";
 
 export function SidebarDemo1() {
   const links = [
     {
       label: "Home",
       href: "/",
-      icon: <FaHome className="mr-3  text-white " />,
+      icon: <FaHome className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Stocks",
       href: "/main/stock",
-      icon: <FaChartLine className="mr-3  text-white " />,
+      icon: <FaChartLine className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "News",
       href: "#",
-      icon: <FaRegNewspaper className="mr-3  text-white  " />,
+      icon: <FaRegNewspaper className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Articles",
       href: "#",
-      icon: <FaEnvelope className="mr-3  text-white " />,
+      icon: <FaEnvelope className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Logout",
@@ -58,8 +42,7 @@ export function SidebarDemo1() {
   return (
     <div
       className={cn(
-        "rounded-md flex flex-col md:flex-row  dark:bg-neutral-800 w-full flex-1   mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-[270vh]"
-        // for your use case, use `h-screen` instead of `h-[60vh]`
+        "rounded-md flex flex-col bg-gray-100 md:flex-row  dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-[270vh]"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
@@ -72,32 +55,15 @@ export function SidebarDemo1() {
               ))}
             </div>
           </div>
-          <div>
-            {/* <div className="h-20"> */}
-            {/* <SidebarLink 
-          link={{
-            label: "Arshi Khatoon",
-            href: "#",
-            icon: (
-              <Image
-                src="https://assets.aceternity.com/manu.png"
-                className="h-7 w-7 flex-shrink-0 rounded-full"
-                width={50}
-                height={50}
-                alt="Avatar"
-              />
-            ),
-          }}
-        />*/}
-            {/* </div> */}
-          </div>
+
         </SidebarBody>
       </Sidebar>
       <CareerPage></CareerPage>
-      {/* <Dashboard /> */}
+
     </div>
   );
 }
+
 export const Logo = () => {
   return (
     <Link
@@ -105,11 +71,10 @@ export const Logo = () => {
       className="font-normal flex space-x-0 items-center text-sm text-white py-1 relative z-20"
     >
       <img src="/assets/skxywtflogo.jpeg" height="100px" width="100px"></img>
-      {/* <div className="h-5 w-6 bg-black dark:bg-white rounded-br-lg rounded-tr-sm rounded-tl-lg rounded-bl-sm flex-shrink-0" /> */}
-      {/* </motion.span> */}
     </Link>
   );
 };
+
 export const LogoIcon = () => {
   return (
     <Link
@@ -120,5 +85,3 @@ export const LogoIcon = () => {
     </Link>
   );
 };
-
-// Dummy dashboard component with content

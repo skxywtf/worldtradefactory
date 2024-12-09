@@ -11,7 +11,6 @@ export function CardStackN() {
   );
 }
 
-// Small utility to highlight the content of specific section of a testimonial content
 export const Highlight = ({
   children,
   className,
@@ -22,7 +21,8 @@ export const Highlight = ({
   return (
     <span
       className={cn(
-        "font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-700/[0.2] dark:text-emerald-500 px-8 py-8",
+        // "font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-700/[0.2] dark:text-emerald-500 mx-1 p-1",
+        "font-bold bg-emerald-100 text-emerald-700 dark:bg-emerald-700/[0.2] dark:text-emerald-500 mx-1 p-1",
         className
       )}
     >
@@ -38,7 +38,7 @@ const CARDS = [
     designation: "Senior Software Engineer",
     content: (
       <p>
-        These cards are amazing, <Highlight>I want to use them</Highlight> in my
+        These cards are amazing, <Highlight>I want to use them</Highlight>in my
         project. Framer motion is a godsend ngl tbh fam 🙏
       </p>
     ),
@@ -50,8 +50,8 @@ const CARDS = [
     content: (
       <p>
         I dont like this Twitter thing,{" "}
-        <Highlight>deleting it right away</Highlight> because yolo. Instead, I
-        would like to call it <Highlight>X.com</Highlight> so that it can easily
+        <Highlight>deleting it right away</Highlight>because yolo. Instead, I
+        would like to call it<Highlight>X.com</Highlight>so that it can easily
         be confused with adult sites.
       </p>
     ),
@@ -63,10 +63,8 @@ const CARDS = [
     content: (
       <p>
         The first rule of
-        <Highlight>Fight Club</Highlight> is that you do not talk about fight
-        club. The second rule of
-        <Highlight>Fight club</Highlight> is that you DO NOT TALK about fight
-        club.
+        <Highlight>Fight Club</Highlight>is that you do not talk about fight
+        club. The second rule of<Highlight>Fight club</Highlight>is that you DO NOT TALK about fight club.
       </p>
     ),
   },
@@ -77,9 +75,9 @@ const CARDS = [
     content: (
       <p>
         The first rule of
-        <Highlight>Fight Club</Highlight> is that you do not talk about fight
+        <Highlight>Fight Club</Highlight>is that you do not talk about fight
         club. The second rule of
-        <Highlight>Fight club</Highlight> is that you DO NOT TALK about fight
+        <Highlight>Fight club</Highlight>is that you DO NOT TALK about fight
         club.
       </p>
     ),
@@ -91,9 +89,9 @@ const CARDS = [
     content: (
       <p>
         The first rule of
-        <Highlight>Fight Club</Highlight> is that you do not talk about fight
+        <Highlight>Fight Club</Highlight>is that you do not talk about fight
         club. The second rule of
-        <Highlight>Fight club</Highlight> is that you DO NOT TALK about fight
+        <Highlight>Fight club</Highlight>is that you DO NOT TALK about fight
         club.
       </p>
     ),

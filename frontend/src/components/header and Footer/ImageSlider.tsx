@@ -2,18 +2,19 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "../ui/images-slider";
+// import lkimage from "../../assets"
 
 export function ImagesSliderDemo() {
-  const images = ["/assets/tradeGlobe.jpg",
-    "/assets/worldBG.jpg",
-    "/assets/worldBG2.jpg",
-    "/assets/globalTrade1.jpg",
-    "/assets/globalTrade2.jpg",
-    "/assets/tradeGlobe.jpg",
-    "/assets/corevalue.jpg",
-    "/assets/globalTrade2.jpg",
-    "/assets/tradeGlobe.jpg",
-    "/assets/corevalue.jpg",
+  const images = ["../../assets/tradeGlobe.jpg",
+    "../../assets/worldBG.jpg",
+    "../../assets/worldBG2.jpg",
+    "../../assets/globalTrade1.jpg",
+    "../../assets/globalTrade2.jpg",
+    "../../assets/tradeGlobe.jpeg",
+    // "../../assets/corevalue.jpg",
+    "../../assets/globalTrade2.jpg",
+    "../../assets/tradeGlobe.jpg",
+    // "../../assets/corevalue.jpg",
   ];
   
   return (

@@ -2,6 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import { Carousel, Card } from "@/components/ui/apple-cards-carousel";
+import frontendImage from "../../../assets/frontend.jpg"
+import backendImage from "../../../assets/backend.jpg"
+import AiTeam from "../../../assets/AiTeam.jpg"
 
 export function CareerCard() {
   const cards = data.map((card, index) => (
@@ -9,7 +12,7 @@ export function CareerCard() {
   ));
 
   return (
-    <div className="w-full h-full py-20 bg-black">
+    <div className="w-full h-full py-20 bg-white dark:bg-black">
       <Carousel items={cards} />
     </div>
   );
@@ -35,7 +38,7 @@ const DummyContent = () => {
               thought.
             </p>
             <Image
-              src="/assets/frontend.jpg"
+              src={frontendImage}
               alt="Frontend Team"
               height="80"
               width="80"
@@ -52,19 +55,19 @@ const data = [
   {
     category: "Frontend Team",
     title: "You can do more with Frontend.",
-    src: "/assets/frontend.jpg",
+    src: frontendImage,
     content: <DummyContent />,
   },
   {
     category: "Backend Team",
     title: "Enhance your productivity.",
-    src: "/assets/backend.jpg",
+    src: backendImage,
     content: <DummyContent />,
   },
   {
     category: "Artificial Intelegence Team",
     title: "Launching the new new Idea.",
-    src: "/assets/Ai1.jpg",
+    src: AiTeam,
     content: <DummyContent />,
   },
 ];
