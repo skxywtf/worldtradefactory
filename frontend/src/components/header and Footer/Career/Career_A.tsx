@@ -42,7 +42,7 @@ export function SidebarDemo1() {
   return (
     <div
       className={cn(
-        "rounded-md flex flex-col bg-gray-100 md:flex-row  dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-[270vh]"
+        "flex flex-col bg-gray-100 md:flex-row dark:bg-neutral-800 w-full flex-1 mx-auto overflow-hidden h-[260vh]"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>

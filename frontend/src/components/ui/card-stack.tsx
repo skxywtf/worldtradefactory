@@ -41,7 +41,7 @@ export const CardStack = ({
   };
 
   return (
-    <div className="relative top-[150px] left-[150px]  bottom-0 h-256 w-96 md:h-96 md:w-96 mt-11 mr-0 ml-11">
+    <div className="relative top-[150px] left-[100px] bottom-0 h-256 w-96 md:h-96 md:w-96">
       {" "}
       {/* shifted to bottom right */}
       {cards.map((card, index) => {

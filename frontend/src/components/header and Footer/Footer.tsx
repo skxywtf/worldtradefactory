@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className=" w-full border-t lg:h-72 bg-gray-200 text-black dark:bg-black dark:text-white mt-10">
+    <div className=" w-full border-t lg:h-72 bg-gray-200 text-black dark:bg-black dark:text-white">
       <div className="flex justify-between pt-10 px-5">
         <Link href="/" className="text-2xl">
           SKXYWTF

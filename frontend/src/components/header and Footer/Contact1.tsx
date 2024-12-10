@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 
 const Contact1 = () => {
   const [formData, setFormData] = useState({
@@ -19,15 +20,18 @@ const Contact1 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white py-16 flex justify-center items-cente  w-full">
+    <div className="bg-white text-black w-full dark:bg-black text-white">
+      <HeaderLand />
+
+    <div className="flex justify-center items-center py-16 text-black dark:text-white">
       <div className="max-w-5xl w-full px-5 md:px-10">
         <h1 className="text-4xl font-bold text-center mb-6">Contact us</h1>
-        <p className="text-center mb-12 text-gray-400">
+        <p className="text-center mb-12 text-lg">
           Being in contact is become very easy. Contact us for any business
           inquiry.
         </p>
 
-        <div className="flex flex-col md:flex-row items-start justify-between space-y-10 md:space-y-0">
+        <div className="flex gap-10 flex-col md:flex-row items-start justify-between space-y-10 md:space-y-0">
           {/* Address Section */}
           <div className="w-full md:w-1/3 space-y-4">
             <div className="flex items-center text-[#926F34] space-x-2">
@@ -105,6 +109,7 @@ const Contact1 = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 export function CardStackN() {
   return (
     <>
-      <div className="h-[10rem] mt-8 w-full ">
+      <div className="h-[10rem] w-full">
         <CardStack items={CARDS} />
       </div>
     </>

@@ -13,22 +13,22 @@ export function ContactSidebar() {
     {
       label: "Home",
       href: "/",
-      icon: <FaHome className="mr-3  text-white " />,
+      icon: <FaHome className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Stocks",
       href: "/main/stock",
-      icon: <FaChartLine className="mr-3  text-white " />,
+      icon: <FaChartLine className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "News",
       href: "#",
-      icon: <FaRegNewspaper className="mr-3  text-white  " />,
+      icon: <FaRegNewspaper className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Articles",
       href: "#",
-      icon: <FaEnvelope className="mr-3  text-white " />,
+      icon: <FaEnvelope className="mr-3 text-neutral-700 dark:text-neutral-200 flex-shrink-0" />,
     },
     {
       label: "Logout",
@@ -43,7 +43,7 @@ export function ContactSidebar() {
   return (
     <div
       className={cn(
-        "rounded-md flex flex-col bg-white md:flex-row dark:bg-neutral-800 w-full flex-1 mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-[100vh]"
+        "flex flex-col bg-gray-100 md:flex-row dark:bg-neutral-800 w-full flex-1 mx-auto overflow-hidden h-full md:h-screen"
       )}
     >
       <Sidebar open={open} setOpen={setOpen}>
