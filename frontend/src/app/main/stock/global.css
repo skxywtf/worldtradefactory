@@ -1,11 +1,6 @@
-/* @tailwind base;
-@tailwind components;
-@tailwind utilities; */
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-
-/* recheck once */
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -135,16 +130,10 @@ main {
 }
 
 .skeleton,
-/*#ticker-tape,*/
-/*#symbol-info,*/
-/*#advanced-chart,*/
-/*#company-profile,*/
-/* #fundamental-data, */
-/*#technical-analysis,*/
-/*#top-stories,*/
+
 #ticker-tape {
   text-align: center;
-  padding: 16px;
+  margin: 1rem;
   font-size: 24px;
   background: rgba(0, 0, 0, 0.075);
   border-radius: 4px;
@@ -220,7 +209,7 @@ header {
 
 /* Updated style for the tradingview widget container */
 .tradingview-widget-container {
-  margin: 10px 0;
+  margin: 0 0;
   padding: 0;
   box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   width: 100%;
