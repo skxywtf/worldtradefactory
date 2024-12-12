@@ -65,8 +65,9 @@ const HeaderLand = () => {
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
             }`}
+            onClick={() => router.push("/screener")}
           >
-            Bonds
+            Screener
           </button>
           <button
             className={`p-1 px-2 text-lg rounded-full ${
@@ -74,6 +75,7 @@ const HeaderLand = () => {
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
             }`}
+            onClick={() => router.push("/forex")}
           >
             Forex
           </button>
@@ -83,6 +85,7 @@ const HeaderLand = () => {
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
             }`}
+            onClick={() => router.push("/crypto")}
           >
             Crypto
           </button>

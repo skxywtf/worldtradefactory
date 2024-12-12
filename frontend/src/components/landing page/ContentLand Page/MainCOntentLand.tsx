@@ -18,7 +18,7 @@ const MainCOntentLand = () => {
       </div>
       {/* heatmaps */}
       <HeatMaps />
-      {/*  */}
+      
       <div className="mb-[700px]"></div>
       <GetStarted />
     </div>

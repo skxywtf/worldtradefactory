@@ -5,11 +5,9 @@ import FooterLand from "./header footer landing/FooterLand";
 import { useTheme } from 'next-themes'
 
 const LandingPage = () => {
-  const { theme  } = useTheme(); // Get the current theme and toggle function
-  console.log(theme)
+  const { theme  } = useTheme();
+  
   return (
-    // <div className={`h-full ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}>
-    // <div className={`h-full ${theme === "dark" ? "text-white" : "text-black"}`}>
     <div>
       <HeaderLand />
 
