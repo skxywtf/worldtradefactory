@@ -1,8 +1,11 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const FooterLand = () => {
+  const router = useRouter();
+
   return (
     <footer className="w-full justify-between bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200">
       <div className=" x-auto px-10 md:px-20">
@@ -21,18 +24,18 @@ const FooterLand = () => {
           {/* Company */}
           <div>
             <h3 className="text-xl font-semibold">COMPANY</h3>
-            <ul className="mt-5 space-y-3 text-neutral-800 dark:text-neutral-300">
-              <li>About Us</li>
-              <li>Privacy Policy</li>
-              {/* <li>Careers</li> */}
+            <ul className="flex flex-col gap-3 mt-5 text-neutral-800 dark:text-neutral-300">
+              <Link href='/'>About Us</Link>
+              <Link href='/'>Privacy Policy</Link>
+              <Link href="/main/career">Careers</Link>
             </ul>
           </div>
 
           {/* Support */}
           <div>
             <h3 className="text-xl font-semibold">SUPPORT</h3>
-            <ul className="mt-5 space-y-3 text-neutral-800 dark:text-neutral-300">
-              <li>Contact Us</li>
+            <ul className="flex flex-col gap-2.5 mt-5 text-neutral-800 dark:text-neutral-300">
+              <Link href="/main/contact" >Contact Us</Link>
             </ul>
           </div>
 
@@ -53,7 +56,7 @@ const FooterLand = () => {
             Copyright &copy; 2024 - SKXYWTF
           </p>
           <Link
-            href="/main"
+            href="/main/login"
             className="mt-4 md:mt-0 bg-blue-500 text-white px-4 py-2 rounded-lg shadow-lg hover:bg-blue-600 transition-colors duration-200"
           >
             Get Started

@@ -50,13 +50,13 @@ export const HomeHeader = () => {
           >
             Stocks
           </button>
-          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
-            Bonds
+          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full" onClick={() => router.push("/screener")}>
+            Screener
           </button>
-          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
+          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full" onClick={() => router.push("/forex")}>
             Forex
           </button>
-          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full">
+          <button className="p-1 px-3 text-lg hover:bg-neutral-800 rounded-full" onClick={() => router.push("/crypto")}>
             Crypto
           </button>
           <button onClick={() => router.push("/stockbot")}

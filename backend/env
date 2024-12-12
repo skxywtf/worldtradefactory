@@ -1,4 +1,0 @@
-USER="postgres"
-PASSWORD="newpassword"
-HOST="31.220.31.198"
-SECRET_KEY = 'django-insecure-2d2r#3g36j=9d4#vvjcqa_japrh%b$)29z0gc1!20ix^8buhbs'

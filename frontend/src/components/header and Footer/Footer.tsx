@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className=" w-full border-t lg:h-72  bg-black text-white mt-10">
+    <div className=" w-full border-t lg:h-72 bg-gray-200 text-black dark:bg-black dark:text-white">
       <div className="flex justify-between pt-10 px-5">
         <Link href="/" className="text-2xl">
           SKXYWTF
@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
       </div>
       {/*  */}
-      <div className="py-10 px-5 text-gray-400">
+      <div className="py-10 px-5 text-gray-500">
         Skxywtf provides stock price predictions and stock ratings based on past
         market behavior and historical stock performance. Past performance is
         not an indicator of future results. Skxywtf cannot substitute
@@ -30,7 +30,7 @@ const Footer = () => {
       </div>
       {/*  */}
       <div className="flex justify-between px-5">
-        <Link href="/terms" className="underline text-gray-400">
+        <Link href="/terms" className="underline text-gray-500">
           Terms and use
         </Link>
         <div className="text-gray-400">&copy;2024 Skxywtf</div>

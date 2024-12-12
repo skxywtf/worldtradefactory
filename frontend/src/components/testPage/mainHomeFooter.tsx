@@ -1,10 +1,13 @@
 "use client";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 const HomeFooter = () => {
+  const router = useRouter();
+
   return (
     <div className="h-full w-full bg-black text-white text-left">
       <div className=" w-full md:flex px-20 py-20">
@@ -22,22 +25,22 @@ const HomeFooter = () => {
 
         <div className="px-5 w-full">
           <div className=" text-2xl">COMPANY</div>
-          <div className=" text-neutral-400 text-sm pt-10">
-            <div className="pb-3">About Us</div>
-            <div className="pb-3">Privacy Policy</div>
-            <div className="pb-3">Careers</div>
-          </div>
+          <ul className="flex flex-col gap-3 mt-5 text-neutral-400 text-sm pt-5">
+              <Link href=''>About Us</Link>
+              <Link href=''>Privacy Policy</Link>
+              <Link href="/main/career">Career</Link>
+          </ul>
         </div>
 
         {/* support */}
 
         <div className="px-5 w-full">
           <div className=" text-2xl">SUPPORT</div>
-          <div className=" text-neutral-400 text-sm pt-10">
-            <div className="pb-3">Contact Us</div>
-            <div className="pb-3">Documentation</div>
-            <div className="pb-3">Community</div>
-          </div>
+          <ul className="flex flex-col gap-3 mt-5 text-neutral-400 text-sm pt-5">
+              <Link href='/main/contact'>Contact Us</Link>
+              <Link href=''>Documentation</Link>
+              <Link href="">Community</Link>
+          </ul>
         </div>
 
         {/* socials */}
@@ -46,13 +49,13 @@ const HomeFooter = () => {
           <div className="text-2xl">SOCIALS</div>
           <div className=" text-xl flex gap-7 pt-10">
             <div>
-              <FaFacebook />
+             <FaFacebook className="hover:text-blue-600 transition-colors duration-200 cursor-pointer" />
             </div>
             <div>
-              <FaInstagram />
+              <FaInstagram className="hover:text-pink-500 transition-colors duration-200 cursor-pointer" />
             </div>
             <div>
-              <FaSquareXTwitter />
+              <FaSquareXTwitter className="hover:text-blue-200 transition-colors duration-200 cursor-pointer" />
             </div>
           </div>
         </div>
@@ -66,7 +69,7 @@ const HomeFooter = () => {
           Copyright &copy;2024 - SKXYWTF
         </div>
         <div>
-          <Link href="/main" className=" bg-blue-400 px-3 rounded-lg py-2">
+          <Link href="/main/login" className=" bg-blue-400 px-3 rounded-lg py-2">
             Get Started
           </Link>
         </div>

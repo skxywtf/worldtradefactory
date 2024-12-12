@@ -6,18 +6,14 @@ import './global.css';
 import Stock from "@/components/Stock Page/Stock";
 import { usePathname, useSearchParams } from "next/navigation";
 import {SymbolProvider} from "@/components/Stock Page/SymbolContext";
-import Header from "@/components/Stock Page/Header"; // Adjust import path as needed
-import Footer from "@/components/header and Footer/Footer"; // Adjust import path as needed
 import TickerTape from "@/components/Stock Page/TickerTape"; // Adjust import path as needed
 import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 import FooterLand from "../../../components/landing page/header footer landing/FooterLand"
-import { useTheme } from "next-themes";
 
 const StockPage: React.FC = () => {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [selectedSymbol, setSelectedSymbol] = useState<string>("NASDAQ:AAPL");
-  const { theme } = useTheme(); // Get the current theme and toggle function
 
   useEffect(() => {
     const symbolFromUrl = searchParams.get("tvwidgetsymbol");
@@ -43,12 +39,11 @@ const StockPage: React.FC = () => {
         <title>Stock Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-     <div className={`flex flex-col items-center ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}`}> 
+     <div className='flex flex-col items-center bg-white dark:bg-black'> 
       <SymbolProvider>  
-        {/* initialSymbol={selectedSymbol}> */}
-        {/* <Header /> */}
+  
         <HeaderLand />
-        {/* <HeaderLand /> */}
+   
         <TickerTape onSymbolChange={handleSymbolChange} />
         <Stock  />
         <FooterLand />
@@ -60,3 +55,4 @@ const StockPage: React.FC = () => {
 
 export default StockPage;
 
+// ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}
