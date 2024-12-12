@@ -1,6 +1,5 @@
 "use client";
-// import SignUp from '@/components/LoginAndSignup/Signup'
-import SignUp from "@/components/LoginAndSignup/Signup11";
+import SignUp from '@/components/LoginAndSignup/Signup'
 
 export default function SignUpPage() {
   return (

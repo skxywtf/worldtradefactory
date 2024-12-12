@@ -17,7 +17,7 @@ const GetStarted = () => {
 
         <div className=" w-full flex justify-center pt-10">
           <Link
-            href="/main"
+            href="/main/login"
             className={`text-2xl p-1 py-2 px-3 rounded-md ${
               theme === "light" ? "text-black" : "text-white"
             } border border-white bg-gradient-to-br from-purple-500 via-purple-600 to-purple-800`}

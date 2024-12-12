@@ -7,13 +7,13 @@ import CryptoCoinHeatMap from "@/components/embeded codes/HeatMaps/CryptoCoinHea
 
 const Layout: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-neutral-100 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200">
+    <div className="min-h-screen flex flex-col bg-neutral-100 dark:bg-black text-neutral-800 dark:text-neutral-200">
       {/* Header */}
       <HeaderLand />
 
       <div className="flex flex-col gap-8 w-full">
         {/* Market Widget */}
-        <div className="w-full bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-lg p-4">
+        <div className="w-full bg-neutral-200 dark:bg-black rounded-lg shadow-lg p-4">
           <h2 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-neutral-100">
             Cryptocurrency Market Overview
           </h2>
@@ -21,7 +21,7 @@ const Layout: React.FC = () => {
         </div>
 
         {/* Heatmap Widget */}
-        <div className="w-full bg-neutral-200 dark:bg-neutral-800 rounded-lg shadow-lg p-4">
+        <div className="w-full bg-neutral-200 dark:bg-black rounded-lg shadow-lg p-4">
           <h2 className="text-xl font-semibold mb-4 text-neutral-900 dark:text-neutral-100">
             Crypto Coins Heatmap
           </h2>
