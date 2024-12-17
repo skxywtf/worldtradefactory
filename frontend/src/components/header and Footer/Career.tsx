@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+// import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 import FooterLand from "@/components/landing page/header footer landing/FooterLand";
 
 import { CareerCard } from "./Career/Card";
@@ -10,7 +10,7 @@ const CareerPage = () => {
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
 
-      <HeaderLand />
+      {/* <HeaderLand /> */}
 
       <div className="flex min-h-screen bg-white text-black dark:bg-black dark:text-white">
        <div className="w-4/5 mx-14 py-4">
@@ -22,7 +22,7 @@ const CareerPage = () => {
           </p>
         </div>
 
-        <CardStackN></CardStackN>
+        <CardStackN />
 
       </div>
 
