@@ -100,7 +100,7 @@ export const PaymentDetails: React.FC = () => {
         </div>
       )}
 
-      <div className="flex justify-between py-6">
+      <div className="flex justify-between items-center py-6">
         <button className="px-5 py-1 my-6 text-lg font-medium text-slate-600 rounded-lg dark:text-white" onClick={() => setActiveStep(activeStep - 1)}>
           {'<'} Previous
         </button>

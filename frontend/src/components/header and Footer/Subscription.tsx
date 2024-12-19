@@ -1,9 +1,17 @@
-import React, { useState } from "react";
+import { CheckoutContext } from "@/app/main/checkout/checkoutContext";
+import { useRouter } from "next/navigation";
+import React, { useContext } from "react";
 
 const Subscription = () => {
+  const router = useRouter()
 
-  const [billingCycle, setBillingCycle] = useState(true)
-  const [selectPlan, setSelectPlan] = useState('')
+  const context = useContext(CheckoutContext);
+
+  if (!context) {
+    throw new Error("CheckoutPage must be used within a CheckoutProvider");
+  }
+
+  const { billingCycle, setBillingCycle, selectPlan, setSelectPlan } = context;
 
   const subscriptionData = [
     {
@@ -26,6 +34,10 @@ const Subscription = () => {
    }
   ]
 
+  const handleSubscription = () => {
+    router.push("/main/checkout");
+  }
+
   return (
     <div className="text-center py-8">
       <header>
@@ -47,7 +59,7 @@ const Subscription = () => {
         <p className='text-3xl'> {plan.name} </p>
         <p className='text-xl my-2'> {plan.description} </p>
         <p className='text-[3rem] font-semibold'>${billingCycle ? plan.monthlyPrice : plan.yearlyPrice}<span className='text-xl'>/{billingCycle ? 'month' : 'year'}</span> </p>
-        <button className='bg-white border-2 text-black font-semibold text-xl p-2 mt-2 w-full hover:bg-blue-100' onClick={() => setSelectPlan(plan)} >Subscribe</button>
+        <button className='bg-white border-2 text-black font-semibold text-xl p-2 mt-2 w-full hover:bg-blue-100' onClick={() => {setSelectPlan(plan); handleSubscription() }} >Subscribe</button>
       </div>
         )
       }

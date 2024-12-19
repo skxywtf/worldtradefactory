@@ -15,7 +15,7 @@ export default function CheckoutPage() {
         <CheckoutMain />
         <FooterLand />
 
-        </CheckoutProvider>
+      </CheckoutProvider>
     </div>
   )
 }

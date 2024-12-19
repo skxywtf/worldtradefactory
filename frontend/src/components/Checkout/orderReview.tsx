@@ -50,14 +50,14 @@ export const OrderReview: React.FC = () => {
       <p className="border border-gray-300"></p>
 
       <main className="leading-8 p-2 text-slate-600 dark:text-white">
-        <p className="text-lg py-1 text-black">Payment Details</p>
+        <p className="text-lg py-1 text-black dark:text-white">Payment Details</p>
         <p>Card type: </p>
         <p>Card holder: </p>
         <p>Card number: </p>
         <p>Expiry date: </p>
       </main>
 
-      <div className="flex justify-between py-6">
+      <div className="flex justify-between items-center py-6">
         <button className="px-5 py-1 my-6 text-lg font-medium text-slate-600 rounded-lg dark:text-white" onClick={() => setActiveStep(activeStep - 1)}>
           {'<'} Previous
         </button>
