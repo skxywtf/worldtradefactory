@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const FooterLand = () => {
-  const router = useRouter();
 
   return (
     <footer className="w-full justify-between bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-200">

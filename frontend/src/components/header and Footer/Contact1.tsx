@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+// import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 
 const Contact1 = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,7 @@ const Contact1 = () => {
 
   return (
     <div className="bg-white text-black w-full dark:bg-black text-white">
-      <HeaderLand />
+      {/* <HeaderLand /> */}
 
     <div className="flex justify-center items-center py-16 text-black dark:text-white">
       <div className="max-w-5xl w-full px-5 md:px-10">

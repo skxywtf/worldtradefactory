@@ -4,10 +4,13 @@ import { SidebarDemo1 } from "@/components/header and Footer/Career/Career_A";
 import Footer from "@/components/header and Footer/Footer";
 // import FooterLand from "./header footer landing/FooterLand";
 import FooterLand from "@/components/landing page/header footer landing/FooterLand";
+import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 
 export default function AboutPage() {
   return (
     <>
+    <HeaderLand />
+    
       <SidebarDemo1></SidebarDemo1>
 
       {/* old footer  */}
