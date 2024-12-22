@@ -79,7 +79,7 @@ export default function SignInCard() {
         const data = new FormData(event.currentTarget);
         const username = data.get('email');
         const password = data.get('password');
-        console.log({ username, password });
+        // console.log({ username, password });
         
         const res = await axios.post("http://127.0.0.1:8000/api/login/", {
             username,
