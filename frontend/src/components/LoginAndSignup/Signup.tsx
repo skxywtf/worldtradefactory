@@ -60,12 +60,12 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 }));
 
 export default function SignUp() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mode, setMode] = React.useState<PaletteMode>(theme);
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignUpTheme = createTheme(getSignUpTheme(mode));
   const router = useRouter();
-  const { theme, setTheme, systemTheme } = useTheme();
   const [isClient, setIsClient] = React.useState(false)
 
   const [emailError, setEmailError] = React.useState(false);

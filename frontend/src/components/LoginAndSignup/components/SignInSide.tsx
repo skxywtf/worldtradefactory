@@ -6,18 +6,18 @@ import getSignInSideTheme from '../../mui/theme/getSignInSideTheme'
 import SignInCard from './SignInCard';
 import Content from './content';
 import TemplateFrame from './TemplateFrame';
-import HeaderLand from '@/components/landing page/header footer landing/HeaderLand';
 import ToggleColorMode from './ToggleColorModel';
 import Header from './header';
 import { useTheme } from 'next-themes';
 
 export default function SignInSide() {
-  const [mode, setMode] = React.useState<PaletteMode>('dark');
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mode, setMode] = React.useState<PaletteMode>(theme);
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
-  const { theme, setTheme, systemTheme } = useTheme();
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
   const [isClient, setIsClient] = React.useState(false)
+  console.log(theme);
 
   React.useEffect(() => {
     const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
