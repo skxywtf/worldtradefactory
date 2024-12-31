@@ -57,7 +57,7 @@ export default function TemplateFrame({
     <ThemeProvider theme={signInSideTheme}>
       <Box sx={{ height: '100dvh', display: 'flex', flexDirection: 'column' }}>
         <StyledAppBar>
-          <Toolbar
+          {/* <Toolbar
             variant="dense"
             disableGutters
             sx={{
@@ -66,15 +66,15 @@ export default function TemplateFrame({
               width: '100%',
               p: '8px 12px',
             }}
-          >
+          > */}
            
-              <ToggleColorMode
+              {/* <ToggleColorMode
                 data-screenshot="toggle-mode"
                 mode={mode}
                 toggleColorMode={toggleColorMode}
-              />
+              /> */}
             
-          </Toolbar>
+          {/* </Toolbar> */}
         </StyledAppBar>
         <Box sx={{ flex: '1 1', overflow: 'auto' }}>{children}</Box>
       </Box>
