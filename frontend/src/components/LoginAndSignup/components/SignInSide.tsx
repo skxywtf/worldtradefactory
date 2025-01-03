@@ -12,12 +12,11 @@ import { useTheme } from 'next-themes';
 
 export default function SignInSide() {
   const { theme, setTheme, systemTheme } = useTheme();
-  const [mode, setMode] = React.useState<PaletteMode>(theme);
+  const [mode, setMode] = React.useState<PaletteMode>(theme === 'light' || theme === 'dark' ? theme : 'dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
   const [isClient, setIsClient] = React.useState(false)
-  console.log(theme);
 
   React.useEffect(() => {
     const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
