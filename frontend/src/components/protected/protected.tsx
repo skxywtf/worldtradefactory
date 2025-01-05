@@ -1,32 +1,7 @@
 "use client";
 
-// import { useSession } from "next-auth/react";
-// import { useRouter } from "next/router";
-
-// interface ProtectedProps {
-//   children: React.ReactNode;
-// }
-
-// export default function Protected({ children }: ProtectedProps) {
-//   const { data: session, status } = useSession();
-//   const router = useRouter();
-
-//   if (status === "loading") {
-//     return <div>Loading...</div>; // Show a loader while checking session
-//   }
-
-//   if (!session) {
-//     // Redirect to login page if not authenticated
-//     router.push("/login");
-//     return null;
-//   }
-
-//   return <>{children}</>; // Render the protected content
-// }
-"use client";
-
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation"; // Correct import for App Router
+import { usePathname, useRouter } from "next/navigation";
 
 interface ProtectedProps {
   children: React.ReactNode;
@@ -34,21 +9,27 @@ interface ProtectedProps {
 
 export default function Protected({ children }: ProtectedProps) {
   const { data: session, status } = useSession();
+  const pathname = usePathname()
   const router = useRouter();
 
   if (status === "loading") {
-    // Show a loading state while checking session
     return <div>Loading...</div>;
   }
 
-  console.log(session, status)
+  const user = localStorage.getItem("user");
+  const clientUsername = localStorage.getItem("clientUsername");
+
+  // console.log(session, status)
+  // localStorage.removeItem('clientUsername');
+  console.log(clientUsername);
+  sessionStorage.setItem('currentPath',pathname);
+  // console.log(pathname)
   
-  if (!session) {
+  if (!clientUsername && !user) {
     // Redirect to login page if not authenticated
     router.push("/main/login");
     return null;
   }
 
-  // Render protected content for authenticated users
   return <>{children}</>;
 }

@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {toast }from 'react-hot-toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleAuthProvider } from '@/firebase';
 
@@ -47,6 +47,9 @@ export default function SignInCard() {
   
   const router = useRouter();
 
+  // const pathname = usePathname()
+  const currentPath = sessionStorage.getItem('currentPath')
+
   const handleSignInWithGoogle = async () => {
   
     try {
@@ -55,13 +58,17 @@ export default function SignInCard() {
   
       // Extract the user information from the result
       const user = result.user;
+      // console.log(handler(result.user))
+      // console.log(result,result.user)
   
       // Save the token and user info in localStorage
       // localStorage.setItem("token", user?.accessToken || "");
       localStorage.setItem("user", JSON.stringify(user));
   
       // Redirect to the main page after successful login
+      currentPath ? router.push(currentPath) :
       router.push("/main");
+      
     } catch (error: any) {
       // Handle error: log it and potentially show an error message to the user
       console.error("Error during Google sign-in:", error.message);
@@ -88,7 +95,8 @@ export default function SignInCard() {
         
         console.log(res.data);
         localStorage.setItem("clientUsername", username as string);
-        router.push("/main/account");
+        currentPath ? router.push(currentPath) : router.push("/main");
+        
     } catch (err: any) {
         console.error(err);
         if (err.response) {
