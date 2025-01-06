@@ -108,8 +108,8 @@ export default function SignInCard() {
     const password = document.getElementById('password') as HTMLInputElement;
 
     let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+//|| !/\S+@\S+\.\S+/.test(email.value)
+    if (!email.value) {
       setEmailError(true);
       setEmailErrorMessage('Please enter a valid email address.');
       isValid = false;
@@ -151,12 +151,12 @@ export default function SignInCard() {
         sx={{ display: 'flex', flexDirection: 'column', width: '100%', gap: 2 }}
       >
         <FormControl>
-          <FormLabel htmlFor="email">Email</FormLabel>
+          <FormLabel htmlFor="text">Email</FormLabel>
           <TextField
             error={emailError}
             helperText={emailErrorMessage}
             id="email"
-            type="email"
+            type="text"
             name="email"
             placeholder="your@email.com"
             autoComplete="email"

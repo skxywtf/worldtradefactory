@@ -6,12 +6,18 @@ import getSignInSideTheme from '../../mui/theme/getSignInSideTheme'
 import SignInCard from './SignInCard';
 import Content from './content';
 import TemplateFrame from './TemplateFrame';
+import ToggleColorMode from './ToggleColorModel';
+import Header from './header';
+import { useTheme } from 'next-themes';
 
 export default function SignInSide() {
-  const [mode, setMode] = React.useState<PaletteMode>('light');
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [mode, setMode] = React.useState<PaletteMode>(theme);
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignInSideTheme = createTheme(getSignInSideTheme(mode));
+  const [isClient, setIsClient] = React.useState(false)
+  console.log(theme);
 
   React.useEffect(() => {
     const savedMode = localStorage.getItem('themeMode') as PaletteMode | null;
@@ -25,6 +31,10 @@ export default function SignInSide() {
     }
   }, []);
 
+  React.useEffect(() => {
+        setIsClient(true)
+      }, [])
+
   const toggleColorMode = () => {
     const newMode = mode === 'dark' ? 'light' : 'dark';
     setMode(newMode);
@@ -35,6 +45,8 @@ export default function SignInSide() {
     setShowCustomTheme((prev) => !prev);
   };
 
+  if(!isClient) return null
+
   return (
     <TemplateFrame
       toggleCustomTheme={toggleCustomTheme}
@@ -42,6 +54,18 @@ export default function SignInSide() {
       mode={mode}
       toggleColorMode={toggleColorMode}
     >
+    <div className="flex justify-center items-center border-b-2 border-white"> 
+      <Header />
+      <button onClick={() => setTheme(theme === "light" ? "dark" : "light")} >
+      <ToggleColorMode
+                
+                data-screenshot="toggle-mode"
+                mode={mode}
+                toggleColorMode={toggleColorMode}
+              />
+      </button>
+    </div>
+    
       <ThemeProvider theme={showCustomTheme ? SignInSideTheme : defaultTheme}>
         <CssBaseline enableColorScheme />
         <Stack
