@@ -1,8 +1,9 @@
 venv
-/venv
+/myenv
 .idea
 .env
 models
 /models
 __pycache__
 data.json
+temp.py
