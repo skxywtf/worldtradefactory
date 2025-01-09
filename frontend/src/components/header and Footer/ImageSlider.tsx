@@ -2,21 +2,13 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "../ui/images-slider";
-// import lkimage from "../../assets"
 
 export function ImagesSliderDemo() {
-  const images = ["../../assets/tradeGlobe.jpg",
-    "../../assets/worldBG.jpg",
-    "../../assets/worldBG2.jpg",
-    "../../assets/globalTrade1.jpg",
-    "../../assets/globalTrade2.jpg",
-    "../../assets/tradeGlobe.jpeg",
-    // "../../assets/corevalue.jpg",
-    "../../assets/globalTrade2.jpg",
-    "../../assets/tradeGlobe.jpg",
-    // "../../assets/corevalue.jpg",
+  const images = [
+    "/assets/globalTrade1.jpg",
+    "/assets/worldBg.jpg",
+    "/assets/worldBG2.jpg",
   ];
-  
   return (
     <ImagesSlider className="h-[40rem]" images={images}>
       <motion.div
@@ -34,7 +26,12 @@ export function ImagesSliderDemo() {
         className="z-50 flex flex-col justify-center items-center"
       >
         <motion.p className="font-bold text-xl md:text-6xl text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 py-4">
-        Company Overview <br /> <p className="font-bold text-xl md:text-2xl ">We are a leading company in the tech industry, dedicated<br/> to providing innovative solutions that enhance the lives of our customers.</p>
+          Company Overview <br />{" "}
+          <p className="font-bold text-xl md:text-2xl ">
+            We are a leading company in the tech industry, dedicated
+            <br /> to providing innovative solutions that enhance the lives of
+            our customers.
+          </p>
         </motion.p>
         <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
           <span>Join now →</span>

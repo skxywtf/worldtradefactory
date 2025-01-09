@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useTheme } from "next-themes";
 const JoinUs = () => {
+  const { theme } = useTheme();
   return (
     <div className="text-white py-12 px-6 mt-0 bg-black opacity-95">
       <div className="max-w-4xl mx-auto text-center">
