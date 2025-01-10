@@ -6,11 +6,14 @@ import Footer from "@/components/header and Footer/Footer";
 import { StickyScrollRevealDemo } from "@/components/header and Footer/HeroSection";
 import { ImagesSliderDemo } from "@/components/header and Footer/ImageSlider";
 import JoinUs from "@/components/header and Footer/Joinus";
+import Navbar from "@/components/header and Footer/Navbar";
 // import Navbar from "@/components/header and Footer/Navbar";
-// import NavBar1 from "@/components/header and Footer/Navbar1";
+
 // import AppAppBar from "@/components/header and Footer/Navbar1";
 import { AppleCardsCarousel } from "@/components/header and Footer/Team_card";
-// import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
+import FooterLand from "@/components/landing page/header footer landing/FooterLand";
+import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+// import { BackgroundGradientAnimation } from "@/components/ui/background-gradien/t-animation";
 
 // import Contact1 from "@/components/header and Footer/Contact1";
 // import CareerPage from "@/components/header and Footer/Career";
@@ -20,13 +23,14 @@ import { AppleCardsCarousel } from "@/components/header and Footer/Team_card";
 export default function AboutPage() {
   return (
     <div>
-      {/* <NavBar1></NavBar1> */}
+      {/* <Navbar></Navbar> */}
+      <HeaderLand></HeaderLand>
 
       <ImagesSliderDemo></ImagesSliderDemo>
       <StickyScrollRevealDemo></StickyScrollRevealDemo>
       <AppleCardsCarousel></AppleCardsCarousel>
       <JoinUs></JoinUs>
-      <Footer></Footer>
+      <FooterLand></FooterLand>
       {/* <About></About> */}
       {/* <Contact1></Contact1> */}
       {/* <CareerPage></CareerPage> */}
