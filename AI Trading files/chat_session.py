@@ -17,6 +17,8 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import alpaca_trade_api as tradeapi
 import os
+import logging
+import threading 
 from dotenv import load_dotenv
 import json
 # Set up the Alpaca API client
@@ -27,6 +29,7 @@ thread_id = os.getenv('THREAD_ID')
 BASE_URL = 'https://paper-api.alpaca.markets'
 api = tradeapi.REST(ALPACA_API_KEY, ALPACA_SECRET_KEY, BASE_URL, api_version='v2')
 
+logging.basicConfig(level=logging.ERROR)
 # Global stop flag for trading
 stop_flag = False
 
@@ -355,8 +358,20 @@ class ChatSession:
         self.model_name = model_name
         self.assistant_id = assistant_id
         self.thread_id = thread_id
+        self.trading_bot_thread = None
+        self.trading_bot_params = None
+        self.exit_flag = False
+        self.trading_active = False
+
+
+    def reset_flags(self):
+        """Reset all control flags"""
+        self.exit_flag = False
+        self.trading_active = False
 
     async def start_session(self):
+        print('\033[2J\033[H')  # ANSI escape codes to clear screen and move cursor to top
+        print(f"Welcome to {self.assistant_name}! How can I help you today?\n")
         if self.thread_id is None:
             # Get or create a thread
             self.thread_id = await self.get_or_create_thread()
@@ -367,36 +382,132 @@ class ChatSession:
                 name="Devdoot",
                 model=self.model_name
             )
+        self.trading_bot_thread = None
+        if self.trading_bot_thread is None:
+            self.trading_bot_thread = self.start_background_thread(self.trading_bot_manager)
 
         # Display existing chat history
         await self.display_chat_history()
 
-        prev_messages = await self.thread_manager.list_messages(self.thread_id)
-        if prev_messages is None:
-            print("An error occurred while retrieving messages.")     
-            return
-
         # Start the chat loop
         await self.chat_loop()   
+
+    def start_background_thread(self, target_function, *args, **kwargs):
+        """
+        Start a new background thread to execute a specific function.
+
+        Args:
+            target_function (callable): The function to run in the background.
+            *args: Arguments to pass to the function.
+            **kwargs: Keyword arguments to pass to the function.
+        """
+        thread = threading.Thread(target=target_function, args=args, kwargs=kwargs, daemon=True)
+        thread.start()
+        return thread
 
     async def chat_loop(self):
         try:
             while True:
-                user_input = input("You: ")
-                if user_input.lower() in ['exit', 'quit', 'bye']:
-                    break
-                if user_input.lower() in ['/delete', '/clear']:
-                    await self.thread_manager.delete_thread(self.thread_id)
-                    self.thread_id = await self.get_or_create_thread()
+                user_input = input("\nYou: ").strip()
+                if not user_input:
                     continue
 
+                if user_input.lower() in ['exit', 'quit', 'bye']:
+                    print("\nGoodbye! Have a great day!")
+                    break
+
+                # Handle trading commands
+                if self.is_trading_command(user_input):
+                    params = self.parse_trading_params(user_input)
+                    self.trading_bot_params = params
+                    print(f"\nStarting trading bot for {params['symbol']}...")
+                    if self.trading_bot_thread is None or not self.trading_bot_thread.is_alive():
+                        self.trading_bot_thread = self.start_background_thread(self.trading_bot_manager)
+                    continue
+
+                # Get and display assistant response
+                print("\nThinking...", end='\r')  # Show thinking indicator
                 response = await self.get_latest_response(user_input)
-
                 if response:
-                    print("Devdoot:", response)
+                    print(" " * 20, end='\r')  # Clear thinking indicator
+                    print(f"\n{self.assistant_name}: {response}")
 
-        finally:
-            print(f"Session ended")
+        except KeyboardInterrupt:
+            print("\n\nSession ended by user. Goodbye!")
+        except Exception as e:
+            print(f"\nAn error occurred: {str(e)}")
+            print("Session ended. Please restart the application.")
+
+    def is_trading_command(self, input_text):
+        """Check if the input is a trading command"""
+        trading_keywords = ['buy', 'sell', 'trade', 'order']
+        return any(keyword in input_text.lower() for keyword in trading_keywords)
+
+    def parse_trading_params(self, input_text):
+        """Parse trading parameters from user input"""
+        # Basic parsing logic - can be enhanced based on needs
+        words = input_text.lower().split()
+        
+        params = {
+            'symbol': 'MSFT',  # Default symbol
+            'quantity': 1,     # Default quantity
+            'side': 'buy' if 'buy' in words else 'sell',
+            'interval_minutes': 1,
+            'duration_minutes': 5
+        }
+
+        # Parse symbol if provided
+        for symbol in ['msft', 'aapl', 'meta', 'googl', 'amzn']:
+            if symbol in words:
+                params['symbol'] = symbol.upper()
+                break
+
+        # Parse quantity if provided
+        for i, word in enumerate(words):
+            if word.isdigit():
+                params['quantity'] = int(word)
+                break
+
+        return params
+
+    async def display_chat_history(self):
+        """Display chat history in a clean format"""
+        messages = await self.thread_manager.list_messages(self.thread_id)
+        if not messages or not messages.data:
+            return
+
+        print("\nRecent conversation:")
+        print("-" * 50)
+        
+        for message in reversed(messages.data):
+            role = "You" if message.role == "user" else self.assistant_name
+            if hasattr(message, 'content') and message.content:
+                for content in message.content:
+                    if content.type == 'text':
+                        print(f"\n{role}: {content.text.value}")
+                    elif content.type == 'image_file':
+                        print(f"\n{role}: [Image File: {content.image_file.file_id}]")
+        
+        print("-" * 50)
+
+    def trading_bot_manager(self):
+        """Background thread for managing trading operations"""
+        if not self.trading_bot_params:
+            return
+            
+        params = self.trading_bot_params
+        try:
+            start_trading(
+                api=api,
+                symbol=params['symbol'],
+                qty=params['quantity'],
+                side=params['side'],
+                order_type=params.get('order_type', 'market'),
+                interval_minutes=params.get('interval_minutes', 1),
+                duration_minutes=params.get('duration_minutes', 10)
+            )
+        except Exception as e:
+            logging.error(f"Trading bot error: {e}")
 
     async def get_or_create_thread(self):
         data = self.thread_manager.read_thread_data()
@@ -985,11 +1096,4 @@ class ChatSession:
                     #   with open(f"{message.content[0].image_file.file_id}.png", "wb") as file:              
             
                         file.write(image_data_bytes)   
-                        return f"Image saved as {message.content[0].image_file.file_id}.png" 
-                    
-
-
-            
-
-                                
- 
+                        return f"Image saved as {message.content[0].image_file.file_id}.png"
