@@ -97,7 +97,7 @@ const HeaderLand = () => {
             }`}
             onClick={() => router.push("/main/about")}
           >
-            About Us
+            AboutUs
           </button>
         </div>
         {/* search bar */}

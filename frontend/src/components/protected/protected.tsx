@@ -22,9 +22,11 @@ export default function Protected({ children }: ProtectedProps) {
 
   // console.log(session, status)
   // localStorage.removeItem('clientUsername');
-  console.log(clientUsername, user);
+  // localStorage.removeItem('user');
+
+  // console.log(JSON.parse(user));
   sessionStorage.setItem('currentPath',pathname);
-  console.log(pathname)
+  // console.log(pathname)
   
   if (!clientUsername && !user) {
     // Redirect to login page if not authenticated
