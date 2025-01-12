@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
 
 export const StickyScroll = ({
   content,
@@ -15,6 +16,7 @@ export const StickyScroll = ({
   }[];
   contentClassName?: string;
 }) => {
+  const { theme } = useTheme();
   const [activeCard, setActiveCard] = React.useState(0);
   const ref = useRef<any>(null);
   const { scrollYProgress } = useScroll({
@@ -40,20 +42,22 @@ export const StickyScroll = ({
     setActiveCard(closestBreakpointIndex);
   });
 
-  const backgroundColors = [
+  const backgroundColors = theme === 'dark' ? [
     "var(--slate-900)",
     "var(--black)",
     "var(--neutral-900)",
-  ];
+  ] : 
+  [ "var(--slate-100)",
+    "var(--gray-100)",
+    "var(--neutral-100)"];
+
   const linearGradients = [
     "linear-gradient(to bottom right, var(--cyan-500), var(--emerald-500))",
     "linear-gradient(to bottom right, var(--pink-500), var(--indigo-500))",
     "linear-gradient(to bottom right, var(--orange-500), var(--yellow-500))",
   ];
 
-  const [backgroundGradient, setBackgroundGradient] = useState(
-    linearGradients[0]
-  );
+  const [backgroundGradient, setBackgroundGradient] = useState( linearGradients[0] );
 
   useEffect(() => {
     setBackgroundGradient(linearGradients[activeCard % linearGradients.length]);
@@ -78,7 +82,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-2xl font-bold text-slate-100"
+                className="text-2xl font-bold text-black dark:text-slate-100"
               >
                 {item.title}
               </motion.h2>
@@ -89,7 +93,7 @@ export const StickyScroll = ({
                 animate={{
                   opacity: activeCard === index ? 1 : 0.3,
                 }}
-                className="text-kg text-slate-300 max-w-sm mt-10"
+                className="text-lg text-black dark:text-slate-300 max-w-sm mt-10"
               >
                 {item.description}
               </motion.p>

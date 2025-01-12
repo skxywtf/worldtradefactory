@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "../ui/images-slider";
+import { useTheme } from "@emotion/react";
 
 export function ImagesSliderDemo() {
   const images = [
@@ -9,8 +10,9 @@ export function ImagesSliderDemo() {
     "/assets/worldBg.jpg",
     "/assets/worldBG2.jpg",
   ];
+
   return (
-    <ImagesSlider className="h-[40rem]" images={images}>
+    <ImagesSlider className="h-[40rem] border-2 rounded-lg border-slate-400" images={images}>
       <motion.div
         initial={{
           opacity: 0,

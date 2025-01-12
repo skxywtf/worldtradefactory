@@ -18,12 +18,13 @@ export default function Protected({ children }: ProtectedProps) {
 
   const user = localStorage.getItem("user");
   const clientUsername = localStorage.getItem("clientUsername");
+  // const clearPathName = () => sessionStorage.removeItem('currentPath');
 
   // console.log(session, status)
   // localStorage.removeItem('clientUsername');
-  console.log(clientUsername);
+  console.log(clientUsername, user);
   sessionStorage.setItem('currentPath',pathname);
-  // console.log(pathname)
+  console.log(pathname)
   
   if (!clientUsername && !user) {
     // Redirect to login page if not authenticated
@@ -32,4 +33,10 @@ export default function Protected({ children }: ProtectedProps) {
   }
 
   return <>{children}</>;
+  // return(
+  //   <>
+  //    {children}
+  //    {clearPathName()}
+  //   </>
+  // )
 }

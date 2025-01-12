@@ -60,6 +60,7 @@ const content = [
     ),
   },
 ];
+
 export function StickyScrollRevealDemo() {
   return (
     <div className="p-13">

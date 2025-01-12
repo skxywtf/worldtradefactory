@@ -25,8 +25,11 @@ export default function AboutPage() {
     <div>
       {/* <Navbar></Navbar> */}
       <HeaderLand></HeaderLand>
-
+      
+      <div className="border-2 m-2 rounded-xl border-slate-400 p-3 bg-slate-200 dark:bg-black dark:border-black">
       <ImagesSliderDemo></ImagesSliderDemo>
+      </div>
+
       <StickyScrollRevealDemo></StickyScrollRevealDemo>
       <AppleCardsCarousel></AppleCardsCarousel>
       <JoinUs></JoinUs>

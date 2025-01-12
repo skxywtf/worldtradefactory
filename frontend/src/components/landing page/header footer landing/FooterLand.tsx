@@ -23,7 +23,7 @@ const FooterLand = () => {
           <div>
             <h3 className="text-xl font-semibold">COMPANY</h3>
             <ul className="flex flex-col gap-3 mt-5 text-neutral-800 dark:text-neutral-300">
-              <Link href='/'>About Us</Link>
+              <Link href='/main/about'>About Us</Link>
               <Link href='/'>Privacy Policy</Link>
               <Link href="/main/career">Careers</Link>
             </ul>

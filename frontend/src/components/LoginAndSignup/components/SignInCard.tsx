@@ -67,7 +67,7 @@ export default function SignInCard() {
   
       // Redirect to the main page after successful login
       currentPath ? router.push(currentPath) :
-      router.push("/main");
+      router.push("/home");
       
     } catch (error: any) {
       // Handle error: log it and potentially show an error message to the user
@@ -95,7 +95,7 @@ export default function SignInCard() {
         
         console.log(res.data);
         localStorage.setItem("clientUsername", username as string);
-        currentPath ? router.push(currentPath) : router.push("/main");
+        currentPath ? router.push(currentPath) : router.push("/home");
         
     } catch (err: any) {
         console.error(err);

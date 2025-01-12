@@ -5,7 +5,7 @@ import Protected from "@/components/protected/protected";
 export default function AccountPage() {
   return (
     <Protected>
-     <div className=" h-full w-full">
+     <div className="h-full w-full">
        <Account />
      </div>
     </Protected>
