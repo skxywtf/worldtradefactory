@@ -12,7 +12,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import axios from 'axios';
 import {toast }from 'react-hot-toast';
-import { useRouter, usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleAuthProvider } from '@/firebase';
 
@@ -47,7 +47,6 @@ export default function SignInCard() {
   
   const router = useRouter();
 
-  // const pathname = usePathname()
   const currentPath = sessionStorage.getItem('currentPath')
 
   const handleSignInWithGoogle = async () => {

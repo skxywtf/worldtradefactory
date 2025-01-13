@@ -4,9 +4,9 @@ import HeaderLand from "@/components/landing page/header footer landing/HeaderLa
 
 export default function AccountPage() {
 
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") as string) : null;
 
-  const simplifyDate = (data) => {
+  const simplifyDate = (data: string | number | Date) => {
   const date = new Date(data);
   const formattedDate = date.toLocaleString();
   return formattedDate

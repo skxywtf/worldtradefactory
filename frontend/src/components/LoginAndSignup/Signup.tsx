@@ -61,7 +61,7 @@ const SignUpContainer = styled(Stack)(({ theme }) => ({
 
 export default function SignUp() {
   const { theme, setTheme, systemTheme } = useTheme();
-  const [mode, setMode] = React.useState<PaletteMode>(theme);
+  const [mode, setMode] = React.useState<PaletteMode>(theme === 'light' || theme === 'dark' ? theme : 'dark');
   const [showCustomTheme, setShowCustomTheme] = React.useState(true);
   const defaultTheme = createTheme({ palette: { mode } });
   const SignUpTheme = createTheme(getSignUpTheme(mode));
@@ -103,6 +103,8 @@ export default function SignUp() {
       const result = await signInWithPopup(auth, googleAuthProvider);
       // Successfully signed in
       console.log('Google sign-in successful:', result.user);
+      localStorage.setItem("user", JSON.stringify(result.user));
+      router.push('/home');
     } catch (error: any) {
       if (error.code === 'auth/popup-closed-by-user') {
         console.log('User closed the popup without completing the sign-in');
@@ -175,7 +177,7 @@ export default function SignUp() {
       });
       console.log(result.data);
       toast.success(result.data.message || 'Account created successfully');
-      router.push('/main/login');
+      router.push('/home');
     } catch (error : any) {
       if (error.response && error.response.data) {
         const errorMessage = error.response.data.message || 'Error during signup';
@@ -189,146 +191,6 @@ export default function SignUp() {
   if(!isClient) return null
 
   return (
-    
-    // // <TemplateFrame
-    // //   toggleCustomTheme={toggleCustomTheme}
-    // //   showCustomTheme={showCustomTheme}
-    // //   mode={mode}
-    // //   toggleColorMode={toggleColorMode}
-    // // >
-    //   {/* <ThemeProvider theme={showCustomTheme ? SignUpTheme : defaultTheme}> */}
-    //     {/* <CssBaseline enableColorScheme /> */}
-    //     {/* <SignUpContainer direction="column" justifyContent="space-between"> */}
-    //       {/* <Stack
-    //         sx={{
-    //           justifyContent: 'center',
-    //           height: '100dvh',
-    //           p: 2,
-    //         }}
-    //       > */}
-    //         // <Card variant="outlined">
-    //         //   {/* <SkxywtfIcon /> */}
-    //         //   <Typography
-    //         //     component="h1"
-    //         //     variant="h4"
-    //         //     sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
-    //         //   >
-    //         //     Sign up
-    //         //   </Typography>
-    //         //   <Box
-    //         //     component="form"
-    //         //     onSubmit={handleSubmit}
-    //         //     sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
-    //         //   >
-    //         //     <FormControl>
-    //         //       <FormLabel htmlFor="username">Username</FormLabel>
-    //         //       <TextField
-    //         //         autoComplete="username"
-    //         //         name="username"
-    //         //         required
-    //         //         fullWidth
-    //         //         id="username"
-    //         //         placeholder="Your username"
-    //         //         value={username}
-    //         //         onChange={(e) => setUsername(e.target.value)}
-    //         //         error={nameError}
-    //         //         helperText={nameErrorMessage}
-    //         //         color={nameError ? 'error' : 'primary'}
-    //         //       />
-    //         //     </FormControl>
-    //         //     <FormControl>
-    //         //       <FormLabel htmlFor="email">Email</FormLabel>
-    //         //       <TextField
-    //         //         required
-    //         //         fullWidth
-    //         //         id="email"
-    //         //         placeholder="your@email.com"
-    //         //         name="email"
-    //         //         autoComplete="email"
-    //         //         variant="outlined"
-    //         //         value={email}
-    //         //         onChange={(e) => setEmail(e.target.value)}
-    //         //         error={emailError}
-    //         //         helperText={emailErrorMessage}
-    //         //         color={emailError ? 'error' : 'primary'}
-    //         //       />
-    //         //     </FormControl>
-    //         //     <FormControl>
-    //         //       <FormLabel htmlFor="password">Password</FormLabel>
-    //         //       <TextField
-    //         //         required
-    //         //         fullWidth
-    //         //         name="password"
-    //         //         placeholder="••••••"
-    //         //         type="password"
-    //         //         id="password"
-    //         //         autoComplete="new-password"
-    //         //         variant="outlined"
-    //         //         value={password}
-    //         //         onChange={(e) => setPassword(e.target.value)}
-    //         //         error={passwordError}
-    //         //         helperText={passwordErrorMessage}
-    //         //         color={passwordError ? 'error' : 'primary'}
-    //         //       />
-    //         //     </FormControl>
-    //         //     <FormControl>
-    //         //       <FormLabel htmlFor="passwordConfirm">Confirm Password</FormLabel>
-    //         //       <TextField
-    //         //         required
-    //         //         fullWidth
-    //         //         name="passwordConfirm"
-    //         //         placeholder="••••••"
-    //         //         type="password"
-    //         //         id="passwordConfirm"
-    //         //         value={password_confirm}
-    //         //         onChange={(e) => setpassword_confirm(e.target.value)}
-    //         //         error={passwordConfirmError}
-    //         //         helperText={passwordConfirmErrorMessage}
-    //         //         color={passwordConfirmError ? 'error' : 'primary'}
-    //         //       />
-    //         //     </FormControl>
-    //         //     <FormControlLabel
-    //         //       control={<Checkbox value="allowExtraEmails" color="primary" />}
-    //         //       label="I want to receive updates via email."
-    //         //     />
-    //         //     <Button
-    //         //       type="submit"
-    //         //       fullWidth
-    //         //       variant="contained"
-    //         //     >
-    //         //       Sign up
-    //         //     </Button>
-    //         //     <Typography sx={{ textAlign: 'center' }}>
-    //         //       Already have an account?{' '}
-    //         //       <span>
-    //         //         <Link
-    //         //           href="/main/login"
-    //         //           variant="body2"
-    //         //           sx={{ alignSelf: 'center' }}
-    //         //         >
-    //         //           Sign in
-    //         //         </Link>
-    //         //       </span>
-    //         //     </Typography>
-    //         //   </Box>
-    //         //   <Divider>
-    //         //     <Typography sx={{ color: 'text.secondary' }}>or</Typography>
-    //         //   </Divider>
-    //         //   <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-    //         //     <Button
-    //         //       fullWidth
-    //         //       variant="outlined"
-    //         //       onClick={handleSignInWithGoogle}
-    //         //     >
-    //         //       <FcGoogle size={30} />
-    //         //       Continue with Google
-    //         //     </Button>
-    //         //   </Box>
-    //         // </Card>
-    //       {/* </Stack> */}
-    //     {/* </SignUpContainer> */}
-    //   {/* </ThemeProvider> */}
-    // //  </TemplateFrame>
 
     <TemplateFrame
      toggleCustomTheme={toggleCustomTheme}

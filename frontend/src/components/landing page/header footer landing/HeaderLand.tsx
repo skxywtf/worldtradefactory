@@ -42,7 +42,7 @@ const HeaderLand = () => {
         <div className="w-28">
           <Image
             className="cursor-pointer py-4 h-full w-full"
-            onClick={() => router.push("/home")}
+            onClick={() => router.push("/")}
             src={Logo}
             alt="Logo"
           />

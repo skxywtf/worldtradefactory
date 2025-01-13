@@ -4,6 +4,7 @@ import HeaderLand from "@/components/landing page/header footer landing/HeaderLa
 import FooterLand from "@/components/landing page/header footer landing/FooterLand";
 import CryptoMarket from "@/components/embeded codes/CryptoMarket";
 import CryptoCoinHeatMap from "@/components/embeded codes/HeatMaps/CryptoCoinHeatMap";
+import { SideNavbar } from "@/components/SideNavbar/sideNav";
 
 const Layout: React.FC = () => {
   return (
@@ -11,6 +12,8 @@ const Layout: React.FC = () => {
       {/* Header */}
       <HeaderLand />
 
+      <div className="flex flex-col md:flex-row">
+      <SideNavbar />
       <div className="flex flex-col gap-8 w-full">
         {/* Market Widget */}
         <div className="w-full bg-neutral-200 dark:bg-black rounded-lg shadow-lg p-4">
@@ -29,6 +32,7 @@ const Layout: React.FC = () => {
             <CryptoCoinHeatMap />
           </div>
         </div>
+      </div>
       </div>
 
       {/* Footer */}

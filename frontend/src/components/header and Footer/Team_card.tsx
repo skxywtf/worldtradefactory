@@ -9,7 +9,7 @@ export function AppleCardsCarousel() {
   ));
 
   return (
-    <div className="w-full h-full py-20 bg-white dark:bg-neutral-900">
+    <div className="py-20 bg-white dark:bg-neutral-900">
       <h2 className="max-w-7xl pl-4 mx-auto text-xl md:text-5xl font-bold text-white dark:text-neutral-200 font-sans ">
         Meet Our Team
       </h2>

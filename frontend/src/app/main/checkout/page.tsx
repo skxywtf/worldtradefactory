@@ -4,6 +4,7 @@ import HeaderLand from '@/components/landing page/header footer landing/HeaderLa
 import FooterLand from '@/components/landing page/header footer landing/FooterLand';
 import { CheckoutMain } from '@/components/Checkout/checkoutMain';
 import { CheckoutProvider } from './checkoutContext';
+import { SideNavbar } from '@/components/SideNavbar/sideNav';
 
 export default function CheckoutPage() {
 
@@ -12,7 +13,12 @@ export default function CheckoutPage() {
       <CheckoutProvider>
 
         <HeaderLand />
-        <CheckoutMain />
+         <div className="flex flex-col md:flex-row">
+          <SideNavbar />
+          <div className='w-full'>
+           <CheckoutMain />
+          </div>
+         </div>
         <FooterLand />
 
       </CheckoutProvider>

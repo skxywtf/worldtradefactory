@@ -11,6 +11,7 @@ const MarketNews = () => {
       <div className=" h-full gap-4 px-10 flex  w-full ">
         {Topnews.map((item) => (
           <Link
+           key={item.id}
             href="/main/stock"
             className=" hover:border rounded-lg bg-gray-900 hover:bg-gray-800 w-full overflow-hidden "
           >
@@ -19,7 +20,7 @@ const MarketNews = () => {
                 <img
                   className=" rounded-full h-10 w-10"
                   src={item.img}
-                  alt={item.id}
+                  alt={item.id.toString()}
                 />
               </div>
               <div className=" h-full  justify-end text-gray-200 text-sm items-end">

@@ -8,7 +8,7 @@ const TopMovers = () => {
     <div className="w-full h-auto py-10">
       <h1 className="text-3xl pl-10 pb-10">
         {" "}
-        THE DAY'S DYNAMO: TOP MOVERS{">"}
+        THE DAY`S DYNAMO: TOP MOVERS{">"}
       </h1>
       <div className="lg:flex gap-5 w-full h-[80%] py-10 px-5 ">
         <div className="bg-opacity-50 dark:bg-gray-200 bg-[#192032] border border-gray-600 h-full lg:w-1/2 mb-10 lg:mb-1  rounded-lg py-3 lg:px-3">
