@@ -105,7 +105,7 @@ const HeaderLand = () => {
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
             }`}
-            onClick={() => router.push("/homeTest")}
+            onClick={() => router.push("/HomeDemo")}
           >
             HomeDemo
           </button>

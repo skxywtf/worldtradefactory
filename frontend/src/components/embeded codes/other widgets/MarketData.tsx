@@ -93,6 +93,7 @@ const MarketData: React.FC = () => {
       // Append the script to the container
       if (container) {
         container.appendChild(script);
+        container.style.height = "510px";
       }
 
       // Prevent redirection
