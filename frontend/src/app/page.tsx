@@ -40,7 +40,7 @@ export default function HomePage() {
 
   
     return (
-      <div className="text-center">
+      <div className="text-center w-full">
   
         <div className="fixed top-0 left-0 right-0 z-50 h-16">
           <HomeHeader />

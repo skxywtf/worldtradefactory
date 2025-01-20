@@ -44,7 +44,7 @@ const StockHeatMap: React.FC = () => {
   }, [theme]);
 
   return (
-    <div className="tradingview-widget-container h-screen w-screen" ref={containerRef}>
+    <div className="tradingview-widget-container h-screen" ref={containerRef}>
       <div className="tradingview-widget-container__widget"></div>
     </div>
   );

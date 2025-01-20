@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+
 const MarketData: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { theme } = useTheme(); // Get the current theme ('dark' or 'light')

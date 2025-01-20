@@ -9,9 +9,9 @@ import HeatMaps from "./HeatMaps";
 
 const MainCOntentLand = () => {
   return (
-    <div className=" h-full w-full ">
+    <div className="">
       {/* about market */}
-      <div className="w-full h-full gap-4 px-5 block md:flex justify-center">
+      <div className="gap-4 md:flex justify-center">
         <MarketData />
         <TopStories />
         <EconomicCalendar />

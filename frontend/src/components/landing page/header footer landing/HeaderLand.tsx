@@ -50,7 +50,7 @@ const HeaderLand = () => {
         {/* middle parameters */}
         <div className="hidden md:flex gap-7 text-white">
           <button
-            className={`p-1 px-2 text-lg rounded-full ${
+            className={`p-1 px-2 text-same rounded-full ${
               currentTheme === "dark"
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
@@ -60,7 +60,7 @@ const HeaderLand = () => {
             Stocks
           </button>
           <button
-            className={`p-1 px-2 text-lg rounded-full ${
+            className={`p-1 px-2 text-base rounded-full ${
               currentTheme === "dark"
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
@@ -70,7 +70,7 @@ const HeaderLand = () => {
             Screener
           </button>
           <button
-            className={`p-1 px-2 text-lg rounded-full ${
+            className={`p-1 px-2 text-base rounded-full ${
               currentTheme === "dark"
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
@@ -80,7 +80,7 @@ const HeaderLand = () => {
             Forex
           </button>
           <button
-            className={`p-1 px-2 text-lg rounded-full ${
+            className={`p-1 px-2 text-base rounded-full ${
               currentTheme === "dark"
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
@@ -90,7 +90,7 @@ const HeaderLand = () => {
             Crypto
           </button>
           <button
-            className={`p-1 px-2 text-lg rounded-full ${
+            className={`p-1 px-2 text-base rounded-full ${
               currentTheme === "dark"
                 ? "text-white hover:bg-neutral-800"
                 : "text-black hover:bg-neutral-300"
@@ -98,6 +98,16 @@ const HeaderLand = () => {
             onClick={() => router.push("/main/about")}
           >
             AboutUs
+          </button>
+          <button
+            className={`p-1 px-2 text-base rounded-full ${
+              currentTheme === "dark"
+                ? "text-white hover:bg-neutral-800"
+                : "text-black hover:bg-neutral-300"
+            }`}
+            onClick={() => router.push("/homeTest")}
+          >
+            HomeDemo
           </button>
         </div>
         {/* search bar */}
