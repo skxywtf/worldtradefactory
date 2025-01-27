@@ -29,7 +29,7 @@ const MarketData: React.FC = () => {
         showSymbolLogo: false,
         showFloatingTooltip: false,
         width: "400",
-        height: "510",
+        height: "500",
         plotLineColorGrowing: "rgba(41, 98, 255, 1)",
         plotLineColorFalling: "rgba(41, 98, 255, 1)",
         gridLineColor: "rgba(42, 46, 57, 0)",
@@ -93,7 +93,6 @@ const MarketData: React.FC = () => {
       // Append the script to the container
       if (container) {
         container.appendChild(script);
-        container.style.height = "510px";
       }
 
       // Prevent redirection
@@ -116,7 +115,7 @@ const MarketData: React.FC = () => {
 
   return (
     <div
-      className="tradingview-widget-container pt-10"
+      className="tradingview-widget-container"
       ref={containerRef}
       style={{ position: "relative" }}
     >

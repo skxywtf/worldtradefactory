@@ -21,7 +21,7 @@ const EconomicCalendar: React.FC = () => {
           "colorTheme": "${theme === 'dark' ? 'dark' : 'light'}",
           "isTransparent": false,
           "width": "400",
-          "height": "550",
+          "height": "500",
           "locale": "en",
           "largeChartUrl": "http://localhost:3000",
           "importanceFilter": "-1,0,1",
@@ -42,7 +42,7 @@ const EconomicCalendar: React.FC = () => {
   }, [theme]);
 
   return (
-    <div className="tradingview-widget-container py-10" ref={containerRef}>
+    <div className="tradingview-widget-container" ref={containerRef}>
       <div className="tradingview-widget-container__widget"></div>
     </div>
   );

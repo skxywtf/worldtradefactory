@@ -24,7 +24,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" >
-      <body>
+      <body className="w-full">
         <Providers
           attribute="class"
           defaultTheme="system"

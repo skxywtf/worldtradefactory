@@ -14,7 +14,8 @@ export default function AccountPage() {
 
   return (
     <Protected>
-     {/* <div className="h-full w-full"> */}
+
+     <div className="h-full w-full">
      <HeaderLand />
      <div className="p-10 bg-slate-200 md:h-screen dark:bg-gradient-to-br from-gray-600 to-black" >
       <h2 className="text-2xl py-4" > Your Account </h2>
@@ -28,6 +29,7 @@ export default function AccountPage() {
       <h3>Last Login- {simplifyDate(Number(user?.lastLoginAt))} </h3>
       </div>
 
+     </div>
      </div>
     </Protected>
   )

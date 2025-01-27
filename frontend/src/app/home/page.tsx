@@ -11,11 +11,11 @@ import HeaderLand from "@/components/landing page/header footer landing/HeaderLa
 
 export default function Home() {
     return(
-        <div className="w-full">
+        <div className="w-full bg-white dark:bg-black">
             <HeaderLand />
             <TickerTape />
 
-            <div className="flex flex-col justify-center items-center gap-4 md:flex-row md:items-start">
+            <div className="flex py-8 flex-col justify-center items-center gap-4 md:flex-row md:items-start">
             <MarketData />
             <TopStories />
             <EconomicCalendar />

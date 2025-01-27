@@ -23,7 +23,7 @@ const TopStories: React.FC = () => {
           "largeChartUrl": "http://localhost:3000",
           "displayMode": "adaptive",
           "width": 400,
-          "height": 550,
+          "height": 500,
           "colorTheme": "${theme === 'dark' ? 'dark' : 'light'}",
           "locale": "en"
         }`;
@@ -42,7 +42,7 @@ const TopStories: React.FC = () => {
   }, [theme]); // Re-run effect when theme changes
 
   return (
-    <div className="tradingview-widget-container py-10" ref={containerRef}>
+    <div className="tradingview-widget-container" ref={containerRef}>
       <div className="tradingview-widget-container__widget"></div>
     </div>
   );
