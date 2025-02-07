@@ -39,7 +39,7 @@ const Subscription = () => {
   }
 
   return (
-    <div className="text-center py-8">
+    <div className="text-center w-full bg-white dark:bg-black py-8">
       <header>
         <p className="text-[3rem] font-bold" >Pricing Plans</p>
         <p className='text-2xl m-4' > Explore the site for free, add a plan to unlock additional features and enhance your trading experience. </p>

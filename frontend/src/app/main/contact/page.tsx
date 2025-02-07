@@ -8,7 +8,7 @@ export default function ContactPage() {
     <>
     <HeaderLand />
     
-      <ContactSidebar></ContactSidebar>
+      <ContactSidebar />
       
       {/* Old footer */}
       {/* <Footer /> */}

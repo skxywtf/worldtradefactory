@@ -27,7 +27,7 @@ const TopStoriesWidget: React.FC<TopStoriesWidgetProps> = ({ searchInputValue })
       script.innerHTML = JSON.stringify({
         feedMode: 'all',
         width: '100%',
-        height: '100%',
+        height: '450',
         colorTheme: theme === "dark" ? "dark" : "light", // Set to dark theme
         isTransparent: false,
         symbol: typedInput, // Use dynamic symbol

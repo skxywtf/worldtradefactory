@@ -3,6 +3,7 @@ import ForexCrossRates from "@/components/embeded codes/ForexCrossRates";
 import ForexHeatMap from "@/components/embeded codes/HeatMaps/ForexHeatMap";
 import FooterLand from "@/components/landing page/header footer landing/FooterLand";
 import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+import { SideNavbar } from "@/components/SideNavbar/sideNav";
 import { useTheme } from "next-themes";
 
 export default function ForexDashboard() {
@@ -18,7 +19,9 @@ export default function ForexDashboard() {
       <HeaderLand />
 
       {/* Main Content */}
-      <div className="py-10 px-5">
+    <div className="flex flex-col md:flex-row">
+      <SideNavbar />
+      <div className="py-10 px-5 w-full">
         {/* Forex Cross Rates Widget */}
         <div>
           <h2 className="text-xl font-semibold mb-6 px-4">Forex Cross Rates</h2>
@@ -31,6 +34,7 @@ export default function ForexDashboard() {
           <ForexHeatMap />
         </div>
       </div>
+    </div>
 
       {/* Footer */}
       <FooterLand />

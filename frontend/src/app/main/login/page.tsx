@@ -5,7 +5,7 @@ import FooterLand from "@/components/landing page/header footer landing/FooterLa
 
 export default function LoginPage() {
   return (
-    <div className="h-full w-full">
+    <div className="w-full">
       
       <Login />
       <FooterLand />

@@ -25,7 +25,7 @@ const TechnicalAnalysisWidget: React.FC<TechnicalAnalysisWidgetProps> = ({ searc
       script.async = true;
       script.innerHTML = JSON.stringify({
         interval: "1m",
-        width: 425,
+        width: "100%",
         isTransparent: false,
         height: 450,
         symbol: typedInput, // Use dynamic symbol
