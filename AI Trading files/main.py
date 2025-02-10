@@ -4,7 +4,11 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from thread_manager import ThreadManager
 from assistant_manager import AssistantManager
-from chat_session import ChatSession, stop_trading
+from chat_session import ChatSession, TradingControl
+import sys
+
+# Dynamically add the `src` folder to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "ai_hedge_fund", "src")))
 
 # Load environment variables from .env file
 load_dotenv()

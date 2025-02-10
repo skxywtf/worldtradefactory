@@ -7,20 +7,30 @@ import time
 import datetime
 import pandas as pd    
 import yfinance as yf
-from scipy.stats import skew
 import quantstats as qs
 from scipy.stats import skew         
 import mplfinance as mpf
 from mplfinance.original_flavor import candlestick_ohlc  
 import matplotlib.ticker as mticker
-import pandas as pd
 import matplotlib.pyplot as plt
 import alpaca_trade_api as tradeapi
 import os
-import logging
 import threading 
 from dotenv import load_dotenv
-import json
+from ai_hedge_fund.src.main import run_hedge_fund
+import sys
+import numpy as np
+import logging
+import re
+
+load_dotenv()
+# logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
+
+# Dynamically add the `src` folder to the Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "ai_hedge_fund", "src")))
+
+NEWS_API_KEY = os.getenv('NEWS_API_KEY')
 # Set up the Alpaca API client
 ALPACA_API_KEY= os.getenv('ALPACA_API_KEY')
 ALPACA_SECRET_KEY = os.getenv('ALPACA_SECRET_KEY')
@@ -31,55 +41,105 @@ api = tradeapi.REST(ALPACA_API_KEY, ALPACA_SECRET_KEY, BASE_URL, api_version='v2
 
 logging.basicConfig(level=logging.ERROR)
 # Global stop flag for trading
-stop_flag = False
+class TradingControl:
+    def __init__(self):
+        self.lock = threading.Lock()
+        self._stop_flag = False
+        
+    def stop_trading(self):
+        with self.lock:
+            self._stop_flag = True
+            logger.info("Trading has been stopped.")
 
-def stop_trading():
-    global stop_flag
-    stop_flag = True
-    print("Trading has been stopped.")
+    def reset_trading(self):
+        with self.lock:
+            self._stop_flag = False
+            logger.info("Trading has been reset.")
 
-def place_order(api, stock_symbol, quantity, side='buy', order_type='market', limit_price=None, stop_price=None):
-    """Place a stock order"""
+    def should_stop(self):
+        with self.lock:
+            return self._stop_flag
+trading_control = TradingControl()
+
+def safe_request(url, params=None, retries=3, delay=2):
+    for attempt in range(retries):
+        try:
+            response = requests.get(url, params=params)
+            response.raise_for_status()
+            return response.json()
+        except requests.exceptions.RequestException as e:
+            logger.warning(f"Request failed (Attempt {attempt+1}): {e}")
+            time.sleep(delay * (2 ** attempt))  # Exponential backoff
+    return None
+
+def place_order(api, symbol, qty, side='buy', order_type='market', limit_price=None, stop_price=None):
     try:
-        # Validate required prices based on order type
-        if order_type == 'limit' and limit_price is None:
-            raise ValueError("Limit orders require a limit price.")
-        elif order_type == 'stop' and stop_price is None:
-            raise ValueError("Stop orders require a stop price.")
-        elif order_type == 'stop_limit' and (limit_price is None or stop_price is None):
-            raise ValueError("Stop-limit orders require both a stop price and a limit price.")
+        # Ensure symbol is extracted correctly as a single string
+        symbol = get_stock_symbol(symbol)
+        if not symbol:
+            return {"error": "Invalid stock symbol"}
 
-        # Submit the stock order to Alpaca API
+        logger.info(f"Placing order: {symbol}, Quantity: {qty}, Type: {order_type}, Side: {side}")
+
+        # Check if the asset is tradable
+        asset = api.get_asset(symbol)
+        if not asset.tradable:
+            return {"error": f"Asset {symbol} is not tradable"}
+        if not asset.fractionable and not qty.is_integer():
+            return {"error": f"Fractional shares not supported for {symbol}"}
+
+        # Validate order types
+        if order_type == 'limit' and limit_price is None:
+            return {"error": "Limit orders require a limit price."}
+        elif order_type == 'stop' and stop_price is None:
+            return {"error": "Stop orders require a stop price."}
+        elif order_type == 'stop_limit' and (limit_price is None or stop_price is None):
+            return {"error": "Stop-limit orders require both a stop price and a limit price."}
+
+        # Submit order
         order = api.submit_order(
-            symbol=stock_symbol,
-            qty=quantity,
+            symbol=symbol,  # Now a valid string, not a list
+            qty=qty,
             side=side,
             type=order_type,
-            time_in_force='gtc',  # Good till canceled
+            time_in_force='gtc',
             limit_price=limit_price if order_type in ['limit', 'stop_limit'] else None,
             stop_price=stop_price if order_type in ['stop', 'stop_limit'] else None
         )
 
-        # Get order details for logging
-        order_info = {
+        return {
             "symbol": order.symbol,
-            "quantity": order.qty,
+            "qty": order.qty,
             "order_type": order.type,
             "status": order.status,
             "submitted_at": order.submitted_at.isoformat() if order.submitted_at else None
         }
 
-        print(f"Order placed: {quantity} shares of {stock_symbol} as a {order_type} order")
-        return order_info
-
     except Exception as e:
-        print(f"Error placing stock order: {str(e)}")
-        return f"Error placing stock order: {str(e)}"
+        logger.error(f"Order placement error: {str(e)}")
+        return {"error": str(e)}
 
+
+def handle_errors(func):
+    async def wrapper(*args, **kwargs):
+        try:
+            return await func(*args, **kwargs)
+        except requests.exceptions.RequestException as e:
+            logger.error(f"API request failed: {str(e)}")
+            return {"error": "API request failed"}
+        except tradeapi.rest.APIError as e:
+            logger.error(f"Trading API error: {str(e)}")
+            return {"error": "Trading API error"}
+        except Exception as e:
+            logger.error(f"Unexpected error: {str(e)}")
+            return {"error": "Unexpected error occurred"}
+    return wrapper
 
 def place_crypto_order(api, crypto_symbol, quantity, side, order_type='market', limit_price=None):
     """Place a cryptocurrency order"""
     try:
+        if quantity <= 0:
+            raise ValueError("Quantity must be greater than 0.")
         # Validate if limit price is required
         if order_type == 'limit' and limit_price is None:
             raise ValueError("Limit orders require a limit price.")
@@ -107,27 +167,22 @@ def place_crypto_order(api, crypto_symbol, quantity, side, order_type='market', 
         print(f"Error placing crypto order: {str(e)}")
         return f"Error placing crypto order: {str(e)}"
 
-def start_trading(api, symbol, qty, side='buy', order_type='market', interval_minutes=1, duration_minutes=10, is_crypto=False):
-    """Start trading stocks or cryptocurrency"""
-    global stop_flag
-    stop_flag = False  # Reset stop flag when starting trading
-
-    interval_seconds = interval_minutes * 60
+def start_trading(api, symbol, qty, side='buy', order_type='market', 
+                       interval_minutes=1, duration_minutes=10, is_crypto=False):
+    trading_control.reset_trading()  # Use proper method
     end_time = datetime.datetime.now() + datetime.timedelta(minutes=duration_minutes)
+    interval_seconds = interval_minutes * 60
 
-    # Trading loop
-    while not stop_flag and datetime.datetime.now() < end_time:
-        current_time = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-        print(f"Running trading logic at {current_time}")
-
-        # Place either a stock or a cryptocurrency order based on the is_crypto flag
-        if is_crypto:
-            place_crypto_order(api, symbol, qty, side, order_type)
-        else:
-            place_order(api, symbol, qty, side, order_type)
-
-        # Sleep for the specified interval
-        time.sleep(interval_seconds)
+    while not trading_control.should_stop() and datetime.datetime.now() < end_time:
+        try:
+            if is_crypto:
+                place_crypto_order(api, symbol, qty, side, order_type)
+            else:
+                place_order(api, symbol, qty, side, order_type)
+            time.sleep(interval_seconds)
+        except Exception as e:
+            logger.error(f"Trading error: {str(e)}")
+            break
 
     print("Trading stopped or time duration completed.")
 
@@ -143,15 +198,13 @@ def get_portfolio():
         for position in portfolio:
             symbol = position.symbol
             qty = float(position.qty)  # Convert quantity to float
-            avg_entry_price = float(position.avg_entry_price)  # Ensure price is float
-
-            # Multiply to get the value of that particular stock holding
+            avg_entry_price = float(position.avg_entry_price)
             stock_value = qty * avg_entry_price
             portfolio_value += stock_value
 
             portfolio_details.append({
                 'symbol': symbol,
-                'quantity': qty,
+                'qty': qty,
                 'avg_entry_price': avg_entry_price,
                 'stock_value': stock_value
             })
@@ -190,7 +243,7 @@ def get_past_orders(api, status='all', limit=10):
             order_info = {
                 "order_id": order.id,  # Order ID
                 "symbol": order.symbol,
-                "quantity": order.qty,
+                "qty": order.qty,
                 "side": order.side,
                 "order_type": order.order_type,
                 "status": order.status,
@@ -212,7 +265,7 @@ def get_past_orders(api, status='all', limit=10):
 def get_latest_price(symbol):
     try:
         # Get the latest bar for the stock symbol
-        last_quote = api.get_latest_bar(symbol)    
+        last_quote = api.get_latest_bar(symbol)  
         current_price=last_quote.c
     
         return f"The current price for {symbol} is: ${current_price}"   
@@ -229,124 +282,161 @@ def get_cash_balance():
         print(f"Error retrieving cash balance: {e}")
         return None
 
-
-def calculate_metric(data, metric):                     
-    results = {}
-    
-    if metric == 'daily_returns':     
-        data['Daily Return'] = data['Adj Close'].pct_change()
-        daily_returns = data['Daily Return'].dropna()
-        results['average_daily_return'] = round(daily_returns.mean() * 100, 2)
-    
+def calculate_metric(data, metric, risk_free_rate=0.02):
+    returns = data['Adj Close'].pct_change().dropna()
+    if metric == 'daily_returns':
+        return round(returns.mean() * 100, 2)
     elif metric == 'standard_deviation':
-        results['standard_deviation'] = round(data['Adj Close'].pct_change().std() * 100, 2)
-    
+        return round(returns.std() * 100, 2)
     elif metric == 'skewness':
-        results['skewness'] = round(skew(data['Adj Close'].pct_change().dropna()), 2)
+        return round(skew(returns), 2)
     elif metric == 'kurtosis':
-        # Calculate kurtosis using quantstats
-        results['kurtosis'] = round(qs.stats.kurtosis(data['Adj Close'].pct_change().dropna()), 2)
-    elif metric == 'cumulative_returns':
-        # Calculate cumulative returns using quantstats
-        cumulative_returns = qs.stats.cumulative_returns(data['Adj Close'])
-        results['cumulative_returns'] = round(cumulative_returns[-1] * 100, 2)
-    
+        return round(qs.stats.kurtosis(returns), 2)
     elif metric == 'sharpe_ratio':
-        # Calculate Sharpe ratio using quantstats
-        sharpe_ratio = qs.stats.sharpe(data['Adj Close'])
-        results['sharpe_ratio'] = round(sharpe_ratio, 2)            
-       
-    
-    return results
+        excess_returns = returns - risk_free_rate/252
+        return round(excess_returns.mean() / excess_returns.std() * np.sqrt(252), 2)
+    return None
 
-def get_financial_metric(company_name, metric,start_year,end_year):      
-    print("In the function....")    
-    # Convert company name to symbol
-    company_symbol = company_name_to_symbol(company_name)
-    try:
-        start_date = pd.to_datetime(f"{start_year}-01-01")
-        end_date = pd.to_datetime(f"{end_year}-12-31")
-    except ValueError:
-        return {"error": "Invalid year format. Please provide valid years."}
+def get_financial_metric(identifier, metric, start_year=None, end_year=None):
+    symbol = get_stock_symbol(identifier)
+    if not symbol:
+        return {"error": "Invalid company name or ticker symbol"}
     
     try:
-        stock_data = yf.download(company_symbol, period='1y', interval='1d')
-        
-        if stock_data.empty:
-            return {"error": "No data found for the given symbol."}
-        
-        result = calculate_metric(stock_data, metric)
-        
-        if not result:
-            return {"error": "Invalid metric provided or data unavailable."}
-        
-        formatted_result = "\n".join(
-            f"{key.replace('_', ' ').title()}: {value}"
-            for key, value in result.items()
-        )
-        
-        return formatted_result
-    
+        start_date = f"{start_year}-01-01" if start_year else "1900-01-01"
+        end_date = f"{end_year}-12-31" if end_year else datetime.datetime.now().strftime("%Y-%m-%d")
+        data = yf.download(symbol, start=start_date, end=end_date)
+        if data.empty:
+            return {"error": f"No data found for {symbol}"}
+        result = calculate_metric(data, metric)
+        return {metric: result} if result else {"error": "Invalid metric"}
     except Exception as e:
-        return {"error": f"Error occurred: {str(e)}"}
+        return {"error": str(e)}
 
-def company_name_to_symbol(company_name):
-    # Example mapping for company names to symbols
-    company_mapping = {
-        "apple": "AAPL",
-        "microsoft": "MSFT",
-        "google": "GOOGL",
-        "amazon": "AMZN",
-        "tesla" : "TSLA",    
-        # Add more mappings as needed
-    }
-    return company_mapping.get(company_name.lower(), "Unknown")
+MANUAL_TICKER_MAP = {
+    "apple": "AAPL",
+    "microsoft": "MSFT",
+    "google": "GOOGL",
+    "tesla": "TSLA",
+    "amazon": "AMZN",
+    "meta": "META",
+    "nvidia": "NVDA",
+    "netflix": "NFLX",
+    "paypal": "PYPL",
+    "facebook": "META",
+    "alphabet": "GOOGL",
+}
+
+
+def get_stock_symbol(input_str):
+    """Extracts a single valid stock symbol from user input."""
+    try:
+        input_str = input_str.strip().lower()
+
+        # 1. Check manual mapping first
+        if input_str in MANUAL_TICKER_MAP:
+            return MANUAL_TICKER_MAP[input_str]
+
+        # 2. Check for potential stock symbols (uppercase letters 2-5 characters long)
+        potential_symbols = re.findall(r'\b[A-Z]{2,5}\b', input_str.upper())
+
+        # 3. Validate tickers using Yahoo Finance
+        for symbol in potential_symbols:
+            try:
+                ticker = yf.Ticker(symbol)
+                if ticker.info and ticker.info.get("quoteType") == "EQUITY":
+                    return symbol.upper()  # Return first valid symbol
+            except Exception:
+                pass  # Ignore invalid symbols
+
+        # 4. Use Yahoo Finance search API if no match is found
+        search_url = f"https://query2.finance.yahoo.com/v1/finance/search?q={input_str}&lang=en-US&region=US"
+        try:
+            response = requests.get(search_url, timeout=5)  # Added timeout
+            if response.status_code == 200:
+                search_results = response.json()
+                if 'quotes' in search_results and search_results['quotes']:
+                    for quote in search_results['quotes']:
+                        if 'symbol' in quote and quote.get('isYahooFinance', False):
+                            return quote['symbol'].upper()  # Return first valid result
+        except requests.RequestException as e:
+            logger.error(f"Yahoo Finance API request failed: {e}")
+
+        logger.error(f"Symbol lookup failed for: {input_str}")
+        return None
+
+    except Exception as e:
+        logger.error(f"Error extracting symbol: {e}")
+        return None
+
+    except Exception as e:
+        logger.error(f"Error extracting symbols: {e}")
+        return None
 
 def get_news(topic):
-    news_api_key = "09f0bf58f68445b79006faa012009b95"
-    url = (
-        f"https://newsapi.org/v2/everything?q={topic}&apiKey={news_api_key}&pageSize=5"
-    )
+    url = f"https://newsapi.org/v2/everything?q={topic}&apiKey={NEWS_API_KEY}&pageSize=5"
+    news_data = safe_request(url)
+    
+    if news_data and news_data.get("articles"):
+        return [{
+            "title": article["title"],
+            "source": article["source"]["name"],
+            "url": article["url"]
+        } for article in news_data["articles"]]
+    return []
 
+
+def get_asset_info(symbol, is_crypto=False):
     try:
-        response = requests.get(url)
-        print(response.status_code)
-        if response.status_code == 200:
-            news = json.dumps(response.json(), indent=4)
-            news_json = json.loads(news)
-
-            data = news_json
-
-            # Access all the fiels == loop through
-            status = data["status"]
-            total_results = data["totalResults"]
-            articles = data["articles"]
-            final_news = []
-
-            # Loop through articles
-            for article in articles:
-                source_name = article["source"]["name"]
-                author = article["author"]
-                title = article["title"]
-                description = article["description"]
-                url = article["url"]
-                content = article["content"]
-                title_description = f"""
-                   Title: {title}, 
-                   Author: {author},
-                   Source: {source_name},
-                   Description: {description},
-                   URL: {url}
-            
-                """
-                final_news.append(title_description)
-            print(final_news)
-            return final_news
+        ticker = yf.Ticker(symbol)
+        info = ticker.info
+        if is_crypto:
+            return {
+                'currentPrice': info.get('regularMarketPrice', 'N/A'),
+                'marketCap': info.get('marketCap', 'N/A'),
+                'volume24h': info.get('volume24h', info.get('regularMarketVolume', 'N/A')),
+                'circulatingSupply': info.get('circulatingSupply', 'N/A'),
+                'totalSupply': info.get('totalSupply', 'N/A'),
+                'maxSupply': info.get('maxSupply', 'N/A')
+            }
         else:
-            return []
+            return {
+                'currentPrice': info.get('currentPrice', info.get('regularMarketPrice', 'N/A')),
+                'marketCap': info.get('marketCap', 'N/A'),
+                'fiftyTwoWeekChange': info.get('52WeekChange', info.get('fiftyTwoWeekChange', 'N/A')),
+                'trailingPE': info.get('trailingPE', 'N/A'),
+                'forwardPE': info.get('forwardPE', 'N/A'),
+                'pegRatio': info.get('pegRatio', 'N/A'),
+                'priceToBook': info.get('priceToBook', 'N/A'),
+                'revenueGrowth': info.get('revenueGrowth', 'N/A'),
+                'earningsGrowth': info.get('earningsGrowth', 'N/A'),
+                'profitMargins': info.get('profitMargins', 'N/A'),
+                'operatingMargins': info.get('operatingMargins', 'N/A')
+            }
+    except Exception as e:
+        logger.error(f"Error fetching asset info: {str(e)}")
+        return {}
 
-    except requests.exceptions.RequestException as e:
-        print("Error occured during API Request", e)
+def fetch_data(symbol, period='1y', is_crypto=False):
+    try:
+        if is_crypto and not symbol.endswith('-USD'):
+            symbol = f"{symbol}-USD"
+
+        data = yf.download(symbol, period=period)
+        if data.empty:
+            logger.warning(f"No data found for symbol: {symbol}")
+            return None
+
+        required_columns = ['Open', 'High', 'Low', 'Close', 'Volume']
+        missing_columns = [col for col in required_columns if col not in data.columns]
+        if missing_columns:
+            logger.warning(f"Missing required data columns: {', '.join(missing_columns)}")
+            return None
+
+        return data
+    except Exception as e:
+        logger.error(f"Error fetching {symbol} data: {e}")
+        return None
 
 
 class ChatSession:
@@ -362,6 +452,104 @@ class ChatSession:
         self.trading_bot_params = None
         self.exit_flag = False
         self.trading_active = False
+        self.auto_execute = False
+
+    def run_hedge_fund_analysis(self, tickers, start_date, end_date, initial_cash, show_reasoning=True, selected_analysts=None):
+        """
+        Executes the AI Hedge Fund workflow with the given parameters.
+
+        :param tickers: List of stock ticker symbols
+        :param start_date: Start date for the analysis
+        :param end_date: End date for the analysis
+        :param initial_cash: Initial cash position for the portfolio
+        :param show_reasoning: Whether to display reasoning from each agent
+        :param selected_analysts: List of analysts to include in the workflow
+        :return: Results of the hedge fund analysis
+        """
+        # Prepare portfolio structure
+        portfolio = {
+            "cash": initial_cash,
+            "positions": {ticker: 0 for ticker in tickers}  # Initial positions set to 0
+        }
+
+        try:
+        # Run the hedge fund analysis
+            result = run_hedge_fund(
+                tickers=tickers,
+                start_date=start_date,
+                end_date=end_date,
+                portfolio=portfolio,
+                show_reasoning=show_reasoning,
+                selected_analysts=selected_analysts
+            )
+            if 'decisions' not in result:
+                raise ValueError("No decisions found in analysis result")
+            for ticker, decision in result['decisions'].items():
+                if not isinstance(decision, dict):
+                    continue
+
+                action = decision.get('action')
+                quantity = decision.get('quantity', 0)
+                confidence = decision.get('confidence', 0)
+                reasoning = decision.get('reasoning', 'No reasoning provided')
+
+                if action and quantity > 0:
+                    if self.auto_execute:
+                        print(f"Auto-executing trade: {action.upper()} {quantity} shares of {ticker}")
+                        print(f"Confidence: {confidence}%")
+                        print(f"Reasoning: {reasoning}")
+                        self.place_order(ticker, quantity, action)
+                    else:
+                        print(f"\nRecommendation for {ticker}:")
+                        print(f"Action: {action.upper()}")
+                        print(f"Quantity: {quantity}")
+                        print(f"Confidence: {confidence}%")
+                        print(f"Reasoning: {reasoning}")
+                        user_input = input("\nExecute this trade? (yes/no): ").strip().lower()
+                        if user_input == 'yes':
+                            self.place_order(ticker, quantity, action)
+
+        except Exception as e:
+            print(f"Error in hedge fund analysis: {str(e)}")
+            return None
+
+        return result
+
+    def place_order(self, symbol, qty, side='buy'):
+        """Executes a trade order based on hedge fund recommendations."""
+        order_response = place_order(api, symbol, qty, side)
+        print(f"Order placed: {order_response}")
+
+    def toggle_auto_execution(self, status):
+        """Enables or disables automatic order execution."""
+        self.auto_execute = status
+        mode = "enabled" if status else "disabled"
+        print(f"Automatic execution {mode}.")
+
+    def parse_hedge_fund_command(self, command):
+        # Example command: "hedge fund analysis tickers=[AAPL,MSFT] start_date=2025-01-01 end_date=2025-02-01 initial_cash=100000 show_reasoning=true selected_analysts=[Ackman,Buffett]"
+        try:
+            params = {}
+            # Remove the initial command part
+            command = command.replace("hedge fund analysis", "").strip()
+            # Split by spaces to get key=value pairs
+            pairs = command.split()
+            for pair in pairs:
+                key, value = pair.split('=')
+                key = key.strip()
+                value = value.strip().strip('[]')
+                if ',' in value:
+                    value = value.split(',')
+                elif key in ['initial_cash']:
+                    value = float(value)
+                elif key in ['show_reasoning']:
+                    value = value.lower() == 'true'
+                params[key] = value
+            return params
+        except Exception as e:
+            print(f"Error parsing command: {e}")
+            return None
+
 
 
     def reset_flags(self):
@@ -415,17 +603,40 @@ class ChatSession:
                 if user_input.lower() in ['exit', 'quit', 'bye']:
                     print("\nGoodbye! Have a great day!")
                     break
+                elif user_input.lower().startswith('toggle auto execute'):
+                    self.toggle_auto_execution(user_input.lower().endswith('on'))
+                    continue
+                elif "hedge fund analysis" in user_input:
+                    hedge_fund_params = self.parse_hedge_fund_command(user_input)
+                    if hedge_fund_params:
+                        self.run_hedge_fund_analysis(**hedge_fund_params)
+                        continue
 
-                # Handle trading commands
-                if self.is_trading_command(user_input):
-                    params = self.parse_trading_params(user_input)
-                    self.trading_bot_params = params
-                    print(f"\nStarting trading bot for {params['symbol']}...")
-                    if self.trading_bot_thread is None or not self.trading_bot_thread.is_alive():
-                        self.trading_bot_thread = self.start_background_thread(self.trading_bot_manager)
+                trading_cmd = self.parse_trading_command(user_input)
+                if trading_cmd:
+                    if trading_cmd['command'] == 'buy':
+                        symbol = trading_cmd['params'][1]
+                        qty = trading_cmd['params'][0]
+                        # Call place_order with extracted params
+                        result = place_order(api, symbol, qty, side='buy')
+                        print(result)
+                        continue
+
+                # Check for hedge fund commands
+                hedge_fund_params = self.parse_hedge_fund_command(user_input)
+                if hedge_fund_params:
+                    print("\nRunning hedge fund analysis...")
+                    result = self.run_hedge_fund_analysis(
+                        tickers=hedge_fund_params["tickers"],
+                        start_date=hedge_fund_params["start_date"],
+                        end_date=hedge_fund_params["end_date"],
+                        initial_cash=hedge_fund_params["initial_cash"],
+                        show_reasoning=True  # Optionally, set to False
+                    )
+                    print(f"\nHedge Fund Results: {result['decisions']}")
                     continue
 
-                # Get and display assistant response
+                # Handle other user input
                 print("\nThinking...", end='\r')  # Show thinking indicator
                 response = await self.get_latest_response(user_input)
                 if response:
@@ -437,38 +648,30 @@ class ChatSession:
         except Exception as e:
             print(f"\nAn error occurred: {str(e)}")
             print("Session ended. Please restart the application.")
-
     def is_trading_command(self, input_text):
         """Check if the input is a trading command"""
         trading_keywords = ['buy', 'sell', 'trade', 'order']
         return any(keyword in input_text.lower() for keyword in trading_keywords)
 
-    def parse_trading_params(self, input_text):
-        """Parse trading parameters from user input"""
-        # Basic parsing logic - can be enhanced based on needs
-        words = input_text.lower().split()
-        
-        params = {
-            'symbol': 'MSFT',  # Default symbol
-            'quantity': 1,     # Default quantity
-            'side': 'buy' if 'buy' in words else 'sell',
-            'interval_minutes': 1,
-            'duration_minutes': 5
+    def parse_trading_command(self, input_text):
+        patterns = {
+            'buy': r"buy\s+(\d+(?:\.\d+)?)\s+(?:shares? of\s+)?(\w+)",
+            'sell': r"sell\s+(\d+)\s+(\w+)",
+            'stop': r"stop\s+trading",
+            'portfolio': r"show\s+portfolio"
         }
-
-        # Parse symbol if provided
-        for symbol in ['msft', 'aapl', 'meta', 'googl', 'amzn']:
-            if symbol in words:
-                params['symbol'] = symbol.upper()
-                break
-
-        # Parse quantity if provided
-        for i, word in enumerate(words):
-            if word.isdigit():
-                params['quantity'] = int(word)
-                break
-
-        return params
+        
+        input_text = input_text.lower().strip()
+        
+        for command, pattern in patterns.items():
+            match = re.match(pattern, input_text)
+            if match:
+                return {
+                    'command': command,
+                    'params': match.groups()
+                }
+        
+        return None
 
     async def display_chat_history(self):
         """Display chat history in a clean format"""
@@ -500,7 +703,7 @@ class ChatSession:
             start_trading(
                 api=api,
                 symbol=params['symbol'],
-                qty=params['quantity'],
+                qty=params['qty'],
                 side=params['side'],
                 order_type=params.get('order_type', 'market'),
                 interval_minutes=params.get('interval_minutes', 1),
@@ -512,6 +715,8 @@ class ChatSession:
     async def get_or_create_thread(self):
         data = self.thread_manager.read_thread_data()
         thread_id = data.get('thread_id')
+        if data is None:
+            data = {}
         if not thread_id:
             thread = await self.thread_manager.create_thread(messages=[])
             thread_id = thread.id
@@ -584,6 +789,56 @@ class ChatSession:
                 }
                 }
                 },
+                # Inside the tools list of the assistant creation:
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "fetch_data",
+                        "description": "Fetch historical price data for a stock or cryptocurrency.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "symbol": {
+                                    "type": "string",
+                                    "description": "Asset symbol (e.g., AAPL for stocks, BTC-USD for crypto)."
+                                },
+                                "period": {
+                                    "type": "string",
+                                    "description": "Data period (e.g., '1d', '1mo', '1y'). Default: '1y'.",
+                                    "default": "1y"
+                                },
+                                "is_crypto": {
+                                    "type": "boolean",
+                                    "description": "True for cryptocurrency. Default: False.",
+                                    "default": False
+                                }
+                            },
+                            "required": ["symbol"]
+                        }
+                    }
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "get_asset_info",
+                        "description": "Retrieve financial metrics for a stock using its ticker symbol.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "symbol": {
+                                    "type": "string",
+                                    "description": "Stock ticker symbol, e.g., AAPL"
+                                },
+                                "is_crypto": {
+                                    "type": "boolean",
+                                    "description": "True for cryptocurrency. Default: False.",
+                                    "default": False
+                                }
+                            },
+                            "required": ["symbol"]
+                        }
+                    }
+                },
                 {"type": "function",
                  "function": {
                     "name": "get_financial_metric",
@@ -622,11 +877,11 @@ class ChatSession:
                     "parameters": {
                         "type": "object",
                         "properties": {
-                            "stock_symbol": {
+                            "symbol": {
                                 "type": "string",
                                 "description": "The stock symbol of the company to buy shares of, e.g., AAPL for Apple."
                             },
-                            "quantity": {
+                            "qty": {
                                 "type": "number",
                                 "description": "The number of shares to buy. Supports fractional shares."
                             },
@@ -651,7 +906,7 @@ class ChatSession:
                                 "nullable": True
                             }
                         },
-                        "required": ["stock_symbol", "quantity","side"]
+                        "required": ["symbol", "qty","side"]
                     }
                 }
             },
@@ -705,7 +960,7 @@ class ChatSession:
                                 "type": "string",
                                 "description": "The symbol of the stock or cryptocurrency to trade, e.g., AAPL for Apple stock or BTCUSD for Bitcoin."
                             },
-                            "quantity": {
+                            "qty": {
                                 "type": "number",
                                 "description": "The number of shares or cryptocurrency quantity to buy or sell. Supports fractional shares."
                             },
@@ -735,7 +990,7 @@ class ChatSession:
                                 "nullable": True
                             }
                         },
-                        "required": ["symbol", "quantity", "side"]
+                        "required": ["symbol", "qty", "side"]
                     }
                 }
             },
@@ -854,17 +1109,27 @@ class ChatSession:
                       print(f"Image File ID: {message.content[0].image_file.file_id}")      
 
     async def get_latest_response(self, user_input):
-        # Send the user message
-        await self.send_message(user_input)
-
-        # Create a new run for the assistant to respond
-        await self.create_run()
-
-        # Wait for the assistant's response
-        await self.wait_for_assistant()
-
-        # Retrieve the latest response
-        return await self.retrieve_latest_response()  
+        try:
+            # Send user message
+            await self.send_message(user_input)
+            
+            # Create and monitor run
+            run = await self.create_run()
+            if isinstance(run, str) and "error" in run.lower():
+                return f"Error creating run: {run}"
+                
+            # Wait for completion
+            await self.wait_for_assistant()
+            
+            # Get response
+            response = await self.retrieve_latest_response()
+            if not response:
+                return "Unable to get assistant response"
+                
+            return response
+            
+        except Exception as e:
+            return f"Error processing request: {str(e)}"
 
     async def create_run(self):
         # Check if there are any active runs
@@ -896,40 +1161,82 @@ class ChatSession:
                 output = get_news(topic=arguments["topic"])
                 final_str = ""
                 for item in output:
-                    final_str += "".join(item)   
-
+                    final_str = "\n".join(f"{news['title']} - {news['source']} ({news['url']})" for news in output)
                 tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
+
+            # Inside the for loop over tool_calls:
+            elif func_name == "fetch_data":
+                symbol = arguments.get("symbol")
+                period = arguments.get("period", "1y")
+                is_crypto = arguments.get("is_crypto", False)
+                try:
+                    data = fetch_data(symbol, period, is_crypto)
+                    if data is not None:
+                        output = f"Fetched {period} data for {symbol}. Contains {len(data)} rows."
+                    else:
+                        output = f"Failed to fetch data for {symbol}."
+                    tool_outputs.append({"tool_call_id": action["id"], "output": output})
+                except Exception as e:
+                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
+
+            elif func_name == "get_asset_info":
+                symbol = arguments.get("symbol")
+                is_crypto = arguments.get("is_crypto", False)
+                try:
+                    info = get_asset_info(symbol, is_crypto)
+                    if info:
+                        output = json.dumps(info, indent=2)
+                    else:
+                        output = f"No info found for {symbol}."
+                    tool_outputs.append({"tool_call_id": action["id"], "output": output})
+                except Exception as e:
+                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
+
             elif func_name == "get_financial_metric":
-                    company_name = arguments["company_name"]
+                try:
+                    identifier = arguments["company_name"]
                     metric = arguments["metric"]
                     start_year = arguments.get("start_year")
                     end_year = arguments.get("end_year")
-                    output = get_financial_metric(company_name=company_name, metric=metric,start_year=start_year,end_year=end_year)
-                    if isinstance(output, dict) and "error" in output:
-                        final_str = output["error"]    
+                    
+                    output = get_financial_metric(
+                        identifier=identifier,
+                        metric=metric,
+                        start_year=start_year,
+                        end_year=end_year
+                    )
+                    
+                    if "error" in output:
+                        final_str = f"Error: {output['error']}"
                     else:
-                        final_str = output
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
-                    print("data retrived successfully...")     
+                        final_str = json.dumps(output, indent=2)
+                    
+                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
+                    logger.info("Financial metrics retrieved successfully")
+                except Exception as e:
+                    tool_outputs.append({"tool_call_id": action["id"], "output": f"Critical error: {str(e)}"})
+                    logger.error(f"Error in get_financial_metric: {e}")  
 
             elif func_name == "place_order":
-                # Extract the required parameters from the user's input
-                stock_symbol = arguments.get("stock_symbol")
-                quantity = arguments.get("quantity")
-                side = arguments.get("side")  # Required to determine if it's a buy or sell order
-
-                # Optional parameters
-                order_type = arguments.get("order_type", "market")  # Default to market if not provided
-                limit_price = arguments.get("limit_price")  # Only required for limit or stop-limit orders
-                stop_price = arguments.get("stop_price")  # Only required for stop or stop-limit orders
-
                 try:
+                    # Extract and validate the required parameters
+                    symbol = str(arguments.get("symbol", "")).upper()
+                    qty = float(arguments.get("qty", 0))
+                    side = str(arguments.get("side", "buy")).lower()
+                    order_type = str(arguments.get("order_type", "market")).lower()
+                    limit_price = float(arguments.get("limit_price")) if arguments.get("limit_price") else None
+                    stop_price = float(arguments.get("stop_price")) if arguments.get("stop_price") else None
+
+                    # Validate required parameters
+                    if not symbol or qty <= 0:
+                        raise ValueError("Symbol and quantity > 0 are required")
+
                     # Call the function to place the stock order with extracted arguments
                     output = place_order(
-                        api=api,  # Ensure API instance is passed here
-                        stock_symbol=stock_symbol,
-                        side=side,  # Pass the side (buy/sell)
-                        quantity=quantity,
+                        api=api,
+                        symbol=symbol,
+                        qty=qty,
+                        side=side,
                         order_type=order_type,
                         limit_price=limit_price,
                         stop_price=stop_price
@@ -937,19 +1244,20 @@ class ChatSession:
 
                     # Append the result for the tool call
                     tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps(output)})
-                    print("Stock order processed successfully...")
+                    logger.info("Stock order processed successfully...")
 
                 except Exception as e:
-                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
-                    print(f"Error processing stock order: {e}")
+                    error_msg = f"Error processing stock order: {str(e)}"
+                    logger.error(error_msg)
+                    tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps({"error": error_msg})})
 
 
             elif func_name == "start_trading":
                 # Log arguments for debugging
                 print("Arguments received:", arguments)
 
-                stock_symbol = arguments.get("symbol")
-                quantity = arguments.get("quantity")
+                symbol = arguments.get("symbol")
+                qty = arguments.get("qty")
                 side = arguments.get("side")
                 order_type = arguments.get("order_type", 'market')
                 interval_minutes = arguments.get("interval_minutes", 1)
@@ -959,8 +1267,8 @@ class ChatSession:
                     # Call the start_trading function with the correct parameters
                     output = start_trading(
                         api=api,
-                        symbol=stock_symbol,
-                        qty=quantity,
+                        symbol=symbol,
+                        qty=qty,
                         side=side,
                         order_type=order_type,
                         interval_minutes=interval_minutes,
@@ -1025,12 +1333,12 @@ class ChatSession:
                     print("Data retrieved successfully...")
 
             elif func_name == "get_latest_price":
-                    stock_symbol = arguments["symbol"]
+                    symbol = arguments["symbol"]
 
                     try:
                         # Call the get_latest_price function
-                        output = get_latest_price(stock_symbol)
-                        final_str = f"Latest price of {stock_symbol}: {output}"
+                        output = get_latest_price(symbol)
+                        final_str = f"Latest price of {symbol}: {output}"
                     except Exception as e:
                         final_str = str(e)
                     tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
@@ -1048,7 +1356,7 @@ class ChatSession:
 
             elif func_name == "stop_trading":
                     try:
-                        stop_trading()
+                        TradingControl.stop_trading()
                         final_str = "Trading stopped successfully."
                     except Exception as e:
                         final_str = str(e)
@@ -1068,32 +1376,62 @@ class ChatSession:
 ############################################################################################################
 
     async def wait_for_assistant(self):
-        while True:
-            runs = await self.thread_manager.list_runs(self.thread_id)
-            latest_run = runs.data[0]
-            if latest_run.status in ["completed", "failed"]:
-                break
-            elif latest_run.status == "requires_action":
-                await self.call_required_functions(
-                    required_actions=latest_run.required_action.submit_tool_outputs.model_dump(), run=latest_run
-                )
-
-            await asyncio.sleep(2)  # Wait for 2 seconds before checking again
+        max_retries = 30  # 1 minute timeout (2 seconds * 30)
+        retries = 0
+        
+        while retries < max_retries:
+            try:
+                runs = await self.thread_manager.list_runs(self.thread_id)
+                if not runs or not runs.data:
+                    return
+                    
+                latest_run = runs.data[0]
+                print(f"Run status: {latest_run.status}")  # Debug logging
+                
+                if latest_run.status == "completed":
+                    return
+                elif latest_run.status == "failed":
+                    print(f"Run failed: {latest_run.last_error}")
+                    return
+                elif latest_run.status == "requires_action":
+                    await self.call_required_functions(
+                        required_actions=latest_run.required_action.submit_tool_outputs.model_dump(),
+                        run=latest_run
+                    )
+                
+                retries += 1
+                await asyncio.sleep(2)
+                
+            except Exception as e:
+                print(f"Error while waiting for assistant: {str(e)}")
+                return
+                
+        print("Timeout waiting for assistant response")
 
     async def retrieve_latest_response(self):
-        response = await self.thread_manager.list_messages(self.thread_id)
-        for message in response.data:
-            if message.role == "assistant":
-                if message.content[0].type=='text':
-                    return message.content[0].text.value    
-                       
-                elif message.content[0].type == 'image_file':
-                      print(f"Image File ID: {message.content[0].image_file.file_id}") 
-                      image_data = await self.assistant_manager.client.files.content(message.content[0].image_file.file_id)
-                      image_data_bytes =  image_data.read()      
-
-                      with open(f"{message.content[0].image_file.file_id}.png", "wb") as file:    
-                    #   with open(f"{message.content[0].image_file.file_id}.png", "wb") as file:              
+        try:
+            response = await self.thread_manager.list_messages(self.thread_id)
+            if not response or not response.data:
+                return "No response available"
+                
+            for message in response.data:
+                if message.role == "assistant":
+                    if not message.content:
+                        continue
+                        
+                    content_item = message.content[0]
+                    if content_item.type == 'text':
+                        return content_item.text.value
+                    elif content_item.type == 'image_file':
+                        file_id = content_item.image_file.file_id
+                        image_data = await self.assistant_manager.client.files.content(file_id)
+                        image_data_bytes = image_data.read()
+                        
+                        with open(f"{file_id}.png", "wb") as file:
+                            file.write(image_data_bytes)
+                        return f"Image saved as {file_id}.png"
+                        
+            return "No assistant response found"
             
-                        file.write(image_data_bytes)   
-                        return f"Image saved as {message.content[0].image_file.file_id}.png"
+        except Exception as e:
+            return f"Error retrieving response: {str(e)}"
