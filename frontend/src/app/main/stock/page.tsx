@@ -9,6 +9,7 @@ import {SymbolProvider} from "@/components/Stock Page/SymbolContext";
 import TickerTape from "@/components/Stock Page/TickerTape"; // Adjust import path as needed
 import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
 import FooterLand from "../../../components/landing page/header footer landing/FooterLand"
+import { SideNavbar } from "@/components/SideNavbar/sideNav";
 
 const StockPage: React.FC = () => {
   const pathname = usePathname();
@@ -34,25 +35,33 @@ const StockPage: React.FC = () => {
   };
 
   return (
-    <>
+    <div>
       <Head>
         <title>Stock Details</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-     <div className='flex flex-col items-center bg-white dark:bg-black'> 
-      <SymbolProvider>  
-  
+      
+     <div className='bg-white dark:bg-black'> 
+       <SymbolProvider>    
         <HeaderLand />
-   
-        <TickerTape onSymbolChange={handleSymbolChange} />
-        <Stock  />
+        <div className="flex flex-col md:flex-row">
+          <SideNavbar />
+           <div className="w-full">
+           <div className='flex h-full flex-col w-full items-center bg-white dark:bg-black'>
+           <TickerTape onSymbolChange={handleSymbolChange} />            
+            <Stock  />
+           </div>
+          </div>
+        </div>
         <FooterLand />
+
       </SymbolProvider>
+
       </div> 
-    </>
+    </div>
   );
 };
 
 export default StockPage;
 
-// ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"}
+{/* // ${theme === "dark" ? "bg-black text-white" : "bg-white text-black"} */}

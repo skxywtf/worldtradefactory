@@ -1,36 +1,31 @@
 "use client";
 
-// import About from "@/components/header and Footer/About";
-// import { BackgroundGradientAnimationDemo } from "@/components/header and Footer/Background";
-import Footer from "@/components/header and Footer/Footer";
 import { StickyScrollRevealDemo } from "@/components/header and Footer/HeroSection";
 import { ImagesSliderDemo } from "@/components/header and Footer/ImageSlider";
 import JoinUs from "@/components/header and Footer/Joinus";
-// import Navbar from "@/components/header and Footer/Navbar";
-// import NavBar1 from "@/components/header and Footer/Navbar1";
-// import AppAppBar from "@/components/header and Footer/Navbar1";
 import { AppleCardsCarousel } from "@/components/header and Footer/Team_card";
-// import { BackgroundGradientAnimation } from "@/components/ui/background-gradient-animation";
-
-// import Contact1 from "@/components/header and Footer/Contact1";
-// import CareerPage from "@/components/header and Footer/Career";
-// import SidebarDemo from "@/components/Sidebar";
-// import { SidebarDemo1 } from "@/components/header and Footer/Career/Career_A";
+import FooterLand from "@/components/landing page/header footer landing/FooterLand";
+import HeaderLand from "@/components/landing page/header footer landing/HeaderLand";
+import { SideNavbar } from "@/components/SideNavbar/sideNav";
 
 export default function AboutPage() {
   return (
     <div>
-      {/* <NavBar1></NavBar1> */}
-
+      <HeaderLand></HeaderLand>
+     <div className="flex flex-col md:flex-row">
+      <SideNavbar />
+      <div className="w-full overflow-hidden">
+      <div className="border-2 m-0 rounded-xl border-slate-400 p-3 bg-slate-200 dark:bg-black dark:border-black">
       <ImagesSliderDemo></ImagesSliderDemo>
+      </div>
+
       <StickyScrollRevealDemo></StickyScrollRevealDemo>
       <AppleCardsCarousel></AppleCardsCarousel>
       <JoinUs></JoinUs>
-      <Footer></Footer>
-      {/* <About></About> */}
-      {/* <Contact1></Contact1> */}
-      {/* <CareerPage></CareerPage> */}
-      {/* <SidebarDemo1></SidebarDemo1> */}
+      </div>
+     </div>
+
+      <FooterLand></FooterLand>
     </div>
   );
 }

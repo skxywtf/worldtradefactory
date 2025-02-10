@@ -58,8 +58,8 @@ const TickerTape: React.FC = () => {
   }, [theme]);
 
   return (
-    <div className="w-full">
-      <div className="tradingview-widget-container w-full" ref={containerRef}>
+    <div className="">
+      <div className="tradingview-widget-container" ref={containerRef}>
         <div className="tradingview-widget-container__widget"></div>
       </div>
     </div>

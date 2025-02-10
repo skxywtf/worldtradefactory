@@ -13,7 +13,7 @@ export const Sidepanel: React.FC = () => {
     <div className="w-2/6 px-10 py-20 border-r bg-slate-100 dark:text-white dark:bg-gradient-to-br from-gray-600 to-black">
     
       <p className="text-sm text-slate-500">Total</p>
-      <p className="text-xl">$134.98</p>
+      <p className="text-2xl">$134.98</p>
 
     <div className="flex justify-around">
       <div>

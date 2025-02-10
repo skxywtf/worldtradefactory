@@ -19,13 +19,13 @@ const Stock: React.FC = () => {
     });
 
     return (
-        <main>
+        <main className='mb-4'>
             <section id="symbol-info"><Symbolinfo searchInputValue={searchInput} /></section>
             <section id="advanced-chart"><TradingViewWidget symbol={searchInput} /> </section>
             <section id="company-profile"><CompanyProfileWidget searchInputValue={searchInput} /></section>
             <section id="fundamental-data"><FundamentalDataWidget searchInputValue={searchInput}  /></section>
             <section id="technical-analysis"><TechnicalAnalysisWidget searchInputValue={searchInput} /></section>         
-            <section id="top-stories" className="mt-2"><TopStoriesWidget searchInputValue={searchInput} /></section>
+            <section id="top-stories"><TopStoriesWidget searchInputValue={searchInput} /></section>
         </main>
     );  
 };

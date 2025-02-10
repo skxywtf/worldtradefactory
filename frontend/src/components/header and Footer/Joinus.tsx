@@ -1,8 +1,9 @@
 import React from "react";
 
 const JoinUs = () => {
+
   return (
-    <div className="text-white py-12 px-6 mt-0 bg-black opacity-95">
+    <div className="py-14 px-6 bg-white opacity-95 dark:bg-neutral-900 dark:text-white">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl font-bold mb-10 mt-0">Want to join us?</h2>
         <p className="mb-6">

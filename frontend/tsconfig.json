@@ -30,8 +30,8 @@
     "src/components/embeded codes/Advance widgets/EconomicCalendar.tsx",
     "src/components/embeded codes/Advance widgets/MiniChart.tsx",
     "src/components/embeded codes/Advance widgets/SymbolOverview.tsx",
-    "src/components/LoginAndSignup/Login.jsx",
-    "src/components/Mian Page/MarketNews.jsx",
+    "src/components/LoginAndSignup/Login.tsx",
+    "src/components/Mian Page/MarketNews.tsx",
     "src/components/Mian Page/TopPicks.jsx"
   ],
   "exclude": ["node_modules"]

@@ -36,7 +36,7 @@ const CareerPage = () => {
         >
           Join Us and Shape the Future of Trading
         </motion.h1>
-        <CareerCard></CareerCard>
+        <CareerCard />
         <FooterLand />
        
       </div>

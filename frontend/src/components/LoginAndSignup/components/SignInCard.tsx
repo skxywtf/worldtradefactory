@@ -47,6 +47,8 @@ export default function SignInCard() {
   
   const router = useRouter();
 
+  const currentPath = sessionStorage.getItem('currentPath')
+
   const handleSignInWithGoogle = async () => {
   
     try {
@@ -55,13 +57,17 @@ export default function SignInCard() {
   
       // Extract the user information from the result
       const user = result.user;
+      // console.log(handler(result.user))
+      // console.log(result,result.user)
   
       // Save the token and user info in localStorage
       // localStorage.setItem("token", user?.accessToken || "");
       localStorage.setItem("user", JSON.stringify(user));
   
       // Redirect to the main page after successful login
-      router.push("/main");
+      currentPath ? router.push(currentPath) :
+      router.push("/home");
+      
     } catch (error: any) {
       // Handle error: log it and potentially show an error message to the user
       console.error("Error during Google sign-in:", error.message);
@@ -88,7 +94,8 @@ export default function SignInCard() {
         
         console.log(res.data);
         localStorage.setItem("clientUsername", username as string);
-        router.push("/main/account");
+        currentPath ? router.push(currentPath) : router.push("/home");
+        
     } catch (err: any) {
         console.error(err);
         if (err.response) {

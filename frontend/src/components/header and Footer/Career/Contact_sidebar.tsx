@@ -59,7 +59,7 @@ export function ContactSidebar() {
         </SidebarBody>
       </Sidebar>
 
-      <Contact1></Contact1>
+      <Contact1 />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
+
 const MarketData: React.FC = () => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const { theme } = useTheme(); // Get the current theme ('dark' or 'light')
@@ -28,7 +29,7 @@ const MarketData: React.FC = () => {
         showSymbolLogo: false,
         showFloatingTooltip: false,
         width: "400",
-        height: "510",
+        height: "500",
         plotLineColorGrowing: "rgba(41, 98, 255, 1)",
         plotLineColorFalling: "rgba(41, 98, 255, 1)",
         gridLineColor: "rgba(42, 46, 57, 0)",
@@ -114,7 +115,7 @@ const MarketData: React.FC = () => {
 
   return (
     <div
-      className="tradingview-widget-container pt-10"
+      className="tradingview-widget-container"
       ref={containerRef}
       style={{ position: "relative" }}
     >

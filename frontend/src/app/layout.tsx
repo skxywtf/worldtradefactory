@@ -1,6 +1,7 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from '@/components/providers'
+import SessionProviderWrapper from "./sessionProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,14 +24,17 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" >
-      <body>
+      <body className="w-full">
         <Providers
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
-        >
-            <body className={inter.className} >{children}</body>
+          disableTransitionOnChange >
+          <body className={inter.className} >
+            <SessionProviderWrapper>
+              {children}
+            </SessionProviderWrapper>
+          </body>
         </Providers>
       </body>
     </html>

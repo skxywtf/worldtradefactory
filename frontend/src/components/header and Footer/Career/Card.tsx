@@ -8,7 +8,7 @@ import AiTeam from "../../../assets/AiTeam.jpg"
 
 export function CareerCard() {
   const cards = data.map((card, index) => (
-    <Card key={card.src} card={card} index={index} />
+    <Card key={index} card={card} index={index} />
   ));
 
   return (
@@ -55,19 +55,19 @@ const data = [
   {
     category: "Frontend Team",
     title: "You can do more with Frontend.",
-    src: frontendImage,
+    src: frontendImage.src,
     content: <DummyContent />,
   },
   {
     category: "Backend Team",
     title: "Enhance your productivity.",
-    src: backendImage,
+    src: backendImage.src,
     content: <DummyContent />,
   },
   {
     category: "Artificial Intelegence Team",
     title: "Launching the new new Idea.",
-    src: AiTeam,
+    src: AiTeam.src,
     content: <DummyContent />,
   },
 ];
