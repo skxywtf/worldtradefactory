@@ -4,56 +4,41 @@ from dotenv import load_dotenv
 from openai import AsyncOpenAI
 from thread_manager import ThreadManager
 from assistant_manager import AssistantManager
-from chat_session import ChatSession, TradingControl
-import sys
+from chat_session import ChatSession, TradingSession
 
-# Dynamically add the `src` folder to the Python path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "ai_hedge_fund", "src")))
-
-# Load environment variables from .env file
+# Load API credentials
 load_dotenv()
+API_KEY = os.getenv("API_KEY")
+ASSISTANT_NAME = os.getenv("ASSISTANT_NAME", "Devdoot")
+ASSISTANT_ID = os.getenv("ASSISTANT_ID")
+MODEL_NAME = os.getenv("MODEL_NAME")
 
-# Use the environment variables
-API_KEY = os.getenv('API_KEY')
-ASSISTANT_NAME = os.getenv('ASSISTANT_NAME')
-ASSISTANT_ID = os.getenv('ASSISTANT_ID')
-MODEL_NAME = os.getenv('MODEL_NAME')
+async def greet_user():
+    """Prints assistant greeting once at startup."""
+    print("\n🤖 Devdoot: Hello! How can I assist you today?")
 
-
-# ASSISTANT_ID will be fetched dynamically after creation or during the session
-
-# Entry point
 async def main():
-    # Initialize the OpenAI async client
-    openai_async_client = AsyncOpenAI(api_key=API_KEY)
+    """Main function to initialize and run the assistant."""
+    openai_client = AsyncOpenAI(api_key=API_KEY)
+    thread_manager = ThreadManager(openai_client)
+    assistant_manager = AssistantManager(openai_client)
 
-    # Create instances of manager classes with the OpenAI client
-    thread_manager = ThreadManager(openai_async_client)
-    assistant_manager = AssistantManager(openai_async_client)
+    chat_thread_id = await thread_manager.get_or_create_thread("chat")
+    trading_thread_id = await thread_manager.get_or_create_thread("trading")
 
-    # Start a chat session with the assistant name and model name
-    chat_session = ChatSession(thread_manager, assistant_manager, ASSISTANT_NAME, MODEL_NAME, ASSISTANT_ID)
-    await chat_session.start_session()
+    chat_session = ChatSession(thread_manager, assistant_manager, ASSISTANT_NAME, MODEL_NAME, ASSISTANT_ID, chat_thread_id)
+    trading_session = TradingSession(thread_manager, assistant_manager, trading_thread_id)
+
+    await greet_user()  # ✅ Display greeting once
+
     while True:
-        user_input = input("Enter command (start/stop/exit): ").strip().lower()
+        user_input = input("\nYou: ").strip().lower()
 
-        if user_input == "start":
-            # Example of starting trading with fixed parameters (can be dynamic)
-            await chat_session.get_latest_response("start_trading")  # Trigger assistant command
-        elif user_input == "stop":
-            stop_trading()  # Call stop_trading directly to stop the ongoing trading
-        elif user_input == "exit":
-            print("Exiting assistant.")
+        if user_input.lower() in ["exit", "quit"]:
+            print("Exiting assistant. Goodbye!")
             break
-        else:
-            print("Unknown command. Please enter 'start', 'stop', or 'exit'.")
-
-
-
-
+        response = await chat_session.process_user_input(user_input)
+        print(f"\nDevdoot: {response}")
 
 if __name__ == "__main__":
-    try:
-        asyncio.run(main())
-    except KeyboardInterrupt:
-        print("Assistant interrupted.")
+    asyncio.run(main())

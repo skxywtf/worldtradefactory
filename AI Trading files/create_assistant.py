@@ -11,8 +11,8 @@ from datetime import datetime
 #chatsession
 
 load_dotenv()
-
-client = openai.OpenAI()
+api_key = os.getenv("API_KEY")
+client = openai.OpenAI(api_key=api_key)
 file = client.files.create(
   file=open("trade.csv", "rb"),         
   purpose='assistants'
@@ -60,45 +60,105 @@ print(file_batch.file_counts)
 
 # Step 2 - Create an assistant 
 assistant = client.beta.assistants.create(
-    name="Devdoot",
-    instructions="""You are a helpful study assistant who knows a lot about understanding research papers.
-    Your role is to summarize papers, clarify terminology within context, and extract key figures and data.
-    Cross-reference information for additional insights and answer related questions comprehensively.
-    Analyze the papers, noting strengths and limitations. You know how to take a list of article's titles and descriptions and use them to get deeper understanding and give out accurate and comprehensive responses.
-    Respond to queries effectively, incorporating feedback to enhance your accuracy.
-    Handle data securely and update your knowledge base with the latest research.
-    Adhere to ethical standards, respect intellectual property, and provide users with guidance on any limitations.
-    Maintain a feedback loop for continuous improvement and user support.
-    Your ultimate goal is to facilitate a deeper understanding of complex scientific material, making it more accessible and comprehensible.And you are also a Stock Chart Maker specialized in generating graphs from CSV files containing stock price history.
-    It helps users upload their data, analyzes it, and creates accurate charts. While focusing on data accuracy and clear instructions,
-    it also explains the generated graphs. The GPT will not provide financial advice and will prioritize user data accuracy.
-    If a request is unclear or data is incomplete, it will ask for more information. The communication style is conversational,
-    making it user-friendly and approachable for a wide range of users.  Normally the mpl_finance module would be used; however,
-    it is not available.  Create a custom candlestick chart using basic matplotlib functionalities only.
-    """,
-    tools=[{"type": "code_interpreter"},{"type": "file_search"},                  
-           {"type": "function",
-            "function": {
-                "name": "get_news",
-                "description": "Get the list of articles/news for the given topic",
-                "parameters": {
-                    "type": "object",
-                    "properties": {
-                        "topic": {
-                            "type": "string",
-                            "description": "The topic for the news, e.g. bitcoin",
-                        }
-                    },
-                    "required": ["topic"],   
+    name="Finance Educator",
+                instructions="""You are an expert financial assistant. Always convert these common terms:
+                - "crude oil" → CL=F
+                - "gold" → GC=F
+                - "silver" → SI=F
+                - "apple" → AAPL
+                Return exact ticker symbols for any security reference. You do technical analysis of stocks, shares and cryptos accurately. You give all required informations related to market.""",
+                            
+                tools=[{"type": "code_interpreter"},{"type": "file_search"},
+                        {"type": "function",
+                            "function": {
+                                "name": "get_news",
+                                "description": "Get the list of articles/news for the given topic",
+                                "parameters": {
+                                    "type": "object",
+                                    "properties": {
+                                        "topic": {
+                                            "type": "string",
+                                            "description": "The topic for the news, e.g. space",
+                                        }
+                                    },
+                                    "required": ["topic"],
+                }
+                }
                 },
-            },},
-            {"type": "function",
-                 "function": {  
+                {
+                "type": "function",
+                "function": {
+                    "name": "auto_resolve_symbol",
+                    "description": "Convert natural language to ticker symbols",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_input": {
+                                "type": "string", 
+                                "description": "Raw user input containing security reference"
+                            }
+                        },
+                        "required": ["user_input"]
+                    }
+                }
+                },
+                # Inside the tools list of the assistant creation:
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "fetch_data",
+                        "description": "Fetch historical price data for a stock or cryptocurrency.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "symbol": {
+                                    "type": "string",
+                                    "description": "Asset symbol (e.g., AAPL for stocks, BTC-USD for crypto)."
+                                },
+                                "period": {
+                                    "type": "string",
+                                    "description": "Data period (e.g., '1d', '1mo', '1y'). Default: '1y'.",
+                                    "default": "1y"
+                                },
+                                "is_crypto": {
+                                    "type": "boolean",
+                                    "description": "True for cryptocurrency. Default: False.",
+                                    "default": False
+                                }
+                            },
+                            "required": ["symbol"]
+                        }
+                    }
+                },
+                {
+                    "type": "function",
+                    "function": {
+                        "name": "get_asset_info",
+                        "description": "Retrieve financial metrics for a stock using its ticker symbol.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {
+                                "symbol": {
+                                    "type": "string",
+                                    "description": "Stock ticker symbol, e.g., AAPL"
+                                },
+                                "is_crypto": {
+                                    "type": "boolean",
+                                    "description": "True for cryptocurrency. Default: False.",
+                                    "default": False
+                                }
+                            },
+                            "required": ["symbol"]
+                        }
+                    }
+                },
+                {"type": "function",
+                 "function": {
                     "name": "get_financial_metric",
                     "description": "Retrieve financial metrics for a company based on user-provided metric type.",
                     "parameters": {
                         "type": "object",
-                        "properties": {    
+                        "properties": {
                             "company_name": {
                                 "type": "string",
                                 "description": "The name of the company for which financial metrics are requested. E.g., 'Apple'."
@@ -107,18 +167,20 @@ assistant = client.beta.assistants.create(
                                 "type": "string",
                                 "description": "The financial metric to calculate. Options include 'daily_returns', 'standard_deviation', 'skewness'."
                             },
+                            
                             "start_year": {
                                 "type": "integer",
                                 "description": "The start year for the time range of the financial data. E.g., 2010."
-                            },
+                            },  
                             "end_year": {
                                 "type": "integer",
                                 "description": "The end year for the time range of the financial data. E.g., 2023."
                             },
+
                         },
-                        "required": ["company_name", "metric"]
-                    },
-                },
+                        "required": ["company_name", "metric"]             
+                    }
+                }
             },
             {
                 "type": "function",
@@ -128,11 +190,11 @@ assistant = client.beta.assistants.create(
                     "parameters": {
                         "type": "object",
                         "properties": {
-                            "stock_symbol": {
+                            "symbol": {
                                 "type": "string",
                                 "description": "The stock symbol of the company to buy shares of, e.g., AAPL for Apple."
                             },
-                            "quantity": {
+                            "qty": {
                                 "type": "number",
                                 "description": "The number of shares to buy. Supports fractional shares."
                             },
@@ -157,7 +219,7 @@ assistant = client.beta.assistants.create(
                                 "nullable": True
                             }
                         },
-                        "required": ["stock_symbol", "quantity","side"]
+                        "required": ["symbol", "qty","side"]
                     }
                 }
             },
@@ -211,7 +273,7 @@ assistant = client.beta.assistants.create(
                                 "type": "string",
                                 "description": "The symbol of the stock or cryptocurrency to trade, e.g., AAPL for Apple stock or BTCUSD for Bitcoin."
                             },
-                            "quantity": {
+                            "qty": {
                                 "type": "number",
                                 "description": "The number of shares or cryptocurrency quantity to buy or sell. Supports fractional shares."
                             },
@@ -241,7 +303,7 @@ assistant = client.beta.assistants.create(
                                 "nullable": True
                             }
                         },
-                        "required": ["symbol", "quantity", "side"]
+                        "required": ["symbol", "qty", "side"]
                     }
                 }
             },
@@ -256,7 +318,7 @@ assistant = client.beta.assistants.create(
                         }
                         }
                 },
-                        {
+            {
                 "type": "function",
                 "function": {
                     "name": "get_past_orders",
@@ -279,6 +341,7 @@ assistant = client.beta.assistants.create(
                     }
                 }
             },
+
           {"type": "function",
             "function":
                     {

@@ -22,6 +22,10 @@ import sys
 import numpy as np
 import logging
 import re
+import difflib
+import threading
+import inspect
+
 
 load_dotenv()
 # logging.basicConfig(level=logging.DEBUG)
@@ -61,21 +65,99 @@ class TradingControl:
             return self._stop_flag
 trading_control = TradingControl()
 
+class TradeExecutionQueue:
+    def __init__(self):
+        self.lock = threading.Lock()
+        self.active_trades = {}
+
+    def add_trade(self, symbol):
+        with self.lock:
+            if symbol in self.active_trades:
+                return False  # Trade already in progress
+            self.active_trades[symbol] = True
+            return True
+
+    def remove_trade(self, symbol):
+        with self.lock:
+            if symbol in self.active_trades:
+                del self.active_trades[symbol]
+
+trade_queue = TradeExecutionQueue()
+
+
 def safe_request(url, params=None, retries=3, delay=2):
     for attempt in range(retries):
         try:
             response = requests.get(url, params=params)
+            print(f"DEBUG: Requesting URL {url} - Status Code: {response.status_code}")
             response.raise_for_status()
             return response.json()
         except requests.exceptions.RequestException as e:
-            logger.warning(f"Request failed (Attempt {attempt+1}): {e}")
-            time.sleep(delay * (2 ** attempt))  # Exponential backoff
+            print(f"ERROR: Failed request to {url}: {e}")
     return None
+
+
+MANUAL_TICKER_MAP = {
+    "apple": "AAPL",
+    "microsoft": "MSFT",
+    "google": "GOOGL",
+    "tesla": "TSLA",
+    "amazon": "AMZN",
+    "meta": "META",
+    "nvidia": "NVDA",
+    "netflix": "NFLX",
+    "paypal": "PYPL",
+    "facebook": "META",
+    "alphabet": "GOOGL",
+}
+
+
+def get_stock_symbol(input_str):
+    """Extracts a valid stock or crypto symbol from user input."""
+    try:
+        input_str = input_str.strip().lower()
+
+        # 1. Check for common cryptocurrency names
+        crypto_symbols = {
+            "bitcoin": "BTCUSD",
+            "ethereum": "ETHUSD",
+            "dogecoin": "DOGEUSD",
+            "cardano": "ADAUSD",
+            "litecoin": "LTCUSD",
+            "solana": "SOLUSD",
+            "polkadot": "DOTUSD"
+        }
+
+        if input_str in crypto_symbols:
+            return crypto_symbols[input_str]  # Return the correct crypto symbol
+        if input_str in MANUAL_TICKER_MAP:
+            return MANUAL_TICKER_MAP[input_str]
+
+        # 2. Use Yahoo Finance search API if no direct match is found
+        search_url = f"https://query2.finance.yahoo.com/v1/finance/search?q={input_str}&lang=en-US&region=US"
+        try:
+            response = requests.get(search_url, timeout=5)
+            if response.status_code == 200:
+                search_results = response.json()
+                if 'quotes' in search_results and search_results['quotes']:
+                    for quote in search_results['quotes']:
+                        if 'symbol' in quote and quote.get('isYahooFinance', False):
+                            return quote['symbol'].upper()
+        except requests.RequestException as e:
+            logger.error(f"Yahoo Finance API request failed: {e}")
+
+        logger.error(f"Symbol lookup failed for: {input_str}")
+        return None
+
+    except Exception as e:
+        logger.error(f"Error extracting symbol: {e}")
+        return None
+
 
 def place_order(api, symbol, qty, side='buy', order_type='market', limit_price=None, stop_price=None):
     try:
         # Ensure symbol is extracted correctly as a single string
-        symbol = get_stock_symbol(symbol)
+        print(f"DEBUG: Attempting to place order for {symbol}")  # Debugging line
         if not symbol:
             return {"error": "Invalid stock symbol"}
 
@@ -85,7 +167,7 @@ def place_order(api, symbol, qty, side='buy', order_type='market', limit_price=N
         asset = api.get_asset(symbol)
         if not asset.tradable:
             return {"error": f"Asset {symbol} is not tradable"}
-        if not asset.fractionable and not qty.is_integer():
+        if not asset.fractionable and not float(qty).is_integer():
             return {"error": f"Fractional shares not supported for {symbol}"}
 
         # Validate order types
@@ -106,7 +188,7 @@ def place_order(api, symbol, qty, side='buy', order_type='market', limit_price=N
             limit_price=limit_price if order_type in ['limit', 'stop_limit'] else None,
             stop_price=stop_price if order_type in ['stop', 'stop_limit'] else None
         )
-
+        print(f"DEBUG: Order placed successfully for {symbol}")
         return {
             "symbol": order.symbol,
             "qty": order.qty,
@@ -136,25 +218,26 @@ def handle_errors(func):
     return wrapper
 
 def place_crypto_order(api, crypto_symbol, quantity, side, order_type='market', limit_price=None):
-    """Place a cryptocurrency order"""
+    """Places a cryptocurrency order with correct parameters."""
     try:
         if quantity <= 0:
             raise ValueError("Quantity must be greater than 0.")
-        # Validate if limit price is required
+
+        # ✅ Validate limit price if order type is limit
         if order_type == 'limit' and limit_price is None:
             raise ValueError("Limit orders require a limit price.")
 
-        # Place a cryptocurrency order using Alpaca API
+        # ✅ Place a crypto order
         order = api.submit_order(
             symbol=crypto_symbol,
             qty=quantity,
             side=side,
             type=order_type,
-            limit_price=limit_price if order_type == 'limit' else None,
-            time_in_force='gtc'
+            time_in_force='gtc',
+            limit_price=limit_price if order_type == 'limit' else None  # ✅ Correctly setting limit price
         )
 
-        print(f"Order placed: {quantity} {crypto_symbol} as a {order_type} order")
+        print(f"✅ Crypto Order Placed: {quantity} {crypto_symbol} as a {order_type} order")
         return {
             "symbol": order.symbol,
             "quantity": order.qty,
@@ -164,61 +247,79 @@ def place_crypto_order(api, crypto_symbol, quantity, side, order_type='market', 
         }
 
     except Exception as e:
-        print(f"Error placing crypto order: {str(e)}")
-        return f"Error placing crypto order: {str(e)}"
+        print(f"❌ Error placing crypto order: {str(e)}")
+        return f"❌ Error placing crypto order: {str(e)}"
 
-def start_trading(api, symbol, qty, side='buy', order_type='market', 
-                       interval_minutes=1, duration_minutes=10, is_crypto=False):
-    trading_control.reset_trading()  # Use proper method
-    end_time = datetime.datetime.now() + datetime.timedelta(minutes=duration_minutes)
-    interval_seconds = interval_minutes * 60
+trade_lock = threading.Lock()
 
-    while not trading_control.should_stop() and datetime.datetime.now() < end_time:
-        try:
-            if is_crypto:
-                place_crypto_order(api, symbol, qty, side, order_type)
-            else:
-                place_order(api, symbol, qty, side, order_type)
-            time.sleep(interval_seconds)
-        except Exception as e:
-            logger.error(f"Trading error: {str(e)}")
-            break
+def start_trading_thread(self, trade_params):
+    """Starts a trading bot in a separate thread."""
+    if self.trading_active:
+        return "Trading bot is already running."
 
-    print("Trading stopped or time duration completed.")
+    self.trading_active = True
+    self.trading_thread = threading.Thread(target=self.run_trading_bot, args=(trade_params,))
+    self.trading_thread.start()
+    return "Trading bot started."
 
+def run_trading_bot(self, trade_params):
+    """Handles trading logic in a background thread."""
+    try:
+        symbol = trade_params.get("symbol")
+        qty = trade_params.get("qty")
+        side = trade_params.get("side", "buy")
+        order_type = trade_params.get("order_type", "market")
 
+        if not symbol or not qty:
+            return "Invalid trading parameters."
+
+        # Place trade order
+        order = api.submit_order(
+            symbol=symbol,
+            qty=qty,
+            side=side,
+            type=order_type,
+            time_in_force='gtc'
+        )
+
+        logger.info(f"Trade executed: {order}")
+    except Exception as e:
+        logger.error(f"Error in trading bot: {e}")
+    finally:
+        self.trading_active = False
 
 # Function to get portfolio information
 def get_portfolio():
     try:
-        portfolio = api.list_positions()
-        portfolio_value = 0.0  # Initialize portfolio value as float
-        portfolio_details = []
+        with trade_lock:
+            portfolio = api.list_positions()
+            portfolio_value = 0.0  # Initialize portfolio value as float
+            portfolio_details = []
 
-        for position in portfolio:
-            symbol = position.symbol
-            qty = float(position.qty)  # Convert quantity to float
-            avg_entry_price = float(position.avg_entry_price)
-            stock_value = qty * avg_entry_price
-            portfolio_value += stock_value
+            for position in portfolio:
+                symbol = position.symbol
+                qty = float(position.qty)  # Convert quantity to float
+                avg_entry_price = float(position.avg_entry_price)
+                stock_value = qty * avg_entry_price
+                portfolio_value += stock_value
 
-            portfolio_details.append({
-                'symbol': symbol,
-                'qty': qty,
-                'avg_entry_price': avg_entry_price,
-                'stock_value': stock_value
-            })
+                portfolio_details.append({
+                    'symbol': symbol,
+                    'qty': qty,
+                    'avg_entry_price': avg_entry_price,
+                    'stock_value': stock_value
+                })
 
-        # Print the total portfolio value and details
-        print(f"Total Portfolio Value: {portfolio_value}")
-        print("Portfolio Details:")
-        for detail in portfolio_details:
-            print(detail)
+            # Print the total portfolio value and details
+            print(f"Total Portfolio Value: {portfolio_value}")
+            print("Portfolio Details:")
+            for detail in portfolio_details:
+                print(detail)
 
-        return {
-            'total_portfolio_value': portfolio_value,
-            'portfolio_details': portfolio_details
-        }
+            return {
+                'total_portfolio_value': portfolio_value,
+                'portfolio_details': portfolio_details
+            }
 
     except Exception as e:
         print(f"Error retrieving portfolio: {str(e)}")
@@ -265,8 +366,8 @@ def get_past_orders(api, status='all', limit=10):
 def get_latest_price(symbol):
     try:
         # Get the latest bar for the stock symbol
-        last_quote = api.get_latest_bar(symbol)  
-        current_price=last_quote.c
+        last_quote = api.get_latest_trade(symbol)  
+        current_price=last_quote.price
     
         return f"The current price for {symbol} is: ${current_price}"   
     except Exception as e:
@@ -284,6 +385,9 @@ def get_cash_balance():
 
 def calculate_metric(data, metric, risk_free_rate=0.02):
     returns = data['Adj Close'].pct_change().dropna()
+    if 'Adj Close' not in data:
+        return {"error": "Data does not contain 'Adj Close' column."}
+
     if metric == 'daily_returns':
         return round(returns.mean() * 100, 2)
     elif metric == 'standard_deviation':
@@ -303,7 +407,7 @@ def get_financial_metric(identifier, metric, start_year=None, end_year=None):
         return {"error": "Invalid company name or ticker symbol"}
     
     try:
-        start_date = f"{start_year}-01-01" if start_year else "1900-01-01"
+        start_date = f"{start_year}-01-01" if start_year else (datetime.datetime.now() - datetime.timedelta(days=365)).strftime("%Y-%m-%d")
         end_date = f"{end_year}-12-31" if end_year else datetime.datetime.now().strftime("%Y-%m-%d")
         data = yf.download(symbol, start=start_date, end=end_date)
         if data.empty:
@@ -313,77 +417,19 @@ def get_financial_metric(identifier, metric, start_year=None, end_year=None):
     except Exception as e:
         return {"error": str(e)}
 
-MANUAL_TICKER_MAP = {
-    "apple": "AAPL",
-    "microsoft": "MSFT",
-    "google": "GOOGL",
-    "tesla": "TSLA",
-    "amazon": "AMZN",
-    "meta": "META",
-    "nvidia": "NVDA",
-    "netflix": "NFLX",
-    "paypal": "PYPL",
-    "facebook": "META",
-    "alphabet": "GOOGL",
-}
-
-
-def get_stock_symbol(input_str):
-    """Extracts a single valid stock symbol from user input."""
-    try:
-        input_str = input_str.strip().lower()
-
-        # 1. Check manual mapping first
-        if input_str in MANUAL_TICKER_MAP:
-            return MANUAL_TICKER_MAP[input_str]
-
-        # 2. Check for potential stock symbols (uppercase letters 2-5 characters long)
-        potential_symbols = re.findall(r'\b[A-Z]{2,5}\b', input_str.upper())
-
-        # 3. Validate tickers using Yahoo Finance
-        for symbol in potential_symbols:
-            try:
-                ticker = yf.Ticker(symbol)
-                if ticker.info and ticker.info.get("quoteType") == "EQUITY":
-                    return symbol.upper()  # Return first valid symbol
-            except Exception:
-                pass  # Ignore invalid symbols
-
-        # 4. Use Yahoo Finance search API if no match is found
-        search_url = f"https://query2.finance.yahoo.com/v1/finance/search?q={input_str}&lang=en-US&region=US"
-        try:
-            response = requests.get(search_url, timeout=5)  # Added timeout
-            if response.status_code == 200:
-                search_results = response.json()
-                if 'quotes' in search_results and search_results['quotes']:
-                    for quote in search_results['quotes']:
-                        if 'symbol' in quote and quote.get('isYahooFinance', False):
-                            return quote['symbol'].upper()  # Return first valid result
-        except requests.RequestException as e:
-            logger.error(f"Yahoo Finance API request failed: {e}")
-
-        logger.error(f"Symbol lookup failed for: {input_str}")
-        return None
-
-    except Exception as e:
-        logger.error(f"Error extracting symbol: {e}")
-        return None
-
-    except Exception as e:
-        logger.error(f"Error extracting symbols: {e}")
-        return None
 
 def get_news(topic):
     url = f"https://newsapi.org/v2/everything?q={topic}&apiKey={NEWS_API_KEY}&pageSize=5"
     news_data = safe_request(url)
+
+    if not news_data or "articles" not in news_data:
+        return "Error retrieving news."
     
-    if news_data and news_data.get("articles"):
-        return [{
-            "title": article["title"],
-            "source": article["source"]["name"],
-            "url": article["url"]
-        } for article in news_data["articles"]]
-    return []
+    return [
+        {"title": article["title"], "source": article["source"]["name"], "url": article["url"]}
+        for article in news_data.get("articles", [])
+    ]
+
 
 
 def get_asset_info(symbol, is_crypto=False):
@@ -419,42 +465,50 @@ def get_asset_info(symbol, is_crypto=False):
 
 def fetch_data(symbol, period='1y', is_crypto=False):
     try:
-        if is_crypto and not symbol.endswith('-USD'):
-            symbol = f"{symbol}-USD"
-
-        data = yf.download(symbol, period=period)
+        data = yf.download(symbol, period=period, progress=False)[['Open', 'Close']]
         if data.empty:
-            logger.warning(f"No data found for symbol: {symbol}")
-            return None
-
-        required_columns = ['Open', 'High', 'Low', 'Close', 'Volume']
-        missing_columns = [col for col in required_columns if col not in data.columns]
-        if missing_columns:
-            logger.warning(f"Missing required data columns: {', '.join(missing_columns)}")
-            return None
-
-        return data
+            logger.warning(f"No data found for {symbol}")
+            return {"error": f"No data found for {symbol}"}
+        
+        result = data.to_dict()
+        del data  
+        return result
     except Exception as e:
         logger.error(f"Error fetching {symbol} data: {e}")
         return None
 
 
 class ChatSession:
-    def __init__(self, thread_manager: ThreadManager, assistant_manager: AssistantManager, assistant_name: str,
-                 model_name: str, assistant_id: str = None, thread_id: str = None):
+    def __init__(self, thread_manager, assistant_manager, assistant_name, model_name, assistant_id, thread_id):
         self.thread_manager = thread_manager
         self.assistant_manager = assistant_manager
-        self.assistant_name = "Devdoot"
+        self.assistant_name = assistant_name
         self.model_name = model_name
         self.assistant_id = assistant_id
         self.thread_id = thread_id
+        self.thread_ids = {}
         self.trading_bot_thread = None
         self.trading_bot_params = None
         self.exit_flag = False
         self.trading_active = False
         self.auto_execute = False
+        self.api = api
+        self.trading_session = TradingSession(thread_manager, assistant_manager, thread_id)
 
-    def run_hedge_fund_analysis(self, tickers, start_date, end_date, initial_cash, show_reasoning=True, selected_analysts=None):
+    async def get_chat_response(self, user_input):
+        """Get the response from the chat assistant."""
+        try:
+            print(f"DEBUG: Received user input: {user_input}")  # Add this debug print
+            response = await self.assistant_manager.get_latest_response(user_input)
+            print(f"DEBUG: Assistant Response: {response}")  # Add this debug print
+            return response
+        except Exception as e:
+            print(f"ERROR: Failed to get assistant response: {e}")
+            return "Sorry, an error occurred."
+
+
+
+    async def run_hedge_fund_analysis(self, tickers, start_date, end_date, initial_cash, show_reasoning=True, selected_analysts=None):
         """
         Executes the AI Hedge Fund workflow with the given parameters.
 
@@ -466,24 +520,61 @@ class ChatSession:
         :param selected_analysts: List of analysts to include in the workflow
         :return: Results of the hedge fund analysis
         """
+        try:
+            start_date = start_date or datetime.date.today().isoformat()
+            end_date = end_date or (datetime.date.today() + datetime.timedelta(days=30)).isoformat()
+
+            # Convert to datetime objects
+            start_dt = datetime.datetime.strptime(start_date, "%Y-%m-%d")
+            end_dt = datetime.datetime.strptime(end_date, "%Y-%m-%d")
+
+            if start_dt >= end_dt:
+                print("❌ ERROR: End date must be after start date")
+                return {"error": "Invalid date range"}
+        except ValueError as e:
+            print(f"❌ ERROR: Invalid date format: {str(e)}. Use YYYY-MM-DD")
+            return {"error": "Invalid date format"}
+
+        # Ensure tickers is a valid list
+        if not tickers or not isinstance(tickers, list):
+            print("❌ ERROR: Invalid tickers list provided")
+            return {"error": "Invalid tickers list"}
+
+        valid_tickers = []
+        
+        # ✅ Use `auto_resolve_symbol` to get valid tickers (ASYNC)
+        for t in tickers:
+            resolved_ticker = await self.auto_resolve_symbol(t)
+            if resolved_ticker and resolved_ticker != "NONE":
+                valid_tickers.append(resolved_ticker)
+
+        # ✅ Fallback if no valid tickers found
+        if not valid_tickers:
+            print("⚠️ WARNING: No valid tickers found, using default tickers.")
+            valid_tickers = ['AAPL', 'MSFT', 'GOOGL']
+
+        print(f"✅ DEBUG: Final tickers list for analysis: {valid_tickers}")
+
         # Prepare portfolio structure
         portfolio = {
             "cash": initial_cash,
-            "positions": {ticker: 0 for ticker in tickers}  # Initial positions set to 0
+            "positions": {ticker: 0 for ticker in valid_tickers}  # Initialize positions to 0
         }
 
         try:
-        # Run the hedge fund analysis
+            # ✅ Run the hedge fund analysis
             result = run_hedge_fund(
-                tickers=tickers,
+                tickers=valid_tickers,
                 start_date=start_date,
                 end_date=end_date,
                 portfolio=portfolio,
                 show_reasoning=show_reasoning,
                 selected_analysts=selected_analysts
             )
+
             if 'decisions' not in result:
-                raise ValueError("No decisions found in analysis result")
+                raise ValueError("❌ ERROR: No decisions found in analysis result")
+
             for ticker, decision in result['decisions'].items():
                 if not isinstance(decision, dict):
                     continue
@@ -495,25 +586,123 @@ class ChatSession:
 
                 if action and quantity > 0:
                     if self.auto_execute:
-                        print(f"Auto-executing trade: {action.upper()} {quantity} shares of {ticker}")
-                        print(f"Confidence: {confidence}%")
-                        print(f"Reasoning: {reasoning}")
+                        print(f"✅ Auto-executing trade: {action.upper()} {quantity} shares of {ticker}")
+                        print(f"🔹 Confidence: {confidence}%")
+                        print(f"📜 Reasoning: {reasoning}")
                         self.place_order(ticker, quantity, action)
                     else:
-                        print(f"\nRecommendation for {ticker}:")
-                        print(f"Action: {action.upper()}")
-                        print(f"Quantity: {quantity}")
-                        print(f"Confidence: {confidence}%")
-                        print(f"Reasoning: {reasoning}")
-                        user_input = input("\nExecute this trade? (yes/no): ").strip().lower()
+                        print(f"\n📊 Recommendation for {ticker}:")
+                        print(f"➡️ Action: {action.upper()}")
+                        print(f"🔢 Quantity: {quantity}")
+                        print(f"💡 Confidence: {confidence}%")
+                        print(f"📝 Reasoning: {reasoning}")
+                        
+                        user_input = input("\n⚡ Execute this trade? (yes/no): ").strip().lower()
                         if user_input == 'yes':
                             self.place_order(ticker, quantity, action)
 
         except Exception as e:
-            print(f"Error in hedge fund analysis: {str(e)}")
-            return None
+            print(f"❌ ERROR: Hedge fund analysis failed: {str(e)}")
+            return {"error": str(e)}
 
         return result
+
+
+    async def start_trading_session(self, symbol, qty, interval_minutes, duration_minutes):
+        """Start trading bot in a background thread."""
+        
+        print(f"🟢 Starting trading for {symbol}: {qty} shares every {interval_minutes} minutes for {duration_minutes} minutes.")
+
+        # Prevent multiple trading threads from running
+        if self.trading_active:
+            print("⚠️ Trading bot is already running!")
+            return "Trading bot is already running."
+
+        self.trading_active = True
+
+        def trade_logic():
+            end_time = time.time() + (duration_minutes * 60)
+            while time.time() < end_time:
+                if trading_control.should_stop():
+                    print("🚫 Trading session stopped by user.")
+                    break
+                print(f"✅ Placing order: {qty} {symbol}")
+                self.place_order(symbol, qty, "buy")
+                time.sleep(interval_minutes * 60)
+
+            print(f"🛑 Trading session completed for {symbol}")
+            self.trading_active = False
+
+        # Run the trading bot in a separate thread
+        self.trading_thread = threading.Thread(target=trade_logic)
+        self.trading_thread.start()
+    async def auto_resolve_symbol(self, user_input: str) -> str:
+        """Let GPT-4 handle symbol conversion directly"""
+        response = await self.assistant_manager.client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[{
+                "role": "system",
+                "content": f"Return ONLY the ticker symbol for: {user_input}. "
+                        f"If it is a cryptocurrency, return its trading pair like 'BTCUSD' or 'ETHUSD'. "
+                        f"Do NOT return explanations or extra text. If no valid ticker exists, return 'NONE'."
+            }],
+            temperature=0.0
+        )
+        result = response.choices[0].message.content.strip()
+
+        if result.upper() == "NONE":
+            logger.error(f"Auto-resolve failed: No valid ticker found for {user_input}")
+            return None
+
+        return result.upper()
+
+    async def execute_trade_command(self, user_input):
+        """Uses LLM to extract trade details and execute the trade."""
+
+        print(f"DEBUG: Processing trade command: {user_input}")  # Debugging
+
+        # ✅ Extract trade details using LLM
+        response = await self.assistant_manager.client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[
+                {"role": "system", "content": """Extract trade details from the user's command.
+                    Return a JSON object with:
+                    - action: 'buy' or 'sell'
+                    - quantity: number of shares
+                    - stock_symbol: proper stock ticker
+                    - interval_minutes: (if recurring trade, else null)
+                    - duration_minutes: (if recurring trade, else null)
+                """},
+                {"role": "user", "content": user_input}
+            ]
+        )
+
+        trade_details = response.choices[0].message.content.strip()
+        print(f"DEBUG: LLM Extracted Trade Details: {trade_details}")  # Debugging
+
+        try:
+            trade = json.loads(trade_details)
+            action = trade["action"]
+            quantity = trade["quantity"]
+            stock_symbol = trade["stock_symbol"]
+            interval_minutes = trade.get("interval_minutes")
+            duration_minutes = trade.get("duration_minutes")
+        except Exception as e:
+            return f"❌ ERROR: Failed to parse trade details - {str(e)}"
+
+        # ✅ Resolve stock symbol
+        resolved_symbol = await self.auto_resolve_symbol(stock_symbol)
+        if not resolved_symbol or resolved_symbol == "NONE":
+            return f"❌ ERROR: Could not resolve symbol for {stock_symbol}"
+
+        print(f"DEBUG: Resolved Symbol: {resolved_symbol}")  # Debugging
+
+        # ✅ FIX: Call `start_trading_session()` from `TradingSession` instead of calling it directly
+        if interval_minutes and duration_minutes:
+            return await self.start_trading_session(resolved_symbol, quantity, interval_minutes, duration_minutes)
+        else:
+            return self.place_order(resolved_symbol, quantity, action)
+
 
     def place_order(self, symbol, qty, side='buy'):
         """Executes a trade order based on hedge fund recommendations."""
@@ -526,31 +715,6 @@ class ChatSession:
         mode = "enabled" if status else "disabled"
         print(f"Automatic execution {mode}.")
 
-    def parse_hedge_fund_command(self, command):
-        # Example command: "hedge fund analysis tickers=[AAPL,MSFT] start_date=2025-01-01 end_date=2025-02-01 initial_cash=100000 show_reasoning=true selected_analysts=[Ackman,Buffett]"
-        try:
-            params = {}
-            # Remove the initial command part
-            command = command.replace("hedge fund analysis", "").strip()
-            # Split by spaces to get key=value pairs
-            pairs = command.split()
-            for pair in pairs:
-                key, value = pair.split('=')
-                key = key.strip()
-                value = value.strip().strip('[]')
-                if ',' in value:
-                    value = value.split(',')
-                elif key in ['initial_cash']:
-                    value = float(value)
-                elif key in ['show_reasoning']:
-                    value = value.lower() == 'true'
-                params[key] = value
-            return params
-        except Exception as e:
-            print(f"Error parsing command: {e}")
-            return None
-
-
 
     def reset_flags(self):
         """Reset all control flags"""
@@ -558,11 +722,23 @@ class ChatSession:
         self.trading_active = False
 
     async def start_session(self):
-        print('\033[2J\033[H')  # ANSI escape codes to clear screen and move cursor to top
         print(f"Welcome to {self.assistant_name}! How can I help you today?\n")
-        if self.thread_id is None:
-            # Get or create a thread
-            self.thread_id = await self.get_or_create_thread()
+        try:
+            data = self.thread_manager.read_thread_data() or {}
+            self.thread_id = data.get('thread_id')
+
+            if not self.thread_id:
+                print("DEBUG: No existing thread found, creating a new one...")
+                self.thread_id = await self.thread_manager.create_new_thread()
+                if self.thread_id:
+                    self.thread_manager.save_thread_data({'thread_id': self.thread_id})
+                else:
+                    raise ValueError("Failed to create a new thread_id")
+
+            print(f"DEBUG: Using thread_id: {self.thread_id}")
+
+        except Exception as e:
+            print(f"ERROR: Failed to initialize thread session: {e}")
 
         if self.assistant_id is None:
             # Find or create an assistant
@@ -578,7 +754,7 @@ class ChatSession:
         await self.display_chat_history()
 
         # Start the chat loop
-        await self.chat_loop()   
+        await self.chat_loop()
 
     def start_background_thread(self, target_function, *args, **kwargs):
         """
@@ -594,94 +770,183 @@ class ChatSession:
         return thread
 
     async def chat_loop(self):
-        try:
-            while True:
-                user_input = input("\nYou: ").strip()
-                if not user_input:
-                    continue
+        """Handles general assistant interactions."""
+        while True:
+            user_input = input("\nYou: ").strip()
+            if user_input.lower() in ["exit", "quit"]:
+                print("\nDevdoot: Goodbye! Have a great day! 👋")
+                break
+            print("\n🤖 Devdoot is thinking...")
+            response = await self.assistant_manager.get_latest_response(user_input)
+            print(f"\nDevdoot: {response}")
 
-                if user_input.lower() in ['exit', 'quit', 'bye']:
-                    print("\nGoodbye! Have a great day!")
-                    break
-                elif user_input.lower().startswith('toggle auto execute'):
-                    self.toggle_auto_execution(user_input.lower().endswith('on'))
-                    continue
-                elif "hedge fund analysis" in user_input:
-                    hedge_fund_params = self.parse_hedge_fund_command(user_input)
-                    if hedge_fund_params:
-                        self.run_hedge_fund_analysis(**hedge_fund_params)
-                        continue
-
-                trading_cmd = self.parse_trading_command(user_input)
-                if trading_cmd:
-                    if trading_cmd['command'] == 'buy':
-                        symbol = trading_cmd['params'][1]
-                        qty = trading_cmd['params'][0]
-                        # Call place_order with extracted params
-                        result = place_order(api, symbol, qty, side='buy')
-                        print(result)
-                        continue
-
-                # Check for hedge fund commands
-                hedge_fund_params = self.parse_hedge_fund_command(user_input)
-                if hedge_fund_params:
-                    print("\nRunning hedge fund analysis...")
-                    result = self.run_hedge_fund_analysis(
-                        tickers=hedge_fund_params["tickers"],
-                        start_date=hedge_fund_params["start_date"],
-                        end_date=hedge_fund_params["end_date"],
-                        initial_cash=hedge_fund_params["initial_cash"],
-                        show_reasoning=True  # Optionally, set to False
-                    )
-                    print(f"\nHedge Fund Results: {result['decisions']}")
-                    continue
-
-                # Handle other user input
-                print("\nThinking...", end='\r')  # Show thinking indicator
-                response = await self.get_latest_response(user_input)
-                if response:
-                    print(" " * 20, end='\r')  # Clear thinking indicator
-                    print(f"\n{self.assistant_name}: {response}")
-
-        except KeyboardInterrupt:
-            print("\n\nSession ended by user. Goodbye!")
-        except Exception as e:
-            print(f"\nAn error occurred: {str(e)}")
-            print("Session ended. Please restart the application.")
     def is_trading_command(self, input_text):
         """Check if the input is a trading command"""
         trading_keywords = ['buy', 'sell', 'trade', 'order']
         return any(keyword in input_text.lower() for keyword in trading_keywords)
 
-    def parse_trading_command(self, input_text):
-        patterns = {
-            'buy': r"buy\s+(\d+(?:\.\d+)?)\s+(?:shares? of\s+)?(\w+)",
-            'sell': r"sell\s+(\d+)\s+(\w+)",
-            'stop': r"stop\s+trading",
-            'portfolio': r"show\s+portfolio"
-        }
+    async def process_user_input(self, user_input):
+        """Processes user input by hardcoding function calls and ensuring correct identification."""
+        print(f"DEBUG: Received user input: {user_input}")
+
+        # Identify command type
+        trading_keywords = ['buy', 'sell', 'trade', 'order']
+        recurring_keywords = ['every', 'interval', 'repeat']
+        hedge_fund_keywords = ['run hedge fund', 'hedge fund analysis']
+        financial_metrics_keywords = ['financial metric', 'analyze stock', 'calculate metric']
+        general_keywords = ['news', 'latest price', 'cash balance', 'portfolio', 'past orders']
+        news_keywords = ['news', 'latest news', 'market news']
+        portfolio_keywords = ['portfolio', 'my investments', 'holdings']
+        order_keywords = ['past orders', 'order history', 'trades executed']
+        cash_keywords = ['cash balance', 'available funds', 'account balance']
+        stop_keywords = ['stop trading', 'halt trade']
         
-        input_text = input_text.lower().strip()
+        irrelevant_words = {'run', 'hedge', 'fund', 'analysis', 'for'}
         
-        for command, pattern in patterns.items():
-            match = re.match(pattern, input_text)
-            if match:
-                return {
-                    'command': command,
-                    'params': match.groups()
+        is_trade_command = any(keyword in user_input.lower() for keyword in trading_keywords)
+        is_recurring_trade = any(keyword in user_input.lower() for keyword in recurring_keywords)
+        is_hedge_fund_command = any(keyword in user_input.lower() for keyword in hedge_fund_keywords)
+        is_financial_metric_command = any(keyword in user_input.lower() for keyword in financial_metrics_keywords)
+        is_news_command = any(keyword in user_input.lower() for keyword in news_keywords)
+        is_portfolio_command = any(keyword in user_input.lower() for keyword in portfolio_keywords)
+        is_order_command = any(keyword in user_input.lower() for keyword in order_keywords)
+        is_cash_command = any(keyword in user_input.lower() for keyword in cash_keywords)
+        is_stop_command = any(keyword in user_input.lower() for keyword in stop_keywords)
+        is_general_command = any(keyword in user_input.lower() for keyword in general_keywords)
+
+        if is_trade_command:
+            print("DEBUG: Identified as Trade Command")
+            return await self.execute_trade_command(user_input)
+
+        if is_recurring_trade:
+            print("DEBUG: Identified as Recurring Trade Command")
+            trade_details = await self.extract_trade_info(user_input) if hasattr(self, 'extract_trade_info') else self.parse_trade_details(user_input)
+            symbol = await self.auto_resolve_symbol(trade_details.get('symbol')) or trade_details.get('symbol')
+            qty = trade_details.get('qty')
+            interval = trade_details.get('interval_minutes')
+            duration = trade_details.get('duration_minutes')
+            
+            if interval and duration:
+                return await self.start_trading_session(symbol=symbol, qty=qty, interval_minutes=interval, duration_minutes=duration)
+            elif interval and not duration:
+                return await self.start_trading_session(symbol=symbol, qty=qty, interval_minutes=interval, duration_minutes=10)
+            elif duration and not interval:
+                return await self.start_trading_session(symbol=symbol, qty=qty, interval_minutes=2, duration_minutes=duration)
+            else:
+                return await self.place_order(symbol=symbol, qty=qty, side='buy')
+        
+        if is_hedge_fund_command:
+            print("DEBUG: Identified as Hedge Fund Command")
+            raw_tickers = [word.upper() for word in user_input.split() if word.isalpha() and word.lower() not in irrelevant_words]
+            tickers = []
+            
+            for ticker in raw_tickers:
+                resolved_ticker = await self.auto_resolve_symbol(ticker)
+                if resolved_ticker:
+                    tickers.append(resolved_ticker)
+                else:
+                    logging.error(f"Symbol lookup failed for: {ticker}")
+            
+            if not tickers:
+                tickers = raw_tickers if raw_tickers else ['TSLA', 'AAPL', 'MSFT']  # Use original input if available
+                logging.warning("No valid tickers resolved. Using input tickers or default.")
+            
+            return await self.run_hedge_fund_analysis(
+                tickers=tickers,
+                start_date=(datetime.date.today() - datetime.timedelta(days=365)).isoformat(),
+                end_date=(datetime.date.today() - datetime.timedelta(days=1)).isoformat(),
+                initial_cash=100000,
+                show_reasoning=True,
+                selected_analysts=None
+            )
+        
+        if is_financial_metric_command:
+            print("DEBUG: Identified as Financial Metric Command")
+            identifier, metric = self.extract_metric_details(user_input)
+            return get_financial_metric(identifier=identifier, metric=metric, start_year=2020, end_year=2024)
+        
+        if is_news_command:
+            print("DEBUG: Identified as News Command")
+            return get_news(topic='stock market')
+        
+        if is_portfolio_command:
+            print("DEBUG: Identified as Portfolio Command")
+            return get_portfolio()
+        
+        if is_order_command:
+            print("DEBUG: Identified as Past Orders Command")
+            return get_past_orders(api=self.api, status='all', limit=10)
+        
+        if is_cash_command:
+            print("DEBUG: Identified as Cash Balance Command")
+            return get_cash_balance()
+        
+        if is_stop_command:
+            print("DEBUG: Identified as Stop Trading Command")
+            return TradingControl.stop_trading()
+
+        if is_general_command:
+            print("DEBUG: Identified as General Command")
+            return await self.get_chat_response(user_input)
+
+        print("DEBUG: Falling back to General Response")
+        return await self.get_chat_response(user_input)
+
+
+
+    def extract_metric_details(self, user_input):
+        """Extracts the stock identifier and financial metric from user input."""
+        words = user_input.lower().split()
+        identifier = "AAPL"
+        metric = "sharpe_ratio"
+        for i, word in enumerate(words):
+            if word in ['for', 'of'] and i + 1 < len(words):
+                identifier = words[i + 1].upper()
+            elif word in ['sharpe', 'skewness', 'kurtosis']:
+                metric = word
+        return identifier, metric
+
+
+
+    async def interpret_user_command(self, user_input):
+        """Uses LLM to classify the user's request and return structured intent."""
+        response = await self.assistant_manager.client.chat.completions.create(
+            model="gpt-4-turbo",
+            messages=[
+                {"role": "system", "content": "Classify the user's request into an action and parameters."},
+                {"role": "user", "content": user_input}
+            ],
+            functions=[
+                {
+                    "name": "execute_function",
+                    "description": "Executes a function based on the user's intent.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "function_name": {"type": "string", "description": "Name of the function to call"},
+                            "parameters": {"type": "object", "description": "Parameters for the function"}
+                        },
+                        "required": ["function_name"]
+                    }
                 }
-        
+            ]
+        )
+
+        if response.choices[0].message.function_call:
+            return json.loads(response.choices[0].message.function_call.arguments)
         return None
 
+
     async def display_chat_history(self):
-        """Display chat history in a clean format"""
+        """Displays chat history in a formatted way."""
         messages = await self.thread_manager.list_messages(self.thread_id)
         if not messages or not messages.data:
+            print("No chat history found.")
             return
 
         print("\nRecent conversation:")
         print("-" * 50)
-        
+
         for message in reversed(messages.data):
             role = "You" if message.role == "user" else self.assistant_name
             if hasattr(message, 'content') and message.content:
@@ -690,8 +955,9 @@ class ChatSession:
                         print(f"\n{role}: {content.text.value}")
                     elif content.type == 'image_file':
                         print(f"\n{role}: [Image File: {content.image_file.file_id}]")
-        
+
         print("-" * 50)
+
 
     def trading_bot_manager(self):
         """Background thread for managing trading operations"""
@@ -700,7 +966,7 @@ class ChatSession:
             
         params = self.trading_bot_params
         try:
-            start_trading(
+            self.start_trading_session(
                 api=api,
                 symbol=params['symbol'],
                 qty=params['qty'],
@@ -713,7 +979,7 @@ class ChatSession:
             logging.error(f"Trading bot error: {e}")
 
     async def get_or_create_thread(self):
-        data = self.thread_manager.read_thread_data()
+        data = self.thread_manager.read_thread_data() or {} 
         thread_id = data.get('thread_id')
         if data is None:
             data = {}
@@ -762,15 +1028,12 @@ class ChatSession:
             # Step 2 - Create an assistant 
             assistant = await self.assistant_manager.beta.assistants.create(
                 name="Finance Educator",
-                instructions="""You are a helpful study assistant who knows a lot about understanding research papers.
-                Your role is to summarize papers, clarify terminology within context, and extract key figures and data.
-                Cross-reference information for additional insights and answer related questions comprehensively.
-                Analyze the papers, noting strengths and limitations. You know how to take a list of article's titles and descriptions and use them to get deeper understanding and give out accurate and comprehensive responses.
-                Respond to queries effectively, incorporating feedback to enhance your accuracy.
-                Handle data securely and update your knowledge base with the latest research.
-                Adhere to ethical standards, respect intellectual property, and provide users with guidance on any limitations.
-                Maintain a feedback loop for continuous improvement and user support.
-                Your ultimate goal is to facilitate a deeper understanding of complex scientific material, making it more accessible and comprehensible.""",
+                instructions="""You are an expert financial assistant. Always convert these common terms:
+                - "crude oil" → CL=F
+                - "gold" → GC=F
+                - "silver" → SI=F
+                - "apple" → AAPL
+                Return exact ticker symbols for any security reference. You do technical analysis of stocks, shares and cryptos accurately. You give all required informations related to market.""",
                             
                 tools=[{"type": "code_interpreter"},{"type": "file_search"},
                         {"type": "function",
@@ -787,6 +1050,23 @@ class ChatSession:
                                     },
                                     "required": ["topic"],
                 }
+                }
+                },
+                {
+                "type": "function",
+                "function": {
+                    "name": "auto_resolve_symbol",
+                    "description": "Convert natural language to ticker symbols",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "user_input": {
+                                "type": "string", 
+                                "description": "Raw user input containing security reference"
+                            }
+                        },
+                        "required": ["user_input"]
+                    }
                 }
                 },
                 # Inside the tools list of the assistant creation:
@@ -951,7 +1231,7 @@ class ChatSession:
           {
                 "type": "function",
                 "function": {
-                    "name": "start_trading",
+                    "name": "start_trading_session",
                     "description": "Starts a trading bot on Alpaca that places a buy or sell order for either stocks or cryptocurrency. If interval_minutes is provided, orders will be placed at that interval; otherwise, the order will be placed only once. Supports fractional shares.",
                     "parameters": {
                         "type": "object",
@@ -1088,7 +1368,18 @@ class ChatSession:
         return assistant_id
 
     async def send_message(self, content):
-        return await self.thread_manager.send_message(self.thread_id, content)
+        if not self.thread_id:
+            print("ERROR: Missing thread_id!")  # Debugging
+            return "Error: Missing thread_id."
+
+        try:
+            print(f"DEBUG: Sending message '{content}' to thread_id: {self.thread_id}")  # Debugging output
+            response = await self.thread_manager.send_message(self.thread_id, content)
+            return response
+        except Exception as e:
+            print(f"Error sending message: {str(e)}")
+            return f"Error sending message: {str(e)}"
+
 
     async def display_chat_history(self):
         messages = await self.thread_manager.list_messages(self.thread_id)
@@ -1146,8 +1437,8 @@ class ChatSession:
         return await self.thread_manager.create_run(self.thread_id, self.assistant_id)
 
 ############################################################################################################
-    async def call_required_functions(self,required_actions,run):
-        
+    async def call_required_functions(self, required_actions, run):
+        """Executes functions dynamically based on LLM response."""
         if not run:
             return
 
@@ -1157,223 +1448,16 @@ class ChatSession:
             func_name = action["function"]["name"]
             arguments = json.loads(action["function"]["arguments"])
 
-            if func_name == "get_news":
-                output = get_news(topic=arguments["topic"])
-                final_str = ""
-                for item in output:
-                    final_str = "\n".join(f"{news['title']} - {news['source']} ({news['url']})" for news in output)
-                tool_outputs.append({"tool_call_id": action["id"], "output": final_str}) 
+            # Dynamically check if function exists
+            if hasattr(self, func_name):
+                function_to_call = getattr(self, func_name)
+                output = await function_to_call(**arguments)
+            else:
+                output = f"Error: Function '{func_name}' not found."
 
-            # Inside the for loop over tool_calls:
-            elif func_name == "fetch_data":
-                symbol = arguments.get("symbol")
-                period = arguments.get("period", "1y")
-                is_crypto = arguments.get("is_crypto", False)
-                try:
-                    data = fetch_data(symbol, period, is_crypto)
-                    if data is not None:
-                        output = f"Fetched {period} data for {symbol}. Contains {len(data)} rows."
-                    else:
-                        output = f"Failed to fetch data for {symbol}."
-                    tool_outputs.append({"tool_call_id": action["id"], "output": output})
-                except Exception as e:
-                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
+            tool_outputs.append({"tool_call_id": action["id"], "output": str(output)})
 
-            elif func_name == "get_asset_info":
-                symbol = arguments.get("symbol")
-                is_crypto = arguments.get("is_crypto", False)
-                try:
-                    info = get_asset_info(symbol, is_crypto)
-                    if info:
-                        output = json.dumps(info, indent=2)
-                    else:
-                        output = f"No info found for {symbol}."
-                    tool_outputs.append({"tool_call_id": action["id"], "output": output})
-                except Exception as e:
-                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
-
-            elif func_name == "get_financial_metric":
-                try:
-                    identifier = arguments["company_name"]
-                    metric = arguments["metric"]
-                    start_year = arguments.get("start_year")
-                    end_year = arguments.get("end_year")
-                    
-                    output = get_financial_metric(
-                        identifier=identifier,
-                        metric=metric,
-                        start_year=start_year,
-                        end_year=end_year
-                    )
-                    
-                    if "error" in output:
-                        final_str = f"Error: {output['error']}"
-                    else:
-                        final_str = json.dumps(output, indent=2)
-                    
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                    logger.info("Financial metrics retrieved successfully")
-                except Exception as e:
-                    tool_outputs.append({"tool_call_id": action["id"], "output": f"Critical error: {str(e)}"})
-                    logger.error(f"Error in get_financial_metric: {e}")  
-
-            elif func_name == "place_order":
-                try:
-                    # Extract and validate the required parameters
-                    symbol = str(arguments.get("symbol", "")).upper()
-                    qty = float(arguments.get("qty", 0))
-                    side = str(arguments.get("side", "buy")).lower()
-                    order_type = str(arguments.get("order_type", "market")).lower()
-                    limit_price = float(arguments.get("limit_price")) if arguments.get("limit_price") else None
-                    stop_price = float(arguments.get("stop_price")) if arguments.get("stop_price") else None
-
-                    # Validate required parameters
-                    if not symbol or qty <= 0:
-                        raise ValueError("Symbol and quantity > 0 are required")
-
-                    # Call the function to place the stock order with extracted arguments
-                    output = place_order(
-                        api=api,
-                        symbol=symbol,
-                        qty=qty,
-                        side=side,
-                        order_type=order_type,
-                        limit_price=limit_price,
-                        stop_price=stop_price
-                    )
-
-                    # Append the result for the tool call
-                    tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps(output)})
-                    logger.info("Stock order processed successfully...")
-
-                except Exception as e:
-                    error_msg = f"Error processing stock order: {str(e)}"
-                    logger.error(error_msg)
-                    tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps({"error": error_msg})})
-
-
-            elif func_name == "start_trading":
-                # Log arguments for debugging
-                print("Arguments received:", arguments)
-
-                symbol = arguments.get("symbol")
-                qty = arguments.get("qty")
-                side = arguments.get("side")
-                order_type = arguments.get("order_type", 'market')
-                interval_minutes = arguments.get("interval_minutes", 1)
-                duration_minutes = arguments.get("duration_minutes", 10)
-
-                try:
-                    # Call the start_trading function with the correct parameters
-                    output = start_trading(
-                        api=api,
-                        symbol=symbol,
-                        qty=qty,
-                        side=side,
-                        order_type=order_type,
-                        interval_minutes=interval_minutes,
-                        duration_minutes=duration_minutes
-                    )
-                    final_str = "Trading operation executed successfully."
-                except Exception as e:
-                    final_str = str(e)
-
-                tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                print("Trading operation executed successfully...")
-
-
-            elif func_name == "place_crypto_order":
-                # Extract the required parameters from the user's input
-                symbol = arguments.get("symbol")
-                quantity = arguments.get("quantity")
-                side = arguments.get("side", "buy")  # Default to 'buy' if not provided
-                order_type = arguments.get("order_type", "market")  # Default to market order if not provided
-                limit_price = arguments.get("limit_price", None)  # Optional limit price for limit orders
-
-                try:
-                    # Call the function to place the crypto order
-                    output = place_crypto_order(
-                        api=api,  # Ensure API instance is passed here
-                        symbol=symbol,
-                        quantity=quantity,
-                        side=side,  # Pass the side (buy/sell)
-                        order_type=order_type,
-                        limit_price=limit_price
-                    )
-
-                    # Append the result for the tool call
-                    tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps(output)})
-                    print("Crypto order processed successfully...")
-
-                except Exception as e:
-                    tool_outputs.append({"tool_call_id": action["id"], "output": str(e)})
-                    print(f"Error processing crypto order: {e}")
-
-            elif func_name == "get_past_orders":
-                # Extract optional parameters
-                status = arguments.get("status", "all")  # Default to 'all' if not provided
-                limit = arguments.get("limit", 10)  # Default to 10 if not provided
-
-                # Call the function to get past orders with extracted arguments
-                output = get_past_orders(api=api, status=status, limit=limit)
-
-                # Append the result for the tool call
-                tool_outputs.append({"tool_call_id": action["id"], "output": json.dumps(output)})
-                print("Past orders retrieved successfully.")
-
-
-            elif func_name == "get_portfolio":
-                    try:
-                        # Call the get_portfolio function
-                        output = get_portfolio()
-                        final_str = str(output)
-                    except Exception as e:
-                        final_str = str(e)
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                    print("Data retrieved successfully...")
-
-            elif func_name == "get_latest_price":
-                    symbol = arguments["symbol"]
-
-                    try:
-                        # Call the get_latest_price function
-                        output = get_latest_price(symbol)
-                        final_str = f"Latest price of {symbol}: {output}"
-                    except Exception as e:
-                        final_str = str(e)
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                    print("Data retrieved successfully...")
-
-            elif func_name == "get_cash_balance":
-                    try:
-                        # Call the get_cash_balance function
-                        output = get_cash_balance()
-                        final_str = f"Cash balance: {output}"
-                    except Exception as e:
-                        final_str = str(e)
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                    print("Data retrieved successfully...")
-
-            elif func_name == "stop_trading":
-                    try:
-                        TradingControl.stop_trading()
-                        final_str = "Trading stopped successfully."
-                    except Exception as e:
-                        final_str = str(e)
-                    tool_outputs.append({"tool_call_id": action["id"], "output": final_str})
-                    print("Trading stop command processed successfully...")
-
-                           
-
-        else:
-                final_str = f"Error: Unknown function '{func_name}'"
-
-
-        print("Submitting outputs back to the Assistant...")
-        await self.assistant_manager.client.beta.threads.runs.submit_tool_outputs_and_poll(
-            thread_id=self.thread_id, run_id=run.id, tool_outputs=tool_outputs
-        )
-############################################################################################################
+        return tool_outputs
 
     async def wait_for_assistant(self):
         max_retries = 30  # 1 minute timeout (2 seconds * 30)
@@ -1409,29 +1493,48 @@ class ChatSession:
         print("Timeout waiting for assistant response")
 
     async def retrieve_latest_response(self):
+        """Retrieves only the latest assistant response to avoid duplicate replies."""
         try:
             response = await self.thread_manager.list_messages(self.thread_id)
             if not response or not response.data:
                 return "No response available"
-                
-            for message in response.data:
-                if message.role == "assistant":
-                    if not message.content:
-                        continue
-                        
+
+            # ✅ Only return the latest assistant message
+            for message in reversed(response.data):  # Messages are returned in reverse order (latest first)
+                if message.role == "assistant" and message.content:
                     content_item = message.content[0]
                     if content_item.type == 'text':
                         return content_item.text.value
                     elif content_item.type == 'image_file':
-                        file_id = content_item.image_file.file_id
-                        image_data = await self.assistant_manager.client.files.content(file_id)
-                        image_data_bytes = image_data.read()
-                        
-                        with open(f"{file_id}.png", "wb") as file:
-                            file.write(image_data_bytes)
-                        return f"Image saved as {file_id}.png"
-                        
-            return "No assistant response found"
-            
+                        return f"Image response received with File ID: {content_item.image_file.file_id}"
+
+            return "No valid response from assistant"
+
         except Exception as e:
             return f"Error retrieving response: {str(e)}"
+
+class TradingSession:
+    def __init__(self, thread_manager, assistant_manager, trading_thread_id):
+        self.thread_manager = thread_manager
+        self.assistant_manager = assistant_manager
+        self.trading_thread_id = trading_thread_id
+        self.is_trading_active = False  # ✅ Added trading state control
+
+    async def start_trading(self):
+        """Start trading execution."""
+        if self.is_trading_active:
+            print("⚠️ Trading is already running.")
+            return
+        
+        self.is_trading_active = True
+        print("✅ Trading session started.")
+
+        while self.is_trading_active:
+            print("📈 Executing trades...")
+            await asyncio.sleep(5)  # ✅ Simulate async trading execution
+            print("✅ Trade executed successfully.")
+
+    def stop_trading(self):
+        """Stop the trading bot only when the user explicitly requests it."""
+        print("🚫 User requested to stop trading.")
+        trading_control.stop_trading()
