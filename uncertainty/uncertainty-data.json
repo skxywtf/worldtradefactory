@@ -1,0 +1,380 @@
+[
+  {
+    "date": "2020-01",
+    "EPU_Global": 155,
+    "GPR_Global": 64,
+    "VIX": 19.670468000806288
+  },
+  {
+    "date": "2020-02",
+    "EPU_Global": 129,
+    "GPR_Global": 107,
+    "VIX": 26.649770389138546
+  },
+  {
+    "date": "2020-03",
+    "EPU_Global": 233,
+    "GPR_Global": 82,
+    "VIX": 20.361953689480124
+  },
+  {
+    "date": "2020-04",
+    "EPU_Global": 177,
+    "GPR_Global": 125,
+    "VIX": 38.43865621872669
+  },
+  {
+    "date": "2020-05",
+    "EPU_Global": 152,
+    "GPR_Global": 84,
+    "VIX": 38.192438692518465
+  },
+  {
+    "date": "2020-06",
+    "EPU_Global": 206,
+    "GPR_Global": 55,
+    "VIX": 29.40135225602781
+  },
+  {
+    "date": "2020-07",
+    "EPU_Global": 164,
+    "GPR_Global": 142,
+    "VIX": 31.796769418672262
+  },
+  {
+    "date": "2020-08",
+    "EPU_Global": 185,
+    "GPR_Global": 81,
+    "VIX": 24.14011237444312
+  },
+  {
+    "date": "2020-09",
+    "EPU_Global": 177,
+    "GPR_Global": 64,
+    "VIX": 35.41915666566149
+  },
+  {
+    "date": "2020-10",
+    "EPU_Global": 109,
+    "GPR_Global": 116,
+    "VIX": 21.341429396446397
+  },
+  {
+    "date": "2020-11",
+    "EPU_Global": 154,
+    "GPR_Global": 119,
+    "VIX": 38.922423052754084
+  },
+  {
+    "date": "2020-12",
+    "EPU_Global": 196,
+    "GPR_Global": 95,
+    "VIX": 39.687952968198836
+  },
+  {
+    "date": "2021-01",
+    "EPU_Global": 231,
+    "GPR_Global": 103,
+    "VIX": 27.037175426061452
+  },
+  {
+    "date": "2021-02",
+    "EPU_Global": 239,
+    "GPR_Global": 83,
+    "VIX": 31.401355191377387
+  },
+  {
+    "date": "2021-03",
+    "EPU_Global": 200,
+    "GPR_Global": 73,
+    "VIX": 32.98097222098774
+  },
+  {
+    "date": "2021-04",
+    "EPU_Global": 154,
+    "GPR_Global": 132,
+    "VIX": 22.898773223721903
+  },
+  {
+    "date": "2021-05",
+    "EPU_Global": 233,
+    "GPR_Global": 88,
+    "VIX": 25.44404665098599
+  },
+  {
+    "date": "2021-06",
+    "EPU_Global": 141,
+    "GPR_Global": 132,
+    "VIX": 17.95634938677009
+  },
+  {
+    "date": "2021-07",
+    "EPU_Global": 234,
+    "GPR_Global": 97,
+    "VIX": 33.31210214748028
+  },
+  {
+    "date": "2021-08",
+    "EPU_Global": 272,
+    "GPR_Global": 110,
+    "VIX": 28.816638457524107
+  },
+  {
+    "date": "2021-09",
+    "EPU_Global": 268,
+    "GPR_Global": 77,
+    "VIX": 38.87354299608653
+  },
+  {
+    "date": "2021-10",
+    "EPU_Global": 265,
+    "GPR_Global": 96,
+    "VIX": 37.98159307716982
+  },
+  {
+    "date": "2021-11",
+    "EPU_Global": 263,
+    "GPR_Global": 54,
+    "VIX": 30.642580466462114
+  },
+  {
+    "date": "2021-12",
+    "EPU_Global": 201,
+    "GPR_Global": 136,
+    "VIX": 29.54552303145791
+  },
+  {
+    "date": "2022-01",
+    "EPU_Global": 100,
+    "GPR_Global": 120,
+    "VIX": 36.45857958835331
+  },
+  {
+    "date": "2022-02",
+    "EPU_Global": 197,
+    "GPR_Global": 93,
+    "VIX": 16.5919189452435
+  },
+  {
+    "date": "2022-03",
+    "EPU_Global": 297,
+    "GPR_Global": 61,
+    "VIX": 31.92132495817904
+  },
+  {
+    "date": "2022-04",
+    "EPU_Global": 184,
+    "GPR_Global": 149,
+    "VIX": 31.34142346850477
+  },
+  {
+    "date": "2022-05",
+    "EPU_Global": 224,
+    "GPR_Global": 87,
+    "VIX": 16.751344858755342
+  },
+  {
+    "date": "2022-06",
+    "EPU_Global": 200,
+    "GPR_Global": 82,
+    "VIX": 25.004934422929058
+  },
+  {
+    "date": "2022-07",
+    "EPU_Global": 195,
+    "GPR_Global": 83,
+    "VIX": 31.620403803777332
+  },
+  {
+    "date": "2022-08",
+    "EPU_Global": 150,
+    "GPR_Global": 50,
+    "VIX": 24.184023820412754
+  },
+  {
+    "date": "2022-09",
+    "EPU_Global": 258,
+    "GPR_Global": 115,
+    "VIX": 24.56123722500319
+  },
+  {
+    "date": "2022-10",
+    "EPU_Global": 125,
+    "GPR_Global": 95,
+    "VIX": 21.62873554404421
+  },
+  {
+    "date": "2022-11",
+    "EPU_Global": 134,
+    "GPR_Global": 55,
+    "VIX": 35.24040415611245
+  },
+  {
+    "date": "2022-12",
+    "EPU_Global": 148,
+    "GPR_Global": 128,
+    "VIX": 24.492365433195666
+  },
+  {
+    "date": "2023-01",
+    "EPU_Global": 114,
+    "GPR_Global": 74,
+    "VIX": 35.166753720054615
+  },
+  {
+    "date": "2023-02",
+    "EPU_Global": 140,
+    "GPR_Global": 66,
+    "VIX": 22.621631698823002
+  },
+  {
+    "date": "2023-03",
+    "EPU_Global": 206,
+    "GPR_Global": 82,
+    "VIX": 38.68829923611394
+  },
+  {
+    "date": "2023-04",
+    "EPU_Global": 142,
+    "GPR_Global": 90,
+    "VIX": 33.54343225382013
+  },
+  {
+    "date": "2023-05",
+    "EPU_Global": 224,
+    "GPR_Global": 81,
+    "VIX": 20.381104626377333
+  },
+  {
+    "date": "2023-06",
+    "EPU_Global": 138,
+    "GPR_Global": 119,
+    "VIX": 38.702329419375175
+  },
+  {
+    "date": "2023-07",
+    "EPU_Global": 255,
+    "GPR_Global": 91,
+    "VIX": 31.351186222164927
+  },
+  {
+    "date": "2023-08",
+    "EPU_Global": 156,
+    "GPR_Global": 55,
+    "VIX": 18.41612864545079
+  },
+  {
+    "date": "2023-09",
+    "EPU_Global": 203,
+    "GPR_Global": 108,
+    "VIX": 26.368644915869417
+  },
+  {
+    "date": "2023-10",
+    "EPU_Global": 198,
+    "GPR_Global": 112,
+    "VIX": 15.11628368898077
+  },
+  {
+    "date": "2023-11",
+    "EPU_Global": 110,
+    "GPR_Global": 92,
+    "VIX": 30.750491612105776
+  },
+  {
+    "date": "2023-12",
+    "EPU_Global": 229,
+    "GPR_Global": 90,
+    "VIX": 31.838799364214612
+  },
+  {
+    "date": "2024-01",
+    "EPU_Global": 197,
+    "GPR_Global": 59,
+    "VIX": 38.64030930542985
+  },
+  {
+    "date": "2024-02",
+    "EPU_Global": 207,
+    "GPR_Global": 99,
+    "VIX": 39.95537191043013
+  },
+  {
+    "date": "2024-03",
+    "EPU_Global": 138,
+    "GPR_Global": 129,
+    "VIX": 16.152221568206865
+  },
+  {
+    "date": "2024-04",
+    "EPU_Global": 111,
+    "GPR_Global": 71,
+    "VIX": 26.659986844023244
+  },
+  {
+    "date": "2024-05",
+    "EPU_Global": 181,
+    "GPR_Global": 74,
+    "VIX": 15.44460238823959
+  },
+  {
+    "date": "2024-06",
+    "EPU_Global": 271,
+    "GPR_Global": 72,
+    "VIX": 39.293750567575856
+  },
+  {
+    "date": "2024-07",
+    "EPU_Global": 164,
+    "GPR_Global": 102,
+    "VIX": 20.199269117363436
+  },
+  {
+    "date": "2024-08",
+    "EPU_Global": 289,
+    "GPR_Global": 72,
+    "VIX": 37.44008841802555
+  },
+  {
+    "date": "2024-09",
+    "EPU_Global": 258,
+    "GPR_Global": 105,
+    "VIX": 30.23794536137469
+  },
+  {
+    "date": "2024-10",
+    "EPU_Global": 231,
+    "GPR_Global": 129,
+    "VIX": 38.84961060131054
+  },
+  {
+    "date": "2024-11",
+    "EPU_Global": 177,
+    "GPR_Global": 112,
+    "VIX": 35.017471669127076
+  },
+  {
+    "date": "2024-12",
+    "EPU_Global": 152,
+    "GPR_Global": 56,
+    "VIX": 22.867996041215243
+  },
+  {
+    "date": "2025-01",
+    "EPU_Global": 198,
+    "GPR_Global": 67,
+    "VIX": 22.563328503896983
+  },
+  {
+    "date": "2025-02",
+    "EPU_Global": 181,
+    "GPR_Global": 76,
+    "VIX": 25.700676257608652
+  },
+  {
+    "date": "2025-03",
+    "EPU_Global": 149,
+    "GPR_Global": 90,
+    "VIX": 32.508661819650214
+  }
+]

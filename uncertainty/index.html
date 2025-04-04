@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Global Uncertainty Indices Dashboard</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body style="background-color:#111; color:#eee; font-family:Arial, sans-serif; margin:0; padding:20px;">
+  <h2>Global Uncertainty Indices (2020–2025)</h2>
+  <div id="chart" style="width:100%; max-width:1000px; height:600px;"></div>
+
+  <script>
+    fetch('uncertainty-data.json')
+      .then(response => response.json())
+      .then(data => {
+        const dates = data.map(d => d.date);
+        const epu = data.map(d => d.EPU_Global);
+        const gpr = data.map(d => d.GPR_Global);
+        const vix = data.map(d => d.VIX);
+
+        const trace1 = {
+          x: dates,
+          y: epu,
+          type: 'scatter',
+          mode: 'lines+markers',
+          name: 'EPU Global',
+          line: { color: '#1f77b4' }
+        };
+
+        const trace2 = {
+          x: dates,
+          y: gpr,
+          type: 'scatter',
+          mode: 'lines+markers',
+          name: 'GPR Global',
+          line: { color: '#ff7f0e' }
+        };
+
+        const trace3 = {
+          x: dates,
+          y: vix,
+          type: 'scatter',
+          mode: 'lines+markers',
+          name: 'VIX',
+          yaxis: 'y2',
+          line: { color: '#2ca02c' }
+        };
+
+        const layout = {
+          paper_bgcolor: '#111',
+          plot_bgcolor: '#111',
+          font: { color: '#eee' },
+          margin: { t: 50 },
+          title: 'Economic & Geopolitical Uncertainty Indices',
+          xaxis: { title: 'Date' },
+          yaxis: { title: 'EPU / GPR Index' },
+          yaxis2: {
+            title: 'VIX',
+            overlaying: 'y',
+            side: 'right',
+            showgrid: false
+          },
+          legend: { x: 0, y: 1.2, orientation: 'h' }
+        };
+
+        Plotly.newPlot('chart', [trace1, trace2, trace3], layout);
+      });
+  </script>
+</body>
+</html>
