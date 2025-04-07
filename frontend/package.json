@@ -43,6 +43,7 @@
     "d3-scale": "^4.0.2",
     "date-fns": "^4.1.0",
     "dayjs": "^1.11.13",
+    "ethers": "^6.13.5",
     "firebase": "^10.12.5",
     "focus-trap-react": "^10.3.0",
     "framer-motion": "^11.16.1",
