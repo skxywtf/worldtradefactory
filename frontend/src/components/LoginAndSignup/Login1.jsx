@@ -94,7 +94,7 @@ const Login = () => {
               </div>
               <Link href="/main/signup">
                 <button className="text-sm hover:text-blue-600">
-                  Don't have an account?
+                  Dont have an account?
                 </button>
               </Link>
               <div
