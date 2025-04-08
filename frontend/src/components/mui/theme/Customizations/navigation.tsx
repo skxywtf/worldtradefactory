@@ -13,10 +13,11 @@ import { tabClasses } from '@mui/material/Tab';
 import UnfoldMoreRoundedIcon from '@mui/icons-material/UnfoldMoreRounded';
 import { gray, brand } from '../themePrimitives';
 
-const CustomSelectIcon = React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
-  <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
-));
-CustomSelectIcon.displayName = 'CustomSelectIcon';
+const IconWithRef = React.forwardRef<SVGSVGElement, SvgIconProps>(function IconWithRef(props, ref) {
+  return <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />;
+});
+IconWithRef.displayName = 'IconWithRef';
+
 
 /* eslint-disable import/prefer-default-export */
 export const navigationCustomizations: Components<Theme> = {
@@ -67,13 +68,10 @@ export const navigationCustomizations: Components<Theme> = {
   },
   MuiSelect: {
     defaultProps: {
-const IconWithRef = React.forwardRef<SVGSVGElement, SvgIconProps>(function IconWithRef(props, ref) {
-  return <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />;
-});
+defaultProps: {
+  IconComponent: IconWithRef,
+},
 
-IconComponent: IconWithRef,
-
-    },
     styleOverrides: {
       root: ({ theme }) => ({
         borderRadius: theme.shape.borderRadius,
