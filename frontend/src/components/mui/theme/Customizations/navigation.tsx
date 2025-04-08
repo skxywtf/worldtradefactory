@@ -1,7 +1,5 @@
-/* eslint-disable react/display-name */
 /* eslint-disable import/prefer-default-export */
-
-
+/* eslint-disable react/display-name */
 import * as React from 'react';
 import { Theme, alpha, Components } from '@mui/material/styles';
 // ... rest of imports
