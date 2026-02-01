@@ -33,7 +33,7 @@ from .views import (
     load_natr,load_obv,load_plus_di,load_plus_dm,load_ppo,load_roc,load_rocr,
     load_rsi,load_sar,load_sine,load_sma,load_stoch,load_stochf,load_stochrsi,
     load_tema,load_trange,load_trendline,load_trendmode,load_trima,load_trix,load_tt,
-    load_ultosc,load_willr,load_wma
+    load_ultosc,load_willr,load_wma,predict
 )
 
 urlpatterns = [
@@ -197,5 +197,7 @@ urlpatterns = [
     path('load-dcperiod/<str:symbol>', load_dcperiod, name='load_dcperiod'),
     path('load-dcphase/<str:symbol>', load_dcphase, name='load_dcphase'),
     path('load-dcphasor/<str:symbol>', load_dcphasor, name='load_dcphasor'),
+    #prediction url pattern
+    path("predict/", predict),
 ]
 

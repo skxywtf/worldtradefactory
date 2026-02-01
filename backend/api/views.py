@@ -65,6 +65,10 @@ import os
 # for alphavantage core stock api
 from django.http import JsonResponse
 
+#for newly added prediction model
+import numpy as np
+from .ai_model import model
+
 
 # Data from the UI will be received here
 class UserSignupView(generics.CreateAPIView):
@@ -2639,3 +2643,21 @@ def load_dcphasor(request, symbol):
         return JsonResponse({'status': 'Ticker not found', 'message': data["Error Message"]}, status=400)
     
     return JsonResponse(data, safe=False)
+
+#newly added post request for data prediction
+@api_view(['POST'])
+def predict(request):
+    data = request.data
+
+    if not isinstance(data, list) or len(data) != 60:
+        return Response(
+            {"error": "Expected a list of 60 numeric values"},
+            status=400
+        )
+
+    x = np.array(data).reshape(1, 60, 1)
+    y = model.predict(x, verbose=0)
+
+    return Response({
+        "prediction": float(y[0][0])
+    })
